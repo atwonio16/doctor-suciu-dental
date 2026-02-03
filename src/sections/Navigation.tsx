@@ -7,7 +7,6 @@ const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
-  const isHome = location.pathname === '/';
 
   useEffect(() => {
     const handleScroll = () => {
@@ -20,14 +19,16 @@ const Navigation = () => {
 
   const navLinks = [
     { label: 'Servicii', href: '/servicii' },
-    { label: 'Echipa', href: isHome ? '#echipa' : '/#echipa' },
-    { label: 'Păreri', href: isHome ? '#recenzii' : '/#recenzii' },
-    { label: 'Contact', href: isHome ? '#contact' : '/#contact' },
+    { label: 'Medici', href: '/medici' },
+    { label: 'Păreri', href: '/pareri' },
+    { label: 'Contact', href: '/contact' },
   ];
 
   const handleNavClick = () => {
     setIsMobileMenuOpen(false);
   };
+
+  const isActive = (href: string) => location.pathname === href;
 
   return (
     <>
@@ -40,12 +41,12 @@ const Navigation = () => {
       >
         <div className="w-full px-4 sm:px-6 lg:px-12 xl:px-20">
           <div className="max-w-7xl mx-auto flex items-center justify-between h-16 lg:h-20">
-            {/* Logo - Text only */}
+            {/* Logo */}
             <Link to="/" className="flex flex-col leading-none">
               <span className="font-bold text-xl tracking-tight text-slate-900">
                 DOCTOR SUCIU
               </span>
-              <span className="text-sm tracking-[0.2em] text-sky-500 font-medium">
+              <span className="text-xs tracking-[0.2em] text-sky-500 font-medium">
                 DENTAL CLINIC
               </span>
             </Link>
@@ -56,7 +57,11 @@ const Navigation = () => {
                 <Link
                   key={link.href}
                   to={link.href}
-                  className="text-sm font-medium text-slate-600 hover:text-sky-500 transition-colors"
+                  className={`text-sm font-medium transition-colors ${
+                    isActive(link.href)
+                      ? 'text-sky-500'
+                      : 'text-slate-600 hover:text-sky-500'
+                  }`}
                 >
                   {link.label}
                 </Link>
@@ -64,7 +69,7 @@ const Navigation = () => {
             </nav>
 
             {/* Desktop CTA */}
-            <div className="hidden lg:flex items-center gap-6">
+            <div className="hidden lg:flex items-center gap-4">
               <a
                 href="tel:+40770220110"
                 className="flex items-center gap-2 text-sm font-medium text-slate-600 hover:text-sky-500 transition-colors"
@@ -76,7 +81,7 @@ const Navigation = () => {
                 asChild
                 className="bg-sky-500 hover:bg-sky-600 text-white font-medium px-6"
               >
-                <Link to={isHome ? '#contact' : '/#contact'}>Programează-te</Link>
+                <Link to="/contact">Programează-te</Link>
               </Button>
             </div>
 
@@ -119,7 +124,11 @@ const Navigation = () => {
                 key={link.href}
                 to={link.href}
                 onClick={handleNavClick}
-                className="text-lg font-medium text-slate-900 hover:text-sky-500 transition-colors py-2"
+                className={`text-lg font-medium py-2 transition-colors ${
+                  isActive(link.href)
+                    ? 'text-sky-500'
+                    : 'text-slate-900 hover:text-sky-500'
+                }`}
               >
                 {link.label}
               </Link>
@@ -136,7 +145,7 @@ const Navigation = () => {
               asChild
               className="bg-sky-500 hover:bg-sky-600 text-white font-medium w-full mt-2"
             >
-              <Link to={isHome ? '#contact' : '/#contact'} onClick={handleNavClick}>
+              <Link to="/contact" onClick={handleNavClick}>
                 Programează-te
               </Link>
             </Button>

@@ -1,14 +1,12 @@
 import { useEffect } from 'react';
 import HeroSection from '../sections/HeroSection';
 import ServicesPreview from '../sections/ServicesPreview';
-import WhyChooseSection from '../sections/WhyChooseSection';
 import TeamSection from '../sections/TeamSection';
-import TestimonialsSection from '../sections/TestimonialsSection';
+import WhyChooseSection from '../sections/WhyChooseSection';
 import ContactSection from '../sections/ContactSection';
 
 const HomePage = () => {
   useEffect(() => {
-    // Smooth scroll for anchor links
     const handleAnchorClick = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
       const anchor = target.closest('a[href^="#"]');
@@ -32,9 +30,8 @@ const HomePage = () => {
     <>
       <HeroSection />
       <ServicesPreview />
-      <WhyChooseSection />
       <TeamSection />
-      <TestimonialsSection />
+      <WhyChooseSection />
       <ContactSection />
     </>
   );

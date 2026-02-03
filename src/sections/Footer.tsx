@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { Facebook, Instagram, Phone, Mail, MapPin } from 'lucide-react';
 
 const Footer = () => {
@@ -51,24 +52,24 @@ const Footer = () => {
               </h4>
               <ul className="space-y-3">
                 <li>
-                  <a href="/servicii" className="text-sm text-slate-600 hover:text-sky-500 transition-colors">
+                  <Link to="/servicii" className="text-sm text-slate-600 hover:text-sky-500 transition-colors">
                     Consultații
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="/servicii" className="text-sm text-slate-600 hover:text-sky-500 transition-colors">
+                  <Link to="/servicii" className="text-sm text-slate-600 hover:text-sky-500 transition-colors">
                     Implanturi dentare
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="/servicii" className="text-sm text-slate-600 hover:text-sky-500 transition-colors">
+                  <Link to="/servicii" className="text-sm text-slate-600 hover:text-sky-500 transition-colors">
                     Estetică dentară
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="/servicii" className="text-sm text-slate-600 hover:text-sky-500 transition-colors">
+                  <Link to="/servicii" className="text-sm text-slate-600 hover:text-sky-500 transition-colors">
                     Ortodonție
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -80,19 +81,19 @@ const Footer = () => {
               </h4>
               <ul className="space-y-3">
                 <li>
-                  <a href="#echipa" className="text-sm text-slate-600 hover:text-sky-500 transition-colors">
+                  <Link to="/medici" className="text-sm text-slate-600 hover:text-sky-500 transition-colors">
                     Echipa medicală
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#recenzii" className="text-sm text-slate-600 hover:text-sky-500 transition-colors">
+                  <Link to="/pareri" className="text-sm text-slate-600 hover:text-sky-500 transition-colors">
                     Păreri pacienți
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#contact" className="text-sm text-slate-600 hover:text-sky-500 transition-colors">
+                  <Link to="/contact" className="text-sm text-slate-600 hover:text-sky-500 transition-colors">
                     Contact
-                  </a>
+                  </Link>
                 </li>
                 <li>
                   <a href="#" className="text-sm text-slate-600 hover:text-sky-500 transition-colors">
