@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import Navigation from './sections/Navigation';
 import HeroSection from './sections/HeroSection';
 import ServicesSection from './sections/ServicesSection';
+import PricingSection from './sections/PricingSection';
 import WhyChooseSection from './sections/WhyChooseSection';
 import TeamSection from './sections/TeamSection';
 import TestimonialsSection from './sections/TestimonialsSection';
@@ -39,6 +40,7 @@ function App() {
       <main>
         <HeroSection />
         <ServicesSection />
+        <PricingSection />
         <WhyChooseSection />
         <TeamSection />
         <TestimonialsSection />

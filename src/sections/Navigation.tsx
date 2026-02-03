@@ -17,6 +17,7 @@ const Navigation = () => {
 
   const navLinks = [
     { label: 'Servicii', href: '#servicii' },
+    { label: 'Prețuri', href: '#preturi' },
     { label: 'Avantaje', href: '#avantaje' },
     { label: 'Echipa', href: '#echipa' },
     { label: 'Recenzii', href: '#recenzii' },
