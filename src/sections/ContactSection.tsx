@@ -14,7 +14,7 @@ import { FadeText } from '@/components/animations/FadeText';
 import { StaggerContainer } from '@/components/animations/StaggerContainer';
 import { AnimatedCard } from '@/components/animations/AnimatedCard';
 
-const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyfKxwckZ2PVurCuCupOmVpeI8NzcqHYyhym3BfaD8UpL8JhluFkKGkPK4nqpr7ao76CA/exec';
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzlmLFfxYhvS_6MRgeY1_hIG6jCgMX5ygOalhlpa6RxjVl3AZtPYc50ihpC6TmHMKDO5w/exec';
 
 const contactInfo = [
   {

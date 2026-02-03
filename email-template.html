@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Programare Confirmată - Doctor Suciu Dental</title>
+</head>
+<body style="margin: 0; padding: 0; font-family: Georgia, 'Times New Roman', serif; background-color: #f8fafc;">
+  <table role="presentation" style="width: 100%; border-collapse: collapse;">
+    <tr>
+      <td align="center" style="padding: 40px 20px;">
+        <table role="presentation" style="max-width: 600px; width: 100%; background-color: #ffffff; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);">
+          
+          <!-- Header with Navy Background -->
+          <tr>
+            <td style="background-color: #0f2542; padding: 40px 40px 30px; text-align: center;">
+              <!-- Logo -->
+              <table role="presentation" style="margin: 0 auto;">
+                <tr>
+                  <td style="padding-right: 12px;">
+                    <div style="width: 50px; height: 50px; background-color: #ffffff; border-radius: 12px; display: inline-block; text-align: center; line-height: 50px;">
+                      <span style="font-family: Georgia, serif; font-size: 24px; font-weight: bold; color: #0f2542;">S</span>
+                    </div>
+                  </td>
+                  <td style="text-align: left;">
+                    <div style="font-family: Georgia, serif; font-size: 22px; font-weight: bold; color: #ffffff; line-height: 1.2;">Doctor Suciu</div>
+                    <div style="font-size: 10px; color: #2dd4bf; letter-spacing: 2px; text-transform: uppercase;">DENTAL CLINIC</div>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Main Content -->
+          <tr>
+            <td style="padding: 40px;">
+              
+              <!-- Greeting -->
+              <h1 style="font-family: Georgia, serif; font-size: 28px; color: #0f2542; margin: 0 0 20px; font-weight: 500;">
+                Bună {{name}},
+              </h1>
+              
+              <p style="font-size: 16px; color: #64748b; line-height: 1.7; margin: 0 0 25px;">
+                Îți mulțumim pentru încredere! Am primit solicitarea ta pentru <strong style="color: #0f2542;">{{service}}</strong> și te contactăm în cel mai scurt timp pentru confirmarea programării.
+              </p>
+
+              <!-- Details Box -->
+              <table role="presentation" style="width: 100%; background-color: #f0fdfa; border-radius: 12px; margin: 25px 0;">
+                <tr>
+                  <td style="padding: 25px;">
+                    <h2 style="font-family: Georgia, serif; font-size: 18px; color: #0f2542; margin: 0 0 15px; font-weight: 600;">
+                      Detalii programare:
+                    </h2>
+                    <table role="presentation" style="width: 100%;">
+                      <tr>
+                        <td style="padding: 8px 0; color: #64748b; font-size: 14px; width: 100px;">Nume:</td>
+                        <td style="padding: 8px 0; color: #0f2542; font-size: 14px; font-weight: 500;">{{name}}</td>
+                      </tr>
+                      <tr>
+                        <td style="padding: 8px 0; color: #64748b; font-size: 14px;">Telefon:</td>
+                        <td style="padding: 8px 0; color: #0f2542; font-size: 14px; font-weight: 500;">{{phone}}</td>
+                      </tr>
+                      {{#if email}}
+                      <tr>
+                        <td style="padding: 8px 0; color: #64748b; font-size: 14px;">Email:</td>
+                        <td style="padding: 8px 0; color: #0f2542; font-size: 14px; font-weight: 500;">{{email}}</td>
+                      </tr>
+                      {{/if}}
+                      <tr>
+                        <td style="padding: 8px 0; color: #64748b; font-size: 14px;">Serviciu:</td>
+                        <td style="padding: 8px 0; color: #0f2542; font-size: 14px; font-weight: 500;">{{service}}</td>
+                      </tr>
+                      {{#if message}}
+                      <tr>
+                        <td style="padding: 8px 0; color: #64748b; font-size: 14px; vertical-align: top;">Mesaj:</td>
+                        <td style="padding: 8px 0; color: #0f2542; font-size: 14px; font-style: italic;">"{{message}}"</td>
+                      </tr>
+                      {{/if}}
+                    </table>
+                  </td>
+                </tr>
+              </table>
+
+              <!-- Next Steps -->
+              <p style="font-size: 16px; color: #64748b; line-height: 1.7; margin: 0 0 20px;">
+                <strong style="color: #0f2542;">Ce urmează?</strong>
+              </p>
+              <ul style="color: #64748b; font-size: 15px; line-height: 1.8; margin: 0 0 25px; padding-left: 20px;">
+                <li>Te contactăm telefonic în maxim <strong style="color: #0f2542;">24 de ore</strong></li>
+                <li>Confirmăm data și ora care ți se potrivește</li>
+                <li>Trimitem reminder cu o zi înainte de programare</li>
+              </ul>
+
+              <!-- Contact Info Box -->
+              <table role="presentation" style="width: 100%; background-color: #0f2542; border-radius: 12px; margin: 30px 0;">
+                <tr>
+                  <td style="padding: 25px; text-align: center;">
+                    <p style="color: #2dd4bf; font-size: 12px; text-transform: uppercase; letter-spacing: 2px; margin: 0 0 15px;">Contact Clinică</p>
+                    <p style="color: #ffffff; font-size: 16px; margin: 0 0 5px;">
+                      <strong>0770 220 110</strong>
+                    </p>
+                    <p style="color: #94a3b8; font-size: 14px; margin: 0 0 5px;">
+                      contact@doctorsuciu.ro
+                    </p>
+                    <p style="color: #94a3b8; font-size: 14px; margin: 0;">
+                      Str. Calea Domnească, Nr. 234, Târgoviște
+                    </p>
+                  </td>
+                </tr>
+              </table>
+
+              <p style="font-size: 16px; color: #64748b; line-height: 1.7; margin: 0;">
+                Cu stimă,<br>
+                <strong style="color: #0f2542;">Echipa Doctor Suciu Dental Clinic</strong>
+              </p>
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td style="background-color: #f8fafc; padding: 30px 40px; text-align: center; border-top: 1px solid #e2e8f0;">
+              <p style="font-size: 12px; color: #94a3b8; margin: 0 0 10px;">
+                Această confirmare a fost generată automat.
+              </p>
+              <p style="font-size: 12px; color: #94a3b8; margin: 0;">
+                © 2026 Doctor Suciu Dental Clinic. Toate drepturile rezervate.
+              </p>
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
