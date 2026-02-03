@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { MapPin, Phone, Mail, Clock, Send, CheckCircle } from 'lucide-react';
+import { MapPin, Phone, Mail, Clock, Send, CheckCircle, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -13,6 +13,8 @@ import {
 import { FadeText } from '@/components/animations/FadeText';
 import { StaggerContainer } from '@/components/animations/StaggerContainer';
 import { AnimatedCard } from '@/components/animations/AnimatedCard';
+
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyfKxwckZ2PVurCuCupOmVpeI8NzcqHYyhym3BfaD8UpL8JhluFkKGkPK4nqpr7ao76CA/exec';
 
 const contactInfo = [
   {
@@ -54,6 +56,8 @@ const services = [
 
 const ContactSection = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -62,19 +66,42 @@ const ContactSection = () => {
     message: '',
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitted(true);
-    setTimeout(() => {
-      setIsSubmitted(false);
-      setFormData({
-        name: '',
-        phone: '',
-        email: '',
-        service: '',
-        message: '',
+    setIsLoading(true);
+    setError(null);
+
+    try {
+      await fetch(GOOGLE_SCRIPT_URL, {
+        method: 'POST',
+        body: JSON.stringify(formData),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        mode: 'no-cors', // Required for Google Apps Script
       });
-    }, 3000);
+
+      // Since we're using no-cors, we can't check response.ok
+      // But the request should have been sent
+      setIsSubmitted(true);
+      
+      // Reset form after 3 seconds
+      setTimeout(() => {
+        setIsSubmitted(false);
+        setFormData({
+          name: '',
+          phone: '',
+          email: '',
+          service: '',
+          message: '',
+        });
+      }, 5000);
+    } catch (err) {
+      setError('A apărut o eroare. Te rugăm să încerci din nou sau să ne contactezi telefonic.');
+      console.error('Form submission error:', err);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleChange = (
@@ -187,8 +214,11 @@ const ContactSection = () => {
                       <h4 className="font-serif font-medium text-2xl text-clinic-navy mb-2">
                         Mulțumim!
                       </h4>
-                      <p className="text-clinic-gray">
+                      <p className="text-clinic-gray mb-4">
                         Am primit mesajul tău și te contactăm în curând.
+                      </p>
+                      <p className="text-sm text-clinic-teal">
+                        Verifică email-ul pentru confirmare (dacă ai completat adresa).
                       </p>
                     </div>
                   ) : (
@@ -204,7 +234,8 @@ const ContactSection = () => {
                             onChange={handleChange}
                             placeholder="Ex: Ion Popescu"
                             required
-                            className="h-12 transition-all duration-300 focus:ring-2 focus:ring-clinic-teal/20"
+                            disabled={isLoading}
+                            className="h-12 transition-all duration-300 focus:ring-2 focus:ring-clinic-teal/20 disabled:opacity-50"
                           />
                         </div>
                         <div className="group">
@@ -218,7 +249,8 @@ const ContactSection = () => {
                             onChange={handleChange}
                             placeholder="Ex: 0770 220 110"
                             required
-                            className="h-12 transition-all duration-300 focus:ring-2 focus:ring-clinic-teal/20"
+                            disabled={isLoading}
+                            className="h-12 transition-all duration-300 focus:ring-2 focus:ring-clinic-teal/20 disabled:opacity-50"
                           />
                         </div>
                       </div>
@@ -233,7 +265,8 @@ const ContactSection = () => {
                           value={formData.email}
                           onChange={handleChange}
                           placeholder="Ex: ion@email.com"
-                          className="h-12 transition-all duration-300 focus:ring-2 focus:ring-clinic-teal/20"
+                          disabled={isLoading}
+                          className="h-12 transition-all duration-300 focus:ring-2 focus:ring-clinic-teal/20 disabled:opacity-50"
                         />
                       </div>
 
@@ -246,8 +279,9 @@ const ContactSection = () => {
                           onValueChange={(value) =>
                             setFormData((prev) => ({ ...prev, service: value }))
                           }
+                          disabled={isLoading}
                         >
-                          <SelectTrigger className="h-12 transition-all duration-300 focus:ring-2 focus:ring-clinic-teal/20">
+                          <SelectTrigger className="h-12 transition-all duration-300 focus:ring-2 focus:ring-clinic-teal/20 disabled:opacity-50">
                             <SelectValue placeholder="Selectează un serviciu" />
                           </SelectTrigger>
                           <SelectContent>
@@ -270,17 +304,34 @@ const ContactSection = () => {
                           onChange={handleChange}
                           placeholder="Spune-ne cum te putem ajuta..."
                           rows={4}
-                          className="resize-none transition-all duration-300 focus:ring-2 focus:ring-clinic-teal/20"
+                          disabled={isLoading}
+                          className="resize-none transition-all duration-300 focus:ring-2 focus:ring-clinic-teal/20 disabled:opacity-50"
                         />
                       </div>
+
+                      {error && (
+                        <div className="p-4 rounded-lg bg-red-50 text-red-600 text-sm">
+                          {error}
+                        </div>
+                      )}
 
                       <Button
                         type="submit"
                         size="lg"
-                        className="w-full bg-clinic-navy hover:bg-clinic-navy-light text-white font-semibold h-14 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg"
+                        disabled={isLoading}
+                        className="w-full bg-clinic-navy hover:bg-clinic-navy-light text-white font-semibold h-14 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
                       >
-                        <Send className="w-5 h-5 mr-2 transition-transform duration-300 group-hover:translate-x-1" />
-                        Trimite cererea
+                        {isLoading ? (
+                          <>
+                            <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+                            Se trimite...
+                          </>
+                        ) : (
+                          <>
+                            <Send className="w-5 h-5 mr-2 transition-transform duration-300 group-hover:translate-x-1" />
+                            Trimite cererea
+                          </>
+                        )}
                       </Button>
 
                       <p className="text-xs text-center text-clinic-gray">
