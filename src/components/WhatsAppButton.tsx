@@ -20,7 +20,7 @@ const WhatsAppButton = () => {
         }`}
       >
         {/* Header */}
-        <div className="bg-clinic-navy p-4">
+        <div className="bg-slate-900 p-4">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
               <MessageCircle className="w-5 h-5 text-white" />
@@ -34,7 +34,7 @@ const WhatsAppButton = () => {
 
         {/* Content */}
         <div className="p-4">
-          <p className="text-sm text-clinic-gray mb-4">
+          <p className="text-sm text-slate-600 mb-4">
             Ai întrebări? Scrie-ne pe WhatsApp și îți răspundem în cel mai scurt
             timp.
           </p>
@@ -51,7 +51,7 @@ const WhatsAppButton = () => {
               </div>
               <div>
                 <p className="font-medium text-clinic-navy">WhatsApp</p>
-                <p className="text-xs text-clinic-gray">
+                <p className="text-xs text-slate-600">
                   Mesaj rapid
                 </p>
               </div>
@@ -59,14 +59,14 @@ const WhatsAppButton = () => {
 
             <a
               href={`tel:+${phoneNumber}`}
-              className="flex items-center gap-3 p-3 rounded-xl bg-clinic-navy/10 hover:bg-clinic-navy/20 transition-colors"
+              className="flex items-center gap-3 p-3 rounded-xl bg-slate-900/10 hover:bg-slate-900/20 transition-colors"
             >
-              <div className="w-10 h-10 rounded-full bg-clinic-navy flex items-center justify-center">
+              <div className="w-10 h-10 rounded-full bg-slate-900 flex items-center justify-center">
                 <Phone className="w-5 h-5 text-white" />
               </div>
               <div>
                 <p className="font-medium text-clinic-navy">Sună acum</p>
-                <p className="text-xs text-clinic-gray">
+                <p className="text-xs text-slate-600">
                   0770 220 110
                 </p>
               </div>
@@ -74,8 +74,8 @@ const WhatsAppButton = () => {
           </div>
 
           <div className="flex items-center gap-2 mt-4 pt-4 border-t border-gray-100">
-            <Clock className="w-4 h-4 text-clinic-gray" />
-            <p className="text-xs text-clinic-gray">
+            <Clock className="w-4 h-4 text-slate-600" />
+            <p className="text-xs text-slate-600">
               Program: L-V 09:00-18:00
             </p>
           </div>
@@ -87,8 +87,8 @@ const WhatsAppButton = () => {
         onClick={() => setIsOpen(!isOpen)}
         className={`w-14 h-14 rounded-full flex items-center justify-center shadow-float transition-all duration-300 btn-hover ${
           isOpen
-            ? 'bg-clinic-gray rotate-90'
-            : 'bg-clinic-teal hover:bg-clinic-teal-dark'
+            ? 'bg-slate-500 rotate-90'
+            : 'bg-sky-500 hover:bg-sky-500-dark'
         }`}
         aria-label={isOpen ? 'Închide chat' : 'Deschide chat'}
       >

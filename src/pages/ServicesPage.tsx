@@ -128,7 +128,7 @@ const ServicesPage = () => {
           <FadeText direction="up">
             <Link 
               to="/" 
-              className="inline-flex items-center gap-2 text-clinic-navy/70 hover:text-clinic-teal transition-colors mb-8"
+              className="inline-flex items-center gap-2 text-slate-900/70 hover:text-sky-500 transition-colors mb-8"
             >
               <ArrowLeft className="w-4 h-4" />
               Înapoi acasă
@@ -137,19 +137,19 @@ const ServicesPage = () => {
           
           <div className="text-center max-w-3xl mx-auto">
             <FadeText delay={0.1} direction="up">
-              <span className="inline-block px-4 py-2 rounded-full bg-clinic-teal/10 text-clinic-teal text-sm font-medium mb-6">
+              <span className="inline-block px-4 py-2 rounded-full bg-sky-500/10 text-sky-500 text-sm font-medium mb-6">
                 Serviciile Noastre
               </span>
             </FadeText>
             
             <FadeText delay={0.2} direction="up">
-              <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl text-clinic-navy mb-6">
-                Îngrijire <span className="text-clinic-teal">blândă</span> pentru toată familia
+              <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl text-slate-900 mb-6">
+                Îngrijire <span className="text-sky-500">blândă</span> pentru toată familia
               </h1>
             </FadeText>
             
             <FadeText delay={0.3} direction="up">
-              <p className="text-lg text-clinic-gray leading-relaxed">
+              <p className="text-lg text-slate-600 leading-relaxed">
                 Fiecare zâmbet este unic. De aceea, adaptăm fiecare tratament pentru a fi 
                 cât mai confortabil și eficient pentru tine și cei dragi.
               </p>
@@ -175,7 +175,7 @@ const ServicesPage = () => {
                       flex items-center gap-2 px-5 py-3 rounded-2xl font-medium transition-all duration-300
                       ${isActive 
                         ? `${category.bgColor} ${category.color} shadow-lg scale-105` 
-                        : 'bg-white text-clinic-gray hover:bg-slate-100 shadow-sm'
+                        : 'bg-white text-slate-600 hover:bg-slate-100 shadow-sm'
                       }
                     `}
                   >
@@ -199,11 +199,11 @@ const ServicesPage = () => {
                   <div className={`w-14 h-14 rounded-2xl bg-white flex items-center justify-center ${currentCategory.color}`}>
                     <currentCategory.icon className="w-7 h-7" />
                   </div>
-                  <h2 className="font-serif text-3xl lg:text-4xl text-clinic-navy">
+                  <h2 className="font-serif text-3xl lg:text-4xl text-slate-900">
                     {currentCategory.title}
                   </h2>
                 </div>
-                <p className="text-clinic-gray text-lg max-w-2xl">
+                <p className="text-slate-600 text-lg max-w-2xl">
                   {currentCategory.description}
                 </p>
               </div>
@@ -212,29 +212,29 @@ const ServicesPage = () => {
             <div className="space-y-4">
               {currentCategory.services.map((service, index) => (
                 <FadeText key={service.name} delay={0.1 * index} direction="up">
-                  <div className="group bg-white rounded-2xl p-6 lg:p-8 shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-100 hover:border-clinic-teal/20">
+                  <div className="group bg-white rounded-2xl p-6 lg:p-8 shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-100 hover:border-sky-500/20">
                     <div className="flex flex-col lg:flex-row lg:items-center gap-4 lg:gap-8">
                       <div className="flex-1">
                         <div className="flex items-start gap-3 mb-2">
                           <CheckCircle2 className={`w-5 h-5 mt-1 ${currentCategory.color} flex-shrink-0`} />
                           <div>
-                            <h3 className="font-serif text-xl text-clinic-navy group-hover:text-clinic-teal transition-colors">
+                            <h3 className="font-serif text-xl text-slate-900 group-hover:text-sky-500 transition-colors">
                               {service.name}
                             </h3>
-                            <p className="text-clinic-gray mt-1">
+                            <p className="text-slate-600 mt-1">
                               {service.description}
                             </p>
                           </div>
                         </div>
                         {service.duration && (
-                          <span className="inline-block mt-2 text-sm text-clinic-gray/70 bg-slate-100 px-3 py-1 rounded-full">
+                          <span className="inline-block mt-2 text-sm text-slate-600/70 bg-slate-100 px-3 py-1 rounded-full">
                             ⏱ {service.duration}
                           </span>
                         )}
                       </div>
                       
                       <div className="flex items-center gap-4 lg:text-right">
-                        <span className="text-2xl lg:text-3xl font-bold text-clinic-teal">
+                        <span className="text-2xl lg:text-3xl font-bold text-sky-500">
                           {service.price}
                         </span>
                       </div>
@@ -261,12 +261,12 @@ const ServicesPage = () => {
               <div className="mt-12 text-center">
                 <Link 
                   to="/#contact"
-                  className="inline-flex items-center gap-2 px-8 py-4 bg-clinic-navy text-white rounded-full font-medium hover:bg-clinic-navy/90 transition-all hover:scale-105 hover:shadow-lg"
+                  className="inline-flex items-center gap-2 px-8 py-4 bg-slate-900 text-white rounded-full font-medium hover:bg-slate-900/90 transition-all hover:scale-105 hover:shadow-lg"
                 >
                   Programează o consultație gratuită
                   <span className="text-xl">→</span>
                 </Link>
-                <p className="mt-4 text-clinic-gray">
+                <p className="mt-4 text-slate-600">
                   Prima vizită de cunoaștere este gratuită, fără obligații
                 </p>
               </div>
@@ -284,22 +284,22 @@ const ServicesPage = () => {
                 <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-rose-100 flex items-center justify-center">
                   <Heart className="w-8 h-8 text-rose-500" />
                 </div>
-                <h3 className="font-serif text-xl text-clinic-navy mb-2">Abordare blândă</h3>
-                <p className="text-clinic-gray">Tehnică modernă, fără durere și anxietate</p>
+                <h3 className="font-serif text-xl text-slate-900 mb-2">Abordare blândă</h3>
+                <p className="text-slate-600">Tehnică modernă, fără durere și anxietate</p>
               </div>
               <div className="p-6">
                 <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-emerald-100 flex items-center justify-center">
                   <Shield className="w-8 h-8 text-emerald-500" />
                 </div>
-                <h3 className="font-serif text-xl text-clinic-navy mb-2">Transparență totală</h3>
-                <p className="text-clinic-gray">Prețuri clare, fără costuri ascunse</p>
+                <h3 className="font-serif text-xl text-slate-900 mb-2">Transparență totală</h3>
+                <p className="text-slate-600">Prețuri clare, fără costuri ascunse</p>
               </div>
               <div className="p-6">
                 <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-sky-100 flex items-center justify-center">
                   <Sparkles className="w-8 h-8 text-sky-500" />
                 </div>
-                <h3 className="font-serif text-xl text-clinic-navy mb-2">Rezultate naturale</h3>
-                <p className="text-clinic-gray">Zâmbete frumoase, care par că au fost mereu acolo</p>
+                <h3 className="font-serif text-xl text-slate-900 mb-2">Rezultate naturale</h3>
+                <p className="text-slate-600">Zâmbete frumoase, care par că au fost mereu acolo</p>
               </div>
             </div>
           </FadeText>

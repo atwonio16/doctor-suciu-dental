@@ -132,17 +132,17 @@ const PricingSection = () => {
           {/* Header */}
           <div className="text-center mb-12 lg:mb-16">
             <FadeText delay={0} direction="up">
-              <span className="inline-block text-sm font-semibold tracking-wider text-clinic-teal uppercase mb-3">
+              <span className="inline-block text-sm font-semibold tracking-wider text-sky-500 uppercase mb-3">
                 Tarife
               </span>
             </FadeText>
             <FadeText delay={0.1} direction="up" distance={40}>
-              <h2 className="font-serif font-medium text-3xl sm:text-4xl lg:text-5xl text-clinic-navy mb-4">
-                Lista completă de <span className="text-clinic-teal">prețuri</span>
+              <h2 className="font-serif font-medium text-3xl sm:text-4xl lg:text-5xl text-slate-900 mb-4">
+                Lista completă de <span className="text-sky-500">prețuri</span>
               </h2>
             </FadeText>
             <FadeText delay={0.2} direction="up">
-              <p className="text-lg text-clinic-gray max-w-2xl mx-auto">
+              <p className="text-lg text-slate-600 max-w-2xl mx-auto">
                 Prețuri transparente pentru toate serviciile noastre. Folosește estimatorul de costuri 
                 pentru a calcula bugetul necesar.
               </p>
@@ -156,7 +156,7 @@ const PricingSection = () => {
                 <DialogTrigger asChild>
                   <Button 
                     size="lg" 
-                    className="bg-clinic-teal hover:bg-clinic-teal/90 text-white font-semibold px-8 h-14"
+                    className="bg-sky-500 hover:bg-sky-500/90 text-white font-semibold px-8 h-14"
                   >
                     <Calculator className="w-5 h-5 mr-2" />
                     Estimator de costuri
@@ -164,12 +164,12 @@ const PricingSection = () => {
                 </DialogTrigger>
                 <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
                   <DialogHeader>
-                    <DialogTitle className="font-serif text-2xl text-clinic-navy">
+                    <DialogTitle className="font-serif text-2xl text-slate-900">
                       Estimator de costuri
                     </DialogTitle>
                   </DialogHeader>
                   <div className="mt-4">
-                    <p className="text-clinic-gray mb-6">
+                    <p className="text-slate-600 mb-6">
                       Selectează serviciile de care ai nevoie pentru a estima costul total:
                     </p>
                     <div className="space-y-3 max-h-[400px] overflow-y-auto pr-2">
@@ -179,14 +179,14 @@ const PricingSection = () => {
                           onClick={() => toggleServiceInEstimator(service.id)}
                           className={`flex items-center justify-between p-4 rounded-lg border cursor-pointer transition-all ${
                             estimatorServices.includes(service.id)
-                              ? 'border-clinic-teal bg-clinic-teal/5'
-                              : 'border-gray-200 hover:border-clinic-teal/50'
+                              ? 'border-sky-500 bg-sky-500/5'
+                              : 'border-gray-200 hover:border-sky-500/50'
                           }`}
                         >
                           <div className="flex items-center gap-3">
                             <div className={`w-5 h-5 rounded border flex items-center justify-center ${
                               estimatorServices.includes(service.id)
-                                ? 'bg-clinic-teal border-clinic-teal'
+                                ? 'bg-sky-500 border-sky-500'
                                 : 'border-gray-300'
                             }`}>
                               {estimatorServices.includes(service.id) && (
@@ -194,11 +194,11 @@ const PricingSection = () => {
                               )}
                             </div>
                             <div>
-                              <p className="font-medium text-clinic-navy">{service.name}</p>
-                              <p className="text-sm text-clinic-gray">{service.description}</p>
+                              <p className="font-medium text-slate-900">{service.name}</p>
+                              <p className="text-sm text-slate-600">{service.description}</p>
                             </div>
                           </div>
-                          <span className="font-semibold text-clinic-teal">
+                          <span className="font-semibold text-sky-500">
                             {formatPrice(service.price, service.priceTo)}
                           </span>
                         </div>
@@ -207,20 +207,20 @@ const PricingSection = () => {
                     {estimatorServices.length > 0 && (
                       <div className="mt-6 pt-6 border-t border-gray-200">
                         <div className="flex items-center justify-between mb-4">
-                          <span className="text-lg text-clinic-gray">Servicii selectate:</span>
-                          <span className="text-clinic-navy font-medium">{estimatorServices.length}</span>
+                          <span className="text-lg text-slate-600">Servicii selectate:</span>
+                          <span className="text-slate-900 font-medium">{estimatorServices.length}</span>
                         </div>
                         <div className="flex items-center justify-between mb-6">
-                          <span className="text-xl font-serif font-medium text-clinic-navy">Estimare total:</span>
-                          <span className="text-3xl font-bold text-clinic-teal">
+                          <span className="text-xl font-serif font-medium text-slate-900">Estimare total:</span>
+                          <span className="text-3xl font-bold text-sky-500">
                             {calculateTotal().toLocaleString('ro-RO')} RON
                           </span>
                         </div>
-                        <p className="text-sm text-clinic-gray mb-4">
+                        <p className="text-sm text-slate-600 mb-4">
                           * Prețurile sunt orientative. Consultația inițială este necesară pentru un plan de tratament exact.
                         </p>
                         <Button 
-                          className="w-full bg-clinic-navy hover:bg-clinic-navy/90 text-white h-12"
+                          className="w-full bg-slate-900 hover:bg-slate-900/90 text-white h-12"
                           onClick={() => {
                             setIsEstimatorOpen(false);
                             document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
@@ -242,13 +242,13 @@ const PricingSection = () => {
             <div className="flex flex-col md:flex-row gap-4 mb-8">
               {/* Search */}
               <div className="relative flex-1">
-                <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-clinic-gray" />
+                <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-600" />
                 <Input
                   type="text"
                   placeholder="Caută serviciu..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="pl-12 h-12 border-gray-200 focus:border-clinic-teal focus:ring-clinic-teal"
+                  className="pl-12 h-12 border-gray-200 focus:border-sky-500 focus:ring-sky-500"
                 />
               </div>
               
@@ -257,7 +257,7 @@ const PricingSection = () => {
                 <select
                   value={activeCategory}
                   onChange={(e) => setActiveCategory(e.target.value as Category)}
-                  className="w-full h-12 px-4 border border-gray-200 rounded-lg focus:border-clinic-teal focus:ring-1 focus:ring-clinic-teal"
+                  className="w-full h-12 px-4 border border-gray-200 rounded-lg focus:border-sky-500 focus:ring-1 focus:ring-sky-500"
                 >
                   {categories.map((cat) => (
                     <option key={cat.id} value={cat.id}>{cat.name}</option>
@@ -276,8 +276,8 @@ const PricingSection = () => {
                   onClick={() => setActiveCategory(cat.id as Category)}
                   className={`px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${
                     activeCategory === cat.id
-                      ? 'bg-clinic-navy text-white shadow-lg'
-                      : 'bg-gray-100 text-clinic-gray hover:bg-gray-200'
+                      ? 'bg-slate-900 text-white shadow-lg'
+                      : 'bg-gray-100 text-slate-600 hover:bg-gray-200'
                   }`}
                 >
                   {cat.name}
@@ -296,26 +296,26 @@ const PricingSection = () => {
                   glowColor="rgba(45, 212, 191, 0.2)"
                   className={`relative p-6 rounded-2xl border transition-all duration-300 ${
                     service.popular 
-                      ? 'border-clinic-teal/30 bg-clinic-teal/5' 
-                      : 'border-gray-100 bg-white hover:border-clinic-teal/20'
+                      ? 'border-sky-500/30 bg-sky-500/5' 
+                      : 'border-gray-100 bg-white hover:border-sky-500/20'
                   }`}
                 >
                   {service.popular && (
-                    <span className="absolute -top-3 left-6 px-3 py-1 bg-clinic-teal text-white text-xs font-semibold rounded-full">
+                    <span className="absolute -top-3 left-6 px-3 py-1 bg-sky-500 text-white text-xs font-semibold rounded-full">
                       Popular
                     </span>
                   )}
                   
-                  <h3 className="font-serif font-medium text-lg text-clinic-navy mb-2">
+                  <h3 className="font-serif font-medium text-lg text-slate-900 mb-2">
                     {service.name}
                   </h3>
                   
-                  <p className="text-sm text-clinic-gray mb-4 line-clamp-2">
+                  <p className="text-sm text-slate-600 mb-4 line-clamp-2">
                     {service.description}
                   </p>
                   
                   <div className="flex items-center justify-between pt-4 border-t border-gray-100">
-                    <span className="text-2xl font-bold text-clinic-teal">
+                    <span className="text-2xl font-bold text-sky-500">
                       {formatPrice(service.price, service.priceTo)}
                     </span>
                     
@@ -326,7 +326,7 @@ const PricingSection = () => {
                         setEstimatorServices([service.id]);
                         setIsEstimatorOpen(true);
                       }}
-                      className="text-clinic-navy hover:text-clinic-teal hover:bg-clinic-teal/10"
+                      className="text-slate-900 hover:text-sky-500 hover:bg-sky-500/10"
                     >
                       <Calculator className="w-4 h-4 mr-1" />
                       Estimare
@@ -339,7 +339,7 @@ const PricingSection = () => {
 
           {filteredServices.length === 0 && (
             <div className="text-center py-16">
-              <p className="text-clinic-gray text-lg">Nu am găsit servicii care să corespundă căutării.</p>
+              <p className="text-slate-600 text-lg">Nu am găsit servicii care să corespundă căutării.</p>
               <Button 
                 variant="outline" 
                 onClick={() => {setSearchQuery(''); setActiveCategory('all');}}
@@ -352,25 +352,25 @@ const PricingSection = () => {
 
           {/* Note */}
           <FadeText delay={0.6} direction="up">
-            <div className="mt-12 p-6 bg-clinic-gray-bg rounded-2xl">
-              <h4 className="font-serif font-medium text-lg text-clinic-navy mb-4">
+            <div className="mt-12 p-6 bg-slate-50 rounded-2xl">
+              <h4 className="font-serif font-medium text-lg text-slate-900 mb-4">
                 Informații importante
               </h4>
-              <ul className="space-y-2 text-sm text-clinic-gray">
+              <ul className="space-y-2 text-sm text-slate-600">
                 <li className="flex items-start gap-2">
-                  <span className="text-clinic-teal mt-0.5">•</span>
+                  <span className="text-sky-500 mt-0.5">•</span>
                   Prețurile afișate sunt orientative și pot varia în funcție de complexitatea cazului
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-clinic-teal mt-0.5">•</span>
+                  <span className="text-sky-500 mt-0.5">•</span>
                   O consultație inițială este necesară pentru un plan de tratament exact și o estimare corectă
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-clinic-teal mt-0.5">•</span>
+                  <span className="text-sky-500 mt-0.5">•</span>
                   Oferim opțiuni de plată în rate fără dobândă pentru tratamente complexe
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-clinic-teal mt-0.5">•</span>
+                  <span className="text-sky-500 mt-0.5">•</span>
                   Prețurile includ materialele și manopera
                 </li>
               </ul>

@@ -59,17 +59,17 @@ const ServicesSection = () => {
           {/* Header */}
           <div className="text-center mb-12 lg:mb-16">
             <FadeText delay={0} direction="up">
-              <span className="inline-block text-sm font-semibold tracking-wider text-clinic-teal uppercase mb-3">
+              <span className="inline-block text-sm font-semibold tracking-wider text-sky-500 uppercase mb-3">
                 Serviciile Noastre
               </span>
             </FadeText>
             <FadeText delay={0.1} direction="up" distance={40}>
-              <h2 className="font-serif font-medium text-3xl sm:text-4xl lg:text-5xl text-clinic-navy mb-4">
-                Tratamente complete pentru <span className="text-clinic-teal">zâmbetul tău</span>
+              <h2 className="font-serif font-medium text-3xl sm:text-4xl lg:text-5xl text-slate-900 mb-4">
+                Tratamente complete pentru <span className="text-sky-500">zâmbetul tău</span>
               </h2>
             </FadeText>
             <FadeText delay={0.2} direction="up">
-              <p className="text-lg text-clinic-gray max-w-2xl mx-auto">
+              <p className="text-lg text-slate-600 max-w-2xl mx-auto">
                 Oferim o gamă completă de servicii stomatologice, de la consultații 
                 de rutină până la proceduri complexe de implantologie.
               </p>
@@ -88,29 +88,29 @@ const ServicesSection = () => {
                 hoverScale={1.03}
                 enableGlow={true}
                 glowColor="rgba(45, 212, 191, 0.15)"
-                className="group p-6 lg:p-8 rounded-2xl bg-clinic-gray-bg border border-gray-100 hover:border-clinic-teal/30 transition-all duration-300"
+                className="group p-6 lg:p-8 rounded-2xl bg-slate-50 border border-gray-100 hover:border-sky-500/30 transition-all duration-300"
               >
                 {/* Icon */}
-                <div className="w-14 h-14 rounded-xl bg-clinic-navy flex items-center justify-center mb-5 group-hover:bg-clinic-teal group-hover:scale-110 transition-all duration-300">
+                <div className="w-14 h-14 rounded-xl bg-slate-900 flex items-center justify-center mb-5 group-hover:bg-sky-500 group-hover:scale-110 transition-all duration-300">
                   <service.icon className="w-7 h-7 text-white" />
                 </div>
 
                 {/* Content */}
-                <h3 className="font-serif font-medium text-xl text-clinic-navy mb-3 group-hover:text-clinic-teal transition-colors duration-300">
+                <h3 className="font-serif font-medium text-xl text-slate-900 mb-3 group-hover:text-sky-500 transition-colors duration-300">
                   {service.title}
                 </h3>
-                <p className="text-clinic-gray leading-relaxed mb-5">
+                <p className="text-slate-600 leading-relaxed mb-5">
                   {service.description}
                 </p>
 
                 {/* Price & CTA */}
                 <div className="flex items-center justify-between pt-4 border-t border-gray-200">
-                  <span className="text-sm font-semibold text-clinic-teal">
+                  <span className="text-sm font-semibold text-sky-500">
                     {service.price}
                   </span>
                   <a
                     href="#contact"
-                    className="flex items-center gap-1 text-sm font-medium text-clinic-navy hover:text-clinic-teal transition-colors group/link"
+                    className="flex items-center gap-1 text-sm font-medium text-slate-900 hover:text-sky-500 transition-colors group/link"
                   >
                     Detalii
                     <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover/link:translate-x-1" />
@@ -125,7 +125,7 @@ const ServicesSection = () => {
             <Button
               asChild
               size="lg"
-              className="bg-clinic-navy hover:bg-clinic-navy-light text-white font-semibold px-8 transition-all duration-300 hover:scale-105 hover:shadow-lg"
+              className="bg-slate-900 hover:bg-slate-900-light text-white font-semibold px-8 transition-all duration-300 hover:scale-105 hover:shadow-lg"
             >
               <a href="#contact">
                 Programează o consultație

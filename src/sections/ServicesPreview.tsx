@@ -52,17 +52,17 @@ const ServicesPreview = () => {
           {/* Header */}
           <div className="text-center mb-12 lg:mb-16">
             <FadeText delay={0} direction="up">
-              <span className="inline-block text-sm font-semibold tracking-wider text-clinic-teal uppercase mb-3">
+              <span className="inline-block text-sm font-semibold tracking-wider text-sky-500 uppercase mb-3">
                 Cum te putem ajuta
               </span>
             </FadeText>
             <FadeText delay={0.1} direction="up" distance={40}>
-              <h2 className="font-serif font-medium text-3xl sm:text-4xl lg:text-5xl text-clinic-navy mb-4">
-                Servicii create pentru <span className="text-clinic-teal">confortul tău</span>
+              <h2 className="font-serif font-medium text-3xl sm:text-4xl lg:text-5xl text-slate-900 mb-4">
+                Servicii create pentru <span className="text-sky-500">confortul tău</span>
               </h2>
             </FadeText>
             <FadeText delay={0.2} direction="up">
-              <p className="text-lg text-clinic-gray max-w-2xl mx-auto">
+              <p className="text-lg text-slate-600 max-w-2xl mx-auto">
                 Fie că este vorba de o simplă igienizare sau un plan de tratament complex, 
                 suntem aici să te sprijinim la fiecare pas.
               </p>
@@ -84,22 +84,22 @@ const ServicesPreview = () => {
                   </div>
 
                   {/* Content */}
-                  <h3 className="font-serif font-medium text-xl text-clinic-navy mb-3 group-hover:text-clinic-teal transition-colors">
+                  <h3 className="font-serif font-medium text-xl text-slate-900 mb-3 group-hover:text-sky-500 transition-colors">
                     {service.title}
                   </h3>
-                  <p className="text-clinic-gray leading-relaxed mb-4 text-sm">
+                  <p className="text-slate-600 leading-relaxed mb-4 text-sm">
                     {service.description}
                   </p>
 
                   {/* Price */}
-                  <p className="text-sm font-medium text-clinic-teal mb-4">
+                  <p className="text-sm font-medium text-sky-500 mb-4">
                     {service.price}
                   </p>
 
                   {/* Link */}
                   <Link 
                     to="/servicii"
-                    className="inline-flex items-center gap-1 text-sm font-medium text-clinic-navy hover:text-clinic-teal transition-colors group/link"
+                    className="inline-flex items-center gap-1 text-sm font-medium text-slate-900 hover:text-sky-500 transition-colors group/link"
                   >
                     Detalii
                     <ArrowRight className="w-4 h-4 transition-transform group-hover/link:translate-x-1" />
@@ -113,7 +113,7 @@ const ServicesPreview = () => {
           <FadeText delay={0.6} direction="up" className="text-center mt-12">
             <Link
               to="/servicii"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-clinic-navy text-white rounded-full font-medium hover:bg-clinic-navy/90 transition-all hover:scale-105 hover:shadow-lg"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-slate-900 text-white rounded-full font-medium hover:bg-slate-900/90 transition-all hover:scale-105 hover:shadow-lg"
             >
               Vezi toate serviciile și prețurile
               <ArrowRight className="w-5 h-5" />

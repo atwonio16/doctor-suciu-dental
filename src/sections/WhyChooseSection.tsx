@@ -63,23 +63,23 @@ const faqs = [
 
 const WhyChooseSection = () => {
   return (
-    <section id="avantaje" className="w-full py-20 lg:py-28 bg-clinic-gray-bg overflow-hidden">
+    <section id="avantaje" className="w-full py-20 lg:py-28 bg-slate-50 overflow-hidden">
       <div className="w-full px-4 sm:px-6 lg:px-12 xl:px-20">
         <div className="max-w-7xl mx-auto">
           {/* Header */}
           <div className="text-center mb-12 lg:mb-16">
             <FadeText delay={0} direction="up">
-              <span className="inline-block text-sm font-semibold tracking-wider text-clinic-teal uppercase mb-3">
+              <span className="inline-block text-sm font-semibold tracking-wider text-sky-500 uppercase mb-3">
                 De Ce Să Ne Alegi
               </span>
             </FadeText>
             <FadeText delay={0.1} direction="up" distance={40}>
-              <h2 className="font-serif font-medium text-3xl sm:text-4xl lg:text-5xl text-clinic-navy mb-4">
-                Experiență, tehnologie și <span className="text-clinic-teal">grijă</span>
+              <h2 className="font-serif font-medium text-3xl sm:text-4xl lg:text-5xl text-slate-900 mb-4">
+                Experiență, tehnologie și <span className="text-sky-500">grijă</span>
               </h2>
             </FadeText>
             <FadeText delay={0.2} direction="up">
-              <p className="text-lg text-clinic-gray max-w-2xl mx-auto">
+              <p className="text-lg text-slate-600 max-w-2xl mx-auto">
                 Ne dedicăm fiecărui pacient cu aceeași pasiune și profesionalism, 
                 oferind tratamente de cea mai înaltă calitate.
               </p>
@@ -99,13 +99,13 @@ const WhyChooseSection = () => {
                 enableGlow={false}
                 className="text-center p-6 rounded-2xl bg-white shadow-card hover:shadow-float transition-all duration-300"
               >
-                <div className="w-16 h-16 rounded-full bg-clinic-navy flex items-center justify-center mx-auto mb-5 group-hover:bg-clinic-teal transition-colors duration-300">
+                <div className="w-16 h-16 rounded-full bg-slate-900 flex items-center justify-center mx-auto mb-5 group-hover:bg-sky-500 transition-colors duration-300">
                   <benefit.icon className="w-8 h-8 text-white" />
                 </div>
-                <h3 className="font-serif font-medium text-lg text-clinic-navy mb-2">
+                <h3 className="font-serif font-medium text-lg text-slate-900 mb-2">
                   {benefit.title}
                 </h3>
-                <p className="text-sm text-clinic-gray leading-relaxed">
+                <p className="text-sm text-slate-600 leading-relaxed">
                   {benefit.description}
                 </p>
               </AnimatedCard>
@@ -117,7 +117,7 @@ const WhyChooseSection = () => {
             {/* FAQ Content */}
             <FadeText delay={0.2} direction="right" distance={40}>
               <div>
-                <h3 className="font-serif font-medium text-2xl lg:text-3xl text-clinic-navy mb-6">
+                <h3 className="font-serif font-medium text-2xl lg:text-3xl text-slate-900 mb-6">
                   Întrebări frecvente
                 </h3>
                 <Accordion type="single" collapsible className="w-full">
@@ -127,10 +127,10 @@ const WhyChooseSection = () => {
                       value={`item-${index}`} 
                       className="border-b border-gray-200 group"
                     >
-                      <AccordionTrigger className="text-left font-medium text-clinic-navy hover:text-clinic-teal py-4 transition-colors duration-300">
+                      <AccordionTrigger className="text-left font-medium text-slate-900 hover:text-sky-500 py-4 transition-colors duration-300">
                         {faq.question}
                       </AccordionTrigger>
-                      <AccordionContent className="text-clinic-gray pb-4">
+                      <AccordionContent className="text-slate-600 pb-4">
                         {faq.answer}
                       </AccordionContent>
                     </AccordionItem>
@@ -150,7 +150,7 @@ const WhyChooseSection = () => {
                   />
                 </div>
                 {/* Stats card */}
-                <div className="absolute -bottom-6 -right-6 bg-clinic-navy rounded-2xl shadow-float p-6 hidden lg:block hover:scale-105 transition-transform duration-300">
+                <div className="absolute -bottom-6 -right-6 bg-slate-900 rounded-2xl shadow-float p-6 hidden lg:block hover:scale-105 transition-transform duration-300">
                   <div className="text-white">
                     <p className="text-4xl font-serif font-medium mb-1">
                       <CountUp end={5000} suffix="+" duration={2.5} />
