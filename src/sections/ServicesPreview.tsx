@@ -37,19 +37,19 @@ const services = [
 
 const ServicesPreview = () => {
   return (
-    <section id="servicii" className="w-full py-16 lg:py-20 bg-white overflow-hidden">
+    <section id="servicii" className="w-full py-20 lg:py-24 bg-white overflow-hidden">
       <div className="w-full px-4 sm:px-6 lg:px-12 xl:px-20">
         <div className="max-w-7xl mx-auto">
           {/* Header */}
-          <div className="text-center mb-10">
+          <div className="text-center mb-12">
             <FadeText delay={0} direction="up">
-              <span className="inline-block text-sm font-semibold tracking-wider text-sky-500 uppercase mb-3">
-                Cum te putem ajuta
+              <span className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-sky-100 text-sky-600 text-sm font-semibold mb-4">
+                Serviciile Noastre
               </span>
             </FadeText>
             <FadeText delay={0.1} direction="up" distance={40}>
-              <h2 className="font-bold text-3xl sm:text-4xl text-slate-900 mb-4">
-                Servicii create pentru confortul tău
+              <h2 className="font-bold text-3xl sm:text-4xl lg:text-5xl text-slate-900 mb-4">
+                Cum te putem ajuta
               </h2>
             </FadeText>
             <FadeText delay={0.2} direction="up">
@@ -65,8 +65,8 @@ const ServicesPreview = () => {
               <FadeText key={index} delay={0.1 * index} direction="up">
                 <div className="group h-full p-6 rounded-2xl bg-slate-50 hover:bg-white border border-transparent hover:border-slate-100 hover:shadow-lg transition-all duration-300">
                   {/* Icon */}
-                  <div className="w-12 h-12 rounded-xl bg-sky-100 flex items-center justify-center mb-4 group-hover:bg-sky-500 transition-colors duration-300">
-                    <service.icon className="w-6 h-6 text-sky-500 group-hover:text-white transition-colors duration-300" />
+                  <div className="w-14 h-14 rounded-2xl bg-sky-100 flex items-center justify-center mb-5 group-hover:bg-sky-500 transition-colors duration-300">
+                    <service.icon className="w-7 h-7 text-sky-500 group-hover:text-white transition-colors duration-300" />
                   </div>
 
                   {/* Content */}
@@ -78,7 +78,7 @@ const ServicesPreview = () => {
                   </p>
 
                   {/* Price */}
-                  <p className="text-sm font-medium text-sky-500 mb-3">
+                  <p className="text-sm font-semibold text-sky-500 mb-4">
                     {service.price}
                   </p>
 
@@ -96,7 +96,7 @@ const ServicesPreview = () => {
           </div>
 
           {/* CTA */}
-          <FadeText delay={0.6} direction="up" className="text-center mt-10">
+          <FadeText delay={0.6} direction="up" className="text-center mt-12">
             <Link
               to="/servicii"
               className="inline-flex items-center gap-2 px-8 py-4 bg-sky-500 text-white rounded-full font-semibold hover:bg-sky-600 transition-all hover:scale-105 hover:shadow-lg"

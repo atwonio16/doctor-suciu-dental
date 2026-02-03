@@ -88,18 +88,18 @@ const ContactSection = () => {
           {/* Header */}
           <div className="text-center mb-12 lg:mb-16">
             <FadeText delay={0} direction="up">
-              <span className="inline-block text-sm font-semibold tracking-wider text-sky-500 uppercase mb-3">
+              <span className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-sky-100 text-sky-600 text-sm font-semibold mb-4">
                 Contact
               </span>
             </FadeText>
             <FadeText delay={0.1} direction="up" distance={40}>
               <h2 className="font-bold text-3xl sm:text-4xl lg:text-5xl text-slate-900 mb-4">
-                Programează-te acum
+                Hai să vorbim
               </h2>
             </FadeText>
             <FadeText delay={0.2} direction="up">
               <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-                Completează formularul și te contactăm în cel mai scurt timp
+                Suntem aici să te ajutăm. Completează formularul sau contactează-ne direct.
               </p>
             </FadeText>
           </div>
@@ -111,7 +111,7 @@ const ContactSection = () => {
                 <div className="space-y-6">
                   {/* Address */}
                   <div className="flex items-start gap-4">
-                    <div className="w-10 h-10 rounded-full bg-sky-50 flex items-center justify-center flex-shrink-0">
+                    <div className="w-12 h-12 rounded-xl bg-sky-50 flex items-center justify-center flex-shrink-0">
                       <MapPin className="w-5 h-5 text-sky-500" />
                     </div>
                     <div>
@@ -128,7 +128,7 @@ const ContactSection = () => {
 
                   {/* Phone */}
                   <div className="flex items-start gap-4">
-                    <div className="w-10 h-10 rounded-full bg-sky-50 flex items-center justify-center flex-shrink-0">
+                    <div className="w-12 h-12 rounded-xl bg-sky-50 flex items-center justify-center flex-shrink-0">
                       <Phone className="w-5 h-5 text-sky-500" />
                     </div>
                     <div>
@@ -144,7 +144,7 @@ const ContactSection = () => {
 
                   {/* Email */}
                   <div className="flex items-start gap-4">
-                    <div className="w-10 h-10 rounded-full bg-sky-50 flex items-center justify-center flex-shrink-0">
+                    <div className="w-12 h-12 rounded-xl bg-sky-50 flex items-center justify-center flex-shrink-0">
                       <Mail className="w-5 h-5 text-sky-500" />
                     </div>
                     <div>
@@ -160,13 +160,14 @@ const ContactSection = () => {
 
                   {/* Schedule */}
                   <div className="flex items-start gap-4">
-                    <div className="w-10 h-10 rounded-full bg-sky-50 flex items-center justify-center flex-shrink-0">
+                    <div className="w-12 h-12 rounded-xl bg-sky-50 flex items-center justify-center flex-shrink-0">
                       <Clock className="w-5 h-5 text-sky-500" />
                     </div>
                     <div>
                       <p className="text-sm text-slate-500 mb-1">Program</p>
                       <p className="text-slate-900">
-                        Luni – Vineri: 09:00 – 18:00
+                        Luni – Joi: 09:00 – 18:00<br />
+                        Vineri: 09:00 – 15:00
                       </p>
                     </div>
                   </div>

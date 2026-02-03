@@ -20,6 +20,7 @@ const Navigation = () => {
   const navLinks = [
     { label: 'Servicii', href: '/servicii' },
     { label: 'Medici', href: '/medici' },
+    { label: 'Blog', href: '/blog' },
     { label: 'Păreri', href: '/pareri' },
     { label: 'Contact', href: '/contact' },
   ];
@@ -43,7 +44,9 @@ const Navigation = () => {
           <div className="max-w-7xl mx-auto flex items-center justify-between h-16 lg:h-20">
             {/* Logo */}
             <Link to="/" className="flex flex-col leading-none">
-              <span className="font-bold text-xl tracking-tight text-slate-900">
+              <span className={`font-bold text-xl tracking-tight transition-colors ${
+                isScrolled ? 'text-slate-900' : 'text-white'
+              }`}>
                 DOCTOR SUCIU
               </span>
               <span className="text-xs tracking-[0.2em] text-sky-500 font-medium">
@@ -60,7 +63,9 @@ const Navigation = () => {
                   className={`text-sm font-medium transition-colors ${
                     isActive(link.href)
                       ? 'text-sky-500'
-                      : 'text-slate-600 hover:text-sky-500'
+                      : isScrolled 
+                        ? 'text-slate-600 hover:text-sky-500'
+                        : 'text-white/90 hover:text-white'
                   }`}
                 >
                   {link.label}
@@ -72,7 +77,9 @@ const Navigation = () => {
             <div className="hidden lg:flex items-center gap-4">
               <a
                 href="tel:+40770220110"
-                className="flex items-center gap-2 text-sm font-medium text-slate-600 hover:text-sky-500 transition-colors"
+                className={`flex items-center gap-2 text-sm font-medium transition-colors ${
+                  isScrolled ? 'text-slate-600 hover:text-sky-500' : 'text-white/90 hover:text-white'
+                }`}
               >
                 <Phone className="w-4 h-4" />
                 <span>0770 220 110</span>
@@ -87,7 +94,7 @@ const Navigation = () => {
 
             {/* Mobile Menu Button */}
             <button
-              className="lg:hidden p-2 text-slate-900"
+              className={`lg:hidden p-2 ${isScrolled ? 'text-slate-900' : 'text-white'}`}
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               aria-label="Meniu"
             >

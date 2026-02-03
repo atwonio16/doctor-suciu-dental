@@ -1,116 +1,97 @@
-import { ArrowRight, Calendar, Phone, MapPin, Clock } from 'lucide-react';
+import { ArrowRight, Phone, MapPin, Clock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { FadeText } from '@/components/animations/FadeText';
 
 const HeroSection = () => {
   return (
-    <section id="hero" className="relative w-full min-h-[90vh] bg-gradient-to-br from-sky-50 via-white to-slate-50 pt-20 lg:pt-24 overflow-hidden">
-      {/* Background decoration */}
-      <div className="absolute top-20 right-0 w-1/3 h-2/3 bg-gradient-to-bl from-sky-100/50 to-transparent rounded-l-full" />
-      <div className="absolute bottom-0 left-0 w-64 h-64 bg-slate-100/50 rounded-tr-full" />
-      
-      <div className="relative w-full px-4 sm:px-6 lg:px-12 xl:px-20 py-10 lg:py-16">
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center max-w-7xl mx-auto">
-          {/* Content */}
-          <div className="order-2 lg:order-1">
-            <FadeText delay={0.1} direction="up" distance={30}>
-              <span className="inline-block px-4 py-2 rounded-full bg-sky-100 text-sky-600 text-sm font-medium mb-4">
-                Clinică Stomatologică Târgoviște
-              </span>
-            </FadeText>
+    <section 
+      id="hero" 
+      className="relative w-full min-h-screen flex items-center justify-center overflow-hidden"
+    >
+      {/* Background Image with Overlay */}
+      <div className="absolute inset-0">
+        <img
+          src="/hero_dental_chair.jpg"
+          alt="Cabinet stomatologic"
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-slate-900/90 via-slate-900/70 to-slate-900/50" />
+      </div>
 
-            <FadeText delay={0.2} direction="up" distance={30}>
-              <h1 className="font-bold text-4xl sm:text-5xl lg:text-6xl text-slate-900 leading-tight mb-4">
-                Zâmbetul tău <br />
-                <span className="text-sky-500">merită ce e mai bun</span>
-              </h1>
-            </FadeText>
+      {/* Content */}
+      <div className="relative z-10 w-full px-4 sm:px-6 lg:px-12 xl:px-20 py-32">
+        <div className="max-w-4xl mx-auto text-center">
+          {/* Badge */}
+          <FadeText delay={0} direction="up">
+            <span className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white/90 text-sm font-medium mb-8">
+              <span className="w-2 h-2 rounded-full bg-sky-400 animate-pulse" />
+              Clinică Stomatologică Târgoviște
+            </span>
+          </FadeText>
 
-            <FadeText delay={0.3} direction="up" distance={20}>
-              <p className="text-lg text-slate-600 leading-relaxed mb-6 max-w-lg">
-                Tratamente stomatologice moderne, într-o atmosferă relaxantă. 
-                Echipa noastră de medici experimentați îți oferă îngrijirea pe care o meriți.
-              </p>
-            </FadeText>
+          <FadeText delay={0.15} direction="up" distance={30}>
+            <h1 className="font-bold text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white leading-tight mb-6">
+              Zâmbetul perfect <br />
+              <span className="text-sky-400">începe aici</span>
+            </h1>
+          </FadeText>
 
-            <FadeText delay={0.4} direction="up" distance={20}>
-              <div className="flex flex-col sm:flex-row gap-3 mb-8">
-                <Button
-                  asChild
-                  size="lg"
-                  className="bg-sky-500 hover:bg-sky-600 text-white font-semibold px-8 h-12 rounded-full"
-                >
-                  <a href="#contact">
-                    <Calendar className="w-5 h-5 mr-2" />
-                    Programează-te
-                  </a>
-                </Button>
-                <Button
-                  asChild
-                  variant="outline"
-                  size="lg"
-                  className="border-slate-300 text-slate-700 hover:bg-white hover:border-sky-500 hover:text-sky-500 font-medium px-8 h-12 rounded-full"
-                >
-                  <a href="/servicii">
-                    Vezi serviciile
-                    <ArrowRight className="w-5 h-5 ml-2" />
-                  </a>
-                </Button>
+          <FadeText delay={0.3} direction="up" distance={20}>
+            <p className="text-lg sm:text-xl text-white/80 leading-relaxed mb-10 max-w-2xl mx-auto">
+              Echipă de medici experimentați, tehnologie modernă și tratamente personalizate 
+              pentru sănătatea și frumusețea dinților tăi.
+            </p>
+          </FadeText>
+
+          <FadeText delay={0.45} direction="up" distance={20}>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+              <Button
+                asChild
+                size="lg"
+                className="bg-sky-500 hover:bg-sky-600 text-white font-semibold px-10 h-14 text-base rounded-full"
+              >
+                <a href="/contact">
+                  Programează-te acum
+                  <ArrowRight className="w-5 h-5 ml-2" />
+                </a>
+              </Button>
+              <Button
+                asChild
+                variant="outline"
+                size="lg"
+                className="border-2 border-white/30 text-white hover:bg-white/10 hover:border-white/50 font-medium px-10 h-14 text-base rounded-full backdrop-blur-sm"
+              >
+                <a href="/servicii">
+                  Vezi serviciile
+                </a>
+              </Button>
+            </div>
+          </FadeText>
+
+          {/* Info pills */}
+          <FadeText delay={0.6} direction="up">
+            <div className="flex flex-wrap justify-center gap-4">
+              <div className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/10 backdrop-blur-sm border border-white/10 text-white/90 text-sm">
+                <Phone className="w-4 h-4 text-sky-400" />
+                <span>0770 220 110</span>
               </div>
-            </FadeText>
-
-            <FadeText delay={0.5} direction="up" distance={20}>
-              <div className="flex flex-wrap gap-6 text-sm text-slate-600">
-                <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center shadow-sm">
-                    <Phone className="w-4 h-4 text-sky-500" />
-                  </div>
-                  <span>0770 220 110</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center shadow-sm">
-                    <MapPin className="w-4 h-4 text-sky-500" />
-                  </div>
-                  <span>Târgoviște</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center shadow-sm">
-                    <Clock className="w-4 h-4 text-sky-500" />
-                  </div>
-                  <span>L-V: 09:00-18:00</span>
-                </div>
+              <div className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/10 backdrop-blur-sm border border-white/10 text-white/90 text-sm">
+                <MapPin className="w-4 h-4 text-sky-400" />
+                <span>Târgoviște, Dâmbovița</span>
               </div>
-            </FadeText>
-          </div>
-
-          {/* Image */}
-          <div className="order-1 lg:order-2">
-            <FadeText delay={0.2} direction="left" distance={40} duration={0.8}>
-              <div className="relative">
-                <div className="aspect-[4/3] rounded-2xl overflow-hidden shadow-xl">
-                  <img
-                    src="/hero_dental_chair.jpg"
-                    alt="Cabinet stomatologic modern"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                {/* Floating card */}
-                <div className="absolute -bottom-4 -left-4 bg-white rounded-xl shadow-lg px-5 py-3 flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-amber-100 flex items-center justify-center">
-                    <span className="font-bold text-amber-600 text-sm">15+</span>
-                  </div>
-                  <div>
-                    <p className="font-semibold text-slate-900 text-sm">Ani experiență</p>
-                    <p className="text-xs text-slate-500">În stomatologie</p>
-                  </div>
-                </div>
-                {/* Another floating element */}
-                <div className="absolute -top-4 -right-4 bg-sky-500 text-white rounded-xl shadow-lg px-4 py-2 text-sm font-medium">
-                  Prima consultație gratuită
-                </div>
+              <div className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/10 backdrop-blur-sm border border-white/10 text-white/90 text-sm">
+                <Clock className="w-4 h-4 text-sky-400" />
+                <span>L-J: 9-18 | V: 9-15</span>
               </div>
-            </FadeText>
-          </div>
+            </div>
+          </FadeText>
+        </div>
+      </div>
+
+      {/* Scroll indicator */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+        <div className="w-6 h-10 rounded-full border-2 border-white/30 flex justify-center pt-2">
+          <div className="w-1.5 h-3 rounded-full bg-white/60" />
         </div>
       </div>
     </section>

@@ -81,7 +81,7 @@ const ContactPage = () => {
           
           <div className="text-center max-w-3xl mx-auto">
             <FadeText delay={0.1} direction="up">
-              <span className="inline-block text-sm font-semibold tracking-wider text-sky-500 uppercase mb-3">
+              <span className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-sky-100 text-sky-600 text-sm font-semibold mb-4">
                 Contact
               </span>
             </FadeText>
@@ -110,7 +110,7 @@ const ContactPage = () => {
               <FadeText delay={0.4} direction="right">
                 <div className="grid sm:grid-cols-2 gap-6">
                   <div className="p-6 bg-slate-50 rounded-2xl">
-                    <div className="w-10 h-10 rounded-full bg-sky-100 flex items-center justify-center mb-4">
+                    <div className="w-10 h-10 rounded-xl bg-sky-100 flex items-center justify-center mb-4">
                       <Phone className="w-5 h-5 text-sky-500" />
                     </div>
                     <p className="text-sm text-slate-500 mb-1">Telefon</p>
@@ -120,7 +120,7 @@ const ContactPage = () => {
                   </div>
                   
                   <div className="p-6 bg-slate-50 rounded-2xl">
-                    <div className="w-10 h-10 rounded-full bg-sky-100 flex items-center justify-center mb-4">
+                    <div className="w-10 h-10 rounded-xl bg-sky-100 flex items-center justify-center mb-4">
                       <Mail className="w-5 h-5 text-sky-500" />
                     </div>
                     <p className="text-sm text-slate-500 mb-1">Email</p>
@@ -130,7 +130,7 @@ const ContactPage = () => {
                   </div>
                   
                   <div className="p-6 bg-slate-50 rounded-2xl sm:col-span-2">
-                    <div className="w-10 h-10 rounded-full bg-sky-100 flex items-center justify-center mb-4">
+                    <div className="w-10 h-10 rounded-xl bg-sky-100 flex items-center justify-center mb-4">
                       <MapPin className="w-5 h-5 text-sky-500" />
                     </div>
                     <p className="text-sm text-slate-500 mb-1">Adresă</p>
@@ -141,12 +141,13 @@ const ContactPage = () => {
                   </div>
                   
                   <div className="p-6 bg-slate-50 rounded-2xl sm:col-span-2">
-                    <div className="w-10 h-10 rounded-full bg-sky-100 flex items-center justify-center mb-4">
+                    <div className="w-10 h-10 rounded-xl bg-sky-100 flex items-center justify-center mb-4">
                       <Clock className="w-5 h-5 text-sky-500" />
                     </div>
                     <p className="text-sm text-slate-500 mb-1">Program</p>
                     <p className="text-slate-900 font-semibold">
-                      Luni – Vineri: 09:00 – 18:00
+                      Luni – Joi: 09:00 – 18:00<br />
+                      Vineri: 09:00 – 15:00
                     </p>
                   </div>
                 </div>

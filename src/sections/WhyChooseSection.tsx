@@ -55,13 +55,13 @@ const faqs = [
 
 const WhyChooseSection = () => {
   return (
-    <section id="avantaje" className="w-full py-20 lg:py-24 bg-white overflow-hidden">
+    <section id="avantaje" className="w-full py-20 lg:py-28 bg-white overflow-hidden">
       <div className="w-full px-4 sm:px-6 lg:px-12 xl:px-20">
         <div className="max-w-7xl mx-auto">
           {/* Header */}
           <div className="text-center mb-12 lg:mb-16">
             <FadeText delay={0} direction="up">
-              <span className="inline-block text-sm font-semibold tracking-wider text-sky-500 uppercase mb-3">
+              <span className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-sky-100 text-sky-600 text-sm font-semibold mb-4">
                 De Ce Să Ne Alegi
               </span>
             </FadeText>
@@ -83,12 +83,12 @@ const WhyChooseSection = () => {
               {benefits.map((benefit, index) => (
                 <div
                   key={index}
-                  className="text-center p-6 rounded-2xl bg-slate-50 hover:bg-sky-50 transition-colors duration-300 group"
+                  className="text-center p-8 rounded-2xl bg-slate-50 hover:bg-sky-50 transition-colors duration-300 group"
                 >
-                  <div className="w-14 h-14 rounded-2xl bg-sky-100 flex items-center justify-center mx-auto mb-4 group-hover:bg-sky-500 transition-colors duration-300">
-                    <benefit.icon className="w-7 h-7 text-sky-500 group-hover:text-white transition-colors duration-300" />
+                  <div className="w-16 h-16 rounded-2xl bg-sky-100 flex items-center justify-center mx-auto mb-5 group-hover:bg-sky-500 transition-colors duration-300">
+                    <benefit.icon className="w-8 h-8 text-sky-500 group-hover:text-white transition-colors duration-300" />
                   </div>
-                  <h3 className="font-bold text-lg text-slate-900 mb-2">
+                  <h3 className="font-bold text-lg text-slate-900 mb-3">
                     {benefit.title}
                   </h3>
                   <p className="text-sm text-slate-600 leading-relaxed">
@@ -104,8 +104,11 @@ const WhyChooseSection = () => {
             {/* FAQ Content */}
             <FadeText delay={0.4} direction="right" distance={40}>
               <div>
+                <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-100 text-slate-600 text-sm font-semibold mb-4">
+                  Întrebări Frecvente
+                </span>
                 <h3 className="font-bold text-2xl lg:text-3xl text-slate-900 mb-6">
-                  Întrebări frecvente
+                  Răspunsuri la întrebările tale
                 </h3>
                 <Accordion type="single" collapsible className="w-full">
                   {faqs.map((faq, index) => (
@@ -114,10 +117,10 @@ const WhyChooseSection = () => {
                       value={`item-${index}`} 
                       className="border-b border-slate-200"
                     >
-                      <AccordionTrigger className="text-left font-semibold text-slate-900 hover:text-sky-500 py-4 text-base">
+                      <AccordionTrigger className="text-left font-bold text-slate-900 hover:text-sky-500 py-4 text-base">
                         {faq.question}
                       </AccordionTrigger>
-                      <AccordionContent className="text-slate-600 pb-4 text-base">
+                      <AccordionContent className="text-slate-600 pb-4 text-base leading-relaxed">
                         {faq.answer}
                       </AccordionContent>
                     </AccordionItem>
@@ -135,6 +138,11 @@ const WhyChooseSection = () => {
                     alt="Echipament stomatologic modern"
                     className="w-full h-full object-cover"
                   />
+                </div>
+                {/* Floating badge */}
+                <div className="absolute -bottom-4 -right-4 bg-sky-500 text-white rounded-2xl shadow-lg p-5">
+                  <p className="text-3xl font-bold">15+</p>
+                  <p className="text-sm opacity-90">ani de experiență</p>
                 </div>
               </div>
             </FadeText>

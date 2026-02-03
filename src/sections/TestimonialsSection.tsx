@@ -15,7 +15,7 @@ const testimonials = [
     name: 'Andreea M.',
     location: 'Târgoviște',
     rating: 5,
-    text: 'Am avut emoții înainte de prima vizită, dar totul a fost mult mai ușor decât mă așteptam. Echipa este foarte atentă și drăguță. Rezultatul final m-a uimit!',
+    text: 'Am avut emoții înainte de prima vizită, dar totul a fost mult mai ușor decât mă așteptam. Echipa este foarte atentă și drăguță.',
     service: 'Fațete dentare',
   },
   {
@@ -23,7 +23,7 @@ const testimonials = [
     name: 'Mihai D.',
     location: 'Dâmbovița',
     rating: 5,
-    text: 'Profesionalism la cel mai înalt nivel. Am făcut implanturi și procesul a fost explicat pas cu pas. Acum pot zâmbi fără griji. Mulțumesc!',
+    text: 'Profesionalism la cel mai înalt nivel. Am făcut implanturi și procesul a fost explicat pas cu pas. Acum pot zâmbi fără griji!',
     service: 'Implanturi dentare',
   },
   {
@@ -31,7 +31,7 @@ const testimonials = [
     name: 'Elena P.',
     location: 'Târgoviște',
     rating: 5,
-    text: 'Am ales Invisalign și nu regret deloc. Alignerele sunt atât de discrete că prietenii nici nu au observat că port aparat. Rezultate excelente!',
+    text: 'Am ales Invisalign și nu regret deloc. Alignerele sunt atât de discrete că prietenii nici nu au observat că port aparat.',
     service: 'Ortodonție Invisalign',
   },
   {
@@ -39,7 +39,7 @@ const testimonials = [
     name: 'Cristian S.',
     location: 'Ploiești',
     rating: 5,
-    text: 'Merită deplasarea de la Ploiești! Am făcut albire și rezultatul a fost imediat vizibil. Prețuri corecte pentru calitatea oferită.',
+    text: 'Merită deplasarea de la Ploiești! Am făcut albire și rezultatul a fost imediat vizibil. Prețuri corecte pentru calitate.',
     service: 'Albire dentară',
   },
   {
@@ -47,7 +47,7 @@ const testimonials = [
     name: 'Maria L.',
     location: 'Târgoviște',
     rating: 5,
-    text: 'Copilul meu avea frică de dentist, dar aici l-au primit cu atâta căldură încât acum vine fără să plângă. Recomand cu căldură!',
+    text: 'Copilul meu avea frică de dentist, dar aici l-au primit cu atâta căldură încât acum vine fără să plângă.',
     service: 'Stomatologie pediatrică',
   },
   {
@@ -55,7 +55,7 @@ const testimonials = [
     name: 'Adrian K.',
     location: 'București',
     rating: 5,
-    text: 'Deși locuiesc în București, vin aici pentru tratamente complexe. Atmosfera calmă și profesionalismul echipei fac diferența.',
+    text: 'Deși locuiesc în București, vin aici pentru tratamente complexe. Atmosfera calmă și profesionalismul fac diferența.',
     service: 'Coroane dentare',
   },
 ];
@@ -68,12 +68,12 @@ const TestimonialsSection = () => {
           {/* Header */}
           <div className="text-center mb-12">
             <FadeText delay={0} direction="up">
-              <span className="inline-block text-sm font-semibold tracking-wider text-sky-500 uppercase mb-3">
-                Părerile pacienților
+              <span className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-sky-100 text-sky-600 text-sm font-semibold mb-4">
+                Părerile Pacienților
               </span>
             </FadeText>
             <FadeText delay={0.1} direction="up" distance={40}>
-              <h2 className="font-bold text-3xl sm:text-4xl text-slate-900 mb-4">
+              <h2 className="font-bold text-3xl sm:text-4xl lg:text-5xl text-slate-900 mb-4">
                 Experiențe reale, zâmbete fericite
               </h2>
             </FadeText>
@@ -95,7 +95,7 @@ const TestimonialsSection = () => {
                 className="w-full"
               >
                 {/* Navigation Left */}
-                <CarouselPrevious className="absolute -left-4 lg:-left-12 top-1/2 -translate-y-1/2 bg-white border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-sky-500 hover:border-sky-500 shadow-sm" />
+                <CarouselPrevious className="absolute -left-4 lg:-left-12 top-1/2 -translate-y-1/2 z-10 bg-white border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-sky-500 hover:border-sky-500 shadow-sm" />
                 
                 <CarouselContent className="-ml-4">
                   {testimonials.map((testimonial) => (
@@ -139,8 +139,21 @@ const TestimonialsSection = () => {
                 </CarouselContent>
 
                 {/* Navigation Right */}
-                <CarouselNext className="absolute -right-4 lg:-right-12 top-1/2 -translate-y-1/2 bg-white border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-sky-500 hover:border-sky-500 shadow-sm" />
+                <CarouselNext className="absolute -right-4 lg:-right-12 top-1/2 -translate-y-1/2 z-10 bg-white border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-sky-500 hover:border-sky-500 shadow-sm" />
               </Carousel>
+            </div>
+          </FadeText>
+
+          {/* View All Link */}
+          <FadeText delay={0.4} direction="up">
+            <div className="text-center mt-10">
+              <a 
+                href="/pareri" 
+                className="inline-flex items-center gap-2 text-sky-500 font-semibold hover:underline"
+              >
+                Vezi toate părerile
+                <span>→</span>
+              </a>
             </div>
           </FadeText>
         </div>
