@@ -11,37 +11,8 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { FadeText } from '@/components/animations/FadeText';
-import { StaggerContainer } from '@/components/animations/StaggerContainer';
-import { AnimatedCard } from '@/components/animations/AnimatedCard';
 
 const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzlmLFfxYhvS_6MRgeY1_hIG6jCgMX5ygOalhlpa6RxjVl3AZtPYc50ihpC6TmHMKDO5w/exec';
-
-const contactInfo = [
-  {
-    icon: MapPin,
-    label: 'Adresă',
-    value: 'Strada Calea Domnească, Nr. 234, Târgoviște, Dâmbovița',
-    href: 'https://maps.google.com/?q=Târgoviște',
-  },
-  {
-    icon: Phone,
-    label: 'Telefon',
-    value: '0770 220 110',
-    href: 'tel:+40770220110',
-  },
-  {
-    icon: Mail,
-    label: 'Email',
-    value: 'contact@doctorsuciu.ro',
-    href: 'mailto:contact@doctorsuciu.ro',
-  },
-  {
-    icon: Clock,
-    label: 'Program',
-    value: 'Luni – Vineri: 09:00 – 18:00',
-    href: null,
-  },
-];
 
 const services = [
   'Consultație',
@@ -78,14 +49,11 @@ const ContactSection = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        mode: 'no-cors', // Required for Google Apps Script
+        mode: 'no-cors',
       });
 
-      // Since we're using no-cors, we can't check response.ok
-      // But the request should have been sent
       setIsSubmitted(true);
       
-      // Reset form after 3 seconds
       setTimeout(() => {
         setIsSubmitted(false);
         setFormData({
@@ -114,74 +82,100 @@ const ContactSection = () => {
   };
 
   return (
-    <section id="contact" className="w-full py-20 lg:py-28 bg-clinic-gray-bg overflow-hidden">
+    <section id="contact" className="w-full py-20 lg:py-28 bg-white overflow-hidden">
       <div className="w-full px-4 sm:px-6 lg:px-12 xl:px-20">
         <div className="max-w-7xl mx-auto">
           {/* Header */}
           <div className="text-center mb-12 lg:mb-16">
             <FadeText delay={0} direction="up">
-              <span className="inline-block text-sm font-semibold tracking-wider text-clinic-teal uppercase mb-3">
+              <span className="inline-block text-sm font-semibold tracking-wider text-sky-500 uppercase mb-3">
                 Contact
               </span>
             </FadeText>
             <FadeText delay={0.1} direction="up" distance={40}>
-              <h2 className="font-serif font-medium text-3xl sm:text-4xl lg:text-5xl text-clinic-navy mb-4">
-                Programează-te <span className="text-clinic-teal">acum</span>
+              <h2 className="font-bold text-3xl sm:text-4xl lg:text-5xl text-slate-900 mb-4">
+                Programează-te acum
               </h2>
             </FadeText>
             <FadeText delay={0.2} direction="up">
-              <p className="text-lg text-clinic-gray max-w-2xl mx-auto">
-                Completează formularul și te contactăm în cel mai scurt timp pentru 
-                a confirma programarea.
+              <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+                Completează formularul și te contactăm în cel mai scurt timp
               </p>
             </FadeText>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-8 lg:gap-16">
-            {/* Contact Info */}
-            <div>
+          <div className="grid lg:grid-cols-5 gap-12 lg:gap-16">
+            {/* Contact Info - Left Side */}
+            <div className="lg:col-span-2 space-y-8">
               <FadeText delay={0.2} direction="right" distance={30}>
-                <h3 className="font-serif font-medium text-xl text-clinic-navy mb-6">
-                  Date de contact
-                </h3>
-              </FadeText>
-
-              {/* Info Cards */}
-              <StaggerContainer className="space-y-4 mb-8" staggerDelay={0.1} initialDelay={0.3}>
-                {contactInfo.map((item) => (
-                  <AnimatedCard
-                    key={item.label}
-                    hoverScale={1.02}
-                    enableGlow={false}
-                    className="flex items-start gap-4 p-4 rounded-xl bg-white shadow-card hover:shadow-float transition-all duration-300"
-                  >
-                    <div className="w-12 h-12 rounded-lg bg-clinic-navy flex items-center justify-center flex-shrink-0 group-hover:bg-clinic-teal transition-colors duration-300">
-                      <item.icon className="w-5 h-5 text-white" />
+                <div className="space-y-6">
+                  {/* Address */}
+                  <div className="flex items-start gap-4">
+                    <div className="w-10 h-10 rounded-full bg-sky-50 flex items-center justify-center flex-shrink-0">
+                      <MapPin className="w-5 h-5 text-sky-500" />
                     </div>
                     <div>
-                      <p className="text-sm text-clinic-gray mb-1">
-                        {item.label}
-                      </p>
-                      {item.href ? (
-                        <a
-                          href={item.href}
-                          className="font-medium text-clinic-navy hover:text-clinic-teal transition-colors"
-                        >
-                          {item.value}
-                        </a>
-                      ) : (
-                        <p className="font-medium text-clinic-navy">
-                          {item.value}
-                        </p>
-                      )}
+                      <p className="text-sm text-slate-500 mb-1">Adresă</p>
+                      <a
+                        href="https://maps.google.com/?q=Târgoviște"
+                        className="text-slate-900 hover:text-sky-500 transition-colors"
+                      >
+                        Strada Calea Domnească, Nr. 234<br />
+                        Târgoviște, Dâmbovița
+                      </a>
                     </div>
-                  </AnimatedCard>
-                ))}
-              </StaggerContainer>
+                  </div>
+
+                  {/* Phone */}
+                  <div className="flex items-start gap-4">
+                    <div className="w-10 h-10 rounded-full bg-sky-50 flex items-center justify-center flex-shrink-0">
+                      <Phone className="w-5 h-5 text-sky-500" />
+                    </div>
+                    <div>
+                      <p className="text-sm text-slate-500 mb-1">Telefon</p>
+                      <a
+                        href="tel:+40770220110"
+                        className="text-slate-900 hover:text-sky-500 transition-colors font-medium"
+                      >
+                        0770 220 110
+                      </a>
+                    </div>
+                  </div>
+
+                  {/* Email */}
+                  <div className="flex items-start gap-4">
+                    <div className="w-10 h-10 rounded-full bg-sky-50 flex items-center justify-center flex-shrink-0">
+                      <Mail className="w-5 h-5 text-sky-500" />
+                    </div>
+                    <div>
+                      <p className="text-sm text-slate-500 mb-1">Email</p>
+                      <a
+                        href="mailto:contact@doctorsuciu.ro"
+                        className="text-slate-900 hover:text-sky-500 transition-colors"
+                      >
+                        contact@doctorsuciu.ro
+                      </a>
+                    </div>
+                  </div>
+
+                  {/* Schedule */}
+                  <div className="flex items-start gap-4">
+                    <div className="w-10 h-10 rounded-full bg-sky-50 flex items-center justify-center flex-shrink-0">
+                      <Clock className="w-5 h-5 text-sky-500" />
+                    </div>
+                    <div>
+                      <p className="text-sm text-slate-500 mb-1">Program</p>
+                      <p className="text-slate-900">
+                        Luni – Vineri: 09:00 – 18:00
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </FadeText>
 
               {/* Map */}
-              <FadeText delay={0.6} direction="up" distance={30}>
-                <div className="rounded-2xl overflow-hidden shadow-float h-64 lg:h-80 bg-gray-100 hover:shadow-2xl transition-shadow duration-500">
+              <FadeText delay={0.4} direction="up" distance={30}>
+                <div className="rounded-2xl overflow-hidden h-64 lg:h-72 bg-slate-100">
                   <iframe
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d11146.704852654434!2d25.4473!3d44.9311!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40b2c5e0f7c3b0e7%3A0x7e7c7e7c7e7c7e7c!2sT%C3%A2rgovi%C8%99te!5e0!3m2!1sro!2sro!4v1600000000000!5m2!1sro!2sro"
                     width="100%"
@@ -196,36 +190,27 @@ const ContactSection = () => {
               </FadeText>
             </div>
 
-            {/* Form */}
-            <div>
-              <FadeText delay={0.3} direction="left" distance={30}>
-                <h3 className="font-serif font-medium text-xl text-clinic-navy mb-6">
-                  Formular de programare
-                </h3>
-              </FadeText>
-
-              <FadeText delay={0.4} direction="left" distance={40}>
-                <div className="p-6 lg:p-8 rounded-2xl bg-white shadow-float hover:shadow-2xl transition-shadow duration-500">
+            {/* Form - Right Side */}
+            <div className="lg:col-span-3">
+              <FadeText delay={0.3} direction="left" distance={40}>
+                <div className="bg-slate-50 rounded-3xl p-6 lg:p-10">
                   {isSubmitted ? (
-                    <div className="flex flex-col items-center justify-center py-12 text-center animate-in fade-in zoom-in duration-500">
-                      <div className="w-20 h-20 rounded-full bg-clinic-teal/10 flex items-center justify-center mb-6 animate-bounce">
-                        <CheckCircle className="w-10 h-10 text-clinic-teal" />
+                    <div className="flex flex-col items-center justify-center py-16 text-center">
+                      <div className="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center mb-6">
+                        <CheckCircle className="w-8 h-8 text-green-500" />
                       </div>
-                      <h4 className="font-serif font-medium text-2xl text-clinic-navy mb-2">
+                      <h4 className="font-bold text-2xl text-slate-900 mb-2">
                         Mulțumim!
                       </h4>
-                      <p className="text-clinic-gray mb-4">
+                      <p className="text-slate-600">
                         Am primit mesajul tău și te contactăm în curând.
-                      </p>
-                      <p className="text-sm text-clinic-teal">
-                        Verifică email-ul pentru confirmare (dacă ai completat adresa).
                       </p>
                     </div>
                   ) : (
                     <form onSubmit={handleSubmit} className="space-y-5">
                       <div className="grid sm:grid-cols-2 gap-5">
-                        <div className="group">
-                          <label className="block text-sm font-medium text-clinic-navy mb-2 transition-colors group-focus-within:text-clinic-teal">
+                        <div>
+                          <label className="block text-sm font-medium text-slate-700 mb-2">
                             Nume complet *
                           </label>
                           <Input
@@ -235,11 +220,11 @@ const ContactSection = () => {
                             placeholder="Ex: Ion Popescu"
                             required
                             disabled={isLoading}
-                            className="h-12 transition-all duration-300 focus:ring-2 focus:ring-clinic-teal/20 disabled:opacity-50"
+                            className="h-12 bg-white border-slate-200 focus:border-sky-500 focus:ring-sky-500"
                           />
                         </div>
-                        <div className="group">
-                          <label className="block text-sm font-medium text-clinic-navy mb-2 transition-colors group-focus-within:text-clinic-teal">
+                        <div>
+                          <label className="block text-sm font-medium text-slate-700 mb-2">
                             Telefon *
                           </label>
                           <Input
@@ -250,13 +235,13 @@ const ContactSection = () => {
                             placeholder="Ex: 0770 220 110"
                             required
                             disabled={isLoading}
-                            className="h-12 transition-all duration-300 focus:ring-2 focus:ring-clinic-teal/20 disabled:opacity-50"
+                            className="h-12 bg-white border-slate-200 focus:border-sky-500 focus:ring-sky-500"
                           />
                         </div>
                       </div>
 
-                      <div className="group">
-                        <label className="block text-sm font-medium text-clinic-navy mb-2 transition-colors group-focus-within:text-clinic-teal">
+                      <div>
+                        <label className="block text-sm font-medium text-slate-700 mb-2">
                           Email
                         </label>
                         <Input
@@ -266,12 +251,12 @@ const ContactSection = () => {
                           onChange={handleChange}
                           placeholder="Ex: ion@email.com"
                           disabled={isLoading}
-                          className="h-12 transition-all duration-300 focus:ring-2 focus:ring-clinic-teal/20 disabled:opacity-50"
+                          className="h-12 bg-white border-slate-200 focus:border-sky-500 focus:ring-sky-500"
                         />
                       </div>
 
                       <div>
-                        <label className="block text-sm font-medium text-clinic-navy mb-2">
+                        <label className="block text-sm font-medium text-slate-700 mb-2">
                           Serviciu dorit
                         </label>
                         <Select
@@ -281,7 +266,7 @@ const ContactSection = () => {
                           }
                           disabled={isLoading}
                         >
-                          <SelectTrigger className="h-12 transition-all duration-300 focus:ring-2 focus:ring-clinic-teal/20 disabled:opacity-50">
+                          <SelectTrigger className="h-12 bg-white border-slate-200 focus:border-sky-500 focus:ring-sky-500">
                             <SelectValue placeholder="Selectează un serviciu" />
                           </SelectTrigger>
                           <SelectContent>
@@ -294,8 +279,8 @@ const ContactSection = () => {
                         </Select>
                       </div>
 
-                      <div className="group">
-                        <label className="block text-sm font-medium text-clinic-navy mb-2 transition-colors group-focus-within:text-clinic-teal">
+                      <div>
+                        <label className="block text-sm font-medium text-slate-700 mb-2">
                           Mesaj (opțional)
                         </label>
                         <Textarea
@@ -305,7 +290,7 @@ const ContactSection = () => {
                           placeholder="Spune-ne cum te putem ajuta..."
                           rows={4}
                           disabled={isLoading}
-                          className="resize-none transition-all duration-300 focus:ring-2 focus:ring-clinic-teal/20 disabled:opacity-50"
+                          className="bg-white border-slate-200 focus:border-sky-500 focus:ring-sky-500 resize-none"
                         />
                       </div>
 
@@ -319,7 +304,7 @@ const ContactSection = () => {
                         type="submit"
                         size="lg"
                         disabled={isLoading}
-                        className="w-full bg-clinic-navy hover:bg-clinic-navy-light text-white font-semibold h-14 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                        className="w-full bg-sky-500 hover:bg-sky-600 text-white font-semibold h-12"
                       >
                         {isLoading ? (
                           <>
@@ -328,15 +313,15 @@ const ContactSection = () => {
                           </>
                         ) : (
                           <>
-                            <Send className="w-5 h-5 mr-2 transition-transform duration-300 group-hover:translate-x-1" />
+                            <Send className="w-5 h-5 mr-2" />
                             Trimite cererea
                           </>
                         )}
                       </Button>
 
-                      <p className="text-xs text-center text-clinic-gray">
+                      <p className="text-xs text-center text-slate-500">
                         Prin trimiterea formularului, ești de acord cu{' '}
-                        <a href="#" className="text-clinic-teal hover:underline transition-colors hover:text-clinic-navy">
+                        <a href="#" className="text-sky-500 hover:underline">
                           politica de confidențialitate
                         </a>
                         .

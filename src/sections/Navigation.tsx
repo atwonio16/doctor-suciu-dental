@@ -19,7 +19,6 @@ const Navigation = () => {
   }, []);
 
   const navLinks = [
-    { label: 'Acasă', href: '/' },
     { label: 'Servicii', href: '/servicii' },
     { label: 'Echipa', href: isHome ? '#echipa' : '/#echipa' },
     { label: 'Păreri', href: isHome ? '#recenzii' : '/#recenzii' },
@@ -33,7 +32,7 @@ const Navigation = () => {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           isScrolled
             ? 'bg-white/95 backdrop-blur-md shadow-sm'
             : 'bg-transparent'
@@ -41,28 +40,23 @@ const Navigation = () => {
       >
         <div className="w-full px-4 sm:px-6 lg:px-12 xl:px-20">
           <div className="max-w-7xl mx-auto flex items-center justify-between h-16 lg:h-20">
-            {/* Logo */}
-            <Link to="/" className="flex items-center gap-3 group">
-              <div className="w-10 h-10 rounded-xl bg-clinic-teal flex items-center justify-center transition-transform group-hover:scale-110">
-                <span className="font-serif font-bold text-lg text-white">S</span>
-              </div>
-              <div className="flex flex-col">
-                <span className="font-serif font-bold text-lg text-clinic-navy leading-tight">
-                  Doctor Suciu
-                </span>
-                <span className="text-[10px] text-clinic-teal tracking-[0.15em] uppercase">
-                  Dental Clinic
-                </span>
-              </div>
+            {/* Logo - Text only */}
+            <Link to="/" className="flex flex-col leading-none">
+              <span className="font-bold text-xl tracking-tight text-slate-900">
+                DOCTOR SUCIU
+              </span>
+              <span className="text-sm tracking-[0.2em] text-sky-500 font-medium">
+                DENTAL CLINIC
+              </span>
             </Link>
 
             {/* Desktop Navigation */}
-            <nav className="hidden lg:flex items-center gap-1">
+            <nav className="hidden lg:flex items-center gap-8">
               {navLinks.map((link) => (
                 <Link
                   key={link.href}
                   to={link.href}
-                  className="px-4 py-2 rounded-full text-sm font-medium text-clinic-navy/80 hover:text-clinic-teal hover:bg-clinic-teal/5 transition-all"
+                  className="text-sm font-medium text-slate-600 hover:text-sky-500 transition-colors"
                 >
                   {link.label}
                 </Link>
@@ -70,17 +64,17 @@ const Navigation = () => {
             </nav>
 
             {/* Desktop CTA */}
-            <div className="hidden lg:flex items-center gap-4">
+            <div className="hidden lg:flex items-center gap-6">
               <a
                 href="tel:+40770220110"
-                className="flex items-center gap-2 text-sm font-medium text-clinic-navy/80 hover:text-clinic-teal transition-colors"
+                className="flex items-center gap-2 text-sm font-medium text-slate-600 hover:text-sky-500 transition-colors"
               >
                 <Phone className="w-4 h-4" />
                 <span>0770 220 110</span>
               </a>
               <Button
                 asChild
-                className="bg-clinic-navy hover:bg-clinic-navy/90 text-white font-medium px-6 rounded-full"
+                className="bg-sky-500 hover:bg-sky-600 text-white font-medium px-6"
               >
                 <Link to={isHome ? '#contact' : '/#contact'}>Programează-te</Link>
               </Button>
@@ -88,7 +82,7 @@ const Navigation = () => {
 
             {/* Mobile Menu Button */}
             <button
-              className="lg:hidden p-2 text-clinic-navy rounded-full hover:bg-slate-100 transition-colors"
+              className="lg:hidden p-2 text-slate-900"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               aria-label="Meniu"
             >
@@ -111,36 +105,36 @@ const Navigation = () => {
         }`}
       >
         <div
-          className="absolute inset-0 bg-clinic-navy/20 backdrop-blur-sm"
+          className="absolute inset-0 bg-slate-900/20 backdrop-blur-sm"
           onClick={() => setIsMobileMenuOpen(false)}
         />
         <div
-          className={`absolute top-16 left-4 right-4 bg-white rounded-3xl shadow-xl transition-all duration-300 ${
-            isMobileMenuOpen ? 'translate-y-0 opacity-100' : '-translate-y-4 opacity-0'
+          className={`absolute top-16 left-0 right-0 bg-white shadow-lg transition-transform duration-300 ${
+            isMobileMenuOpen ? 'translate-y-0' : '-translate-y-full'
           }`}
         >
-          <nav className="flex flex-col p-6 gap-2">
+          <nav className="flex flex-col p-6 gap-4">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 to={link.href}
                 onClick={handleNavClick}
-                className="text-lg font-medium text-clinic-navy hover:text-clinic-teal transition-colors py-3 px-4 rounded-xl hover:bg-slate-50"
+                className="text-lg font-medium text-slate-900 hover:text-sky-500 transition-colors py-2"
               >
                 {link.label}
               </Link>
             ))}
-            <hr className="border-gray-100 my-2" />
+            <hr className="border-slate-100 my-2" />
             <a
               href="tel:+40770220110"
-              className="flex items-center gap-2 text-clinic-navy hover:text-clinic-teal transition-colors py-3 px-4"
+              className="flex items-center gap-2 text-slate-900 hover:text-sky-500 transition-colors py-2"
             >
               <Phone className="w-5 h-5" />
               <span className="font-medium">0770 220 110</span>
             </a>
             <Button
               asChild
-              className="bg-clinic-navy hover:bg-clinic-navy/90 text-white font-medium w-full mt-2 rounded-full h-12"
+              className="bg-sky-500 hover:bg-sky-600 text-white font-medium w-full mt-2"
             >
               <Link to={isHome ? '#contact' : '/#contact'} onClick={handleNavClick}>
                 Programează-te

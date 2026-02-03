@@ -15,7 +15,7 @@ const testimonials = [
     name: 'Andreea M.',
     location: 'Târgoviște',
     rating: 5,
-    text: 'Cel mai relaxat m-am simțit la dentist. Totul a fost explicat pas cu pas, iar rezultatul a depășit așteptările. Recomand cu căldură!',
+    text: 'Cel mai relaxat m-am simțit la dentist. Totul a fost explicat pas cu pas, iar rezultatul a depășit așteptările.',
     service: 'Fațete dentare',
   },
   {
@@ -23,7 +23,7 @@ const testimonials = [
     name: 'Mihai D.',
     location: 'Dâmbovița',
     rating: 5,
-    text: 'Profesionalism și curățenie exemplare. Dr. Suciu este un medic dedicat care își iubește meseria. Am făcut implanturi și sunt extrem de mulțumit.',
+    text: 'Profesionalism și curățenie exemplare. Dr. Suciu este un medic dedicat care își iubește meseria.',
     service: 'Implanturi dentare',
   },
   {
@@ -31,7 +31,7 @@ const testimonials = [
     name: 'Elena P.',
     location: 'Târgoviște',
     rating: 5,
-    text: 'Am făcut tratament Invisalign și rezultatele sunt uimitoare. Procesul a fost simplu și discret, exact ce îmi doream.',
+    text: 'Am făcut tratament Invisalign și rezultatele sunt uimitoare. Procesul a fost simplu și discret.',
     service: 'Ortodonție Invisalign',
   },
   {
@@ -39,7 +39,7 @@ const testimonials = [
     name: 'Cristian S.',
     location: 'Ploiești',
     rating: 5,
-    text: 'Am venit special de la Ploiești pentru tratament și a meritat pe deplin. Echipa este foarte prietenoasă și profesionistă.',
+    text: 'Am venit special de la Ploiești pentru tratament și a meritat pe deplin. Echipa este foarte prietenoasă.',
     service: 'Albire dentară',
   },
   {
@@ -47,7 +47,7 @@ const testimonials = [
     name: 'Maria L.',
     location: 'Târgoviște',
     rating: 5,
-    text: 'Am scăpat de teama de dentist datorită acestei clinici. Atmosfera calmă și profesionalismul echipei m-au cucerit.',
+    text: 'Am scăpat de teama de dentist datorită acestei clinici. Atmosfera calmă m-a cucerit.',
     service: 'Tratament canal',
   },
   {
@@ -55,32 +55,31 @@ const testimonials = [
     name: 'Adrian K.',
     location: 'București',
     rating: 5,
-    text: 'Deși am venit din București, distanța a meritat. Rezultate excelente la prețuri corecte. Voi reveni cu siguranță!',
+    text: 'Deși am venit din București, distanța a meritat. Rezultate excelente la prețuri corecte.',
     service: 'Coroane dentare',
   },
 ];
 
 const TestimonialsSection = () => {
   return (
-    <section id="recenzii" className="w-full py-20 lg:py-28 bg-clinic-navy overflow-hidden">
+    <section id="recenzii" className="w-full py-20 lg:py-28 bg-slate-50 overflow-hidden">
       <div className="w-full px-4 sm:px-6 lg:px-12 xl:px-20">
         <div className="max-w-7xl mx-auto">
           {/* Header */}
-          <div className="text-center mb-12 lg:mb-16">
+          <div className="text-center mb-12">
             <FadeText delay={0} direction="up">
-              <span className="inline-block text-sm font-semibold tracking-wider text-clinic-teal uppercase mb-3">
-                Recenzii
+              <span className="inline-block text-sm font-semibold tracking-wider text-sky-500 uppercase mb-3">
+                Părerile pacienților
               </span>
             </FadeText>
             <FadeText delay={0.1} direction="up" distance={40}>
-              <h2 className="font-serif font-medium text-3xl sm:text-4xl lg:text-5xl text-white mb-4">
-                Ce spun <span className="text-clinic-teal">pacienții noștri</span>
+              <h2 className="font-bold text-3xl sm:text-4xl text-slate-900 mb-4">
+                Ce spun despre noi
               </h2>
             </FadeText>
             <FadeText delay={0.2} direction="up">
-              <p className="text-lg text-white/70 max-w-2xl mx-auto">
-                Părerile sincere ale pacienților noștri sunt cea mai bună recomandare 
-                pentru calitatea serviciilor noastre.
+              <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+                Experiențele reale ale pacienților noștri
               </p>
             </FadeText>
           </div>
@@ -100,32 +99,32 @@ const TestimonialsSection = () => {
                     key={testimonial.id} 
                     className="pl-4 md:basis-1/2 lg:basis-1/3"
                   >
-                    <Card className="h-full bg-white rounded-2xl border-0 shadow-lg hover:shadow-xl transition-shadow duration-300">
-                      <CardContent className="p-6 lg:p-8 flex flex-col h-full">
+                    <Card className="h-full bg-white rounded-2xl border border-slate-100 shadow-sm">
+                      <CardContent className="p-5 flex flex-col h-full">
                         {/* Quote icon */}
-                        <Quote className="w-10 h-10 text-clinic-teal/20 mb-4" />
+                        <Quote className="w-8 h-8 text-sky-200 mb-3" />
 
                         {/* Stars */}
-                        <div className="flex gap-1 mb-4">
+                        <div className="flex gap-1 mb-3">
                           {[...Array(testimonial.rating)].map((_, i) => (
                             <Star
                               key={i}
-                              className="w-5 h-5 fill-clinic-gold text-clinic-gold"
+                              className="w-4 h-4 fill-amber-400 text-amber-400"
                             />
                           ))}
                         </div>
 
                         {/* Text */}
-                        <p className="text-clinic-navy/90 leading-relaxed mb-6 flex-grow">
+                        <p className="text-slate-700 text-sm leading-relaxed mb-4 flex-grow">
                           "{testimonial.text}"
                         </p>
 
                         {/* Author */}
-                        <div className="pt-4 border-t border-gray-100">
-                          <p className="font-serif font-medium text-clinic-navy">
+                        <div className="pt-3 border-t border-slate-100">
+                          <p className="font-semibold text-slate-900 text-sm">
                             {testimonial.name}
                           </p>
-                          <p className="text-sm text-clinic-gray">
+                          <p className="text-xs text-slate-500">
                             {testimonial.location} • {testimonial.service}
                           </p>
                         </div>
@@ -137,8 +136,8 @@ const TestimonialsSection = () => {
               
               {/* Navigation Buttons */}
               <div className="flex justify-center items-center gap-4 mt-8">
-                <CarouselPrevious className="static translate-y-0 bg-white/10 border-white/20 text-white hover:bg-white hover:text-clinic-navy" />
-                <CarouselNext className="static translate-y-0 bg-white/10 border-white/20 text-white hover:bg-white hover:text-clinic-navy" />
+                <CarouselPrevious className="static translate-y-0 bg-white border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-sky-500" />
+                <CarouselNext className="static translate-y-0 bg-white border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-sky-500" />
               </div>
             </Carousel>
           </FadeText>
