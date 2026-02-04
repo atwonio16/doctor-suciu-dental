@@ -4,8 +4,8 @@ import Footer from './sections/Footer';
 import WhatsAppButton from './components/WhatsAppButton';
 import HomePage from './pages/HomePage';
 import ServicesPage from './pages/ServicesPage';
-import DoctorsPage from './pages/DoctorsPage';
 import BlogPage from './pages/BlogPage';
+import BlogPostPage from './pages/BlogPostPage';
 import TestimonialsPage from './pages/TestimonialsPage';
 import ContactPage from './pages/ContactPage';
 import './App.css';
@@ -20,8 +20,8 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/servicii" element={<ServicesPage />} />
-            <Route path="/medici" element={<DoctorsPage />} />
             <Route path="/blog" element={<BlogPage />} />
+            <Route path="/blog/:id" element={<BlogPostPage />} />
             <Route path="/pareri" element={<TestimonialsPage />} />
             <Route path="/contact" element={<ContactPage />} />
           </Routes>

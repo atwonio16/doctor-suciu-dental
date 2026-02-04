@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Phone, Menu, X } from 'lucide-react';
-import { Button } from '@/components/ui/button';
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -9,156 +8,92 @@ const Navigation = () => {
   const location = useLocation();
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-
+    const handleScroll = () => setIsScrolled(window.scrollY > 20);
+    handleScroll();
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const navLinks = [
-    { label: 'Servicii', href: '/servicii' },
-    { label: 'Medici', href: '/medici' },
-    { label: 'Blog', href: '/blog' },
-    { label: 'Păreri', href: '/pareri' },
-    { label: 'Contact', href: '/contact' },
+    { label: 'SERVICII', href: '/servicii' },
+    { label: 'BLOG', href: '/blog' },
+    { label: 'PĂRERI', href: '/pareri' },
+    { label: 'CONTACT', href: '/contact' },
   ];
-
-  const handleNavClick = () => {
-    setIsMobileMenuOpen(false);
-  };
 
   const isActive = (href: string) => location.pathname === href;
 
   return (
     <>
-      <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          isScrolled
-            ? 'bg-white/95 backdrop-blur-md shadow-sm'
-            : 'bg-transparent'
-        }`}
-      >
+      <header className={`fixed top-0 left-0 right-0 z-50 bg-white border-b border-slate-100 transition-shadow duration-200 ${isScrolled ? 'shadow-sm' : ''}`}>
         <div className="w-full px-4 sm:px-6 lg:px-12 xl:px-20">
-          <div className="max-w-7xl mx-auto flex items-center justify-between h-16 lg:h-20">
-            {/* Logo */}
-            <Link to="/" className="flex flex-col leading-none">
-              <span className={`font-bold text-xl tracking-tight transition-colors ${
-                isScrolled ? 'text-slate-900' : 'text-white'
-              }`}>
-                DOCTOR SUCIU
-              </span>
-              <span className="text-xs tracking-[0.2em] text-sky-500 font-medium">
-                DENTAL CLINIC
-              </span>
+          <div className="max-w-7xl mx-auto flex items-center h-16 lg:h-20">
+            {/* Logo - Left */}
+            <Link to="/" className="flex flex-col leading-none flex-shrink-0">
+              <span className="font-bold text-lg tracking-tight text-slate-900">DOCTOR SUCIU</span>
+              <span className="text-[10px] tracking-[0.2em] text-sky-500 font-semibold">DENTAL CLINIC</span>
             </Link>
 
-            {/* Desktop Navigation */}
-            <nav className="hidden lg:flex items-center gap-8">
+            {/* Navigation - Center */}
+            <nav className="hidden lg:flex items-center justify-center flex-1 gap-8">
               {navLinks.map((link) => (
                 <Link
                   key={link.href}
                   to={link.href}
-                  className={`text-sm font-medium transition-colors ${
-                    isActive(link.href)
-                      ? 'text-sky-500'
-                      : isScrolled 
-                        ? 'text-slate-600 hover:text-sky-500'
-                        : 'text-white/90 hover:text-white'
-                  }`}
+                  className={`text-xs font-semibold tracking-wider transition-colors ${isActive(link.href) ? 'text-sky-500' : 'text-slate-600 hover:text-sky-500'}`}
                 >
                   {link.label}
                 </Link>
               ))}
             </nav>
 
-            {/* Desktop CTA */}
-            <div className="hidden lg:flex items-center gap-4">
-              <a
-                href="tel:+40770220110"
-                className={`flex items-center gap-2 text-sm font-medium transition-colors ${
-                  isScrolled ? 'text-slate-600 hover:text-sky-500' : 'text-white/90 hover:text-white'
-                }`}
-              >
+            {/* Right Side - Phone + CTA */}
+            <div className="hidden lg:flex items-center gap-6 flex-shrink-0">
+              <a href="tel:+40770220110" className="flex items-center gap-2 text-sm font-medium text-slate-600 hover:text-sky-500 transition-colors">
                 <Phone className="w-4 h-4" />
-                <span>0770 220 110</span>
+                0770 220 110
               </a>
-              <Button
-                asChild
-                className="bg-sky-500 hover:bg-sky-600 text-white font-medium px-6"
-              >
-                <Link to="/contact">Programează-te</Link>
-              </Button>
+              <Link to="/contact" className="btn-primary text-sm py-2.5 px-5">
+                PROGRAMEAZĂ-TE
+              </Link>
             </div>
 
             {/* Mobile Menu Button */}
-            <button
-              className={`lg:hidden p-2 ${isScrolled ? 'text-slate-900' : 'text-white'}`}
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              aria-label="Meniu"
-            >
-              {isMobileMenuOpen ? (
-                <X className="w-6 h-6" />
-              ) : (
-                <Menu className="w-6 h-6" />
-              )}
+            <button className="lg:hidden p-2 text-slate-900 ml-auto" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
+              {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
           </div>
         </div>
       </header>
 
       {/* Mobile Menu */}
-      <div
-        className={`fixed inset-0 z-40 lg:hidden transition-all duration-300 ${
-          isMobileMenuOpen
-            ? 'opacity-100 pointer-events-auto'
-            : 'opacity-0 pointer-events-none'
-        }`}
-      >
-        <div
-          className="absolute inset-0 bg-slate-900/20 backdrop-blur-sm"
-          onClick={() => setIsMobileMenuOpen(false)}
-        />
-        <div
-          className={`absolute top-16 left-0 right-0 bg-white shadow-lg transition-transform duration-300 ${
-            isMobileMenuOpen ? 'translate-y-0' : '-translate-y-full'
-          }`}
-        >
-          <nav className="flex flex-col p-6 gap-4">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                to={link.href}
-                onClick={handleNavClick}
-                className={`text-lg font-medium py-2 transition-colors ${
-                  isActive(link.href)
-                    ? 'text-sky-500'
-                    : 'text-slate-900 hover:text-sky-500'
-                }`}
-              >
-                {link.label}
+      {isMobileMenuOpen && (
+        <div className="fixed inset-0 z-40 lg:hidden">
+          <div className="absolute inset-0 bg-slate-900/20" onClick={() => setIsMobileMenuOpen(false)} />
+          <div className="absolute top-16 left-0 right-0 bg-white shadow-lg p-6">
+            <nav className="flex flex-col gap-4">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  to={link.href}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className={`text-sm font-semibold py-2 ${isActive(link.href) ? 'text-sky-500' : 'text-slate-700'}`}
+                >
+                  {link.label}
+                </Link>
+              ))}
+              <hr className="border-slate-100" />
+              <a href="tel:+40770220110" className="flex items-center gap-2 text-slate-700 py-2">
+                <Phone className="w-5 h-5" />
+                0770 220 110
+              </a>
+              <Link to="/contact" onClick={() => setIsMobileMenuOpen(false)} className="btn-primary text-center mt-2">
+                PROGRAMEAZĂ-TE
               </Link>
-            ))}
-            <hr className="border-slate-100 my-2" />
-            <a
-              href="tel:+40770220110"
-              className="flex items-center gap-2 text-slate-900 hover:text-sky-500 transition-colors py-2"
-            >
-              <Phone className="w-5 h-5" />
-              <span className="font-medium">0770 220 110</span>
-            </a>
-            <Button
-              asChild
-              className="bg-sky-500 hover:bg-sky-600 text-white font-medium w-full mt-2"
-            >
-              <Link to="/contact" onClick={handleNavClick}>
-                Programează-te
-              </Link>
-            </Button>
-          </nav>
+            </nav>
+          </div>
         </div>
-      </div>
+      )}
     </>
   );
 };

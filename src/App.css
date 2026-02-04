@@ -1,52 +1,25 @@
 /* App-specific styles */
 
-/* Ensure smooth scrolling behavior */
 html {
   scroll-behavior: smooth;
 }
 
-/* Image optimization */
 img {
   image-rendering: -webkit-optimize-contrast;
-}
-
-/* Focus states for accessibility */
-*:focus-visible {
-  outline: 2px solid #2dd4bf;
-  outline-offset: 2px;
-}
-
-/* Selection color */
-::selection {
-  background-color: rgba(45, 212, 191, 0.3);
-  color: #092b5d;
-}
-
-/* Prevent text selection on interactive elements */
-button,
-[role="button"] {
-  user-select: none;
-}
-
-/* Loading state for images */
-img {
   background-color: #f8fafc;
 }
 
-/* Mobile touch improvements */
-@media (hover: none) {
-  .btn-hover:hover {
-    transform: none;
-  }
-  
-  .link-underline::after {
-    display: none;
-  }
+*:focus-visible {
+  outline: 2px solid #0ea5e9;
+  outline-offset: 2px;
 }
 
-/* High contrast mode support */
-@media (prefers-contrast: high) {
-  .text-clinic-gray {
-    color: #092b5d;
-  }
+::selection {
+  background-color: rgba(14, 165, 233, 0.2);
+  color: #0f172a;
+}
+
+button,
+[role="button"] {
+  user-select: none;
 }
