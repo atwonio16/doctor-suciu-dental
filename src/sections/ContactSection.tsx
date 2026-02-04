@@ -26,7 +26,6 @@ const services = [
 const ContactSection = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -38,7 +37,6 @@ const ContactSection = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
-    setError(null);
 
     try {
       await fetch(GOOGLE_SCRIPT_URL, {
@@ -53,15 +51,21 @@ const ContactSection = () => {
         setFormData({ name: '', phone: '', email: '', service: '', message: '' });
       }, 5000);
     } catch {
-      setError('A apărut o eroare. Te rugăm să încerci din nou.');
+      alert('Eroare la trimitere');
     } finally {
       setIsLoading(false);
     }
   };
 
   return (
-    <section id="contact" className="w-full py-20 bg-slate-50">
-      <div className="w-full px-4 sm:px-6 lg:px-12 xl:px-20">
+    <section id="contact" className="relative w-full py-20 overflow-hidden">
+      {/* Warm background overlay */}
+      <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-white to-sky-50/30">
+        <div className="absolute top-0 right-0 w-[700px] h-[700px] bg-gradient-to-bl from-sky-100/30 via-purple-100/20 to-pink-100/20 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-gradient-to-tr from-teal-100/25 via-cyan-100/20 to-transparent rounded-full blur-3xl" />
+      </div>
+      
+      <div className="relative z-10 w-full px-4 sm:px-6 lg:px-12 xl:px-20">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
             <span className="category-pill mb-4">CONTACT</span>
@@ -75,8 +79,8 @@ const ContactSection = () => {
 
           <div className="grid lg:grid-cols-5 gap-12">
             <div className="lg:col-span-2 space-y-6">
-              <div className="flex items-start gap-4 p-4 bg-white rounded-xl">
-                <div className="w-10 h-10 rounded-lg bg-sky-100 flex items-center justify-center flex-shrink-0">
+              <div className="flex items-start gap-4 p-5 bg-white/80 backdrop-blur-sm rounded-xl border border-slate-100 shadow-sm">
+                <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-sky-100 to-sky-50 flex items-center justify-center flex-shrink-0">
                   <Phone className="w-5 h-5 text-sky-500" />
                 </div>
                 <div>
@@ -87,8 +91,8 @@ const ContactSection = () => {
                 </div>
               </div>
 
-              <div className="flex items-start gap-4 p-4 bg-white rounded-xl">
-                <div className="w-10 h-10 rounded-lg bg-sky-100 flex items-center justify-center flex-shrink-0">
+              <div className="flex items-start gap-4 p-5 bg-white/80 backdrop-blur-sm rounded-xl border border-slate-100 shadow-sm">
+                <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-sky-100 to-sky-50 flex items-center justify-center flex-shrink-0">
                   <Mail className="w-5 h-5 text-sky-500" />
                 </div>
                 <div>
@@ -99,8 +103,8 @@ const ContactSection = () => {
                 </div>
               </div>
 
-              <div className="flex items-start gap-4 p-4 bg-white rounded-xl">
-                <div className="w-10 h-10 rounded-lg bg-sky-100 flex items-center justify-center flex-shrink-0">
+              <div className="flex items-start gap-4 p-5 bg-white/80 backdrop-blur-sm rounded-xl border border-slate-100 shadow-sm">
+                <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-sky-100 to-sky-50 flex items-center justify-center flex-shrink-0">
                   <MapPin className="w-5 h-5 text-sky-500" />
                 </div>
                 <div>
@@ -111,8 +115,8 @@ const ContactSection = () => {
                 </div>
               </div>
 
-              <div className="flex items-start gap-4 p-4 bg-white rounded-xl">
-                <div className="w-10 h-10 rounded-lg bg-sky-100 flex items-center justify-center flex-shrink-0">
+              <div className="flex items-start gap-4 p-5 bg-white/80 backdrop-blur-sm rounded-xl border border-slate-100 shadow-sm">
+                <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-sky-100 to-sky-50 flex items-center justify-center flex-shrink-0">
                   <Clock className="w-5 h-5 text-sky-500" />
                 </div>
                 <div>
@@ -123,7 +127,7 @@ const ContactSection = () => {
                 </div>
               </div>
 
-              <div className="rounded-xl overflow-hidden h-48 bg-slate-200">
+              <div className="rounded-xl overflow-hidden h-48 bg-slate-200 shadow-sm">
                 <iframe
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d11146.704852654434!2d25.4473!3d44.9311!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40b2c5e0f7c3b0e7%3A0x7e7c7e7c7e7c7e7c!2sT%C3%A2rgovi%C8%99te!5e0!3m2!1sro!2sro"
                   width="100%"
@@ -137,13 +141,13 @@ const ContactSection = () => {
             </div>
 
             <div className="lg:col-span-3">
-              <div className="bg-white rounded-2xl p-6 lg:p-8">
+              <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 lg:p-8 border border-slate-100 shadow-sm">
                 {isSubmitted ? (
                   <div className="flex flex-col items-center justify-center py-12 text-center">
                     <div className="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center mb-4">
                       <CheckCircle className="w-8 h-8 text-green-500" />
                     </div>
-                    <h3 className="font-bold text-xl text-slate-900 mb-2">Mulțumim!</h3>
+                    <h3 className="font-bold text-xl mb-2">Mulțumim!</h3>
                     <p className="text-slate-600">Te contactăm în curând.</p>
                   </div>
                 ) : (
@@ -157,7 +161,7 @@ const ContactSection = () => {
                           onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                           required
                           disabled={isLoading}
-                          className="h-11"
+                          className="h-11 bg-white"
                         />
                       </div>
                       <div>
@@ -169,7 +173,7 @@ const ContactSection = () => {
                           onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                           required
                           disabled={isLoading}
-                          className="h-11"
+                          className="h-11 bg-white"
                         />
                       </div>
                     </div>
@@ -182,7 +186,7 @@ const ContactSection = () => {
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                         disabled={isLoading}
-                        className="h-11"
+                        className="h-11 bg-white"
                       />
                     </div>
 
@@ -193,7 +197,7 @@ const ContactSection = () => {
                         onValueChange={(value) => setFormData({ ...formData, service: value })}
                         disabled={isLoading}
                       >
-                        <SelectTrigger className="h-11">
+                        <SelectTrigger className="h-11 bg-white">
                           <SelectValue placeholder="Selectează un serviciu" />
                         </SelectTrigger>
                         <SelectContent>
@@ -212,10 +216,9 @@ const ContactSection = () => {
                         onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                         rows={4}
                         disabled={isLoading}
+                        className="bg-white"
                       />
                     </div>
-
-                    {error && <p className="text-sm text-red-500">{error}</p>}
 
                     <button type="submit" disabled={isLoading} className="btn-primary w-full flex items-center justify-center gap-2">
                       {isLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Send className="w-4 h-4" />}

@@ -30,8 +30,14 @@ const services = [
 
 const ServicesPreview = () => {
   return (
-    <section className="w-full py-20 bg-white">
-      <div className="w-full px-4 sm:px-6 lg:px-12 xl:px-20">
+    <section className="relative w-full py-20 overflow-hidden">
+      {/* Warm background overlay */}
+      <div className="absolute inset-0 bg-gradient-to-br from-white via-sky-50/30 to-white">
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-gradient-to-bl from-sky-100/40 via-pink-100/20 to-transparent rounded-full blur-3xl" />
+        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-gradient-to-tr from-teal-100/30 via-cyan-100/20 to-transparent rounded-full blur-3xl" />
+      </div>
+      
+      <div className="relative z-10 w-full px-4 sm:px-6 lg:px-12 xl:px-20">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
             <span className="category-pill mb-4">SERVICIILE NOASTRE</span>
@@ -45,8 +51,8 @@ const ServicesPreview = () => {
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
             {services.map((service, index) => (
-              <div key={index} className="group p-6 rounded-2xl bg-slate-50 card-hover">
-                <div className="w-12 h-12 rounded-xl bg-sky-100 flex items-center justify-center mb-4 group-hover:bg-sky-500 transition-colors">
+              <div key={index} className="group p-6 rounded-2xl bg-white/80 backdrop-blur-sm border border-slate-100 card-hover shadow-sm">
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-sky-100 to-sky-50 flex items-center justify-center mb-4 group-hover:from-sky-500 group-hover:to-sky-400 transition-all">
                   <service.icon className="w-6 h-6 text-sky-500 group-hover:text-white transition-colors" />
                 </div>
                 <h3 className="font-semibold text-slate-900 mb-2">{service.title}</h3>
