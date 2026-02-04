@@ -83,33 +83,33 @@ const TeamSection = () => {
               <ChevronLeft className="w-6 h-6" />
             </button>
 
-            {/* Doctor Card */}
-            <div className="flex-1 max-w-4xl bg-white rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-100 overflow-hidden">
-              <div className="grid lg:grid-cols-2">
-                {/* Left - Image */}
-                <div className="relative h-[280px] lg:h-[400px]">
+            {/* Doctor Card - Full width matching other sections */}
+            <div className="flex-1 bg-white rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-100 overflow-hidden">
+              <div className="grid lg:grid-cols-2 min-h-[450px]">
+                {/* Left - Image filling entire height */}
+                <div className="relative h-[300px] lg:h-auto">
                   <img
                     src={activeDoctor.image}
                     alt={activeDoctor.name}
-                    className="w-full h-full object-cover"
+                    className="absolute inset-0 w-full h-full object-cover"
                   />
                 </div>
 
                 {/* Right - Info */}
-                <div className="p-6 lg:p-10 flex flex-col justify-center">
-                  <h3 className="text-2xl lg:text-3xl font-bold text-slate-900 mb-2">{activeDoctor.name}</h3>
-                  <p className="text-sky-500 font-medium text-lg mb-4">{activeDoctor.title}</p>
+                <div className="p-8 lg:p-12 flex flex-col justify-center">
+                  <h3 className="text-3xl font-bold text-slate-900 mb-2">{activeDoctor.name}</h3>
+                  <p className="text-sky-500 font-medium text-lg mb-6">{activeDoctor.title}</p>
                   
-                  <p className="text-slate-600 leading-relaxed mb-6 text-sm lg:text-base">
+                  <p className="text-slate-600 leading-relaxed mb-8">
                     {activeDoctor.description}
                   </p>
 
                   {/* Tags */}
-                  <div className="flex flex-wrap gap-2 mb-6">
+                  <div className="flex flex-wrap gap-2 mb-8">
                     {activeDoctor.tags.map((tag, index) => (
                       <span 
                         key={index} 
-                        className="px-3 py-1.5 rounded-full bg-gradient-to-r from-sky-50 to-white border border-sky-100 text-slate-700 text-sm"
+                        className="px-4 py-2 rounded-full bg-gradient-to-r from-sky-50 to-white border border-sky-100 text-slate-700 text-sm"
                       >
                         {tag}
                       </span>
@@ -117,14 +117,14 @@ const TeamSection = () => {
                   </div>
 
                   {/* Dots indicator */}
-                  <div className="flex items-center gap-2 mb-6">
+                  <div className="flex items-center gap-2 mb-8">
                     {doctors.map((_, index) => (
                       <button
                         key={index}
                         onClick={() => setActiveIndex(index)}
                         className={`h-2 rounded-full transition-all ${
                           index === activeIndex 
-                            ? 'w-6 bg-sky-500' 
+                            ? 'w-8 bg-sky-500' 
                             : 'w-2 bg-slate-200 hover:bg-slate-300'
                         }`}
                         aria-label={`Go to doctor ${index + 1}`}
