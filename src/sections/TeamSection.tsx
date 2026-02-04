@@ -83,11 +83,11 @@ const TeamSection = () => {
               <ChevronLeft className="w-6 h-6" />
             </button>
 
-            {/* Doctor Card - Full width matching other sections */}
-            <div className="flex-1 bg-white rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-100 overflow-hidden">
-              <div className="grid lg:grid-cols-2 min-h-[450px]">
+            {/* Doctor Card - Fixed height, content fills space */}
+            <div className="flex-1 max-w-5xl bg-white rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-100 overflow-hidden h-[480px]">
+              <div className="grid lg:grid-cols-2 h-full">
                 {/* Left - Image filling entire height */}
-                <div className="relative h-[300px] lg:h-auto">
+                <div className="relative h-full">
                   <img
                     src={activeDoctor.image}
                     alt={activeDoctor.name}
@@ -95,17 +95,23 @@ const TeamSection = () => {
                   />
                 </div>
 
-                {/* Right - Info */}
-                <div className="p-8 lg:p-12 flex flex-col justify-center">
-                  <h3 className="text-3xl font-bold text-slate-900 mb-2">{activeDoctor.name}</h3>
-                  <p className="text-sky-500 font-medium text-lg mb-6">{activeDoctor.title}</p>
+                {/* Right - Info with flex layout to fill container */}
+                <div className="p-8 lg:p-10 flex flex-col h-full">
+                  {/* Header - fixed */}
+                  <div className="flex-shrink-0">
+                    <h3 className="text-3xl font-bold text-slate-900 mb-2">{activeDoctor.name}</h3>
+                    <p className="text-sky-500 font-medium text-lg mb-6">{activeDoctor.title}</p>
+                  </div>
                   
-                  <p className="text-slate-600 leading-relaxed mb-8">
-                    {activeDoctor.description}
-                  </p>
+                  {/* Description - grows to fill space */}
+                  <div className="flex-1 flex items-center">
+                    <p className="text-slate-600 leading-relaxed">
+                      {activeDoctor.description}
+                    </p>
+                  </div>
 
-                  {/* Tags */}
-                  <div className="flex flex-wrap gap-2 mb-8">
+                  {/* Tags - fixed */}
+                  <div className="flex-shrink-0 flex flex-wrap gap-2 my-6">
                     {activeDoctor.tags.map((tag, index) => (
                       <span 
                         key={index} 
@@ -116,8 +122,8 @@ const TeamSection = () => {
                     ))}
                   </div>
 
-                  {/* Dots indicator */}
-                  <div className="flex items-center gap-2 mb-8">
+                  {/* Dots indicator - fixed */}
+                  <div className="flex-shrink-0 flex items-center gap-2 mb-6">
                     {doctors.map((_, index) => (
                       <button
                         key={index}
@@ -132,13 +138,16 @@ const TeamSection = () => {
                     ))}
                   </div>
 
-                  <Link 
-                    to="/contact" 
-                    className="btn-primary inline-flex items-center justify-center gap-2 w-fit"
-                  >
-                    <Calendar className="w-4 h-4" />
-                    PROGRAMEAZĂ O CONSULTAȚIE
-                  </Link>
+                  {/* Button - fixed at bottom */}
+                  <div className="flex-shrink-0">
+                    <Link 
+                      to="/contact" 
+                      className="btn-primary inline-flex items-center justify-center gap-2"
+                    >
+                      <Calendar className="w-4 h-4" />
+                      PROGRAMEAZĂ O CONSULTAȚIE
+                    </Link>
+                  </div>
                 </div>
               </div>
             </div>
