@@ -58,93 +58,99 @@ const TeamSection = () => {
       </div>
       
       <div className="relative z-10 w-full px-4 sm:px-6 lg:px-12 xl:px-20">
-        <div className="max-w-6xl mx-auto">
-          {/* Header */}
+        <div className="max-w-7xl mx-auto">
+          {/* Header - Catchy */}
           <div className="text-center mb-12">
             <span className="category-pill mb-4">ECHIPA NOASTRĂ</span>
-            <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">
-              Medici <span className="gradient-text">specialiști</span>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 mb-4">
+              Oameni <span className="gradient-text">de încredere</span>,<br />
+              zâmbete <span className="gradient-text">fericite</span>
             </h2>
-            <p className="text-slate-600 max-w-2xl mx-auto">
-              Medici dedicați care pun pe primul loc siguranța, confortul și rezultatele tale.
+            <p className="text-slate-600 max-w-2xl mx-auto text-lg">
+              Medici dedicați, cu suflet și experiență, care transformă fiecare vizită 
+              într-o experiență plăcută pentru tine și familia ta.
             </p>
           </div>
 
-          {/* Doctor Card - Full width with image on left */}
-          <div className="bg-white rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-100 overflow-hidden">
-            <div className="grid lg:grid-cols-2 min-h-[500px]">
-              {/* Left - Full Image with navigation buttons on card */}
-              <div className="relative h-[300px] lg:h-auto">
-                <img
-                  src={activeDoctor.image}
-                  alt={activeDoctor.name}
-                  className="w-full h-full object-cover"
-                />
-                
-                {/* Navigation buttons on the card */}
-                <button 
-                  onClick={prevDoctor}
-                  className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/90 backdrop-blur-sm shadow-lg flex items-center justify-center text-slate-500 hover:text-sky-500 hover:bg-white transition-all z-10"
-                  aria-label="Previous doctor"
-                >
-                  <ChevronLeft className="w-6 h-6" />
-                </button>
-                
-                <button 
-                  onClick={nextDoctor}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-sky-500 shadow-lg shadow-sky-500/30 flex items-center justify-center text-white hover:bg-sky-400 transition-all z-10"
-                  aria-label="Next doctor"
-                >
-                  <ChevronRight className="w-6 h-6" />
-                </button>
-              </div>
+          {/* Carousel Container with Navigation */}
+          <div className="flex items-center justify-center gap-4">
+            {/* Left Arrow - Outside card */}
+            <button 
+              onClick={prevDoctor}
+              className="flex-shrink-0 w-12 h-12 rounded-full bg-white shadow-lg border border-slate-100 flex items-center justify-center text-slate-400 hover:text-sky-500 hover:shadow-xl transition-all"
+              aria-label="Previous doctor"
+            >
+              <ChevronLeft className="w-6 h-6" />
+            </button>
 
-              {/* Right - Info */}
-              <div className="p-8 lg:p-12 flex flex-col justify-center">
-                <h3 className="text-3xl font-bold text-slate-900 mb-2">{activeDoctor.name}</h3>
-                <p className="text-sky-500 font-medium text-lg mb-6">{activeDoctor.title}</p>
-                
-                <p className="text-slate-600 leading-relaxed mb-8">
-                  {activeDoctor.description}
-                </p>
-
-                {/* Tags */}
-                <div className="flex flex-wrap gap-2 mb-8">
-                  {activeDoctor.tags.map((tag, index) => (
-                    <span 
-                      key={index} 
-                      className="px-4 py-2 rounded-full bg-gradient-to-r from-sky-50 to-white border border-sky-100 text-slate-700 text-sm font-medium"
-                    >
-                      {tag}
-                    </span>
-                  ))}
+            {/* Doctor Card */}
+            <div className="flex-1 max-w-4xl bg-white rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-100 overflow-hidden">
+              <div className="grid lg:grid-cols-2">
+                {/* Left - Image */}
+                <div className="relative h-[280px] lg:h-[400px]">
+                  <img
+                    src={activeDoctor.image}
+                    alt={activeDoctor.name}
+                    className="w-full h-full object-cover"
+                  />
                 </div>
 
-                {/* Dots indicator */}
-                <div className="flex items-center gap-2 mb-8">
-                  {doctors.map((_, index) => (
-                    <button
-                      key={index}
-                      onClick={() => setActiveIndex(index)}
-                      className={`h-2 rounded-full transition-all ${
-                        index === activeIndex 
-                          ? 'w-8 bg-sky-500' 
-                          : 'w-2 bg-slate-200 hover:bg-slate-300'
-                      }`}
-                      aria-label={`Go to doctor ${index + 1}`}
-                    />
-                  ))}
-                </div>
+                {/* Right - Info */}
+                <div className="p-6 lg:p-10 flex flex-col justify-center">
+                  <h3 className="text-2xl lg:text-3xl font-bold text-slate-900 mb-2">{activeDoctor.name}</h3>
+                  <p className="text-sky-500 font-medium text-lg mb-4">{activeDoctor.title}</p>
+                  
+                  <p className="text-slate-600 leading-relaxed mb-6 text-sm lg:text-base">
+                    {activeDoctor.description}
+                  </p>
 
-                <Link 
-                  to="/contact" 
-                  className="btn-primary inline-flex items-center justify-center gap-2 w-fit"
-                >
-                  <Calendar className="w-4 h-4" />
-                  PROGRAMEAZĂ O CONSULTAȚIE
-                </Link>
+                  {/* Tags */}
+                  <div className="flex flex-wrap gap-2 mb-6">
+                    {activeDoctor.tags.map((tag, index) => (
+                      <span 
+                        key={index} 
+                        className="px-3 py-1.5 rounded-full bg-gradient-to-r from-sky-50 to-white border border-sky-100 text-slate-700 text-sm"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* Dots indicator */}
+                  <div className="flex items-center gap-2 mb-6">
+                    {doctors.map((_, index) => (
+                      <button
+                        key={index}
+                        onClick={() => setActiveIndex(index)}
+                        className={`h-2 rounded-full transition-all ${
+                          index === activeIndex 
+                            ? 'w-6 bg-sky-500' 
+                            : 'w-2 bg-slate-200 hover:bg-slate-300'
+                        }`}
+                        aria-label={`Go to doctor ${index + 1}`}
+                      />
+                    ))}
+                  </div>
+
+                  <Link 
+                    to="/contact" 
+                    className="btn-primary inline-flex items-center justify-center gap-2 w-fit"
+                  >
+                    <Calendar className="w-4 h-4" />
+                    PROGRAMEAZĂ O CONSULTAȚIE
+                  </Link>
+                </div>
               </div>
             </div>
+
+            {/* Right Arrow - Outside card */}
+            <button 
+              onClick={nextDoctor}
+              className="flex-shrink-0 w-12 h-12 rounded-full bg-sky-500 shadow-lg shadow-sky-500/30 flex items-center justify-center text-white hover:bg-sky-400 hover:shadow-xl transition-all"
+              aria-label="Next doctor"
+            >
+              <ChevronRight className="w-6 h-6" />
+            </button>
           </div>
         </div>
       </div>
