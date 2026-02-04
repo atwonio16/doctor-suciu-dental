@@ -116,39 +116,47 @@ const ReviewsSection = () => {
   }, [currentPage, isDragging, totalPages]);
 
   return (
-    <section className="relative w-full py-20 overflow-hidden">
+    <section className="relative w-full py-20 overflow-hidden bg-[#f8fafc]">
       {/* Background */}
-      <div className="absolute inset-0 bg-medical-cream">
-        <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-medical-navy-soft rounded-full blur-3xl opacity-30" />
-        <div className="absolute bottom-0 left-1/4 w-[400px] h-[400px] bg-medical-teal-soft rounded-full blur-3xl opacity-20" />
+      <div className="absolute inset-0">
+        <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-slate-100 rounded-full blur-3xl opacity-60" />
+        <div className="absolute bottom-0 left-1/4 w-[400px] h-[400px] bg-sky-50 rounded-full blur-3xl opacity-40" />
       </div>
 
       <div className="relative z-10 w-full px-4 sm:px-6 lg:px-12 xl:px-20">
         <div className="max-w-7xl mx-auto">
-          {/* Header */}
+          {/* Header - Premium category style */}
           <div className="text-center mb-12">
-            <span className="category-pill mb-4">RECENZII GOOGLE</span>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-medical-navy mb-4">
-              Ce spun <span className="text-medical-teal">pacienții</span> noștri
+            <div className="flex items-center justify-center gap-3 mb-6">
+              <span className="w-8 h-[2px] bg-[#94a3b8]" />
+              <span className="text-xs font-bold uppercase tracking-[0.2em] text-[#64748b]">
+                Recenzii Google
+              </span>
+              <span className="w-8 h-[2px] bg-[#94a3b8]" />
+            </div>
+
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-[#0f172a] mb-4 tracking-tight">
+              Ce spun pacienții noștri
             </h2>
-            <p className="text-medical-gray max-w-2xl mx-auto text-lg">
+
+            <p className="text-lg text-[#222222] max-w-2xl mx-auto">
               Povești reale de la oameni care și-au transformat zâmbetul alături de noi.
             </p>
           </div>
 
           {/* Google Rating Badge */}
           <div className="flex justify-center mb-10">
-            <div className="inline-flex items-center gap-4 bg-white rounded-2xl px-6 py-4 shadow-lg border border-medical-warm">
+            <div className="inline-flex items-center gap-4 bg-white rounded-2xl px-6 py-4 border border-[#e2e8f0]">
               <div className="flex items-center gap-2">
-                <span className="text-xl font-bold text-medical-navy">Google</span>
-                <span className="text-medical-warm">|</span>
-                <span className="text-sm text-medical-gray">Reviews</span>
+                <span className="text-xl font-semibold text-[#0f172a]">Google</span>
+                <span className="text-[#cbd5e1]">|</span>
+                <span className="text-sm text-[#64748b]">Reviews</span>
               </div>
               
-              <div className="h-8 w-px bg-medical-warm" />
+              <div className="h-8 w-px bg-[#e2e8f0]" />
               
               <div className="flex items-center gap-2">
-                <span className="text-2xl font-bold text-medical-navy">5.0</span>
+                <span className="text-2xl font-semibold text-[#0f172a]">5.0</span>
                 <div className="flex">
                   {[...Array(5)].map((_, i) => (
                     <Star key={i} className="w-5 h-5 fill-amber-400 text-amber-400" />
@@ -156,10 +164,10 @@ const ReviewsSection = () => {
                 </div>
               </div>
               
-              <div className="h-8 w-px bg-medical-warm" />
+              <div className="h-8 w-px bg-[#e2e8f0]" />
               
-              <span className="text-sm text-medical-gray">
-                pe baza a <strong>51 de recenzii</strong>
+              <span className="text-sm text-[#64748b]">
+                pe baza a <strong className="text-[#0f172a]">51 de recenzii</strong>
               </span>
             </div>
           </div>
@@ -188,17 +196,17 @@ const ReviewsSection = () => {
                     {reviews.slice(pageIndex * reviewsPerPage, (pageIndex + 1) * reviewsPerPage).map((review) => (
                       <div
                         key={review.id}
-                        className="bg-white rounded-2xl p-6 shadow-lg border border-medical-warm h-full"
+                        className="bg-white rounded-2xl p-6 border border-[#e2e8f0] h-full"
                       >
                         {/* Header */}
                         <div className="flex items-start justify-between mb-4">
                           <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 rounded-full bg-medical-navy flex items-center justify-center text-white font-semibold text-sm">
+                            <div className="w-10 h-10 rounded-full bg-[#1e3a5f] flex items-center justify-center text-white font-semibold text-sm">
                               {review.avatar}
                             </div>
                             <div>
-                              <p className="font-semibold text-medical-navy text-sm">{review.name}</p>
-                              <p className="text-xs text-medical-gray">Târgoviște</p>
+                              <p className="font-semibold text-[#0f172a] text-sm">{review.name}</p>
+                              <p className="text-xs text-[#64748b]">Târgoviște</p>
                             </div>
                           </div>
                           <svg className="w-5 h-5" viewBox="0 0 24 24">
@@ -216,11 +224,11 @@ const ReviewsSection = () => {
                               <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
                             ))}
                           </div>
-                          <span className="text-xs text-medical-gray-light">{review.date}</span>
+                          <span className="text-xs text-[#94a3b8]">{review.date}</span>
                         </div>
 
                         {/* Review text */}
-                        <p className="text-medical-gray text-sm leading-relaxed">
+                        <p className="text-[#222222] text-sm leading-relaxed">
                           {review.text}
                         </p>
                       </div>
@@ -236,7 +244,7 @@ const ReviewsSection = () => {
             <button
               onClick={prevPage}
               disabled={currentPage === 0 || isAnimating}
-              className="w-12 h-12 rounded-full bg-white shadow-lg border border-medical-warm flex items-center justify-center text-medical-gray hover:text-medical-teal hover:shadow-xl transition-all disabled:opacity-40"
+              className="w-12 h-12 rounded-full bg-white border border-[#e2e8f0] flex items-center justify-center text-[#64748b] hover:text-[#1e3a5f] hover:border-[#1e3a5f] transition-all disabled:opacity-40"
               aria-label="Previous reviews"
             >
               <ChevronLeft className="w-6 h-6" />
@@ -249,8 +257,8 @@ const ReviewsSection = () => {
                   onClick={() => goToPage(index)}
                   className={`h-2 rounded-full transition-all ${
                     index === currentPage
-                      ? 'w-6 bg-medical-teal'
-                      : 'w-2 bg-medical-warm hover:bg-medical-gray-light'
+                      ? 'w-6 bg-[#1e3a5f]'
+                      : 'w-2 bg-[#e2e8f0] hover:bg-[#cbd5e1]'
                   }`}
                   aria-label={`Go to page ${index + 1}`}
                 />
@@ -260,7 +268,7 @@ const ReviewsSection = () => {
             <button
               onClick={nextPage}
               disabled={currentPage === totalPages - 1 || isAnimating}
-              className="w-12 h-12 rounded-full bg-medical-teal shadow-lg shadow-medical-teal/30 flex items-center justify-center text-white hover:bg-medical-teal-dark hover:shadow-xl transition-all disabled:opacity-40"
+              className="w-12 h-12 rounded-full bg-[#1e3a5f] flex items-center justify-center text-white hover:bg-[#152a45] transition-all disabled:opacity-40"
               aria-label="Next reviews"
             >
               <ChevronRight className="w-6 h-6" />
@@ -273,7 +281,7 @@ const ReviewsSection = () => {
               href="https://g.page/r/DoctorSuciuDental/review"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-medical-teal hover:text-medical-teal-dark font-medium transition-colors group"
+              className="inline-flex items-center gap-2 text-[#0891b2] hover:text-[#0e7490] font-medium transition-colors group"
             >
               <span>Vezi toate recenziile pe Google</span>
               <ExternalLink className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />

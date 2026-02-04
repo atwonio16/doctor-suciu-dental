@@ -69,23 +69,30 @@ const TeamSection = () => {
     : 'translate-x-0 opacity-100';
 
   return (
-    <section className="relative w-full py-20 overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0 bg-medical-sand">
-        <div className="absolute top-1/4 left-0 w-[600px] h-[600px] bg-medical-navy-soft rounded-full blur-3xl opacity-40" />
-        <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-medical-teal-soft rounded-full blur-3xl opacity-30" />
+    <section className="relative w-full py-20 overflow-hidden bg-[#f8fafc]">
+      <div className="absolute inset-0">
+        <div className="absolute top-1/4 left-0 w-[600px] h-[600px] bg-slate-100 rounded-full blur-3xl opacity-60" />
+        <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-sky-50 rounded-full blur-3xl opacity-40" />
       </div>
       
       <div className="relative z-10 w-full px-4 sm:px-6 lg:px-12 xl:px-20">
         <div className="max-w-7xl mx-auto">
-          {/* Header */}
+          {/* Header - Premium category style */}
           <div className="text-center mb-12">
-            <span className="category-pill mb-4">ECHIPA NOASTRĂ</span>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-medical-navy mb-4">
-              Profesioniști <span className="text-medical-teal">dedicați</span>,<br />
-              oameni <span className="text-medical-teal">de încredere</span>
+            <div className="flex items-center justify-center gap-3 mb-6">
+              <span className="w-8 h-[2px] bg-[#94a3b8]" />
+              <span className="text-xs font-bold uppercase tracking-[0.2em] text-[#64748b]">
+                Echipa Noastră
+              </span>
+              <span className="w-8 h-[2px] bg-[#94a3b8]" />
+            </div>
+
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-[#0f172a] mb-4 tracking-tight">
+              Profesioniști dedicați,<br />
+              oameni de încredere
             </h2>
-            <p className="text-medical-gray max-w-2xl mx-auto text-lg">
+
+            <p className="text-lg text-[#222222] max-w-2xl mx-auto">
               Medici cu suflet și experiență, care transformă fiecare vizită 
               într-o experiență plăcută pentru tine și familia ta.
             </p>
@@ -97,14 +104,14 @@ const TeamSection = () => {
             <button 
               onClick={prevDoctor}
               disabled={isTransitioning}
-              className="flex-shrink-0 w-12 h-12 rounded-full bg-white shadow-lg border border-medical-warm flex items-center justify-center text-medical-gray hover:text-medical-teal hover:shadow-xl transition-all disabled:opacity-50"
+              className="flex-shrink-0 w-12 h-12 rounded-full bg-white border border-[#e2e8f0] flex items-center justify-center text-[#64748b] hover:text-[#1e3a5f] hover:border-[#1e3a5f] transition-all disabled:opacity-50"
               aria-label="Previous doctor"
             >
               <ChevronLeft className="w-6 h-6" />
             </button>
 
             {/* Card */}
-            <div className="flex-1 w-full bg-white rounded-3xl shadow-xl shadow-medical-navy/5 border border-medical-warm overflow-hidden">
+            <div className="flex-1 w-full bg-white rounded-3xl border border-[#e2e8f0] overflow-hidden">
               <div className="grid lg:grid-cols-2 h-[500px]">
                 {/* Left - Image */}
                 <div className="relative w-full h-full overflow-hidden">
@@ -122,11 +129,11 @@ const TeamSection = () => {
                 <div className="p-8 lg:p-10 flex items-center">
                   <div className={`w-full transition-all duration-200 ${slideClass}`}>
                     <div className="mb-4">
-                      <h3 className="text-2xl lg:text-3xl font-bold text-medical-navy mb-2">{activeDoctor.name}</h3>
-                      <p className="text-medical-teal font-medium text-lg">{activeDoctor.title}</p>
+                      <h3 className="text-2xl lg:text-3xl font-semibold text-[#0f172a] mb-2">{activeDoctor.name}</h3>
+                      <p className="text-[#0891b2] font-medium text-lg">{activeDoctor.title}</p>
                     </div>
                     
-                    <p className="text-medical-gray leading-relaxed mb-6">
+                    <p className="text-[#222222] leading-relaxed mb-6">
                       {activeDoctor.description}
                     </p>
 
@@ -134,7 +141,7 @@ const TeamSection = () => {
                       {activeDoctor.tags.map((tag, index) => (
                         <span 
                           key={index} 
-                          className="px-3 py-1.5 rounded-full bg-medical-sand text-medical-navy text-sm"
+                          className="px-3 py-1.5 rounded-full bg-[#f1f5f9] text-[#475569] text-sm"
                         >
                           {tag}
                         </span>
@@ -149,8 +156,8 @@ const TeamSection = () => {
                           disabled={isTransitioning}
                           className={`h-2 rounded-full transition-all disabled:cursor-not-allowed ${
                             index === activeIndex 
-                              ? 'w-8 bg-medical-teal' 
-                              : 'w-2 bg-medical-warm hover:bg-medical-gray-light'
+                              ? 'w-8 bg-[#1e3a5f]' 
+                              : 'w-2 bg-[#e2e8f0] hover:bg-[#cbd5e1]'
                           }`}
                           aria-label={`Go to doctor ${index + 1}`}
                         />
@@ -159,7 +166,7 @@ const TeamSection = () => {
 
                     <Link 
                       to="/contact" 
-                      className="btn-primary inline-flex items-center justify-center gap-2"
+                      className="inline-flex items-center justify-center gap-2 font-semibold text-sm px-6 py-3 rounded-full transition-all duration-300 bg-[#1e3a5f] text-white border-2 border-[#1e3a5f] hover:bg-transparent hover:text-[#1e3a5f]"
                     >
                       <Calendar className="w-4 h-4" />
                       PROGRAMEAZĂ O CONSULTAȚIE
@@ -173,7 +180,7 @@ const TeamSection = () => {
             <button 
               onClick={nextDoctor}
               disabled={isTransitioning}
-              className="flex-shrink-0 w-12 h-12 rounded-full bg-medical-teal shadow-lg shadow-medical-teal/30 flex items-center justify-center text-white hover:bg-medical-teal-dark hover:shadow-xl transition-all disabled:opacity-50"
+              className="flex-shrink-0 w-12 h-12 rounded-full bg-[#1e3a5f] flex items-center justify-center text-white hover:bg-[#152a45] transition-all disabled:opacity-50"
               aria-label="Next doctor"
             >
               <ChevronRight className="w-6 h-6" />

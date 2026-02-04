@@ -1,4 +1,4 @@
-import { Award, Cpu, Heart, ShieldCheck, ChevronDown } from 'lucide-react';
+import { Award, Microscope, HeartHandshake, ShieldCheck, ChevronDown } from 'lucide-react';
 import { useState, useRef, useEffect } from 'react';
 
 const benefits = [
@@ -6,21 +6,29 @@ const benefits = [
     icon: Award,
     title: 'Experiență dovedită',
     description: 'Peste 15 ani de practică și mii de pacienți mulțumiți.',
+    bg: 'bg-amber-50',
+    iconColor: 'text-amber-600',
   },
   {
-    icon: Cpu,
+    icon: Microscope,
     title: 'Tehnologie modernă',
     description: 'Echipamente de ultimă generație pentru tratamente precise.',
+    bg: 'bg-sky-50',
+    iconColor: 'text-sky-600',
   },
   {
-    icon: Heart,
+    icon: HeartHandshake,
     title: 'Abordare personalizată',
     description: 'Fiecare pacient primește atenție și plan de tratament individual.',
+    bg: 'bg-rose-50',
+    iconColor: 'text-rose-600',
   },
   {
     icon: ShieldCheck,
     title: 'Garanție reală',
     description: 'Oferim garanție pentru toate tratamentele efectuate.',
+    bg: 'bg-emerald-50',
+    iconColor: 'text-emerald-600',
   },
 ];
 
@@ -65,14 +73,14 @@ const FAQItem = ({ faq, isOpen, onToggle }: FAQItemProps) => {
   }, [faq.answer]);
 
   return (
-    <div className="border border-medical-warm rounded-xl overflow-hidden bg-white">
+    <div className="border border-[#e2e8f0] rounded-xl overflow-hidden bg-white">
       <button
         onClick={onToggle}
-        className="w-full flex items-center justify-between p-4 text-left hover:bg-medical-cream transition-colors duration-300"
+        className="w-full flex items-center justify-between p-4 text-left hover:bg-[#f8fafc] transition-colors duration-300"
       >
-        <span className="font-medium text-medical-navy pr-4">{faq.question}</span>
+        <span className="font-medium text-[#0f172a] pr-4">{faq.question}</span>
         <ChevronDown 
-          className={`w-5 h-5 text-medical-teal flex-shrink-0 transition-transform duration-500 ease-out ${
+          className={`w-5 h-5 text-[#0891b2] flex-shrink-0 transition-transform duration-500 ease-out ${
             isOpen ? 'rotate-180' : ''
           }`} 
         />
@@ -82,7 +90,7 @@ const FAQItem = ({ faq, isOpen, onToggle }: FAQItemProps) => {
         style={{ height: isOpen ? height : 0 }}
       >
         <div ref={contentRef} className="px-4 pb-4">
-          <p className="text-medical-gray text-sm leading-relaxed">{faq.answer}</p>
+          <p className="text-[#222222] text-sm leading-relaxed">{faq.answer}</p>
         </div>
       </div>
     </div>
@@ -93,23 +101,31 @@ const WhyChooseSection = () => {
   const [openIndex, setOpenIndex] = useState<number>(0);
 
   return (
-    <section className="relative w-full py-20 overflow-hidden">
+    <section className="relative w-full py-20 overflow-hidden bg-white">
       {/* Background */}
-      <div className="absolute inset-0 bg-white">
-        <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-medical-teal-soft rounded-full blur-3xl opacity-30" />
-        <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-medical-navy-soft rounded-full blur-3xl opacity-20" />
+      <div className="absolute inset-0">
+        <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-sky-50 rounded-full blur-3xl opacity-40" />
+        <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-slate-100 rounded-full blur-3xl opacity-60" />
       </div>
       
       <div className="relative z-10 w-full px-4 sm:px-6 lg:px-12 xl:px-20">
         <div className="max-w-7xl mx-auto">
-          {/* Benefits */}
+          {/* Benefits - Premium category style */}
           <div className="text-center mb-16">
-            <span className="category-pill mb-4">DE CE SĂ NE ALEGI</span>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-medical-navy mb-4">
-              Profesionalism <span className="text-medical-teal">autentic</span>,<br />
-              rezultate <span className="text-medical-teal">convingătoare</span>
+            <div className="flex items-center justify-center gap-3 mb-6">
+              <span className="w-8 h-[2px] bg-[#94a3b8]" />
+              <span className="text-xs font-bold uppercase tracking-[0.2em] text-[#64748b]">
+                De Ce Să Ne Alegi
+              </span>
+              <span className="w-8 h-[2px] bg-[#94a3b8]" />
+            </div>
+
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-[#0f172a] mb-4 tracking-tight">
+              Profesionalism autentic,<br />
+              rezultate convingătoare
             </h2>
-            <p className="text-medical-gray max-w-2xl mx-auto text-lg">
+
+            <p className="text-lg text-[#222222] max-w-2xl mx-auto">
               Descoperă de ce peste 1.500 de pacienți ne aleg anual pentru zâmbetul lor perfect.
               Tehnologie premium, prețuri accesibile, garanție reală.
             </p>
@@ -119,23 +135,29 @@ const WhyChooseSection = () => {
             {benefits.map((benefit, index) => (
               <div 
                 key={index} 
-                className="text-center p-6 rounded-2xl bg-white border border-medical-warm card-hover"
+                className="group text-center p-6 rounded-2xl bg-white border border-[#e2e8f0] hover:border-[#cbd5e1] transition-all duration-300 hover:shadow-lg hover:shadow-slate-200/50"
               >
-                <div className="w-14 h-14 rounded-2xl icon-navy flex items-center justify-center mx-auto mb-4">
-                  <benefit.icon className="w-7 h-7" />
+                <div className={`w-14 h-14 rounded-2xl ${benefit.bg} flex items-center justify-center mx-auto mb-4 transition-all duration-300 group-hover:scale-105`}>
+                  <benefit.icon className={`w-7 h-7 ${benefit.iconColor}`} strokeWidth={1.5} />
                 </div>
-                <h3 className="font-semibold text-medical-navy mb-2">{benefit.title}</h3>
-                <p className="text-sm text-medical-gray">{benefit.description}</p>
+                <h3 className="font-semibold text-[#0f172a] mb-2">{benefit.title}</h3>
+                <p className="text-sm text-[#64748b]">{benefit.description}</p>
               </div>
             ))}
           </div>
 
-          {/* FAQ */}
+          {/* FAQ - Premium category style */}
           <div className="grid lg:grid-cols-2 gap-12 items-start">
             <div>
-              <span className="category-pill mb-4">ÎNTREBĂRI FRECVENTE</span>
-              <h3 className="text-2xl sm:text-3xl font-bold text-medical-navy mb-6">
-                Răspunsuri la <span className="text-medical-teal">întrebările tale</span>
+              <div className="flex items-center gap-3 mb-6">
+                <span className="w-8 h-[2px] bg-[#94a3b8]" />
+                <span className="text-xs font-bold uppercase tracking-[0.2em] text-[#64748b]">
+                  Întrebări Frecvente
+                </span>
+              </div>
+
+              <h3 className="text-2xl sm:text-3xl font-semibold text-[#0f172a] mb-6 tracking-tight">
+                Răspunsuri la întrebările tale
               </h3>
               
               <div className="space-y-3">
@@ -152,7 +174,7 @@ const WhyChooseSection = () => {
             </div>
 
             {/* Image */}
-            <div className="relative h-[500px] rounded-2xl shadow-lg overflow-hidden">
+            <div className="relative h-[500px] rounded-2xl border border-[#e2e8f0] overflow-hidden">
               <img
                 src="/faq-clinic.png"
                 alt="Echipament stomatologic modern"

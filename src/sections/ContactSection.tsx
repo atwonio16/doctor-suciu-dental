@@ -58,70 +58,37 @@ const ContactSection = () => {
   };
 
   return (
-    <section id="contact" className="relative w-full py-20 overflow-hidden">
+    <section id="contact" className="relative w-full py-20 overflow-hidden bg-white">
       {/* Background */}
-      <div className="absolute inset-0 bg-white">
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-medical-navy-soft rounded-full blur-3xl opacity-30" />
-        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-medical-teal-soft rounded-full blur-3xl opacity-20" />
+      <div className="absolute inset-0">
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-slate-100 rounded-full blur-3xl opacity-60" />
+        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-sky-50 rounded-full blur-3xl opacity-40" />
       </div>
 
       <div className="relative z-10 w-full px-4 sm:px-6 lg:px-12 xl:px-20">
         <div className="max-w-7xl mx-auto">
-          {/* Header */}
+          {/* Header - Premium category style */}
           <div className="text-center mb-10">
-            <span className="category-pill mb-4">PROGRAMARE</span>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-medical-navy mb-4">
-              Începe transformarea <span className="text-medical-teal">acum</span>
+            <div className="flex items-center justify-center gap-3 mb-6">
+              <span className="w-8 h-[2px] bg-[#94a3b8]" />
+              <span className="text-xs font-bold uppercase tracking-[0.2em] text-[#64748b]">
+                Programare
+              </span>
+              <span className="w-8 h-[2px] bg-[#94a3b8]" />
+            </div>
+
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-[#0f172a] mb-4 tracking-tight">
+              Începe transformarea acum
             </h2>
-            <p className="text-medical-gray max-w-2xl mx-auto text-lg">
+
+            <p className="text-lg text-[#222222] max-w-2xl mx-auto">
               Completează formularul și îți răspundem în maxim 30 de minute. 
-              Prima consultație este <strong className="text-medical-teal">gratuită</strong>!
+              Prima consultație este <strong className="text-[#0891b2]">gratuită</strong>!
             </p>
           </div>
 
-          {/* Quick Info Bar */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
-            <a 
-              href="tel:+40770220110" 
-              className="flex items-center justify-center gap-3 p-4 bg-white rounded-xl shadow-md border border-medical-warm hover:shadow-lg hover:border-medical-teal transition-all group"
-            >
-              <div className="w-10 h-10 rounded-full icon-teal flex items-center justify-center group-hover:bg-medical-teal transition-colors">
-                <Phone className="w-5 h-5" />
-              </div>
-              <div className="text-left">
-                <p className="text-xs text-medical-gray uppercase tracking-wider">Telefon</p>
-                <p className="font-semibold text-medical-navy">0770 220 110</p>
-              </div>
-            </a>
-
-            <a 
-              href="https://maps.google.com/?q=Calea+Domnească+234+Târgoviște"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center justify-center gap-3 p-4 bg-white rounded-xl shadow-md border border-medical-warm hover:shadow-lg hover:border-medical-teal transition-all group"
-            >
-              <div className="w-10 h-10 rounded-full icon-navy flex items-center justify-center">
-                <MapPin className="w-5 h-5" />
-              </div>
-              <div className="text-left">
-                <p className="text-xs text-medical-gray uppercase tracking-wider">Adresă</p>
-                <p className="font-semibold text-medical-navy">Calea Domnească 234</p>
-              </div>
-            </a>
-
-            <div className="flex items-center justify-center gap-3 p-4 bg-white rounded-xl shadow-md border border-medical-warm">
-              <div className="w-10 h-10 rounded-full icon-teal flex items-center justify-center">
-                <Clock className="w-5 h-5" />
-              </div>
-              <div className="text-left">
-                <p className="text-xs text-medical-gray uppercase tracking-wider">Program</p>
-                <p className="font-semibold text-medical-navy">L-J: 9-18 | V: 9-15</p>
-              </div>
-            </div>
-          </div>
-
           {/* Form Card */}
-          <div className="bg-white rounded-3xl shadow-xl shadow-medical-navy/5 border border-medical-warm overflow-hidden">
+          <div className="bg-white rounded-3xl border border-[#e2e8f0] overflow-hidden mb-10">
             <div className="grid lg:grid-cols-2 min-h-[550px]">
               {/* Left - Map */}
               <div className="relative h-64 lg:h-full">
@@ -142,18 +109,18 @@ const ContactSection = () => {
               <div className="p-8 lg:p-12 flex flex-col justify-center">
                 {isSubmitted ? (
                   <div className="flex flex-col items-center justify-center py-12 text-center">
-                    <div className="w-20 h-20 rounded-full bg-medical-teal-soft flex items-center justify-center mb-4">
-                      <CheckCircle className="w-10 h-10 text-medical-teal" />
+                    <div className="w-20 h-20 rounded-full bg-[#0891b2]/10 flex items-center justify-center mb-4">
+                      <CheckCircle className="w-10 h-10 text-[#0891b2]" />
                     </div>
-                    <h3 className="font-bold text-2xl mb-2 text-medical-navy">Mulțumim!</h3>
-                    <p className="text-medical-gray">Te contactăm în maxim 30 de minute.</p>
+                    <h3 className="font-semibold text-2xl mb-2 text-[#0f172a]">Mulțumim!</h3>
+                    <p className="text-[#64748b]">Te contactăm în maxim 30 de minute.</p>
                   </div>
                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-5">
                     <div className="grid sm:grid-cols-2 gap-4">
                       <div>
-                        <label className="block text-sm font-semibold text-medical-navy mb-2">
-                          Numele tău <span className="text-medical-coral">*</span>
+                        <label className="block text-sm font-semibold text-[#0f172a] mb-2">
+                          Numele tău <span className="text-[#ef4444]">*</span>
                         </label>
                         <Input
                           name="name"
@@ -162,12 +129,12 @@ const ContactSection = () => {
                           onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                           required
                           disabled={isLoading}
-                          className="h-12 bg-medical-sand border-medical-warm focus:bg-white focus:border-medical-teal transition-colors"
+                          className="h-12 bg-[#f8fafc] border-[#e2e8f0] focus:bg-white focus:border-[#0891b2] transition-colors"
                         />
                       </div>
                       <div>
-                        <label className="block text-sm font-semibold text-medical-navy mb-2">
-                          Telefon <span className="text-medical-coral">*</span>
+                        <label className="block text-sm font-semibold text-[#0f172a] mb-2">
+                          Telefon <span className="text-[#ef4444]">*</span>
                         </label>
                         <Input
                           name="phone"
@@ -177,13 +144,13 @@ const ContactSection = () => {
                           onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                           required
                           disabled={isLoading}
-                          className="h-12 bg-medical-sand border-medical-warm focus:bg-white focus:border-medical-teal transition-colors"
+                          className="h-12 bg-[#f8fafc] border-[#e2e8f0] focus:bg-white focus:border-[#0891b2] transition-colors"
                         />
                       </div>
                     </div>
 
                     <div>
-                      <label className="block text-sm font-semibold text-medical-navy mb-2">
+                      <label className="block text-sm font-semibold text-[#0f172a] mb-2">
                         Ce serviciu te interesează?
                       </label>
                       <Select
@@ -191,7 +158,7 @@ const ContactSection = () => {
                         onValueChange={(value) => setFormData({ ...formData, service: value })}
                         disabled={isLoading}
                       >
-                        <SelectTrigger className="h-12 bg-medical-sand border-medical-warm focus:bg-white">
+                        <SelectTrigger className="h-12 bg-[#f8fafc] border-[#e2e8f0] focus:bg-white">
                           <SelectValue placeholder="Alege un serviciu din listă..." />
                         </SelectTrigger>
                         <SelectContent>
@@ -203,7 +170,7 @@ const ContactSection = () => {
                     </div>
 
                     <div>
-                      <label className="block text-sm font-semibold text-medical-navy mb-2">
+                      <label className="block text-sm font-semibold text-[#0f172a] mb-2">
                         Mesajul tău (opțional)
                       </label>
                       <Textarea
@@ -213,14 +180,14 @@ const ContactSection = () => {
                         onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                         rows={3}
                         disabled={isLoading}
-                        className="bg-medical-sand border-medical-warm focus:bg-white focus:border-medical-teal transition-colors resize-none"
+                        className="bg-[#f8fafc] border-[#e2e8f0] focus:bg-white focus:border-[#0891b2] transition-colors resize-none"
                       />
                     </div>
 
                     <button 
                       type="submit" 
                       disabled={isLoading} 
-                      className="w-full btn-primary flex items-center justify-center gap-2 py-4 text-base"
+                      className="w-full flex items-center justify-center gap-2 py-4 text-base font-semibold px-6 rounded-full transition-all duration-300 bg-[#1e3a5f] text-white border-2 border-[#1e3a5f] hover:bg-transparent hover:text-[#1e3a5f]"
                     >
                       {isLoading ? (
                         <Loader2 className="w-5 h-5 animate-spin" />
@@ -230,17 +197,17 @@ const ContactSection = () => {
                       {isLoading ? 'Se trimite...' : 'PROGRAMEAZĂ CONSULTAȚIA GRATUITĂ'}
                     </button>
 
-                    <div className="flex items-center justify-center gap-6 pt-2 text-xs text-medical-gray">
+                    <div className="flex items-center justify-center gap-6 pt-2 text-xs text-[#64748b]">
                       <span className="flex items-center gap-1">
-                        <CheckCircle className="w-4 h-4 text-medical-teal" />
+                        <CheckCircle className="w-4 h-4 text-[#0891b2]" />
                         Răspuns în 30 min
                       </span>
                       <span className="flex items-center gap-1">
-                        <CheckCircle className="w-4 h-4 text-medical-teal" />
+                        <CheckCircle className="w-4 h-4 text-[#0891b2]" />
                         Consultație gratuită
                       </span>
                       <span className="flex items-center gap-1">
-                        <CheckCircle className="w-4 h-4 text-medical-teal" />
+                        <CheckCircle className="w-4 h-4 text-[#0891b2]" />
                         Fără obligații
                       </span>
                     </div>
@@ -248,6 +215,50 @@ const ContactSection = () => {
                 )}
               </div>
             </div>
+          </div>
+
+          {/* Quick Info Bar - Sub formular, în ordinea: Program, Adresă, Telefon */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {/* Program */}
+            <div className="flex items-center justify-center gap-3 p-4 bg-white rounded-xl border border-[#e2e8f0]">
+              <div className="w-10 h-10 rounded-full bg-[#0891b2]/10 flex items-center justify-center">
+                <Clock className="w-5 h-5 text-[#0891b2]" />
+              </div>
+              <div className="text-left">
+                <p className="text-xs text-[#64748b] uppercase tracking-wider">Program</p>
+                <p className="font-semibold text-[#0f172a]">L-J: 9-18 | V: 9-15</p>
+              </div>
+            </div>
+
+            {/* Adresă */}
+            <a 
+              href="https://maps.google.com/?q=Calea+Domnească+234+Târgoviște"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center gap-3 p-4 bg-white rounded-xl border border-[#e2e8f0] hover:border-[#1e3a5f] transition-all group"
+            >
+              <div className="w-10 h-10 rounded-full bg-[#1e3a5f]/10 flex items-center justify-center">
+                <MapPin className="w-5 h-5 text-[#1e3a5f]" />
+              </div>
+              <div className="text-left">
+                <p className="text-xs text-[#64748b] uppercase tracking-wider">Adresă</p>
+                <p className="font-semibold text-[#0f172a]">Calea Domnească 234</p>
+              </div>
+            </a>
+
+            {/* Telefon */}
+            <a 
+              href="tel:+40770220110" 
+              className="flex items-center justify-center gap-3 p-4 bg-white rounded-xl border border-[#e2e8f0] hover:border-[#1e3a5f] transition-all group"
+            >
+              <div className="w-10 h-10 rounded-full bg-[#0891b2]/10 flex items-center justify-center group-hover:bg-[#0891b2] transition-colors">
+                <Phone className="w-5 h-5 text-[#0891b2] group-hover:text-white transition-colors" />
+              </div>
+              <div className="text-left">
+                <p className="text-xs text-[#64748b] uppercase tracking-wider">Telefon</p>
+                <p className="font-semibold text-[#0f172a]">0770 220 110</p>
+              </div>
+            </a>
           </div>
         </div>
       </div>
