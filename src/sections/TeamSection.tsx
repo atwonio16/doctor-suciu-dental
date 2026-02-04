@@ -58,7 +58,7 @@ const TeamSection = () => {
       </div>
       
       <div className="relative z-10 w-full px-4 sm:px-6 lg:px-12 xl:px-20">
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           {/* Header */}
           <div className="text-center mb-12">
             <span className="category-pill mb-4">ECHIPA NOASTRĂ</span>
@@ -70,30 +70,29 @@ const TeamSection = () => {
             </p>
           </div>
 
-          {/* Doctor Card */}
-          <div className="bg-white/80 backdrop-blur-sm rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-100 overflow-hidden">
-            <div className="grid lg:grid-cols-2">
-              {/* Left - Image */}
-              <div className="relative bg-gradient-to-br from-slate-100 to-slate-50 p-8 flex items-center justify-center">
+          {/* Doctor Card - Full width with image on left */}
+          <div className="bg-white rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-100 overflow-hidden">
+            <div className="grid lg:grid-cols-2 min-h-[500px]">
+              {/* Left - Full Image with navigation buttons on card */}
+              <div className="relative h-[300px] lg:h-auto">
+                <img
+                  src={activeDoctor.image}
+                  alt={activeDoctor.name}
+                  className="w-full h-full object-cover"
+                />
+                
+                {/* Navigation buttons on the card */}
                 <button 
                   onClick={prevDoctor}
-                  className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white shadow-lg flex items-center justify-center text-slate-400 hover:text-sky-500 hover:shadow-xl transition-all z-10"
+                  className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/90 backdrop-blur-sm shadow-lg flex items-center justify-center text-slate-500 hover:text-sky-500 hover:bg-white transition-all z-10"
                   aria-label="Previous doctor"
                 >
                   <ChevronLeft className="w-6 h-6" />
                 </button>
                 
-                <div className="relative">
-                  <img
-                    src={activeDoctor.image}
-                    alt={activeDoctor.name}
-                    className="w-full max-w-[400px] h-[450px] object-cover rounded-2xl shadow-lg"
-                  />
-                </div>
-
                 <button 
                   onClick={nextDoctor}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-sky-500 shadow-lg shadow-sky-500/30 flex items-center justify-center text-white hover:bg-sky-400 hover:shadow-xl transition-all z-10"
+                  className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-sky-500 shadow-lg shadow-sky-500/30 flex items-center justify-center text-white hover:bg-sky-400 transition-all z-10"
                   aria-label="Next doctor"
                 >
                   <ChevronRight className="w-6 h-6" />
