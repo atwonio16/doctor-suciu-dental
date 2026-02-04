@@ -1,5 +1,5 @@
 import { Award, Cpu, Heart, ShieldCheck, ChevronDown } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
 const benefits = [
   {
@@ -47,8 +47,50 @@ const faqs = [
   },
 ];
 
+interface FAQItemProps {
+  faq: { question: string; answer: string };
+  index: number;
+  isOpen: boolean;
+  onToggle: () => void;
+}
+
+const FAQItem = ({ faq, isOpen, onToggle }: FAQItemProps) => {
+  const contentRef = useRef<HTMLDivElement>(null);
+  const [height, setHeight] = useState(0);
+
+  useEffect(() => {
+    if (contentRef.current) {
+      setHeight(contentRef.current.scrollHeight);
+    }
+  }, [faq.answer]);
+
+  return (
+    <div className="border border-slate-200 rounded-xl overflow-hidden bg-white/60 backdrop-blur-sm">
+      <button
+        onClick={onToggle}
+        className="w-full flex items-center justify-between p-4 text-left hover:bg-slate-50/80 transition-colors duration-300"
+      >
+        <span className="font-medium text-slate-900 pr-4">{faq.question}</span>
+        <ChevronDown 
+          className={`w-5 h-5 text-slate-400 flex-shrink-0 transition-transform duration-500 ease-out ${
+            isOpen ? 'rotate-180' : ''
+          }`} 
+        />
+      </button>
+      <div 
+        className="overflow-hidden transition-all duration-500 ease-out"
+        style={{ height: isOpen ? height : 0 }}
+      >
+        <div ref={contentRef} className="px-4 pb-4">
+          <p className="text-slate-600 text-sm leading-relaxed">{faq.answer}</p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const WhyChooseSection = () => {
-  const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const [openIndex, setOpenIndex] = useState<number>(0);
 
   return (
     <section className="relative w-full py-20 overflow-hidden">
@@ -63,9 +105,14 @@ const WhyChooseSection = () => {
           {/* Benefits */}
           <div className="text-center mb-16">
             <span className="category-pill mb-4">DE CE SĂ NE ALEGI</span>
-            <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">
-              Experiență și <span className="gradient-text">grijă</span>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 mb-4">
+              Profesionalism <span className="gradient-text">autentic</span>,<br />
+              rezultate <span className="gradient-text">convingătoare</span>
             </h2>
+            <p className="text-slate-600 max-w-2xl mx-auto text-lg">
+              Descoperă de ce peste 1.500 de pacienți ne aleg anual pentru zâmbetul lor perfect.
+              Tehnologie premium, prețuri accesibile, garanție reală.
+            </p>
           </div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
@@ -90,39 +137,28 @@ const WhyChooseSection = () => {
               
               <div className="space-y-3">
                 {faqs.map((faq, index) => (
-                  <div key={index} className="border border-slate-200 rounded-xl overflow-hidden bg-white/60 backdrop-blur-sm">
-                    <button
-                      onClick={() => setOpenIndex(openIndex === index ? null : index)}
-                      className="w-full flex items-center justify-between p-4 text-left hover:bg-slate-50/80 transition-colors"
-                    >
-                      <div className="flex items-center gap-3">
-                        <span className="w-6 h-6 rounded-full bg-gradient-to-r from-sky-500 to-sky-400 flex items-center justify-center text-white text-xs font-bold">
-                          {index + 1}
-                        </span>
-                        <span className="font-medium text-slate-900">{faq.question}</span>
-                      </div>
-                      <ChevronDown className={`w-5 h-5 text-slate-400 transition-transform ${openIndex === index ? 'rotate-180' : ''}`} />
-                    </button>
-                    {openIndex === index && (
-                      <div className="px-4 pb-4 pl-13">
-                        <p className="text-slate-600 text-sm pl-9">{faq.answer}</p>
-                      </div>
-                    )}
-                  </div>
+                  <FAQItem
+                    key={index}
+                    faq={faq}
+                    index={index}
+                    isOpen={openIndex === index}
+                    onToggle={() => setOpenIndex(openIndex === index ? -1 : index)}
+                  />
                 ))}
               </div>
             </div>
 
-            <div className="relative">
+            {/* Image with fixed height - no badge */}
+            <div className="relative h-[500px] rounded-2xl shadow-lg overflow-hidden">
               <img
-                src="/technology_equipment.jpg"
+                src="/faq-clinic.png"
                 alt="Echipament stomatologic modern"
-                className="rounded-2xl shadow-lg w-full"
+                className="w-full h-full object-cover"
+                onError={(e) => {
+                  // Fallback to existing image if new one doesn't exist yet
+                  (e.target as HTMLImageElement).src = '/technology_equipment.jpg';
+                }}
               />
-              <div className="absolute -bottom-4 -right-4 bg-gradient-to-r from-sky-500 to-sky-400 text-white rounded-2xl p-5 shadow-lg shadow-sky-500/25">
-                <p className="text-3xl font-bold">15+</p>
-                <p className="text-sm">ani experiență</p>
-              </div>
             </div>
           </div>
         </div>

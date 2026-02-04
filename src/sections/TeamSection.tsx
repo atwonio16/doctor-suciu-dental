@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { ChevronLeft, ChevronRight, Calendar } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
@@ -15,15 +15,15 @@ const doctors = [
     id: 2,
     name: 'Dr. Maria Popescu',
     title: 'Ortodont',
-    image: '/team_portrait.jpg',
-    description: 'Specialist în ortodonție cu peste 12 ani de experiență. Certificată Invisalign Diamond Provider, Dr. Popescu transformă zâmbete cu precizie și grijă, folosind cele mai moderne tehnici de aliniere dentară.',
+    image: '/services_overview_smile.jpg',
+    description: 'Specialist în ortodonție cu peste 12 ani de experiență. Certificată Invisalign Diamond Provider, Dr. Popescu transformă zâmbete cu precizie și grijă.',
     tags: ['Ortodonție', 'Invisalign', 'Pedodonție', 'Estetică'],
   },
   {
     id: 3,
     name: 'Dr. Andrei Ionescu',
     title: 'Medic Endodont',
-    image: '/team_portrait.jpg',
+    image: '/implant_detail_work.jpg',
     description: 'Expert în tratamente de canal și salvarea dinților naturali. Cu ajutorul microscopului dentar și a tehnologiilor moderne, Dr. Ionescu realizează proceduri precise și blânde, cu rate de succes de peste 98%.',
     tags: ['Endodonție', 'Microscopie', 'Re-tratamente', 'Chirurgie'],
   },
@@ -31,7 +31,7 @@ const doctors = [
     id: 4,
     name: 'Dr. Elena Dumitrescu',
     title: 'Stomatolog Pediatru',
-    image: '/team_portrait.jpg',
+    image: '/testimonial_patient.jpg',
     description: 'Pasionată de stomatologia pediatrică, Dr. Dumitrescu creează o atmosferă prietenoasă pentru cei mici. Cu răbdare și tehnici blânde, transformă vizita la dentist într-o experiență plăcută pentru întreaga familie.',
     tags: ['Pedodonție', 'Comportament', 'Prevenție', 'Copii'],
   },
@@ -39,15 +39,39 @@ const doctors = [
 
 const TeamSection = () => {
   const [activeIndex, setActiveIndex] = useState(0);
-  const activeDoctor = doctors[activeIndex];
+  const [slideDirection, setSlideDirection] = useState<'left' | 'right'>('right');
+  const [isAnimating, setIsAnimating] = useState(false);
+  const contentRef = useRef<HTMLDivElement>(null);
+
+  const changeDoctor = (newIndex: number, direction: 'left' | 'right') => {
+    if (newIndex === activeIndex || isAnimating) return;
+    
+    setIsAnimating(true);
+    setSlideDirection(direction);
+    
+    setTimeout(() => {
+      setActiveIndex(newIndex);
+      setIsAnimating(false);
+    }, 200);
+  };
 
   const nextDoctor = () => {
-    setActiveIndex((prev) => (prev + 1) % doctors.length);
+    const newIndex = (activeIndex + 1) % doctors.length;
+    changeDoctor(newIndex, 'right');
   };
 
   const prevDoctor = () => {
-    setActiveIndex((prev) => (prev - 1 + doctors.length) % doctors.length);
+    const newIndex = (activeIndex - 1 + doctors.length) % doctors.length;
+    changeDoctor(newIndex, 'left');
   };
+
+  const activeDoctor = doctors[activeIndex];
+
+  const slideClass = isAnimating 
+    ? slideDirection === 'right' 
+      ? '-translate-x-4 opacity-0' 
+      : 'translate-x-4 opacity-0'
+    : 'translate-x-0 opacity-100';
 
   return (
     <section className="relative w-full py-20 overflow-hidden">
@@ -77,76 +101,87 @@ const TeamSection = () => {
             {/* Left Arrow - Outside card */}
             <button 
               onClick={prevDoctor}
-              className="flex-shrink-0 w-12 h-12 rounded-full bg-white shadow-lg border border-slate-100 flex items-center justify-center text-slate-400 hover:text-sky-500 hover:shadow-xl transition-all"
+              disabled={isAnimating}
+              className="flex-shrink-0 w-12 h-12 rounded-full bg-white shadow-lg border border-slate-100 flex items-center justify-center text-slate-400 hover:text-sky-500 hover:shadow-xl transition-all disabled:opacity-50"
               aria-label="Previous doctor"
             >
               <ChevronLeft className="w-6 h-6" />
             </button>
 
-            {/* Doctor Card - Fixed height, content fills space */}
-            <div className="flex-1 max-w-5xl bg-white rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-100 overflow-hidden h-[480px]">
-              <div className="grid lg:grid-cols-2 h-full">
-                {/* Left - Image filling entire height */}
-                <div className="relative h-full">
+            {/* Doctor Card */}
+            <div className="flex-1 w-full bg-white rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-100 overflow-hidden">
+              <div className="grid lg:grid-cols-2 h-[500px]">
+                {/* Left - Image with slide transition */}
+                <div className="relative w-full h-full overflow-hidden">
                   <img
                     src={activeDoctor.image}
                     alt={activeDoctor.name}
-                    className="absolute inset-0 w-full h-full object-cover"
+                    className={`absolute inset-0 w-full h-full object-cover object-center transition-all duration-200 ease-out ${slideClass}`}
                   />
                 </div>
 
-                {/* Right - Info with flex layout to fill container */}
-                <div className="p-8 lg:p-10 flex flex-col h-full">
-                  {/* Header - fixed */}
-                  <div className="flex-shrink-0">
-                    <h3 className="text-3xl font-bold text-slate-900 mb-2">{activeDoctor.name}</h3>
-                    <p className="text-sky-500 font-medium text-lg mb-6">{activeDoctor.title}</p>
-                  </div>
-                  
-                  {/* Description - grows to fill space */}
-                  <div className="flex-1 flex items-center">
-                    <p className="text-slate-600 leading-relaxed">
-                      {activeDoctor.description}
-                    </p>
-                  </div>
+                {/* Right - Info with fixed layout and slide transition */}
+                <div 
+                  ref={contentRef}
+                  className="p-8 lg:p-10 flex flex-col h-full"
+                >
+                  {/* Content wrapper with slide animation */}
+                  <div className={`flex flex-col h-full transition-all duration-200 ease-out ${slideClass}`}>
+                    {/* Header - fixed at top */}
+                    <div className="flex-shrink-0 mb-4">
+                      <h3 className="text-2xl lg:text-3xl font-bold text-slate-900 mb-2">{activeDoctor.name}</h3>
+                      <p className="text-sky-500 font-medium text-lg">{activeDoctor.title}</p>
+                    </div>
+                    
+                    {/* Description - scrollable if too long */}
+                    <div className="flex-1 overflow-y-auto mb-4">
+                      <p className="text-slate-600 leading-relaxed">
+                        {activeDoctor.description}
+                      </p>
+                    </div>
 
-                  {/* Tags - fixed */}
-                  <div className="flex-shrink-0 flex flex-wrap gap-2 my-6">
-                    {activeDoctor.tags.map((tag, index) => (
-                      <span 
-                        key={index} 
-                        className="px-4 py-2 rounded-full bg-gradient-to-r from-sky-50 to-white border border-sky-100 text-slate-700 text-sm"
+                    {/* Tags */}
+                    <div className="flex-shrink-0 flex flex-wrap gap-2 mb-4">
+                      {activeDoctor.tags.map((tag, index) => (
+                        <span 
+                          key={index} 
+                          className="px-3 py-1.5 rounded-full bg-gradient-to-r from-sky-50 to-white border border-sky-100 text-slate-700 text-sm"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+
+                    {/* Dots indicator - fixed position */}
+                    <div className="flex-shrink-0 flex items-center gap-2 mb-4">
+                      {doctors.map((_, index) => (
+                        <button
+                          key={index}
+                          onClick={() => {
+                            const direction = index > activeIndex ? 'right' : 'left';
+                            changeDoctor(index, direction);
+                          }}
+                          disabled={isAnimating}
+                          className={`h-2 rounded-full transition-all disabled:cursor-not-allowed ${
+                            index === activeIndex 
+                              ? 'w-8 bg-sky-500' 
+                              : 'w-2 bg-slate-200 hover:bg-slate-300'
+                          }`}
+                          aria-label={`Go to doctor ${index + 1}`}
+                        />
+                      ))}
+                    </div>
+
+                    {/* Button - fixed at bottom */}
+                    <div className="flex-shrink-0">
+                      <Link 
+                        to="/contact" 
+                        className="btn-primary inline-flex items-center justify-center gap-2"
                       >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-
-                  {/* Dots indicator - fixed */}
-                  <div className="flex-shrink-0 flex items-center gap-2 mb-6">
-                    {doctors.map((_, index) => (
-                      <button
-                        key={index}
-                        onClick={() => setActiveIndex(index)}
-                        className={`h-2 rounded-full transition-all ${
-                          index === activeIndex 
-                            ? 'w-8 bg-sky-500' 
-                            : 'w-2 bg-slate-200 hover:bg-slate-300'
-                        }`}
-                        aria-label={`Go to doctor ${index + 1}`}
-                      />
-                    ))}
-                  </div>
-
-                  {/* Button - fixed at bottom */}
-                  <div className="flex-shrink-0">
-                    <Link 
-                      to="/contact" 
-                      className="btn-primary inline-flex items-center justify-center gap-2"
-                    >
-                      <Calendar className="w-4 h-4" />
-                      PROGRAMEAZĂ O CONSULTAȚIE
-                    </Link>
+                        <Calendar className="w-4 h-4" />
+                        PROGRAMEAZĂ O CONSULTAȚIE
+                      </Link>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -155,7 +190,8 @@ const TeamSection = () => {
             {/* Right Arrow - Outside card */}
             <button 
               onClick={nextDoctor}
-              className="flex-shrink-0 w-12 h-12 rounded-full bg-sky-500 shadow-lg shadow-sky-500/30 flex items-center justify-center text-white hover:bg-sky-400 hover:shadow-xl transition-all"
+              disabled={isAnimating}
+              className="flex-shrink-0 w-12 h-12 rounded-full bg-sky-500 shadow-lg shadow-sky-500/30 flex items-center justify-center text-white hover:bg-sky-400 hover:shadow-xl transition-all disabled:opacity-50"
               aria-label="Next doctor"
             >
               <ChevronRight className="w-6 h-6" />

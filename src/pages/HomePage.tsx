@@ -3,6 +3,7 @@ import HeroSection from '../sections/HeroSection';
 import ServicesPreview from '../sections/ServicesPreview';
 import TeamSection from '../sections/TeamSection';
 import WhyChooseSection from '../sections/WhyChooseSection';
+import ReviewsSection from '../sections/ReviewsSection';
 import ContactSection from '../sections/ContactSection';
 
 const HomePage = () => {
@@ -32,6 +33,7 @@ const HomePage = () => {
       <ServicesPreview />
       <TeamSection />
       <WhyChooseSection />
+      <ReviewsSection />
       <ContactSection />
     </>
   );
