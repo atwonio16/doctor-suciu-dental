@@ -65,14 +65,14 @@ const FAQItem = ({ faq, isOpen, onToggle }: FAQItemProps) => {
   }, [faq.answer]);
 
   return (
-    <div className="border border-slate-200 rounded-xl overflow-hidden bg-white/60 backdrop-blur-sm">
+    <div className="border border-medical-warm rounded-xl overflow-hidden bg-white">
       <button
         onClick={onToggle}
-        className="w-full flex items-center justify-between p-4 text-left hover:bg-slate-50/80 transition-colors duration-300"
+        className="w-full flex items-center justify-between p-4 text-left hover:bg-medical-cream transition-colors duration-300"
       >
-        <span className="font-medium text-slate-900 pr-4">{faq.question}</span>
+        <span className="font-medium text-medical-navy pr-4">{faq.question}</span>
         <ChevronDown 
-          className={`w-5 h-5 text-slate-400 flex-shrink-0 transition-transform duration-500 ease-out ${
+          className={`w-5 h-5 text-medical-teal flex-shrink-0 transition-transform duration-500 ease-out ${
             isOpen ? 'rotate-180' : ''
           }`} 
         />
@@ -82,7 +82,7 @@ const FAQItem = ({ faq, isOpen, onToggle }: FAQItemProps) => {
         style={{ height: isOpen ? height : 0 }}
       >
         <div ref={contentRef} className="px-4 pb-4">
-          <p className="text-slate-600 text-sm leading-relaxed">{faq.answer}</p>
+          <p className="text-medical-gray text-sm leading-relaxed">{faq.answer}</p>
         </div>
       </div>
     </div>
@@ -94,10 +94,10 @@ const WhyChooseSection = () => {
 
   return (
     <section className="relative w-full py-20 overflow-hidden">
-      {/* Warm background overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-white via-slate-50/50 to-white">
-        <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-gradient-to-br from-teal-100/30 via-sky-100/20 to-transparent rounded-full blur-3xl" />
-        <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-gradient-to-tl from-pink-100/25 via-amber-100/15 to-transparent rounded-full blur-3xl" />
+      {/* Background */}
+      <div className="absolute inset-0 bg-white">
+        <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-medical-teal-soft rounded-full blur-3xl opacity-30" />
+        <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-medical-navy-soft rounded-full blur-3xl opacity-20" />
       </div>
       
       <div className="relative z-10 w-full px-4 sm:px-6 lg:px-12 xl:px-20">
@@ -105,11 +105,11 @@ const WhyChooseSection = () => {
           {/* Benefits */}
           <div className="text-center mb-16">
             <span className="category-pill mb-4">DE CE SĂ NE ALEGI</span>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 mb-4">
-              Profesionalism <span className="gradient-text">autentic</span>,<br />
-              rezultate <span className="gradient-text">convingătoare</span>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-medical-navy mb-4">
+              Profesionalism <span className="text-medical-teal">autentic</span>,<br />
+              rezultate <span className="text-medical-teal">convingătoare</span>
             </h2>
-            <p className="text-slate-600 max-w-2xl mx-auto text-lg">
+            <p className="text-medical-gray max-w-2xl mx-auto text-lg">
               Descoperă de ce peste 1.500 de pacienți ne aleg anual pentru zâmbetul lor perfect.
               Tehnologie premium, prețuri accesibile, garanție reală.
             </p>
@@ -117,12 +117,15 @@ const WhyChooseSection = () => {
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
             {benefits.map((benefit, index) => (
-              <div key={index} className="text-center p-6 rounded-2xl bg-white/60 backdrop-blur-sm border border-slate-100">
-                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-sky-100 to-sky-50 flex items-center justify-center mx-auto mb-4">
-                  <benefit.icon className="w-7 h-7 text-sky-500" />
+              <div 
+                key={index} 
+                className="text-center p-6 rounded-2xl bg-white border border-medical-warm card-hover"
+              >
+                <div className="w-14 h-14 rounded-2xl icon-navy flex items-center justify-center mx-auto mb-4">
+                  <benefit.icon className="w-7 h-7" />
                 </div>
-                <h3 className="font-semibold text-slate-900 mb-2">{benefit.title}</h3>
-                <p className="text-sm text-slate-600">{benefit.description}</p>
+                <h3 className="font-semibold text-medical-navy mb-2">{benefit.title}</h3>
+                <p className="text-sm text-medical-gray">{benefit.description}</p>
               </div>
             ))}
           </div>
@@ -131,8 +134,8 @@ const WhyChooseSection = () => {
           <div className="grid lg:grid-cols-2 gap-12 items-start">
             <div>
               <span className="category-pill mb-4">ÎNTREBĂRI FRECVENTE</span>
-              <h3 className="text-2xl font-bold text-slate-900 mb-6">
-                Răspunsuri la <span className="gradient-text">întrebările tale</span>
+              <h3 className="text-2xl sm:text-3xl font-bold text-medical-navy mb-6">
+                Răspunsuri la <span className="text-medical-teal">întrebările tale</span>
               </h3>
               
               <div className="space-y-3">
@@ -148,14 +151,13 @@ const WhyChooseSection = () => {
               </div>
             </div>
 
-            {/* Image with fixed height - no badge */}
+            {/* Image */}
             <div className="relative h-[500px] rounded-2xl shadow-lg overflow-hidden">
               <img
                 src="/faq-clinic.png"
                 alt="Echipament stomatologic modern"
                 className="w-full h-full object-cover"
                 onError={(e) => {
-                  // Fallback to existing image if new one doesn't exist yet
                   (e.target as HTMLImageElement).src = '/technology_equipment.jpg';
                 }}
               />

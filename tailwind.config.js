@@ -38,19 +38,33 @@ module.exports = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        // Custom colors for dental clinic - based on #092b5d
-        clinic: {
-          navy: '#092b5d',
-          'navy-light': '#0d3a7a',
-          'navy-dark': '#061f42',
-          teal: '#2dd4bf',
-          'teal-dark': '#14b8a6',
-          gold: '#fbbf24',
-          cream: '#fefce8',
-          white: '#ffffff',
-          gray: '#64748b',
-          'gray-light': '#94a3b8',
-          'gray-bg': '#f8fafc',
+        // Professional Medical Palette based on doctor's navy scrub
+        medical: {
+          // Primary - Deep Navy from scrubs
+          navy: '#1e3a5f',
+          'navy-dark': '#152a45',
+          'navy-light': '#2a4a73',
+          'navy-soft': '#e8eef5',
+          
+          // Secondary - Clean Teal (medical, sterile, trustworthy)
+          teal: '#0d9488',
+          'teal-dark': '#0f766e',
+          'teal-light': '#14b8a6',
+          'teal-soft': '#e6f4f3',
+          
+          // Accent - Warm Coral (welcoming, feminine, kids-friendly)
+          coral: '#e07a5f',
+          'coral-dark': '#c4624a',
+          'coral-light': '#f4a584',
+          'coral-soft': '#fdf2ef',
+          
+          // Neutrals - Warm grays (not cold)
+          cream: '#faf9f7',
+          sand: '#f5f3ef',
+          warm: '#e8e5df',
+          gray: '#6b7280',
+          'gray-light': '#9ca3af',
+          'gray-dark': '#374151',
         }
       },
       fontFamily: {
@@ -66,9 +80,9 @@ module.exports = {
       },
       boxShadow: {
         xs: "0 1px 2px 0 rgb(0 0 0 / 0.05)",
-        'card': '0 4px 20px rgba(9, 43, 93, 0.08)',
-        'float': '0 8px 30px rgba(9, 43, 93, 0.12)',
-        'hover': '0 12px 40px rgba(9, 43, 93, 0.15)',
+        'card': '0 4px 20px rgba(30, 58, 95, 0.08)',
+        'float': '0 8px 30px rgba(30, 58, 95, 0.12)',
+        'hover': '0 12px 40px rgba(30, 58, 95, 0.15)',
       },
       keyframes: {
         "accordion-down": {
