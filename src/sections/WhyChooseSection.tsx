@@ -1,4 +1,4 @@
-import { Microscope, HeartPulse, Award, MapPin, Star, ChevronDown } from 'lucide-react';
+import { Microscope, HeartPulse, Award, MapPin, ChevronDown } from 'lucide-react';
 import { useState, useRef, useEffect } from 'react';
 
 const benefits = [
@@ -29,13 +29,6 @@ const benefits = [
     description: 'Acces ușor în centrul orașului, pe Calea Domnească. Parcare disponibilă.',
     bg: 'bg-emerald-50',
     iconColor: 'text-emerald-600',
-  },
-  {
-    icon: Star,
-    title: 'Recenzii excelente',
-    description: '5.0 stele pe Google din 51+ recenzii. Peste 1.500 de pacienți mulțumiți anual.',
-    bg: 'bg-indigo-50',
-    iconColor: 'text-indigo-600',
   },
 ];
 
@@ -131,12 +124,12 @@ const WhyChooseSection = () => {
               Diferența care contează
             </h2>
 
-            <p className="text-lg text-[#222222] max-w-2xl mx-auto">
+            <p className="text-lg text-[#222222]">
               Descoperă de ce peste 1.500 de pacienți ne aleg anual pentru zâmbetul lor perfect.
             </p>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-6 mb-20">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
             {benefits.map((benefit, index) => (
               <div 
                 key={index} 
