@@ -131,7 +131,7 @@ const TeamSection = () => {
           {/* Bottom CTA */}
           <div className="text-center">
             <Link 
-              to="/#medici" 
+              to="/medici" 
               className="inline-flex items-center justify-center gap-2 font-semibold text-sm px-8 py-4 rounded-full transition-all duration-300 bg-medical-navy text-white border-2 border-medical-navy hover:bg-transparent hover:text-medical-navy"
             >
               Vezi toată echipa

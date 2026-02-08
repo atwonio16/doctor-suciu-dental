@@ -138,7 +138,7 @@ const DoctorProfilePage = () => {
         <div className="max-w-6xl mx-auto">
           {/* Back Link */}
           <Link 
-            to="/#medici" 
+            to="/medici" 
             className="inline-flex items-center gap-2 text-white hover:text-white/80 transition-colors mb-4"
           >
             <ArrowLeft className="w-4 h-4" />

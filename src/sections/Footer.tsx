@@ -47,7 +47,7 @@ const Footer = () => {
                 {[
                   { label: 'Acasă', to: '/' },
                   { label: 'Servicii', to: '/servicii' },
-                  { label: 'Medici', to: '/#medici' },
+                  { label: 'Medici', to: '/medici' },
                   { label: 'Blog', to: '/blog' },
                   { label: 'Contact', to: '/contact' },
                 ].map((item) => (
