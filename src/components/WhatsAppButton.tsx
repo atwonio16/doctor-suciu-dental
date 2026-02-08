@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { MessageCircle, X, Phone, Clock } from 'lucide-react';
 
 // WhatsApp Brand Icon
@@ -10,9 +10,99 @@ const WhatsAppIcon = ({ className }: { className?: string }) => (
 
 const WhatsAppButton = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isOverFooter, setIsOverFooter] = useState(false);
+  const buttonRef = useRef<HTMLButtonElement>(null);
 
   const phoneNumber = '40770220110';
   const message = encodeURIComponent('Bună! Aș dori să fac o programare la Doctor Suciu Dental Clinic.');
+
+  // Detect when button is over footer
+  useEffect(() => {
+    const footer = document.querySelector('footer');
+    if (!footer) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          // When footer is visible, check if button is near it
+          if (entry.isIntersecting) {
+            const button = buttonRef.current;
+            if (button) {
+              const buttonRect = button.getBoundingClientRect();
+              const footerRect = entry.boundingClientRect;
+              
+              // Check if button is above footer area
+              const isAbove = buttonRect.bottom > footerRect.top;
+              setIsOverFooter(isAbove);
+            }
+          } else {
+            setIsOverFooter(false);
+          }
+        });
+      },
+      {
+        root: null,
+        rootMargin: '0px 0px -80% 0px', // Trigger when footer enters bottom of viewport
+        threshold: 0,
+      }
+    );
+
+    observer.observe(footer);
+
+    // Also listen to scroll for more precise detection
+    const handleScroll = () => {
+      const button = buttonRef.current;
+      const footer = document.querySelector('footer');
+      if (!button || !footer) return;
+
+      const buttonRect = button.getBoundingClientRect();
+      const footerRect = footer.getBoundingClientRect();
+      
+      // Button is "over" footer when footer is visible and button is in the same area
+      const viewportHeight = window.innerHeight;
+      const footerVisible = footerRect.top < viewportHeight;
+      const buttonNearFooter = buttonRect.bottom > footerRect.top - 100;
+      
+      setIsOverFooter(footerVisible && buttonNearFooter);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll(); // Check initial state
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+  // Dynamic button classes based on position
+  const getButtonClasses = () => {
+    if (isOpen) {
+      return 'bg-medical-gray rotate-90';
+    }
+    
+    if (isOverFooter) {
+      // White button with navy icon when over footer
+      return 'bg-white hover:bg-gray-100 shadow-xl';
+    }
+    
+    // Default navy button
+    return 'bg-medical-navy hover:bg-medical-navy-dark';
+  };
+
+  const getIconClasses = () => {
+    if (isOverFooter && !isOpen) {
+      return 'text-medical-navy';
+    }
+    return 'text-white';
+  };
+
+  const getShadowStyle = () => {
+    if (isOverFooter && !isOpen) {
+      return { boxShadow: '0 4px 20px rgba(0, 0, 0, 0.15)' };
+    }
+    return { boxShadow: isOpen ? '0 4px 14px rgba(107, 114, 128, 0.4)' : '0 4px 14px rgba(30, 58, 95, 0.4)' };
+  };
 
   return (
     <div className="fixed bottom-6 right-6 z-50">
@@ -68,15 +158,17 @@ const WhatsAppButton = () => {
       </div>
 
       {/* Toggle Button */}
-      <button onClick={() => setIsOpen(!isOpen)}
-        className={`w-14 h-14 rounded-full flex items-center justify-center shadow-lg transition-all duration-200 ${
-          isOpen ? 'bg-medical-gray rotate-90' : 'bg-medical-navy hover:bg-medical-navy-dark'
-        }`}
-        style={{ 
-          boxShadow: isOpen ? '0 4px 14px rgba(107, 114, 128, 0.4)' : '0 4px 14px rgba(30, 58, 95, 0.4)'
-        }}
+      <button 
+        ref={buttonRef}
+        onClick={() => setIsOpen(!isOpen)}
+        className={`w-14 h-14 rounded-full flex items-center justify-center transition-all duration-300 ${getButtonClasses()}`}
+        style={getShadowStyle()}
         aria-label={isOpen ? 'Închide' : 'Deschide'}>
-        {isOpen ? <X className="w-6 h-6 text-white" /> : <MessageCircle className="w-6 h-6 text-white" />}
+        {isOpen ? (
+          <X className="w-6 h-6 text-white" />
+        ) : (
+          <MessageCircle className={`w-6 h-6 ${getIconClasses()}`} />
+        )}
       </button>
     </div>
   );
