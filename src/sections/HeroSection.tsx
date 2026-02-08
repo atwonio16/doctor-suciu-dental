@@ -19,37 +19,48 @@ const HeroSection = () => {
               <div className="flex items-center gap-3 mb-6">
                 <span className="w-8 h-[2px] bg-[#94a3b8]" />
                 <span className="text-xs font-bold uppercase tracking-[0.2em] text-[#64748b]">
-                  Clinică Stomatologică Târgoviște
+                  Clinică Stomatologică
                 </span>
               </div>
 
-              {/* Title - Premium slate-900, single color, professional weight */}
-              <h1 className="text-4xl sm:text-5xl lg:text-[3.5rem] font-semibold text-[#0f172a] leading-[1.15] mb-6 tracking-tight">
-                Îngrijire dentară<br />
-                cu blândețe
+              {/* Title - Clear headline */}
+              <h1 className="text-4xl sm:text-5xl lg:text-[3.25rem] font-semibold text-[#0f172a] leading-[1.15] mb-6 tracking-tight">
+                Clinică dentară modernă<br />
+                în Târgoviște
               </h1>
 
-              {/* Body text - #222222 */}
+              {/* Subtitle - Benefits */}
               <p className="text-lg text-[#222222] mb-8 max-w-lg leading-relaxed">
-                De la cei mici la cei mari, fiecare zâmbet merită atenție. 
-                Tehnologie modernă, atmosferă relaxantă, zero stres și griji.
+                <span className="inline-flex items-center gap-2 mr-4">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#0d9488]" />
+                  Fără durere
+                </span>
+                <span className="inline-flex items-center gap-2 mr-4">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#0d9488]" />
+                  Medici specializați
+                </span>
+                <span className="inline-flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#0d9488]" />
+                  Programări rapide
+                </span>
               </p>
 
-              {/* CTAs - Original order, Pill buttons */}
+              {/* CTAs - Primary and Secondary */}
               <div className="flex flex-col sm:flex-row gap-4 mb-10">
                 <Link
                   to="/contact"
                   className="inline-flex items-center justify-center gap-2 font-semibold text-sm px-8 py-4 rounded-full transition-all duration-300 bg-[#1e3a5f] text-white border-2 border-[#1e3a5f] hover:bg-transparent hover:text-[#1e3a5f]"
                 >
-                  PROGRAMEAZĂ-TE
+                  Programează-te
                   <ArrowRight className="w-4 h-4" />
                 </Link>
-                <Link
-                  to="/servicii"
+                <a
+                  href="tel:+40770220110"
                   className="inline-flex items-center justify-center gap-2 font-semibold text-sm px-8 py-4 rounded-full transition-all duration-300 bg-white text-[#1e3a5f] border-2 border-[#cbd5e1] hover:border-[#1e3a5f]"
                 >
-                  DESCOPERĂ SERVICIILE
-                </Link>
+                  <Phone className="w-4 h-4" />
+                  Sună acum
+                </a>
               </div>
 
               {/* Info - Light blue transparent circles */}
@@ -80,13 +91,16 @@ const HeroSection = () => {
               </div>
             </div>
 
-            {/* Right - Image */}
+            {/* Right - Real clinic image */}
             <div className="relative h-full flex items-center justify-center">
               <div className="relative w-full max-w-[600px] rounded-2xl overflow-hidden border border-[#e2e8f0]">
                 <img
-                  src="/hero-family1.png"
-                  alt="Moment familial fericit la dentist"
+                  src="/hero-clinic.jpg"
+                  alt="Clinică stomatologică modernă în Târgoviște"
                   className="w-full h-auto lg:h-[580px] object-cover object-center"
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).src = '/hero-family1.png';
+                  }}
                 />
               </div>
             </div>

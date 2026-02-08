@@ -47,8 +47,8 @@ const Footer = () => {
                 {[
                   { label: 'Acasă', to: '/' },
                   { label: 'Servicii', to: '/servicii' },
+                  { label: 'Medici', to: '/#medici' },
                   { label: 'Blog', to: '/blog' },
-                  { label: 'Păreri', to: '/pareri' },
                   { label: 'Contact', to: '/contact' },
                 ].map((item) => (
                   <li key={item.to}>

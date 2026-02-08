@@ -1,34 +1,41 @@
-import { Award, Microscope, HeartHandshake, ShieldCheck, ChevronDown } from 'lucide-react';
+import { Microscope, HeartPulse, Award, MapPin, Star, ChevronDown } from 'lucide-react';
 import { useState, useRef, useEffect } from 'react';
 
 const benefits = [
   {
-    icon: Award,
-    title: 'Experiență dovedită',
-    description: 'Peste 15 ani de practică și mii de pacienți mulțumiți.',
-    bg: 'bg-amber-50',
-    iconColor: 'text-amber-600',
-  },
-  {
     icon: Microscope,
     title: 'Tehnologie modernă',
-    description: 'Echipamente de ultimă generație pentru tratamente precise.',
+    description: 'Echipamente de ultimă generație pentru diagnostic precis și tratamente minim invazive.',
     bg: 'bg-sky-50',
     iconColor: 'text-sky-600',
   },
   {
-    icon: HeartHandshake,
-    title: 'Abordare personalizată',
-    description: 'Fiecare pacient primește atenție și plan de tratament individual.',
+    icon: HeartPulse,
+    title: 'Fără durere',
+    description: 'Tehnici moderne și anestezie eficientă pentru proceduri confortabile, fără stres.',
     bg: 'bg-rose-50',
     iconColor: 'text-rose-600',
   },
   {
-    icon: ShieldCheck,
-    title: 'Garanție reală',
-    description: 'Oferim garanție pentru toate tratamentele efectuate.',
+    icon: Award,
+    title: 'Medici cu experiență',
+    description: 'Peste 15 ani de practică și mii de pacienți mulțumiți. Formare continuă.',
+    bg: 'bg-amber-50',
+    iconColor: 'text-amber-600',
+  },
+  {
+    icon: MapPin,
+    title: 'Locație centrală Târgoviște',
+    description: 'Acces ușor în centrul orașului, pe Calea Domnească. Parcare disponibilă.',
     bg: 'bg-emerald-50',
     iconColor: 'text-emerald-600',
+  },
+  {
+    icon: Star,
+    title: 'Recenzii excelente',
+    description: '5.0 stele pe Google din 51+ recenzii. Peste 1.500 de pacienți mulțumiți anual.',
+    bg: 'bg-indigo-50',
+    iconColor: 'text-indigo-600',
   },
 ];
 
@@ -121,17 +128,15 @@ const WhyChooseSection = () => {
             </div>
 
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-[#0f172a] mb-4 tracking-tight">
-              Profesionalism autentic,<br />
-              rezultate convingătoare
+              Diferența care contează
             </h2>
 
             <p className="text-lg text-[#222222] max-w-2xl mx-auto">
               Descoperă de ce peste 1.500 de pacienți ne aleg anual pentru zâmbetul lor perfect.
-              Tehnologie premium, prețuri accesibile, garanție reală.
             </p>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-6 mb-20">
             {benefits.map((benefit, index) => (
               <div 
                 key={index} 

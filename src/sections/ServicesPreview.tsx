@@ -1,42 +1,54 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, Stethoscope, Sparkles, AlignCenter, CirclePlus } from 'lucide-react';
+import { ArrowRight, CirclePlus, AlignCenter, Sparkles, Smile, Baby, AlertCircle } from 'lucide-react';
 
 const services = [
   {
-    icon: Stethoscope,
-    title: 'Consultație gratuită',
-    description: 'Prima vizită este gratuită. Evaluare completă fără durere.',
-    price: '0 RON',
-    bg: 'bg-emerald-50',
-    iconColor: 'text-emerald-600',
-    priceColor: 'text-emerald-600',
-  },
-  {
-    icon: Sparkles,
-    title: 'Albire profesională',
-    description: 'Zâmbet mai alb cu până la 8 nuanțe într-o singură ședință.',
-    price: 'de la 600 RON',
-    bg: 'bg-sky-50',
-    iconColor: 'text-sky-600',
-    priceColor: 'text-sky-600',
+    icon: CirclePlus,
+    title: 'Implant dentar',
+    description: 'Soluții permanente pentru dinți lipsă. Tehnologie modernă, garanție 10 ani.',
+    bg: 'bg-indigo-50',
+    iconColor: 'text-indigo-600',
+    href: '/servicii#implanturi',
   },
   {
     icon: AlignCenter,
-    title: 'Invisalign',
-    description: 'Aparate invizibile pentru îndreptarea dinților. Discret și confortabil.',
-    price: 'de la 8.000 RON',
+    title: 'Ortodonție',
+    description: 'Aparate fixe și Invisalign. Îndreptăm dinții pentru un zâmbet perfect.',
     bg: 'bg-cyan-50',
     iconColor: 'text-cyan-600',
-    priceColor: 'text-cyan-600',
+    href: '/servicii#ortodontie',
   },
   {
-    icon: CirclePlus,
-    title: 'Implanturi dentare',
-    description: 'Soluții permanente pentru dinți lipsă. Garanție 10 ani.',
-    price: 'de la 2.800 RON',
-    bg: 'bg-indigo-50',
-    iconColor: 'text-indigo-600',
-    priceColor: 'text-indigo-600',
+    icon: Sparkles,
+    title: 'Albire dentară',
+    description: 'Zâmbet mai alb cu până la 8 nuanțe. Rezultate imediate, fără durere.',
+    bg: 'bg-sky-50',
+    iconColor: 'text-sky-600',
+    href: '/servicii#albire',
+  },
+  {
+    icon: Smile,
+    title: 'Estetică dentară',
+    description: 'Fațete, coroane și redesign de zâmbet. Transformări vizibile instant.',
+    bg: 'bg-rose-50',
+    iconColor: 'text-rose-600',
+    href: '/servicii#estetica',
+  },
+  {
+    icon: Baby,
+    title: 'Stomatologie copii',
+    description: 'Atmosferă prietenoasă pentru cei mici. Pedodonție cu răbdare și blândețe.',
+    bg: 'bg-amber-50',
+    iconColor: 'text-amber-600',
+    href: '/servicii#copii',
+  },
+  {
+    icon: AlertCircle,
+    title: 'Urgențe stomatologice',
+    description: 'Durere de dinți, fracturi, infecții. Te ajutăm rapid în situații urgente.',
+    bg: 'bg-red-50',
+    iconColor: 'text-red-600',
+    href: '/servicii#urgente',
   },
 ];
 
@@ -67,10 +79,11 @@ const ServicesPreview = () => {
             </p>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
             {services.map((service, index) => (
-              <div 
-                key={index} 
+              <Link 
+                key={index}
+                to={service.href}
                 className="group p-6 rounded-2xl bg-white border border-[#e2e8f0] transition-all duration-300 hover:shadow-xl hover:shadow-slate-200/50 hover:border-[#cbd5e1]"
               >
                 {/* Icon - Colorful soft background */}
@@ -82,8 +95,11 @@ const ServicesPreview = () => {
 
                 <p className="text-sm text-[#222222] mb-4 leading-relaxed">{service.description}</p>
 
-                <p className={`text-sm font-bold ${service.priceColor}`}>{service.price}</p>
-              </div>
+                <span className="inline-flex items-center gap-1 text-sm font-semibold text-[#0891b2] group-hover:text-[#0e7490] transition-colors">
+                  Detalii
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </span>
+              </Link>
             ))}
           </div>
 
@@ -92,7 +108,7 @@ const ServicesPreview = () => {
               to="/servicii" 
               className="inline-flex items-center justify-center gap-2 font-semibold text-sm px-8 py-4 rounded-full transition-all duration-300 bg-[#1e3a5f] text-white border-2 border-[#1e3a5f] hover:bg-transparent hover:text-[#1e3a5f]"
             >
-              VEZI TOATE SERVICIILE ȘI PREȚURILE
+              Vezi toate serviciile și prețurile
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>

@@ -273,13 +273,11 @@ const ReviewsSection = () => {
           {/* CTA Link */}
           <div className="text-center">
             <a
-              href="https://g.page/r/DoctorSuciuDental/review"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-[#0891b2] hover:text-[#0e7490] font-medium transition-colors group"
+              href="/pareri"
+              className="inline-flex items-center justify-center gap-2 font-semibold text-sm px-8 py-4 rounded-full transition-all duration-300 bg-[#1e3a5f] text-white border-2 border-[#1e3a5f] hover:bg-transparent hover:text-[#1e3a5f]"
             >
-              <span>Vezi toate recenziile pe Google</span>
-              <ExternalLink className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+              <span>Vezi toate recenziile</span>
+              <ExternalLink className="w-4 h-4" />
             </a>
           </div>
         </div>
