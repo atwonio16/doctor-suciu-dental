@@ -3,52 +3,52 @@ import { ArrowRight, CirclePlus, AlignCenter, Sparkles, Smile, Baby, AlertCircle
 
 const services = [
   {
+    id: 'implanturi',
     icon: CirclePlus,
     title: 'Implant dentar',
     description: 'Soluții permanente pentru dinți lipsă. Tehnologie modernă, garanție 10 ani.',
     bg: 'bg-indigo-50',
     iconColor: 'text-indigo-600',
-    href: '/servicii#implanturi',
   },
   {
+    id: 'ortodontie',
     icon: AlignCenter,
     title: 'Ortodonție',
     description: 'Aparate fixe și Invisalign. Îndreptăm dinții pentru un zâmbet perfect.',
     bg: 'bg-cyan-50',
     iconColor: 'text-cyan-600',
-    href: '/servicii#ortodontie',
   },
   {
+    id: 'albire',
     icon: Sparkles,
     title: 'Albire dentară',
     description: 'Zâmbet mai alb cu până la 8 nuanțe. Rezultate imediate, fără durere.',
     bg: 'bg-sky-50',
     iconColor: 'text-sky-600',
-    href: '/servicii#albire',
   },
   {
+    id: 'estetica',
     icon: Smile,
     title: 'Estetică dentară',
     description: 'Fațete, coroane și redesign de zâmbet. Transformări vizibile instant.',
     bg: 'bg-rose-50',
     iconColor: 'text-rose-600',
-    href: '/servicii#estetica',
   },
   {
+    id: 'copii',
     icon: Baby,
     title: 'Stomatologie copii',
     description: 'Atmosferă prietenoasă pentru cei mici. Pedodonție cu răbdare și blândețe.',
     bg: 'bg-amber-50',
     iconColor: 'text-amber-600',
-    href: '/servicii#copii',
   },
   {
+    id: 'urgente',
     icon: AlertCircle,
     title: 'Urgențe stomatologice',
     description: 'Durere de dinți, fracturi, infecții. Te ajutăm rapid în situații urgente.',
     bg: 'bg-red-50',
     iconColor: 'text-red-600',
-    href: '/servicii#urgente',
   },
 ];
 
@@ -80,26 +80,26 @@ const ServicesPreview = () => {
           </div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
-            {services.map((service, index) => (
-              <Link 
-                key={index}
-                to={service.href}
-                className="group p-6 rounded-2xl bg-white border border-[#e2e8f0] transition-all duration-300 hover:shadow-xl hover:shadow-slate-200/50 hover:border-[#cbd5e1]"
+            {services.map((service) => (
+              <a 
+                key={service.id}
+                href={`/servicii#${service.id}`}
+                className="group p-6 rounded-2xl bg-white border border-[#e2e8f0] transition-all duration-300 hover:shadow-xl hover:shadow-slate-200/50 hover:border-medical-navy/20"
               >
                 {/* Icon - Colorful soft background */}
                 <div className={`w-14 h-14 rounded-2xl ${service.bg} flex items-center justify-center mb-5 transition-all duration-300 group-hover:scale-105`}>
                   <service.icon className={`w-7 h-7 ${service.iconColor}`} strokeWidth={1.5} />
                 </div>
 
-                <h3 className="font-semibold text-[#0f172a] mb-2 text-lg">{service.title}</h3>
+                <h3 className="font-semibold text-[#0f172a] mb-2 text-lg group-hover:text-medical-navy transition-colors">{service.title}</h3>
 
                 <p className="text-sm text-[#222222] mb-4 leading-relaxed">{service.description}</p>
 
-                <span className="inline-flex items-center gap-1 text-sm font-semibold text-[#0891b2] group-hover:text-[#0e7490] transition-colors">
-                  Detalii
+                <span className="inline-flex items-center gap-1 text-sm font-semibold text-medical-teal group-hover:text-medical-navy transition-colors">
+                  Vezi prețuri
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </span>
-              </Link>
+              </a>
             ))}
           </div>
 
