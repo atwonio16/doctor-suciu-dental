@@ -51,7 +51,7 @@ const HeroSection = () => {
                   to="/contact"
                   className="inline-flex items-center justify-center gap-2 font-semibold text-sm px-8 py-4 rounded-full transition-all duration-300 bg-medical-navy text-white border-2 border-medical-navy hover:bg-transparent hover:text-medical-navy"
                 >
-                  Programează-te
+                  PROGRAMEAZĂ-TE
                   <ArrowRight className="w-4 h-4" />
                 </Link>
                 <a
@@ -59,7 +59,7 @@ const HeroSection = () => {
                   className="inline-flex items-center justify-center gap-2 font-semibold text-sm px-8 py-4 rounded-full transition-all duration-300 bg-white text-medical-navy border-2 border-medical-warm hover:border-medical-navy"
                 >
                   <Phone className="w-4 h-4" />
-                  Sună acum
+                  SUNĂ ACUM
                 </a>
               </div>
 
