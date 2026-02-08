@@ -99,11 +99,6 @@ const ReviewsSection = () => {
     setTranslateX(0);
   };
 
-  const currentReviews = reviews.slice(
-    currentPage * reviewsPerPage,
-    currentPage * reviewsPerPage + reviewsPerPage
-  );
-
   // Auto-advance
   useEffect(() => {
     const interval = setInterval(() => {

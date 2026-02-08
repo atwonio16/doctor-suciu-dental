@@ -69,7 +69,7 @@ const TeamSection = () => {
     : 'translate-x-0 opacity-100';
 
   return (
-    <section className="relative w-full py-20 overflow-hidden bg-[#f8fafc]">
+    <section id="medici" className="relative w-full py-20 overflow-hidden bg-[#f8fafc]">
       <div className="absolute inset-0">
         <div className="absolute top-1/4 left-0 w-[600px] h-[600px] bg-slate-100 rounded-full blur-3xl opacity-60" />
         <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-sky-50 rounded-full blur-3xl opacity-40" />

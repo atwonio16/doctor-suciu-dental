@@ -8,6 +8,17 @@ import ContactSection from '../sections/ContactSection';
 
 const HomePage = () => {
   useEffect(() => {
+    // Handle scroll on page load if hash is present
+    const hash = window.location.hash;
+    if (hash) {
+      const element = document.querySelector(hash);
+      if (element) {
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+      }
+    }
+
     const handleAnchorClick = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
       const anchor = target.closest('a[href^="#"]');

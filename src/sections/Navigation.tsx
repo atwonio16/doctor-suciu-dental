@@ -15,13 +15,19 @@ const Navigation = () => {
   }, []);
 
   const navLinks = [
-    { label: 'SERVICII', href: '/servicii' },
-    { label: 'BLOG', href: '/blog' },
-    { label: 'PĂRERI', href: '/pareri' },
-    { label: 'CONTACT', href: '/contact' },
+    { label: 'Acasă', href: '/' },
+    { label: 'Servicii', href: '/servicii' },
+    { label: 'Medici', href: '/#medici' },
+    { label: 'Blog', href: '/blog' },
+    { label: 'Contact', href: '/contact' },
   ];
 
-  const isActive = (href: string) => location.pathname === href;
+  const isActive = (href: string) => {
+    if (href.includes('#')) {
+      return location.pathname === href.split('#')[0] && location.hash === '#' + href.split('#')[1];
+    }
+    return location.pathname === href;
+  };
 
   return (
     <>
@@ -40,7 +46,7 @@ const Navigation = () => {
                 <Link
                   key={link.href}
                   to={link.href}
-                  className={`text-xs font-semibold tracking-wider transition-colors ${isActive(link.href) ? 'text-medical-navy' : 'text-[#222222] hover:text-medical-navy'}`}
+                  className={`text-sm font-medium transition-colors ${isActive(link.href) ? 'text-medical-navy' : 'text-[#222222] hover:text-medical-navy'}`}
                 >
                   {link.label}
                 </Link>
@@ -77,7 +83,7 @@ const Navigation = () => {
                   key={link.href}
                   to={link.href}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className={`text-sm font-semibold py-2 ${isActive(link.href) ? 'text-medical-navy' : 'text-[#222222]'}`}
+                  className={`text-base font-medium py-2 ${isActive(link.href) ? 'text-medical-navy' : 'text-[#222222]'}`}
                 >
                   {link.label}
                 </Link>

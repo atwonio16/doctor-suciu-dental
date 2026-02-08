@@ -61,7 +61,7 @@ const posts = [
 ];
 
 // Componenta pentru un card de blog
-const BlogCard = ({ post, index }: { post: typeof posts[0]; index: number }) => {
+const BlogCard = ({ post }: { post: typeof posts[0] }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
 
@@ -214,32 +214,29 @@ const BlogPage = () => {
 
           {/* Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-            {filteredPosts.map((post, index) => (
-              <BlogCard key={post.id} post={post} index={index} />
+            {filteredPosts.map((post) => (
+              <BlogCard key={post.id} post={post} />
             ))}
           </div>
 
-          {/* CTA Section - Consistent cu restul site-ului */}
-          <div className="mt-12 lg:mt-16">
-            <div className="relative bg-[#1e3a5f] rounded-3xl overflow-hidden">
-              <div className="absolute inset-0 opacity-[0.03]" style={{
-                backgroundImage: `radial-gradient(circle at 1px 1px, white 1px, transparent 0)`,
-                backgroundSize: '40px 40px'
-              }} />
-
-              <div className="relative z-10 px-8 py-12 lg:py-16 text-center">
-                <h3 className="text-2xl lg:text-3xl font-semibold text-white mb-4 tracking-tight">
-                  Ai întrebări după ce ai citit articolele?
-                </h3>
-                <p className="text-slate-300 mb-8 max-w-xl mx-auto">
-                  Programează o consultație gratuită și discută cu Dr. Suciu despre situația ta.
-                </p>
+          {/* CTA Section - Clean & Catchy */}
+          <div className="mt-16 lg:mt-20">
+            <div className="bg-[#1e3a5f] rounded-2xl px-8 py-10 lg:px-12 lg:py-12">
+              <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+                <div className="max-w-xl">
+                  <h3 className="text-2xl lg:text-3xl font-semibold text-white tracking-tight mb-2">
+                    Gata să-ți transformi zâmbetul?
+                  </h3>
+                  <p className="text-white text-base whitespace-nowrap">
+                    Consultație gratuită cu Dr. Suciu. Fără costuri ascunse, doar sfaturi sincere.
+                  </p>
+                </div>
                 <Link
                   to="/contact"
-                  className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-[#1e3a5f] font-semibold rounded-full transition-all duration-300 hover:bg-[#0891b2] hover:text-white"
+                  className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-[#0f172a] font-semibold rounded-full transition-all duration-300 hover:bg-[#0891b2] hover:text-white whitespace-nowrap shadow-lg"
                 >
-                  Programează gratuit
-                  <ArrowRight className="w-4 h-4" />
+                  Programează-te acum
+                  <ArrowRight className="w-5 h-5" />
                 </Link>
               </div>
             </div>
