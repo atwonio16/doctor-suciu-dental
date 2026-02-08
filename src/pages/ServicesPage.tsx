@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { ArrowLeft, Heart, Shield, Sparkles, Smile, CheckCircle2, ArrowRight } from 'lucide-react';
+import { Heart, Shield, Sparkles, Smile, CheckCircle2, ArrowRight } from 'lucide-react';
 
 const categories = [
   {
@@ -121,36 +121,24 @@ const ServicesPage = () => {
   return (
     <div className="min-h-screen bg-white pt-24 lg:pt-28">
       {/* Hero Header */}
-      <section className="relative w-full py-16 lg:py-20 bg-[#f8fafc] overflow-hidden">
-        <div className="absolute inset-0">
-          <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-slate-100 rounded-full blur-3xl opacity-60" />
-          <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-sky-50 rounded-full blur-3xl opacity-40" />
-        </div>
-        
-        <div className="relative z-10 w-full px-4 sm:px-6 lg:px-12 xl:px-20">
+      <section className="w-full pt-8 pb-12 lg:pt-12 lg:pb-16">
+        <div className="w-full px-4 sm:px-6 lg:px-12 xl:px-20">
           <div className="max-w-7xl mx-auto">
-            {/* Back Link */}
-            <Link to="/" className="inline-flex items-center gap-2 text-[#64748b] hover:text-medical-navy transition-colors mb-8">
-              <ArrowLeft className="w-4 h-4" />
-              Înapoi
-            </Link>
-            
             <div className="text-center max-w-3xl mx-auto">
               <div className="flex items-center justify-center gap-3 mb-6">
                 <span className="w-8 h-[2px] bg-[#94a3b8]" />
                 <span className="text-xs font-bold uppercase tracking-[0.2em] text-[#64748b]">
-                  Serviciile Noastre
+                  Lista de prețuri
                 </span>
                 <span className="w-8 h-[2px] bg-[#94a3b8]" />
               </div>
 
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-[#0f172a] mb-4 tracking-tight">
-                Soluții complete pentru zâmbetul tău
+              <h1 className="text-3xl sm:text-4xl lg:text-[2.75rem] font-semibold text-[#0f172a] mb-4 tracking-tight">
+                Ce costă să ai un zâmbet sănătos
               </h1>
 
-              <p className="text-lg text-[#222222]">
-                Prețuri transparente, fără costuri ascunse. 
-                <span className="text-medical-navy font-medium">Toate serviciile cu garanție.</span>
+              <p className="text-lg text-[#64748b] max-w-2xl mx-auto">
+                Ai prețurile pe masă de la început. Fără surprize, fără costuri ascunse. Și da, primești garanție scrisă pentru orice facem.
               </p>
             </div>
           </div>
