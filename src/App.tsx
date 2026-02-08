@@ -8,6 +8,7 @@ import BlogPage from './pages/BlogPage';
 import BlogPostPage from './pages/BlogPostPage';
 import TestimonialsPage from './pages/TestimonialsPage';
 import ContactPage from './pages/ContactPage';
+import DoctorProfilePage from './pages/DoctorProfilePage';
 import './App.css';
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
             <Route path="/blog/:id" element={<BlogPostPage />} />
             <Route path="/pareri" element={<TestimonialsPage />} />
             <Route path="/contact" element={<ContactPage />} />
+            <Route path="/medici/:id" element={<DoctorProfilePage />} />
           </Routes>
         </main>
         
