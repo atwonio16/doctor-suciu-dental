@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { Heart, Shield, Sparkles, Smile, CheckCircle2, ArrowRight } from 'lucide-react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Heart, Shield, Sparkles, Smile, CheckCircle2, ArrowRight, Calendar } from 'lucide-react';
 
 const categories = [
   {
@@ -99,6 +99,7 @@ const categories = [
 
 const ServicesPage = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const [activeCategory, setActiveCategory] = useState<string>('implanturi');
 
   // Scroll to category if hash is present
@@ -116,7 +117,15 @@ const ServicesPage = () => {
     window.scrollTo(0, 0);
   }, [location.hash]);
 
-  const currentCategory = categories.find(c => c.id === activeCategory);
+  const handleServiceClick = (categoryTitle: string, serviceName: string) => {
+    // Navigate to contact page with service info
+    navigate('/contact', {
+      state: {
+        service: `${categoryTitle} - ${serviceName}`,
+        message: `Sunt interesat de serviciul: ${serviceName} din categoria ${categoryTitle}.`
+      }
+    });
+  };
 
   return (
     <div className="min-h-screen bg-white pt-24 lg:pt-28">
@@ -145,13 +154,12 @@ const ServicesPage = () => {
         </div>
       </section>
 
-      {/* Category Navigation */}
-      <section className="w-full px-4 sm:px-6 lg:px-12 xl:px-20 py-8 sticky top-16 lg:top-20 bg-white border-b border-[#e2e8f0] z-30">
+      {/* Category Navigation - Sticky */}
+      <section className="w-full px-4 sm:px-6 lg:px-12 xl:px-20 py-4 sticky top-16 lg:top-20 bg-white/95 backdrop-blur-sm border-y border-[#e2e8f0] z-30">
         <div className="max-w-7xl mx-auto">
-          <div className="flex flex-wrap justify-center gap-2 lg:gap-3">
+          <div className="flex flex-wrap justify-center gap-2">
             {categories.map((cat) => {
               const Icon = cat.icon;
-              const isActive = activeCategory === cat.id;
               return (
                 <a
                   key={cat.id}
@@ -164,10 +172,10 @@ const ServicesPage = () => {
                       element.scrollIntoView({ behavior: 'smooth', block: 'start' });
                     }
                   }}
-                  className={`flex items-center gap-2 px-4 py-2.5 rounded-full font-medium text-sm transition-all duration-300 ${
-                    isActive 
-                      ? 'bg-medical-navy text-white shadow-lg shadow-medical-navy/25' 
-                      : 'bg-[#f8fafc] text-[#64748b] hover:bg-[#e2e8f0] border border-[#e2e8f0]'
+                  className={`flex items-center gap-2 px-4 py-2 rounded-full font-medium text-sm transition-all duration-200 ${
+                    activeCategory === cat.id
+                      ? 'bg-medical-navy text-white shadow-md'
+                      : 'bg-[#f8fafc] text-[#64748b] hover:bg-[#e2e8f0]'
                   }`}
                 >
                   <Icon className="w-4 h-4" />
@@ -179,107 +187,52 @@ const ServicesPage = () => {
         </div>
       </section>
 
-      {/* Services Content */}
+      {/* All Categories - Full View */}
       <section className="w-full px-4 sm:px-6 lg:px-12 xl:px-20 py-12">
-        <div className="max-w-4xl mx-auto">
-          {/* Active Category Header */}
-          {currentCategory && (
-            <div id={currentCategory.id} className="mb-8 scroll-mt-40">
-              <div className={`${currentCategory.color} rounded-2xl p-6 lg:p-8 border ${currentCategory.borderColor}`}>
-                <div className="flex items-center gap-4 mb-3">
-                  <div className={`w-12 h-12 rounded-xl bg-white flex items-center justify-center ${currentCategory.iconColor}`}>
-                    <currentCategory.icon className="w-6 h-6" strokeWidth={1.5} />
+        <div className="max-w-4xl mx-auto space-y-16">
+          {categories.map((category) => (
+            <div key={category.id} id={category.id} className="scroll-mt-32">
+              {/* Category Header */}
+              <div className={`${category.color} rounded-2xl p-6 mb-6 border ${category.borderColor}`}>
+                <div className="flex items-center gap-4">
+                  <div className={`w-12 h-12 rounded-xl bg-white flex items-center justify-center ${category.iconColor}`}>
+                    <category.icon className="w-6 h-6" strokeWidth={1.5} />
                   </div>
                   <div>
-                    <h2 className="text-xl lg:text-2xl font-semibold text-[#0f172a]">{currentCategory.title}</h2>
-                    <p className="text-[#64748b] text-sm">{currentCategory.desc}</p>
+                    <h2 className="text-xl lg:text-2xl font-semibold text-[#0f172a]">{category.title}</h2>
+                    <p className="text-[#64748b] text-sm">{category.desc}</p>
                   </div>
                 </div>
               </div>
 
-              {/* Services List */}
-              <div className="mt-4 space-y-3">
-                {currentCategory.services.map((service, idx) => (
-                  <div 
-                    key={idx} 
-                    className="flex items-center justify-between p-4 lg:p-5 bg-white rounded-xl border border-[#e2e8f0] hover:border-medical-navy/30 hover:shadow-md transition-all duration-200"
+              {/* Services List - All Visible */}
+              <div className="space-y-3">
+                {category.services.map((service, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => handleServiceClick(category.title, service.name)}
+                    className="w-full flex items-center justify-between p-4 lg:p-5 bg-white rounded-xl border border-[#e2e8f0] hover:border-medical-navy/30 hover:shadow-md transition-all duration-200 text-left group"
                   >
                     <div className="flex items-center gap-4">
-                      <div className={`w-10 h-10 rounded-lg ${currentCategory.color} flex items-center justify-center flex-shrink-0`}>
-                        <CheckCircle2 className={`w-5 h-5 ${currentCategory.iconColor}`} />
+                      <div className={`w-10 h-10 rounded-lg ${category.color} flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform`}>
+                        <Calendar className={`w-5 h-5 ${category.iconColor}`} />
                       </div>
                       <div>
-                        <h3 className="font-medium text-[#0f172a]">{service.name}</h3>
+                        <h3 className="font-medium text-[#0f172a] group-hover:text-medical-navy transition-colors">{service.name}</h3>
                         {service.duration && (
                           <span className="text-xs text-[#94a3b8]">{service.duration}</span>
                         )}
                       </div>
                     </div>
-                    <span className="font-semibold text-medical-navy text-lg">{service.price}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {/* Other Categories */}
-          {categories.filter(c => c.id !== activeCategory).map((category) => (
-            <div key={category.id} id={category.id} className="mb-8 scroll-mt-40">
-              <div className={`${category.color} rounded-2xl p-6 lg:p-8 border ${category.borderColor}`}>
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-4">
-                    <div className={`w-12 h-12 rounded-xl bg-white flex items-center justify-center ${category.iconColor}`}>
-                      <category.icon className="w-6 h-6" strokeWidth={1.5} />
-                    </div>
-                    <div>
-                      <h2 className="text-xl lg:text-2xl font-semibold text-[#0f172a]">{category.title}</h2>
-                      <p className="text-[#64748b] text-sm">{category.desc}</p>
-                    </div>
-                  </div>
-                  <a 
-                    href={`#${category.id}`}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      setActiveCategory(category.id);
-                    }}
-                    className="hidden sm:inline-flex items-center gap-2 text-sm font-medium text-[#64748b] hover:text-medical-navy transition-colors"
-                  >
-                    Vezi prețuri
-                    <ArrowRight className="w-4 h-4" />
-                  </a>
-                </div>
-              </div>
-
-              {/* Quick Preview (first 2 services) */}
-              <div className="mt-4 space-y-3">
-                {category.services.slice(0, 2).map((service, idx) => (
-                  <div 
-                    key={idx} 
-                    className="flex items-center justify-between p-4 bg-white rounded-xl border border-[#e2e8f0]"
-                  >
                     <div className="flex items-center gap-4">
-                      <div className={`w-8 h-8 rounded-lg ${category.color} flex items-center justify-center`}>
-                        <CheckCircle2 className={`w-4 h-4 ${category.iconColor}`} />
-                      </div>
-                      <span className="text-[#0f172a] text-sm">{service.name}</span>
+                      <span className="font-semibold text-medical-navy text-lg">{service.price}</span>
+                      <span className="hidden sm:inline-flex items-center gap-1 text-xs font-medium text-medical-teal opacity-0 group-hover:opacity-100 transition-opacity">
+                        Programează
+                        <ArrowRight className="w-3 h-3" />
+                      </span>
                     </div>
-                    <span className="font-semibold text-medical-navy">{service.price}</span>
-                  </div>
-                ))}
-                {category.services.length > 2 && (
-                  <button
-                    onClick={() => {
-                      setActiveCategory(category.id);
-                      const element = document.getElementById(category.id);
-                      if (element) {
-                        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                      }
-                    }}
-                    className="w-full py-3 text-sm font-medium text-[#64748b] hover:text-medical-navy transition-colors"
-                  >
-                    + {category.services.length - 2} servicii mai multe
                   </button>
-                )}
+                ))}
               </div>
             </div>
           ))}

@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { MapPin, Phone, Mail, Clock, Send, CheckCircle, Loader2, ArrowLeft } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -14,19 +14,40 @@ import {
 const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzlmLFfxYhvS_6MRgeY1_hIG6jCgMX5ygOalhlpa6RxjVl3AZtPYc50ihpC6TmHMKDO5w/exec';
 
 const services = [
-  'Consultație',
+  'Consultație gratuită',
   'Implant dentar',
+  'Ortodonție / Invisalign',
   'Albire dentară',
   'Fațete dentare',
-  'Ortodonție',
-  'Coroane dentare',
+  'Estetică dentară',
+  'Stomatologie copii',
+  'Urgențe stomatologice',
   'Alt serviciu',
 ];
 
 const ContactPage = () => {
+  const location = useLocation();
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [formData, setFormData] = useState({ name: '', phone: '', email: '', service: '', message: '' });
+  const [formData, setFormData] = useState({ 
+    name: '', 
+    phone: '', 
+    email: '', 
+    service: '', 
+    message: '' 
+  });
+
+  // Pre-populate form if coming from services page
+  useEffect(() => {
+    const state = location.state as { service?: string; message?: string } | null;
+    if (state?.service) {
+      setFormData(prev => ({
+        ...prev,
+        service: state.service || '',
+        message: state.message || prev.message
+      }));
+    }
+  }, [location.state]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
