@@ -105,20 +105,20 @@ const WhyChooseSection = () => {
   const [openIndex, setOpenIndex] = useState<number>(0);
 
   return (
-    <section className="relative w-full py-24 overflow-hidden bg-white">
+    <section className="relative w-full py-16 overflow-hidden bg-white">
       <div className="w-full px-4 sm:px-6 lg:px-12 xl:px-20">
         <div className="max-w-7xl mx-auto">
           {/* Benefits - Premium category style */}
-          <div className="text-center mb-12">
-            <div className="flex items-center justify-center gap-4 mb-4">
-              <div className="w-14 h-px bg-[#1e3a5f]"></div>
-              <span className="text-sm font-semibold tracking-[0.2em] text-[#1e3a5f] uppercase">
+          <div className="text-center mb-10">
+            <div className="flex items-center justify-center gap-3 mb-3">
+              <span className="w-12 h-[1px] bg-[#94a3b8]" />
+              <span className="text-xs font-semibold tracking-[0.15em] text-[#64748b] uppercase">
                 De Ce Să Ne Alegi
               </span>
-              <div className="w-14 h-px bg-[#1e3a5f]"></div>
+              <span className="w-12 h-[1px] bg-[#94a3b8]" />
             </div>
 
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-[#0f172a] mb-4 tracking-tight">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-[#0f172a] mb-3 tracking-tight">
               Diferența care contează
             </h2>
 
@@ -143,15 +143,15 @@ const WhyChooseSection = () => {
           </div>
 
           {/* FAQ Header - Consistent style */}
-          <div className="text-center mb-12">
-            <div className="flex items-center justify-center gap-4 mb-4">
-              <div className="w-14 h-px bg-[#1e3a5f]"></div>
-              <span className="text-sm font-semibold tracking-[0.2em] text-[#1e3a5f] uppercase">
+          <div className="text-center mb-10">
+            <div className="flex items-center justify-center gap-3 mb-3">
+              <span className="w-12 h-[1px] bg-[#94a3b8]" />
+              <span className="text-xs font-semibold tracking-[0.15em] text-[#64748b] uppercase">
                 Întrebări Frecvente
               </span>
-              <div className="w-14 h-px bg-[#1e3a5f]"></div>
+              <span className="w-12 h-[1px] bg-[#94a3b8]" />
             </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-[#1e293b] mb-4">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-[#1e293b] mb-3">
               Răspunsuri la întrebările tale
             </h2>
             <p className="text-[#64748b] text-lg max-w-2xl mx-auto">
