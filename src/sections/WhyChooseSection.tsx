@@ -105,17 +105,17 @@ const WhyChooseSection = () => {
   const [openIndex, setOpenIndex] = useState<number>(0);
 
   return (
-    <section className="relative w-full py-20 overflow-hidden bg-white">
+    <section className="relative w-full py-24 overflow-hidden bg-white">
       <div className="w-full px-4 sm:px-6 lg:px-12 xl:px-20">
         <div className="max-w-7xl mx-auto">
           {/* Benefits - Premium category style */}
-          <div className="text-center mb-16">
-            <div className="flex items-center justify-center gap-3 mb-6">
-              <span className="w-8 h-[2px] bg-[#94a3b8]" />
-              <span className="text-xs font-bold uppercase tracking-[0.2em] text-[#64748b]">
+          <div className="text-center mb-12">
+            <div className="flex items-center justify-center gap-4 mb-4">
+              <div className="w-14 h-px bg-[#1e3a5f]"></div>
+              <span className="text-sm font-semibold tracking-[0.2em] text-[#1e3a5f] uppercase">
                 De Ce Să Ne Alegi
               </span>
-              <span className="w-8 h-[2px] bg-[#94a3b8]" />
+              <div className="w-14 h-px bg-[#1e3a5f]"></div>
             </div>
 
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-[#0f172a] mb-4 tracking-tight">
@@ -127,7 +127,7 @@ const WhyChooseSection = () => {
             </p>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
             {benefits.map((benefit, index) => (
               <div 
                 key={index} 
@@ -143,8 +143,8 @@ const WhyChooseSection = () => {
           </div>
 
           {/* FAQ Header - Consistent style */}
-          <div className="text-center mb-14">
-            <div className="flex items-center justify-center gap-4 mb-5">
+          <div className="text-center mb-12">
+            <div className="flex items-center justify-center gap-4 mb-4">
               <div className="w-14 h-px bg-[#1e3a5f]"></div>
               <span className="text-sm font-semibold tracking-[0.2em] text-[#1e3a5f] uppercase">
                 Întrebări Frecvente

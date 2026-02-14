@@ -54,13 +54,13 @@ const TeamSection = () => {
   const doctor = doctors[activeIndex];
 
   return (
-    <section id="medici" className="relative w-full py-20 bg-white">
+    <section id="medici" className="relative w-full py-24 bg-white">
       <div className="w-full px-4 sm:px-6 lg:px-12 xl:px-20">
         <div className="max-w-7xl mx-auto">
           {/* Header */}
-          <div className="text-center mb-14">
+          <div className="text-center mb-12">
             {/* Label */}
-            <div className="flex items-center justify-center gap-4 mb-5">
+            <div className="flex items-center justify-center gap-4 mb-4">
               <div className="w-14 h-px bg-[#1e3a5f]"></div>
               <span className="text-sm font-semibold tracking-[0.2em] text-[#1e3a5f] uppercase">
                 Echipa Noastră

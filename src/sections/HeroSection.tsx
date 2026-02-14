@@ -3,21 +3,13 @@ import { Link } from 'react-router-dom';
 
 const HeroSection = () => {
   return (
-    <section id="hero" className="relative w-full pt-24 pb-16 overflow-hidden bg-white">
+    <section id="hero" className="relative w-full py-24 overflow-hidden bg-white">
       <div className="w-full px-4 sm:px-6 lg:px-12 xl:px-20">
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center min-h-[calc(100vh-10rem)]">
             {/* Left - Text Content */}
             <div className="text-left">
-              {/* Category - Simple text with line */}
-              <div className="flex items-center gap-3 mb-6">
-                <span className="w-8 h-[2px] bg-[#94a3b8]" />
-                <span className="text-xs font-bold uppercase tracking-[0.2em] text-[#64748b]">
-                  Clinică Stomatologică
-                </span>
-              </div>
-
-              {/* Title - Clear headline */}
+              {/* Title - Clear headline -->
               <h1 className="text-4xl sm:text-5xl lg:text-[3.25rem] font-semibold text-[#0f172a] leading-[1.15] mb-6 tracking-tight">
                 Clinică dentară modernă<br />
                 în Târgoviște
