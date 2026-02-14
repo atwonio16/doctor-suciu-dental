@@ -94,6 +94,11 @@ const ContactPage = () => {
   
   const [formData, setFormData] = useState({ name: '', phone: '', email: '', service: '', message: '' });
 
+  // Scroll to top on mount
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   // Primirea datelor de la ServicesPage
   useEffect(() => {
     const navState = location.state as { service?: string; fromServices?: boolean } | null;

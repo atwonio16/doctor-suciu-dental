@@ -112,6 +112,10 @@ const ServicesPage = () => {
   const [activeCategory, setActiveCategory] = useState<string>('implanturi');
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
     const hash = location.hash.replace('#', '');
     if (hash) {
       setActiveCategory(hash);
@@ -122,7 +126,6 @@ const ServicesPage = () => {
         }, 100);
       }
     }
-    window.scrollTo(0, 0);
   }, [location.hash]);
 
   const handleServiceClick = (categoryId: string) => {
