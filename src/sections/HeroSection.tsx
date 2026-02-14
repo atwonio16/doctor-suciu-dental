@@ -4,13 +4,7 @@ import { Link } from 'react-router-dom';
 const HeroSection = () => {
   return (
     <section id="hero" className="relative w-full pt-24 pb-16 overflow-hidden bg-white">
-      {/* Background - Pure white with very subtle hints */}
-      <div className="absolute inset-0">
-        <div className="absolute top-0 right-0 w-[700px] h-[700px] bg-blue-50/30 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-sky-50/20 rounded-full blur-3xl" />
-      </div>
-
-      <div className="relative z-10 w-full px-4 sm:px-6 lg:px-12 xl:px-20">
+      <div className="w-full px-4 sm:px-6 lg:px-12 xl:px-20">
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center min-h-[calc(100vh-10rem)]">
             {/* Left - Text Content */}

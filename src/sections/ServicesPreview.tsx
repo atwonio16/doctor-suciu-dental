@@ -54,11 +54,7 @@ const services = [
 const ServicesPreview = () => {
   return (
     <section id="servicii" className="relative w-full py-20 overflow-hidden bg-white">
-      <div className="absolute inset-0">
-        <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-sky-50/30 rounded-full blur-3xl" />
-      </div>
-      
-      <div className="relative z-10 w-full px-4 sm:px-6 lg:px-12 xl:px-20">
+      <div className="w-full px-4 sm:px-6 lg:px-12 xl:px-20">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
             <div className="flex items-center justify-center gap-3 mb-6">

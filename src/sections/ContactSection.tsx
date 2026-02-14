@@ -279,10 +279,7 @@ const ContactSection = () => {
 
   return (
     <section ref={sectionRef} id="contact" className="relative w-full py-20 overflow-hidden bg-white">
-      {/* Background simplu */}
-      <div className="absolute inset-0 bg-gradient-to-br from-slate-50/30 via-transparent to-sky-50/20" />
-
-      <div className="relative z-10 w-full px-4 sm:px-6 lg:px-12 xl:px-20">
+      <div className="w-full px-4 sm:px-6 lg:px-12 xl:px-20">
         <div className="max-w-7xl mx-auto">
           {/* Header */}
           <div className="text-center mb-10">

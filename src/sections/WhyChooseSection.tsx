@@ -106,13 +106,7 @@ const WhyChooseSection = () => {
 
   return (
     <section className="relative w-full py-20 overflow-hidden bg-white">
-      {/* Background */}
-      <div className="absolute inset-0">
-        <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-sky-50 rounded-full blur-3xl opacity-40" />
-        <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-slate-100 rounded-full blur-3xl opacity-60" />
-      </div>
-      
-      <div className="relative z-10 w-full px-4 sm:px-6 lg:px-12 xl:px-20">
+      <div className="w-full px-4 sm:px-6 lg:px-12 xl:px-20">
         <div className="max-w-7xl mx-auto">
           {/* Benefits - Premium category style */}
           <div className="text-center mb-16">
