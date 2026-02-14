@@ -139,24 +139,16 @@ const ServicesPage = () => {
   return (
     <div className="min-h-screen bg-white pt-24 lg:pt-28">
       {/* Hero Header */}
-      <section className="w-full pt-8 pb-12 lg:pt-12 lg:pb-16">
+      <section className="w-full py-16">
         <div className="w-full px-4 sm:px-6 lg:px-12 xl:px-20">
           <div className="max-w-7xl mx-auto">
             <div className="text-center max-w-3xl mx-auto">
-              <div className="flex items-center justify-center gap-3 mb-6">
-                <span className="w-8 h-[2px] bg-[#94a3b8]" />
-                <span className="text-xs font-bold uppercase tracking-[0.2em] text-[#64748b]">
-                  Lista de prețuri
-                </span>
-                <span className="w-8 h-[2px] bg-[#94a3b8]" />
-              </div>
-
-              <h1 className="text-3xl sm:text-4xl lg:text-[2.75rem] font-semibold text-[#0f172a] mb-4 tracking-tight">
-                Ce costă să ai un zâmbet sănătos
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-[#0f172a] mb-4 tracking-tight">
+                Servicii și prețuri
               </h1>
 
-              <p className="text-lg text-[#64748b] max-w-2xl mx-auto">
-                Ai prețurile pe masă de la început. Fără surprize, fără costuri ascunse. Și da, primești garanție scrisă pentru orice facem.
+              <p className="text-lg text-[#64748b] max-w-2xl mx-auto whitespace-nowrap">
+                Prețuri transparente, fără costuri ascunse. Garanție scrisă pentru toate tratamentele.
               </p>
             </div>
           </div>
