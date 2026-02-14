@@ -9,7 +9,7 @@ const HeroSection = () => {
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center min-h-[calc(100vh-10rem)]">
             {/* Left - Text Content */}
             <div className="text-left">
-              {/* Title - Clear headline -->
+              {/* Title - Clear headline */}
               <h1 className="text-4xl sm:text-5xl lg:text-[3.25rem] font-semibold text-[#0f172a] leading-[1.15] mb-6 tracking-tight">
                 Clinică dentară modernă<br />
                 în Târgoviște
