@@ -54,8 +54,8 @@ const TeamSection = () => {
   const doctor = doctors[activeIndex];
 
   return (
-    <section id="medici" className="relative w-full py-20 bg-[#f8fafc]">
-      <div className="relative z-10 w-full px-4 sm:px-6 lg:px-12 xl:px-20">
+    <section id="medici" className="relative w-full py-20 bg-white">
+      <div className="w-full px-4 sm:px-6 lg:px-12 xl:px-20">
         <div className="max-w-7xl mx-auto">
           {/* Header */}
           <div className="text-center mb-14">
