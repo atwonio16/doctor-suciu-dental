@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight, Calendar, Clock } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 // Datele articolelor de blog
 const posts = [
@@ -156,6 +156,10 @@ const BlogPage = () => {
   const [activeFilter, setActiveFilter] = useState('Toate');
   const categories = ['Toate', ...Array.from(new Set(posts.map(p => p.category)))];
   const filteredPosts = activeFilter === 'Toate' ? posts : posts.filter(p => p.category === activeFilter);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div className="min-h-screen bg-white pt-24 lg:pt-28">
