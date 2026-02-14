@@ -58,7 +58,7 @@ const ClinicGallery = () => {
   };
 
   return (
-    <section id="clinica" className="relative w-full py-24 overflow-hidden bg-white">
+    <section id="clinica" className="relative w-full py-28 overflow-hidden bg-white">
       <div className="w-full px-4 sm:px-6 lg:px-12 xl:px-20">
         <div className="max-w-7xl mx-auto">
           {/* Header */}
