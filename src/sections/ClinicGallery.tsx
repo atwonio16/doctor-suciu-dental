@@ -3,34 +3,34 @@ import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const galleryImages = [
   {
-    src: '/clinic-reception.jpg',
-    alt: 'Recepție clinică stomatologică',
-    title: 'Recepție',
-  },
-  {
-    src: '/clinic-chair.jpg',
-    alt: 'Scaun stomatologic modern',
+    src: '/hero_dental_chair.jpg',
+    alt: 'Cabinet modern cu echipament de ultimă generație',
     title: 'Cabinet tratament',
   },
   {
-    src: '/clinic-equipment.jpg',
-    alt: 'Echipament stomatologic modern',
-    title: 'Tehnologie',
+    src: '/technology_equipment.jpg',
+    alt: 'Tehnologie dentară avansată',
+    title: 'Echipamente moderne',
   },
   {
-    src: '/clinic-waiting.jpg',
-    alt: 'Zonă de așteptare',
-    title: 'Zonă așteptare',
+    src: '/faq-clinic.png',
+    alt: 'Consultație pacient',
+    title: 'Îngrijire personalizată',
   },
   {
-    src: '/clinic-sterilization.jpg',
-    alt: 'Zonă sterilizare',
-    title: 'Sterilizare',
+    src: '/implant_detail_work.jpg',
+    alt: 'Procedură implant dentar',
+    title: 'Implantologie',
   },
   {
-    src: '/clinic-xray.jpg',
-    alt: 'Echipament radiografie',
-    title: 'Radiografie digitală',
+    src: '/orthodontic_aligners.jpg',
+    alt: 'Aparate ortodontice și alignere',
+    title: 'Ortodonție',
+  },
+  {
+    src: '/services_overview_smile.jpg',
+    alt: 'Rezultate estetice dentare',
+    title: 'Estetică dentară',
   },
 ];
 
@@ -76,7 +76,7 @@ const ClinicGallery = () => {
             </h2>
 
             <p className="text-lg text-[#64748b] max-w-3xl mx-auto whitespace-nowrap">
-              Un spațiu real, creat pentru siguranța și confortul tău. Fără poze stock.
+              Clinica noastră din Târgoviște, echipată cu aparatură modernă pentru tratamente de calitate.
             </p>
           </div>
 
