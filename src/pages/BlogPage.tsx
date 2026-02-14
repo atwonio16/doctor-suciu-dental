@@ -175,21 +175,20 @@ const BlogPage = () => {
         </div>
       </section>
 
-      {/* Blog Grid Section */}
-      <section className="relative w-full px-4 sm:px-6 lg:px-12 xl:px-20 pb-16">
+      {/* Category Navigation */}
+      <section className="w-full px-4 sm:px-6 lg:px-12 xl:px-20 py-4 border-y border-[#e2e8f0] bg-white">
         <div className="max-w-7xl mx-auto">
-          {/* Filter tabs */}
-          <div className="flex flex-wrap items-center justify-center gap-2 mb-8">
+          <div className="flex flex-wrap justify-center gap-2">
             {categories.map((category) => (
               <button
                 key={category}
                 onClick={() => setActiveFilter(category)}
                 className={`
-                  px-5 py-2.5 rounded-full text-sm font-medium
-                  transition-all duration-300
+                  flex items-center gap-2 px-4 py-2 rounded-full font-medium text-sm uppercase tracking-wide
+                  transition-all duration-200
                   ${activeFilter === category
-                    ? 'bg-[#1e3a5f] text-white'
-                    : 'bg-white text-[#475569] border border-[#e2e8f0] hover:border-[#1e3a5f]'
+                    ? 'bg-[#1e3a5f] text-white shadow-md'
+                    : 'bg-[#f8fafc] text-[#64748b] hover:bg-[#e2e8f0]'
                   }
                 `}
               >
@@ -197,6 +196,12 @@ const BlogPage = () => {
               </button>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Blog Grid Section */}
+      <section className="relative w-full px-4 sm:px-6 lg:px-12 xl:px-20 py-12 pb-16">
+        <div className="max-w-7xl mx-auto">
 
           {/* Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
