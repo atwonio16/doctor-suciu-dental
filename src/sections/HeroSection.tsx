@@ -1,4 +1,4 @@
-import { ArrowRight, Phone, MapPin, Clock } from 'lucide-react';
+import { ArrowRight, Phone, MapPin, Clock, Star } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const HeroSection = () => {
@@ -10,10 +10,23 @@ const HeroSection = () => {
             {/* Left - Text Content */}
             <div className="text-left">
               {/* Title - Clear headline */}
-              <h1 className="text-4xl sm:text-5xl lg:text-[3.25rem] font-semibold text-[#0f172a] leading-[1.15] mb-6 tracking-tight">
+              <h1 className="text-4xl sm:text-5xl lg:text-[3.25rem] font-semibold text-[#0f172a] leading-[1.15] mb-4 tracking-tight">
                 Clinică dentară modernă<br />
                 în Târgoviște
               </h1>
+
+              {/* Social Proof */}
+              <div className="flex items-center gap-2 mb-6">
+                <div className="flex items-center">
+                  <Star className="w-5 h-5 fill-amber-400 text-amber-400" />
+                  <Star className="w-5 h-5 fill-amber-400 text-amber-400" />
+                  <Star className="w-5 h-5 fill-amber-400 text-amber-400" />
+                  <Star className="w-5 h-5 fill-amber-400 text-amber-400" />
+                  <Star className="w-5 h-5 fill-amber-400 text-amber-400" />
+                </div>
+                <span className="font-semibold text-[#0f172a]">5.0</span>
+                <span className="text-[#64748b]">din 53 recenzii Google</span>
+              </div>
 
               {/* Subtitle - Benefits */}
               <p className="text-lg text-[#222222] mb-8 max-w-lg leading-relaxed">
