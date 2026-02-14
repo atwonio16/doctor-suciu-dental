@@ -101,16 +101,16 @@ const ReviewsSection = () => {
     setTranslateX(0);
   };
 
-  // Auto-advance
+  // Auto-advance - 5 seconds
   useEffect(() => {
     const interval = setInterval(() => {
-      if (!isDragging) {
+      if (!isDragging && !isAnimating) {
         const next = (currentPage + 1) % totalPages;
         goToPage(next);
       }
-    }, 6000);
+    }, 5000);
     return () => clearInterval(interval);
-  }, [currentPage, isDragging, totalPages]);
+  }, [currentPage, isDragging, isAnimating, totalPages]);
 
   return (
     <section className="relative w-full py-16 overflow-hidden bg-white">
