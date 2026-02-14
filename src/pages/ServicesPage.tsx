@@ -235,11 +235,11 @@ const ServicesPage = () => {
                         )}
                       </div>
                     </div>
-                    <div className="flex items-center gap-4">
-                      <span className="font-semibold text-[#1e3a5f] text-lg">{service.price}</span>
-                      <span className="hidden sm:inline-flex items-center gap-1 text-xs font-medium text-[#0891b2]">
-                        Programează
-                        <ArrowRight className="w-3 h-3" />
+                    <div className="flex items-center gap-4 relative">
+                      <span className="font-semibold text-[#1e3a5f] text-lg group-hover:opacity-0 transition-opacity duration-200">{service.price}</span>
+                      <span className="absolute right-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200 inline-flex items-center gap-1 text-sm font-semibold text-[#0891b2] whitespace-nowrap">
+                        Programează-te
+                        <ArrowRight className="w-4 h-4" />
                       </span>
                     </div>
                   </button>
