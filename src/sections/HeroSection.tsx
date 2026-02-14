@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom';
 
 const HeroSection = () => {
   return (
-    <section id="hero" className="relative w-full py-20 sm:py-28 overflow-hidden bg-white">
+    <section id="hero" className="relative w-full pt-28 pb-12 sm:pt-32 sm:pb-16 lg:pt-36 lg:pb-20 overflow-hidden bg-white">
       <div className="w-full px-4 sm:px-6 lg:px-12 xl:px-20">
         <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col lg:grid lg:grid-cols-2 gap-8 lg:gap-16 items-center min-h-[calc(100vh-8rem)] lg:min-h-[calc(100vh-10rem)]">
+          <div className="flex flex-col lg:grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             
             {/* Image - First on mobile */}
             <div className="relative w-full flex items-center justify-center order-first lg:order-last">
@@ -14,7 +14,7 @@ const HeroSection = () => {
                 <img
                   src="/hero-clinic.jpg"
                   alt="Clinică stomatologică modernă în Târgoviște"
-                  className="w-full h-64 sm:h-80 lg:h-[580px] object-cover object-center"
+                  className="w-full h-56 sm:h-72 lg:h-[520px] object-cover object-center"
                   onError={(e) => {
                     (e.target as HTMLImageElement).src = '/hero-family1.png';
                   }}
@@ -24,13 +24,20 @@ const HeroSection = () => {
 
             {/* Left - Text Content */}
             <div className="text-center lg:text-left order-last lg:order-first">
-              {/* Title - Larger on mobile for impact */}
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-[#0f172a] leading-tight mb-4 tracking-tight whitespace-nowrap">
+              {/* Title */}
+              <h1 className="text-3xl sm:text-4xl lg:text-[2.75rem] font-semibold text-[#0f172a] leading-[1.1] mb-4 tracking-tight">
                 Zâmbetul tău începe aici !
               </h1>
 
+              {/* Subheadline - exact 2 rânduri */}
+              <p className="text-lg sm:text-xl text-[#334155] mb-5 max-w-xl mx-auto lg:mx-0 leading-relaxed">
+                Clinică dentară modernă în Târgoviște.<br className="hidden sm:block" />
+                <span className="sm:hidden"> </span>
+                Îngrijire premium, fără durere, cu rezultate garantate.
+              </p>
+
               {/* Social Proof */}
-              <div className="flex items-center justify-center lg:justify-start gap-2 mb-5 sm:mb-6">
+              <div className="flex items-center justify-center lg:justify-start gap-2 mb-5">
                 <div className="flex items-center">
                   {[...Array(5)].map((_, i) => (
                     <Star key={i} className="w-4 h-4 sm:w-5 sm:h-5 fill-amber-400 text-amber-400" />
@@ -40,26 +47,26 @@ const HeroSection = () => {
                 <span className="text-[#64748b] text-sm sm:text-base">din 53 recenzii Google</span>
               </div>
 
-              {/* Subtitle - Benefits - Stacked on mobile */}
-              <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-2 sm:gap-4 mb-6 sm:mb-8 text-base sm:text-lg text-[#222222]">
-                <span className="inline-flex items-center gap-2">
+              {/* Benefits - Inline */}
+              <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-2 sm:gap-4 mb-6 text-sm sm:text-base text-[#475569]">
+                <span className="inline-flex items-center gap-1.5">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#0d9488] flex-shrink-0" />
                   Fără durere
                 </span>
                 <span className="hidden sm:inline text-[#cbd5e1]">|</span>
-                <span className="inline-flex items-center gap-2">
+                <span className="inline-flex items-center gap-1.5">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#0d9488] flex-shrink-0" />
                   Medici specializați
                 </span>
                 <span className="hidden sm:inline text-[#cbd5e1]">|</span>
-                <span className="inline-flex items-center gap-2">
+                <span className="inline-flex items-center gap-1.5">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#0d9488] flex-shrink-0" />
                   Programări rapide
                 </span>
               </div>
 
-              {/* CTAs - Full width on mobile */}
-              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-8 sm:mb-10">
+              {/* CTAs */}
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-6 sm:mb-8">
                 <Link
                   to="/contact"
                   className="w-full sm:w-auto inline-flex items-center justify-center gap-2 font-semibold text-sm px-6 sm:px-8 py-4 rounded-full transition-all duration-300 bg-medical-navy text-white border-2 border-medical-navy hover:bg-transparent hover:text-medical-navy active:scale-95"
@@ -76,28 +83,25 @@ const HeroSection = () => {
                 </a>
               </div>
 
-              {/* Info - Simplified on mobile */}
-              <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 sm:gap-x-8 sm:gap-y-4 text-sm">
-                {/* Phone */}
-                <a href="tel:+40770220110" className="flex items-center gap-2.5 text-[#222222] hover:text-[#1e3a5f] transition-colors group">
-                  <span className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#e0f2fe]/60 border border-[#bae6fd]/50 flex items-center justify-center text-[#0284c7]">
-                    <Phone className="w-4 h-4" />
+              {/* Info */}
+              <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 sm:gap-6 text-sm">
+                <a href="tel:+40770220110" className="flex items-center gap-2 text-[#334155] hover:text-[#1e3a5f] transition-colors">
+                  <span className="w-8 h-8 rounded-full bg-[#e0f2fe] flex items-center justify-center text-[#0284c7]">
+                    <Phone className="w-3.5 h-3.5" />
                   </span>
                   <span className="font-medium">0770 220 110</span>
                 </a>
 
-                {/* Location - Hidden on small mobile */}
-                <a href="https://maps.google.com/?q=Calea+Domnească+234+Târgoviște" target="_blank" rel="noopener noreferrer" className="hidden sm:flex items-center gap-2.5 text-[#222222] hover:text-[#1e3a5f] transition-colors group">
-                  <span className="w-10 h-10 rounded-full bg-[#e0f2fe]/60 border border-[#bae6fd]/50 flex items-center justify-center text-[#0284c7]">
-                    <MapPin className="w-4 h-4" />
+                <a href="https://maps.google.com/?q=Calea+Domnească+234+Târgoviște" target="_blank" rel="noopener noreferrer" className="hidden sm:flex items-center gap-2 text-[#334155] hover:text-[#1e3a5f] transition-colors">
+                  <span className="w-8 h-8 rounded-full bg-[#e0f2fe] flex items-center justify-center text-[#0284c7]">
+                    <MapPin className="w-3.5 h-3.5" />
                   </span>
                   <span className="font-medium">Târgoviște</span>
                 </a>
 
-                {/* Schedule - Hidden on mobile */}
-                <div className="hidden lg:flex items-center gap-2.5 text-[#222222]">
-                  <span className="w-10 h-10 rounded-full bg-[#e0f2fe]/60 border border-[#bae6fd]/50 flex items-center justify-center text-[#0284c7]">
-                    <Clock className="w-4 h-4" />
+                <div className="hidden lg:flex items-center gap-2 text-[#334155]">
+                  <span className="w-8 h-8 rounded-full bg-[#e0f2fe] flex items-center justify-center text-[#0284c7]">
+                    <Clock className="w-3.5 h-3.5" />
                   </span>
                   <span className="font-medium">L-J: 9-18 | V: 9-15</span>
                 </div>
@@ -106,17 +110,6 @@ const HeroSection = () => {
           </div>
         </div>
       </div>
-
-      {/* Scroll indicator - Hidden on mobile */}
-      <a 
-        href="#servicii" 
-        className="hidden lg:flex absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce"
-        aria-label="Scroll down"
-      >
-        <div className="w-6 h-10 rounded-full border-2 border-[#1e3a5f] flex justify-center pt-2 hover:bg-[#1e3a5f]/5 transition-colors">
-          <div className="w-1.5 h-3 rounded-full bg-[#1e3a5f]" />
-        </div>
-      </a>
     </section>
   );
 };
