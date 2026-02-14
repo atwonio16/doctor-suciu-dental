@@ -135,8 +135,8 @@ const ContactPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white">
-      <section className="relative w-full pt-28 lg:pt-32 pb-16 lg:pb-20 overflow-hidden bg-white">
+    <div className="min-h-screen bg-white pt-24 lg:pt-28">
+      <section className="relative w-full pb-10 overflow-hidden bg-white">
         <div className="absolute inset-0 bg-gradient-to-br from-blue-50/20 via-transparent to-sky-50/10" />
         <div className="relative z-10 w-full px-4 sm:px-6 lg:px-12 xl:px-20">
           <div className="max-w-7xl mx-auto">

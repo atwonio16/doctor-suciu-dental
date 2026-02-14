@@ -158,12 +158,12 @@ const BlogPage = () => {
   const filteredPosts = activeFilter === 'Toate' ? posts : posts.filter(p => p.category === activeFilter);
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white pt-24 lg:pt-28">
       {/* Hero Section */}
-      <section className="w-full py-16">
+      <section className="w-full pb-10">
         <div className="w-full px-4 sm:px-6 lg:px-12 xl:px-20">
           <div className="max-w-7xl mx-auto">
-            <div className="text-center max-w-3xl mx-auto mb-12">
+            <div className="text-center max-w-3xl mx-auto mb-10">
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-[#0f172a] mb-4 tracking-tight">
                 Articole și sfaturi
               </h1>
@@ -176,7 +176,7 @@ const BlogPage = () => {
       </section>
 
       {/* Blog Grid Section */}
-      <section className="relative w-full px-4 sm:px-6 lg:px-12 xl:px-20 py-10 lg:py-12">
+      <section className="relative w-full px-4 sm:px-6 lg:px-12 xl:px-20 pb-16">
         <div className="max-w-7xl mx-auto">
           {/* Filter tabs */}
           <div className="flex flex-wrap items-center justify-center gap-2 mb-8">

@@ -139,10 +139,10 @@ const ServicesPage = () => {
   return (
     <div className="min-h-screen bg-white pt-24 lg:pt-28">
       {/* Hero Header */}
-      <section className="w-full py-16">
+      <section className="w-full pb-10">
         <div className="w-full px-4 sm:px-6 lg:px-12 xl:px-20">
           <div className="max-w-7xl mx-auto">
-            <div className="text-center max-w-3xl mx-auto mb-12">
+            <div className="text-center max-w-3xl mx-auto mb-10">
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-[#0f172a] mb-4 tracking-tight">
                 Servicii și prețuri
               </h1>
