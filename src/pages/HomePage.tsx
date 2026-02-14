@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import HeroSection from '../sections/HeroSection';
+import BeforeAfterSection from '../sections/BeforeAfterSection';
 import ServicesPreview from '../sections/ServicesPreview';
 import WhyChooseSection from '../sections/WhyChooseSection';
 import ReviewsSection from '../sections/ReviewsSection';
@@ -45,7 +46,10 @@ const HomePage = () => {
       {/* 1. Hero - Prima secțiune, critică */}
       <HeroSection />
       
-      {/* 2. Servicii principale - Overview rapid */}
+      {/* 2. Before & After - Transformări reale */}
+      <BeforeAfterSection />
+      
+      {/* 3. Servicii principale - Overview rapid */}
       <ServicesPreview />
       
       {/* 3. De ce noi - Diferențiatori */}
