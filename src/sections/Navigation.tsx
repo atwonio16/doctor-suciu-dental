@@ -17,7 +17,7 @@ const Navigation = () => {
   const navLinks = [
     { label: 'Acasă', href: '/' },
     { label: 'Servicii', href: '/servicii' },
-    { label: 'Medici', href: '/medici' },
+    { label: 'Medici', href: '/#medici' },
     { label: 'Blog', href: '/blog' },
     { label: 'Contact', href: '/contact' },
   ];

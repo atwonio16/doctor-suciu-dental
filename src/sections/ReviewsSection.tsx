@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { Star, ChevronLeft, ChevronRight, ExternalLink } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { useGoogleReviews } from '../hooks/useGoogleReviews';
 
 const reviews = [
   {
@@ -54,6 +54,7 @@ const reviews = [
 ];
 
 const ReviewsSection = () => {
+  const { data: googleData } = useGoogleReviews();
   const [currentPage, setCurrentPage] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
@@ -140,29 +141,19 @@ const ReviewsSection = () => {
             </p>
           </div>
 
-          {/* Minimalist Google Rating Badge */}
-          <div className="flex justify-center mb-10">
-            <div className="inline-flex items-center gap-3 bg-white rounded-xl px-5 py-3 border border-[#e2e8f0] shadow-sm">
-              <svg className="w-5 h-5" viewBox="0 0 24 24">
-                <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
-                <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-                <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
-                <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
-              </svg>
-              <div className="flex items-center gap-1.5">
-                <span className="font-semibold text-[#0f172a]">5.0</span>
-                <div className="flex">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
-                  ))}
-                </div>
-              </div>
-              <span className="text-sm text-[#64748b]">pe baza a <span className="font-medium text-[#0f172a]">51 de recenzii</span></span>
-            </div>
-          </div>
+          {/* Reviews Carousel with Side Navigation */}
+          <div className="relative mb-8 px-4 sm:px-12 lg:px-16">
+            {/* Left Arrow - positioned outside */}
+            <button
+              onClick={prevPage}
+              disabled={currentPage === 0 || isAnimating}
+              className="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white border border-[#e2e8f0] shadow-sm flex items-center justify-center text-[#64748b] hover:text-[#1e3a5f] hover:border-[#1e3a5f] hover:shadow-md transition-all disabled:opacity-30 disabled:cursor-not-allowed"
+              aria-label="Previous reviews"
+            >
+              <ChevronLeft className="w-5 h-5" />
+            </button>
 
-          {/* Reviews Carousel */}
-          <div className="relative mb-8">
+            {/* Carousel */}
             <div
               ref={containerRef}
               className="overflow-hidden cursor-grab active:cursor-grabbing select-none"
@@ -185,25 +176,23 @@ const ReviewsSection = () => {
                     {reviews.slice(pageIndex * reviewsPerPage, (pageIndex + 1) * reviewsPerPage).map((review) => (
                       <div
                         key={review.id}
-                        className="bg-white rounded-xl p-6 border border-[#e2e8f0] h-full"
+                        className="bg-white rounded-xl p-6 border border-[#e2e8f0] shadow-sm h-full flex flex-col"
                       >
-                        {/* Header */}
-                        <div className="flex items-start justify-between mb-4">
-                          <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 rounded-full bg-[#1e3a5f] flex items-center justify-center text-white font-semibold text-sm">
-                              {review.avatar}
-                            </div>
-                            <div>
-                              <p className="font-semibold text-[#0f172a] text-sm">{review.name}</p>
-                              <p className="text-xs text-[#64748b]">Târgoviște</p>
-                            </div>
+                        {/* Header - Avatar + Name */}
+                        <div className="flex items-center gap-3 mb-4">
+                          <div className="w-11 h-11 rounded-full bg-[#1e3a5f] flex items-center justify-center text-white font-semibold text-sm flex-shrink-0">
+                            {review.avatar}
+                          </div>
+                          <div className="min-w-0">
+                            <p className="font-semibold text-[#0f172a] text-sm truncate">{review.name}</p>
+                            <p className="text-xs text-[#64748b]">Târgoviște</p>
                           </div>
                         </div>
 
-                        {/* Stars and date */}
+                        {/* Stars and Date */}
                         <div className="flex items-center gap-2 mb-3">
                           <div className="flex">
-                            {[...Array(review.rating)].map((_, i) => (
+                            {[...Array(5)].map((_, i) => (
                               <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
                             ))}
                           </div>
@@ -211,8 +200,8 @@ const ReviewsSection = () => {
                         </div>
 
                         {/* Review text */}
-                        <p className="text-[#222222] text-sm leading-relaxed">
-                          {review.text}
+                        <p className="text-[#374151] text-sm leading-relaxed flex-1">
+                          "{review.text}"
                         </p>
                       </div>
                     ))}
@@ -220,53 +209,57 @@ const ReviewsSection = () => {
                 ))}
               </div>
             </div>
-          </div>
 
-          {/* Minimal Navigation */}
-          <div className="flex items-center justify-center gap-3 mb-8">
-            <button
-              onClick={prevPage}
-              disabled={currentPage === 0 || isAnimating}
-              className="w-9 h-9 rounded-full bg-white border border-[#e2e8f0] flex items-center justify-center text-[#64748b] hover:text-[#1e3a5f] hover:border-[#1e3a5f] transition-all disabled:opacity-30"
-              aria-label="Previous reviews"
-            >
-              <ChevronLeft className="w-5 h-5" />
-            </button>
-
-            <div className="flex items-center gap-1.5">
-              {Array.from({ length: totalPages }).map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => goToPage(index)}
-                  className={`h-1.5 rounded-full transition-all ${
-                    index === currentPage
-                      ? 'w-5 bg-[#1e3a5f]'
-                      : 'w-1.5 bg-[#e2e8f0] hover:bg-[#cbd5e1]'
-                  }`}
-                  aria-label={`Go to page ${index + 1}`}
-                />
-              ))}
-            </div>
-
+            {/* Right Arrow - positioned outside */}
             <button
               onClick={nextPage}
               disabled={currentPage === totalPages - 1 || isAnimating}
-              className="w-9 h-9 rounded-full bg-[#1e3a5f] flex items-center justify-center text-white hover:bg-[#152a45] transition-all disabled:opacity-30"
+              className="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-[#1e3a5f] shadow-sm flex items-center justify-center text-white hover:bg-[#152a45] hover:shadow-md transition-all disabled:opacity-30 disabled:cursor-not-allowed"
               aria-label="Next reviews"
             >
               <ChevronRight className="w-5 h-5" />
             </button>
           </div>
 
-          {/* CTA Link - Text only */}
+          {/* Dots Indicator */}
+          <div className="flex items-center justify-center gap-1.5 mb-4">
+            {Array.from({ length: totalPages }).map((_, index) => (
+              <button
+                key={index}
+                onClick={() => goToPage(index)}
+                className={`h-1.5 rounded-full transition-all ${
+                  index === currentPage
+                    ? 'w-5 bg-[#1e3a5f]'
+                    : 'w-1.5 bg-[#e2e8f0] hover:bg-[#cbd5e1]'
+                }`}
+                aria-label={`Go to page ${index + 1}`}
+              />
+            ))}
+          </div>
+
+          {/* Google Reviews Badge + Link - Below cards */}
           <div className="text-center">
-            <Link
-              to="/pareri"
-              className="inline-flex items-center gap-1.5 text-sm font-medium text-[#64748b] hover:text-[#1e3a5f] transition-colors group"
+            <a 
+              href="https://www.google.com/search?sa=X&sca_esv=3e8b06acf992d999&rlz=1C1FHFK_enES1096ES1096&sxsrf=ANbL-n7_67OaB8qcRYwA5rO2L62mVrOQng:1770685897789&q=DOCTOR+SUCIU+Dental+Clinic+Reviews&rflfq=1&num=20&stick=H4sIAAAAAAAAAONgkxIyNja1NDQ2NDQ3MrI0NDI2MDPawMj4ilHJxd85xD9IITjU2TNUwSU1ryQxR8E5JzMvM1khKLUsM7W8eBErEYoAkWUiJmMAAAA&rldimm=335913117229123062&tbm=lcl&hl=en-RO&ved=2ahUKEwjr-8j_3s2SAxUtgv0HHZ-FG_8Q9fQKegQIRRAG&biw=1365&bih=655&dpr=1.88#lkt=LocalPoiReviews"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-sm font-medium text-[#64748b] hover:text-[#1e3a5f] transition-colors group"
             >
-              <span>Vezi toate recenziile</span>
-              <ExternalLink className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
-            </Link>
+              <svg className="w-4 h-4" viewBox="0 0 24 24">
+                <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+              </svg>
+              <span>{googleData?.rating.toFixed(1) || '5.0'}</span>
+              <div className="flex">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="w-3 h-3 fill-amber-400 text-amber-400" />
+                ))}
+              </div>
+              <span>din {googleData?.userRatingsTotal || '53'} recenzii pe Google</span>
+              <ExternalLink className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
+            </a>
           </div>
         </div>
       </div>

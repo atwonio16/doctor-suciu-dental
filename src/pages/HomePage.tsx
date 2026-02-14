@@ -5,7 +5,7 @@ import WhyChooseSection from '../sections/WhyChooseSection';
 import ReviewsSection from '../sections/ReviewsSection';
 import TeamSection from '../sections/TeamSection';
 import ClinicGallery from '../sections/ClinicGallery';
-import HowToBook from '../sections/HowToBook';
+
 import ContactSection from '../sections/ContactSection';
 
 const HomePage = () => {
@@ -60,9 +60,7 @@ const HomePage = () => {
       {/* 6. Clinica - Poze reale */}
       <ClinicGallery />
       
-      {/* 7. Cum te programezi - 3 pași simpli */}
-      <HowToBook />
-      
+
       {/* 8. CTA final - Conversie */}
       <ContactSection />
     </>

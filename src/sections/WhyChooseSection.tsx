@@ -53,6 +53,10 @@ const faqs = [
     question: 'Cât durează un tratament?',
     answer: 'Durata variază în funcție de complexitate. O consultație durează 30-45 minute, iar tratamentele complexe pot necesita mai multe ședințe.',
   },
+  {
+    question: 'Cum mă pot programa?',
+    answer: 'Te poți programa rapid telefonic la 0770 220 110, prin formularul de contact de pe site sau direct la clinică. Oferim programări flexibile, inclusiv în weekend, pentru a se potrivi cu programul tău.',
+  },
 ];
 
 interface FAQItemProps {
@@ -144,35 +148,39 @@ const WhyChooseSection = () => {
             ))}
           </div>
 
-          {/* FAQ - Premium category style */}
-          <div className="grid lg:grid-cols-2 gap-12 items-start">
-            <div>
-              <div className="flex items-center gap-3 mb-6">
-                <span className="w-8 h-[2px] bg-[#94a3b8]" />
-                <span className="text-xs font-bold uppercase tracking-[0.2em] text-[#64748b]">
-                  Întrebări Frecvente
-                </span>
-              </div>
+          {/* FAQ Header - Consistent style */}
+          <div className="text-center mb-14">
+            <div className="flex items-center justify-center gap-4 mb-5">
+              <div className="w-14 h-px bg-[#1e3a5f]"></div>
+              <span className="text-sm font-semibold tracking-[0.2em] text-[#1e3a5f] uppercase">
+                Întrebări Frecvente
+              </span>
+              <div className="w-14 h-px bg-[#1e3a5f]"></div>
+            </div>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-[#1e293b] mb-4">
+              Răspunsuri la întrebările tale
+            </h2>
+            <p className="text-[#64748b] text-lg max-w-2xl mx-auto">
+              Găsești aici informații utile despre serviciile noastre și cum putem să te ajutăm.
+            </p>
+          </div>
 
-              <h3 className="text-2xl sm:text-3xl font-semibold text-[#0f172a] mb-6 tracking-tight">
-                Răspunsuri la întrebările tale
-              </h3>
-              
-              <div className="space-y-3">
-                {faqs.map((faq, index) => (
-                  <FAQItem
-                    key={index}
-                    faq={faq}
-                    index={index}
-                    isOpen={openIndex === index}
-                    onToggle={() => setOpenIndex(openIndex === index ? -1 : index)}
-                  />
-                ))}
-              </div>
+          {/* FAQ Content - Grid with image */}
+          <div className="grid lg:grid-cols-2 gap-12 items-start">
+            <div className="space-y-4">
+              {faqs.map((faq, index) => (
+                <FAQItem
+                  key={index}
+                  faq={faq}
+                  index={index}
+                  isOpen={openIndex === index}
+                  onToggle={() => setOpenIndex(openIndex === index ? -1 : index)}
+                />
+              ))}
             </div>
 
             {/* Image */}
-            <div className="relative h-[500px] rounded-2xl border border-[#e2e8f0] overflow-hidden">
+            <div className="relative h-[520px] rounded-2xl border border-[#e2e8f0] overflow-hidden shadow-sm">
               <img
                 src="/faq-clinic.png"
                 alt="Echipament stomatologic modern"

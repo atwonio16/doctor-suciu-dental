@@ -97,12 +97,20 @@ const categories = [
   },
 ];
 
+const categoryMap: Record<string, string> = {
+  'implanturi': 'Implant dentar',
+  'ortodontie': 'Ortodonție / Invisalign',
+  'albire': 'Albire dentară',
+  'estetica': 'Estetică dentară',
+  'copii': 'Stomatologie copii',
+  'urgente': 'Urgențe stomatologice',
+};
+
 const ServicesPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const [activeCategory, setActiveCategory] = useState<string>('implanturi');
 
-  // Scroll to category if hash is present
   useEffect(() => {
     const hash = location.hash.replace('#', '');
     if (hash) {
@@ -117,12 +125,13 @@ const ServicesPage = () => {
     window.scrollTo(0, 0);
   }, [location.hash]);
 
-  const handleServiceClick = (categoryTitle: string, serviceName: string) => {
-    // Navigate to contact page with service info
+  const handleServiceClick = (categoryId: string) => {
+    const serviceName = categoryMap[categoryId] || 'Consultație gratuită';
+    
     navigate('/contact', {
       state: {
-        service: `${categoryTitle} - ${serviceName}`,
-        message: `Sunt interesat de serviciul: ${serviceName} din categoria ${categoryTitle}.`
+        service: serviceName,
+        fromServices: true
       }
     });
   };
@@ -154,7 +163,7 @@ const ServicesPage = () => {
         </div>
       </section>
 
-      {/* Category Navigation - Sticky */}
+      {/* Category Navigation */}
       <section className="w-full px-4 sm:px-6 lg:px-12 xl:px-20 py-4 sticky top-16 lg:top-20 bg-white/95 backdrop-blur-sm border-y border-[#e2e8f0] z-30">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-wrap justify-center gap-2">
@@ -174,7 +183,7 @@ const ServicesPage = () => {
                   }}
                   className={`flex items-center gap-2 px-4 py-2 rounded-full font-medium text-sm transition-all duration-200 ${
                     activeCategory === cat.id
-                      ? 'bg-medical-navy text-white shadow-md'
+                      ? 'bg-[#1e3a5f] text-white shadow-md'
                       : 'bg-[#f8fafc] text-[#64748b] hover:bg-[#e2e8f0]'
                   }`}
                 >
@@ -187,7 +196,7 @@ const ServicesPage = () => {
         </div>
       </section>
 
-      {/* All Categories - Full View */}
+      {/* Services List */}
       <section className="w-full px-4 sm:px-6 lg:px-12 xl:px-20 py-12">
         <div className="max-w-4xl mx-auto space-y-16">
           {categories.map((category) => (
@@ -205,28 +214,30 @@ const ServicesPage = () => {
                 </div>
               </div>
 
-              {/* Services List - All Visible */}
+              {/* Services */}
               <div className="space-y-3">
                 {category.services.map((service, idx) => (
                   <button
                     key={idx}
-                    onClick={() => handleServiceClick(category.title, service.name)}
-                    className="w-full flex items-center justify-between p-4 lg:p-5 bg-white rounded-xl border border-[#e2e8f0] hover:border-medical-navy/30 hover:shadow-md transition-all duration-200 text-left group"
+                    type="button"
+                    onClick={() => handleServiceClick(category.id)}
+                    className="w-full flex items-center justify-between p-4 lg:p-5 bg-white rounded-xl border border-[#e2e8f0] hover:border-[#1e3a5f]/30 hover:shadow-md text-left group"
+                    style={{ transition: 'all 0.2s ease' }}
                   >
                     <div className="flex items-center gap-4">
-                      <div className={`w-10 h-10 rounded-lg ${category.color} flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform`}>
+                      <div className={`w-10 h-10 rounded-lg ${category.color} flex items-center justify-center flex-shrink-0`}>
                         <Calendar className={`w-5 h-5 ${category.iconColor}`} />
                       </div>
                       <div>
-                        <h3 className="font-medium text-[#0f172a] group-hover:text-medical-navy transition-colors">{service.name}</h3>
+                        <h3 className="font-medium text-[#0f172a] group-hover:text-[#1e3a5f]">{service.name}</h3>
                         {service.duration && (
                           <span className="text-xs text-[#94a3b8]">{service.duration}</span>
                         )}
                       </div>
                     </div>
                     <div className="flex items-center gap-4">
-                      <span className="font-semibold text-medical-navy text-lg">{service.price}</span>
-                      <span className="hidden sm:inline-flex items-center gap-1 text-xs font-medium text-medical-teal opacity-0 group-hover:opacity-100 transition-opacity">
+                      <span className="font-semibold text-[#1e3a5f] text-lg">{service.price}</span>
+                      <span className="hidden sm:inline-flex items-center gap-1 text-xs font-medium text-[#0891b2]">
                         Programează
                         <ArrowRight className="w-3 h-3" />
                       </span>
@@ -256,7 +267,7 @@ const ServicesPage = () => {
 
       {/* CTA */}
       <section className="w-full px-4 sm:px-6 lg:px-12 xl:px-20 py-16">
-        <div className="max-w-4xl mx-auto bg-medical-navy rounded-3xl p-8 lg:p-12 text-center text-white">
+        <div className="max-w-4xl mx-auto bg-[#1e3a5f] rounded-3xl p-8 lg:p-12 text-center text-white">
           <h2 className="text-2xl lg:text-3xl font-semibold mb-4">
             Gata să începi transformarea?
           </h2>
@@ -265,7 +276,8 @@ const ServicesPage = () => {
           </p>
           <Link 
             to="/contact"
-            className="inline-flex items-center justify-center gap-2 font-semibold text-sm px-8 py-4 rounded-full transition-all duration-300 bg-white text-medical-navy border-2 border-white hover:bg-transparent hover:text-white"
+            className="inline-flex items-center justify-center gap-2 font-semibold text-sm px-8 py-4 rounded-full bg-white text-[#1e3a5f] border-2 border-white hover:bg-transparent hover:text-white"
+            style={{ transition: 'all 0.2s ease' }}
           >
             PROGRAMEAZĂ CONSULTAȚIE GRATUITĂ
             <ArrowRight className="w-4 h-4" />

@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import { ArrowRight, CirclePlus, AlignCenter, Sparkles, Smile, Baby, AlertCircle } from 'lucide-react';
 
 const services = [
@@ -101,16 +100,6 @@ const ServicesPreview = () => {
                 </span>
               </a>
             ))}
-          </div>
-
-          <div className="text-center">
-            <Link 
-              to="/servicii" 
-              className="inline-flex items-center justify-center gap-2 font-semibold text-sm px-8 py-4 rounded-full transition-all duration-300 bg-[#1e3a5f] text-white border-2 border-[#1e3a5f] hover:bg-transparent hover:text-[#1e3a5f]"
-            >
-              Vezi toate serviciile și prețurile
-              <ArrowRight className="w-4 h-4" />
-            </Link>
           </div>
         </div>
       </div>

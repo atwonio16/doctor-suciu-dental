@@ -67,48 +67,132 @@ const ClinicGallery = () => {
       <div className="relative z-10 w-full px-4 sm:px-6 lg:px-12 xl:px-20">
         <div className="max-w-7xl mx-auto">
           {/* Header */}
-          <div className="text-center mb-12">
-            <div className="flex items-center justify-center gap-3 mb-6">
-              <span className="w-8 h-[2px] bg-[#94a3b8]" />
-              <span className="text-xs font-bold uppercase tracking-[0.2em] text-[#64748b]">
+          <div className="text-center mb-10">
+            <div className="flex items-center justify-center gap-4 mb-5">
+              <div className="w-14 h-px bg-[#1e3a5f]"></div>
+              <span className="text-sm font-semibold tracking-[0.2em] text-[#1e3a5f] uppercase">
                 Clinica Noastră
               </span>
-              <span className="w-8 h-[2px] bg-[#94a3b8]" />
+              <div className="w-14 h-px bg-[#1e3a5f]"></div>
             </div>
 
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-[#0f172a] mb-4 tracking-tight">
               Modern, curat, primitor
             </h2>
 
-            <p className="text-lg text-[#222222] max-w-2xl mx-auto">
-              Am creat un spațiu unde te simți în siguranță. Fără poze stock – așa arată clinică noastră reală.
+            <p className="text-lg text-[#64748b] max-w-3xl mx-auto whitespace-nowrap">
+              Un spațiu real, creat pentru siguranța și confortul tău. Fără poze stock.
             </p>
           </div>
 
-          {/* Gallery Grid */}
-          <div className="grid grid-cols-2 lg:grid-cols-3 gap-4">
-            {galleryImages.map((image, index) => (
-              <button
-                key={index}
-                onClick={() => openLightbox(index)}
-                className={`group relative overflow-hidden rounded-xl aspect-[4/3] ${
-                  index === 0 ? 'lg:col-span-2 lg:row-span-2' : ''
-                }`}
-              >
-                <img
-                  src={image.src}
-                  alt={image.alt}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  onError={(e) => {
-                    (e.target as HTMLImageElement).src = '/faq-clinic.png';
-                  }}
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                  <p className="text-white font-medium text-left">{image.title}</p>
-                </div>
-              </button>
-            ))}
+          {/* Gallery - Creative Asymmetric Layout */}
+          <div className="grid grid-cols-12 grid-rows-2 gap-3 h-[500px] lg:h-[600px]">
+            {/* Main large image - left */}
+            <button
+              onClick={() => openLightbox(0)}
+              className="group relative overflow-hidden rounded-2xl col-span-12 lg:col-span-6 row-span-2"
+            >
+              <img
+                src={galleryImages[0].src}
+                alt={galleryImages[0].alt}
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                onError={(e) => {
+                  (e.target as HTMLImageElement).src = '/faq-clinic.png';
+                }}
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300" />
+              <div className="absolute bottom-0 left-0 right-0 p-6 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+                <p className="text-white font-semibold text-lg">{galleryImages[0].title}</p>
+                <p className="text-white/70 text-sm mt-1">Click pentru a vedea</p>
+              </div>
+            </button>
+
+            {/* Top right - 2 images */}
+            <button
+              onClick={() => openLightbox(1)}
+              className="group relative overflow-hidden rounded-2xl col-span-6 lg:col-span-3"
+            >
+              <img
+                src={galleryImages[1].src}
+                alt={galleryImages[1].alt}
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                onError={(e) => {
+                  (e.target as HTMLImageElement).src = '/faq-clinic.png';
+                }}
+              />
+              <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                <span className="text-white font-medium">{galleryImages[1].title}</span>
+              </div>
+            </button>
+
+            <button
+              onClick={() => openLightbox(2)}
+              className="group relative overflow-hidden rounded-2xl col-span-6 lg:col-span-3"
+            >
+              <img
+                src={galleryImages[2].src}
+                alt={galleryImages[2].alt}
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                onError={(e) => {
+                  (e.target as HTMLImageElement).src = '/faq-clinic.png';
+                }}
+              />
+              <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                <span className="text-white font-medium">{galleryImages[2].title}</span>
+              </div>
+            </button>
+
+            {/* Bottom right - 3 smaller images */}
+            <button
+              onClick={() => openLightbox(3)}
+              className="group relative overflow-hidden rounded-2xl col-span-4 lg:col-span-2"
+            >
+              <img
+                src={galleryImages[3].src}
+                alt={galleryImages[3].alt}
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                onError={(e) => {
+                  (e.target as HTMLImageElement).src = '/faq-clinic.png';
+                }}
+              />
+              <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                <span className="text-white text-sm font-medium text-center px-2">{galleryImages[3].title}</span>
+              </div>
+            </button>
+
+            <button
+              onClick={() => openLightbox(4)}
+              className="group relative overflow-hidden rounded-2xl col-span-4 lg:col-span-2"
+            >
+              <img
+                src={galleryImages[4].src}
+                alt={galleryImages[4].alt}
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                onError={(e) => {
+                  (e.target as HTMLImageElement).src = '/faq-clinic.png';
+                }}
+              />
+              <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                <span className="text-white text-sm font-medium text-center px-2">{galleryImages[4].title}</span>
+              </div>
+            </button>
+
+            <button
+              onClick={() => openLightbox(5)}
+              className="group relative overflow-hidden rounded-2xl col-span-4 lg:col-span-2"
+            >
+              <img
+                src={galleryImages[5].src}
+                alt={galleryImages[5].alt}
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                onError={(e) => {
+                  (e.target as HTMLImageElement).src = '/faq-clinic.png';
+                }}
+              />
+              <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                <span className="text-white text-sm font-medium text-center px-2">{galleryImages[5].title}</span>
+              </div>
+            </button>
           </div>
         </div>
       </div>
