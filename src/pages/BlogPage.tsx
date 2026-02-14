@@ -163,11 +163,10 @@ const BlogPage = () => {
       <section className="w-full py-16">
         <div className="w-full px-4 sm:px-6 lg:px-12 xl:px-20">
           <div className="max-w-7xl mx-auto">
-            <div className="text-center max-w-3xl mx-auto">
+            <div className="text-center max-w-3xl mx-auto mb-12">
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-[#0f172a] mb-4 tracking-tight">
                 Articole și sfaturi
               </h1>
-
               <p className="text-lg text-[#64748b] max-w-2xl mx-auto whitespace-nowrap">
                 Informații utile și sfaturi de la specialiștii noștri.
               </p>

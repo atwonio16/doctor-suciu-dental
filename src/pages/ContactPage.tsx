@@ -140,7 +140,7 @@ const ContactPage = () => {
         <div className="absolute inset-0 bg-gradient-to-br from-blue-50/20 via-transparent to-sky-50/10" />
         <div className="relative z-10 w-full px-4 sm:px-6 lg:px-12 xl:px-20">
           <div className="max-w-7xl mx-auto">
-            <div className="text-center mb-10">
+            <div className="text-center mb-12">
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-[#0f172a] mb-4 tracking-tight">Primul pas către zâmbetul visat</h1>
               <p className="text-lg text-[#64748b] max-w-3xl mx-auto whitespace-nowrap">Completează formularul și primești un plan personalizat în 30 de minute, fără costuri</p>
             </div>
