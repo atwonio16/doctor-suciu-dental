@@ -158,31 +158,18 @@ const BlogPage = () => {
   const filteredPosts = activeFilter === 'Toate' ? posts : posts.filter(p => p.category === activeFilter);
 
   return (
-    <div className="min-h-screen bg-[#f8fafc]">
-      {/* Hero Section - Identic ca celelalte sectiuni */}
-      <section className="relative pt-28 lg:pt-32 pb-10 lg:pb-12 overflow-hidden bg-white">
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-sky-50/50 rounded-full blur-3xl" />
-        </div>
-
-        <div className="relative z-10 w-full px-4 sm:px-6 lg:px-12 xl:px-20">
+    <div className="min-h-screen bg-white">
+      {/* Hero Section */}
+      <section className="w-full py-16">
+        <div className="w-full px-4 sm:px-6 lg:px-12 xl:px-20">
           <div className="max-w-7xl mx-auto">
-            {/* Header - Exact ca pe homepage */}
-            <div className="text-center mb-12">
-              <div className="flex items-center justify-center gap-3 mb-6">
-                <span className="w-12 h-[1px] bg-[#cbd5e1]" />
-                <span className="text-xs font-medium text-[#64748b] tracking-wider uppercase">
-                  Blog
-                </span>
-                <span className="w-12 h-[1px] bg-[#cbd5e1]" />
-              </div>
-
+            <div className="text-center max-w-3xl mx-auto">
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-[#0f172a] mb-4 tracking-tight">
-                Articole și sfaturi pentru zâmbetul tău
+                Articole și sfaturi
               </h1>
 
-              <p className="text-lg text-[#222222] max-w-2xl mx-auto">
-                Informații utile, explicate simplu, de către echipa noastră de specialiști.
+              <p className="text-lg text-[#64748b] max-w-2xl mx-auto whitespace-nowrap">
+                Informații utile și sfaturi de la specialiștii noștri.
               </p>
             </div>
           </div>
