@@ -25,7 +25,7 @@ const HeroSection = () => {
             {/* Left - Text Content */}
             <div className="text-center lg:text-left order-last lg:order-first">
               {/* Title - Larger on mobile for impact */}
-              <h1 className="text-3xl sm:text-4xl lg:text-[3.25rem] font-semibold text-[#0f172a] leading-[1.1] sm:leading-[1.15] mb-4 tracking-tight">
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-[#0f172a] leading-tight mb-4 tracking-tight whitespace-nowrap">
                 Zâmbetul tău începe aici !
               </h1>
 
