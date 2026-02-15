@@ -1,12 +1,12 @@
 import { useEffect } from 'react';
 import HeroSection from '../sections/HeroSection';
-import BeforeAfterSection from '../sections/BeforeAfterSection';
 import ServicesPreview from '../sections/ServicesPreview';
-import WhyChooseSection from '../sections/WhyChooseSection';
-import ReviewsSection from '../sections/ReviewsSection';
 import TeamSection from '../sections/TeamSection';
+import ReviewsSection from '../sections/ReviewsSection';
+import BeforeAfterSection from '../sections/BeforeAfterSection';
 import ClinicGallery from '../sections/ClinicGallery';
-
+import WhyChooseSection from '../sections/WhyChooseSection';
+import HowToBook from '../sections/HowToBook';
 import ContactSection from '../sections/ContactSection';
 
 const HomePage = () => {
@@ -42,32 +42,17 @@ const HomePage = () => {
   }, []);
 
   return (
-    <>
-      {/* 1. Hero - Prima secțiune, critică */}
+    <main className="pb-20">
       <HeroSection />
-      
-      {/* 2. Before & After - Transformări reale */}
-      <BeforeAfterSection />
-      
-      {/* 3. Servicii principale - Overview rapid */}
       <ServicesPreview />
-      
-      {/* 3. De ce noi - Diferențiatori */}
+      <BeforeAfterSection />
       <WhyChooseSection />
-      
-      {/* 4. Recenzii pacienți - Social proof */}
       <ReviewsSection />
-      
-      {/* 5. Echipa / Medicii - Umanizare */}
       <TeamSection />
-      
-      {/* 6. Clinica - Poze reale */}
       <ClinicGallery />
-      
-
-      {/* 8. CTA final - Conversie */}
+      <HowToBook />
       <ContactSection />
-    </>
+    </main>
   );
 };
 

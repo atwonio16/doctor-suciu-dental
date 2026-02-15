@@ -3,96 +3,108 @@ import { Link } from 'react-router-dom';
 
 const steps = [
   {
-    icon: Phone,
     number: '01',
-    title: 'Ne contactezi',
-    description: 'Sună la 0770 220 110 sau completează formularul online. Îți răspundem în maxim 30 de minute.',
-    color: 'bg-sky-50',
-    iconColor: 'text-sky-600',
+    icon: Phone,
+    title: 'Contactează-ne',
+    description: 'Sună la 0770 220 110 sau completează formularul online',
+    action: 'tel:+40770220110',
+    actionText: 'Sună acum',
   },
   {
-    icon: ClipboardCheck,
     number: '02',
-    title: 'Consultație',
-    description: 'Vii la clinică pentru o evaluare completă și gratuită. Discutăm opțiunile și stabilim planul de tratament.',
-    color: 'bg-amber-50',
-    iconColor: 'text-amber-600',
+    icon: ClipboardCheck,
+    title: 'Consultație gratuită',
+    description: 'Vii la clinică pentru evaluare și plan de tratament personalizat',
+    action: '/contact',
+    actionText: 'Programează-te',
   },
   {
-    icon: Sparkles,
     number: '03',
-    title: 'Tratament',
-    description: 'Începem tratamentul în termen de 24-48h. Te ținem la curent cu fiecare pas și ne asigurăm că ești mulțumit.',
-    color: 'bg-emerald-50',
-    iconColor: 'text-emerald-600',
+    icon: Sparkles,
+    title: 'Începe tratamentul',
+    description: 'Începem în 24-48h. Te ținem la curent cu fiecare pas',
+    action: '/servicii',
+    actionText: 'Vezi servicii',
   },
 ];
 
 const HowToBook = () => {
   return (
-    <section id="cum-te-programezi" className="relative w-full py-20 overflow-hidden bg-[#f8fafc]">
-      <div className="absolute inset-0">
-        <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-sky-50 rounded-full blur-3xl opacity-40" />
-        <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-slate-100 rounded-full blur-3xl opacity-60" />
+    <section id="cum-te-programezi" className="py-10 bg-white">
+      {/* Section Header */}
+      <div className="px-4 mb-6">
+        <span className="text-[12px] font-semibold text-[#0d9488] uppercase tracking-wide">
+          Cum funcționăm
+        </span>
+        <h2 className="text-title-1 text-gray-900 mt-1">
+          3 pași simpli
+        </h2>
       </div>
-      
-      <div className="relative z-10 w-full px-4 sm:px-6 lg:px-12 xl:px-20">
-        <div className="max-w-7xl mx-auto">
-          {/* Header */}
-          <div className="text-center mb-16">
-            <div className="flex items-center justify-center gap-3 mb-6">
-              <span className="w-8 h-[2px] bg-[#94a3b8]" />
-              <span className="text-xs font-bold uppercase tracking-[0.2em] text-[#64748b]">
-                Cum Funcționăm
-              </span>
-              <span className="w-8 h-[2px] bg-[#94a3b8]" />
+
+      {/* Steps Timeline */}
+      <div className="px-4 space-y-0">
+        {steps.map((step, index) => (
+          <div key={index} className="relative flex gap-4 pb-8 last:pb-0">
+            {/* Timeline Line */}
+            {index < steps.length - 1 && (
+              <div className="absolute left-[19px] top-[48px] w-0.5 h-[calc(100%-32px)] bg-gray-100" />
+            )}
+            
+            {/* Step Number & Icon */}
+            <div className="relative flex-shrink-0">
+              <div className="w-10 h-10 bg-[#1e3a5f] rounded-full flex items-center justify-center">
+                <step.icon className="w-5 h-5 text-white" />
+              </div>
+              <div className="absolute -top-1 -right-1 w-5 h-5 bg-[#0d9488] rounded-full flex items-center justify-center">
+                <span className="text-[10px] font-bold text-white">{step.number}</span>
+              </div>
             </div>
 
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-[#0f172a] mb-4 tracking-tight">
-              Cum te programezi
-            </h2>
-
-            <p className="text-lg text-[#222222] max-w-2xl mx-auto">
-              Trei pași simpli până la zâmbetul dorit. Fără birocrație, fără așteptări.
-            </p>
+            {/* Content */}
+            <div className="flex-1 pt-1">
+              <h3 className="font-bold text-[17px] text-gray-900 mb-1">
+                {step.title}
+              </h3>
+              <p className="text-[14px] text-gray-500 mb-3 leading-relaxed">
+                {step.description}
+              </p>
+              
+              {step.action.startsWith('tel:') ? (
+                <a 
+                  href={step.action}
+                  className="inline-flex items-center gap-1 text-[14px] font-semibold text-[#0d9488]"
+                >
+                  {step.actionText}
+                  <ArrowRight className="w-4 h-4" />
+                </a>
+              ) : (
+                <Link 
+                  to={step.action}
+                  className="inline-flex items-center gap-1 text-[14px] font-semibold text-[#0d9488]"
+                >
+                  {step.actionText}
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+              )}
+            </div>
           </div>
+        ))}
+      </div>
 
-          {/* Steps */}
-          <div className="grid md:grid-cols-3 gap-8 mb-12">
-            {steps.map((step, index) => (
-              <div key={index} className="relative">
-                {/* Connector line */}
-                {index < steps.length - 1 && (
-                  <div className="hidden md:block absolute top-16 left-[60%] w-[80%] h-[2px] bg-[#e2e8f0]" />
-                )}
-                
-                <div className="bg-white rounded-2xl p-8 border border-[#e2e8f0] h-full hover:shadow-lg hover:shadow-slate-200/50 transition-all duration-300">
-                  {/* Number and Icon */}
-                  <div className="flex items-center justify-between mb-6">
-                    <span className="text-5xl font-bold text-[#e2e8f0]">{step.number}</span>
-                    <div className={`w-14 h-14 rounded-2xl ${step.color} flex items-center justify-center`}>
-                      <step.icon className={`w-7 h-7 ${step.iconColor}`} strokeWidth={1.5} />
-                    </div>
-                  </div>
-
-                  {/* Content */}
-                  <h3 className="font-semibold text-[#0f172a] text-xl mb-3">{step.title}</h3>
-                  <p className="text-[#64748b] leading-relaxed">{step.description}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* CTA */}
-          <div className="text-center">
-            <Link 
-              to="/contact" 
-              className="inline-flex items-center justify-center gap-2 font-semibold text-sm px-8 py-4 rounded-full transition-all duration-300 bg-[#1e3a5f] text-white border-2 border-[#1e3a5f] hover:bg-transparent hover:text-[#1e3a5f]"
-            >
-              Începe acum
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-          </div>
+      {/* CTA Banner */}
+      <div className="px-4 mt-8">
+        <div className="bg-[#1e3a5f] rounded-2xl p-5">
+          <p className="text-white/80 text-[14px] mb-1">Ai întrebări?</p>
+          <h3 className="text-white font-bold text-[18px] mb-4">
+            Sună-ne pentru o evaluare gratuită
+          </h3>
+          <a 
+            href="tel:+40770220110"
+            className="flex items-center justify-center gap-2 w-full h-[48px] bg-white rounded-full text-[16px] font-semibold text-[#1e3a5f] press-effect"
+          >
+            <Phone className="w-5 h-5" />
+            0770 220 110
+          </a>
         </div>
       </div>
     </section>

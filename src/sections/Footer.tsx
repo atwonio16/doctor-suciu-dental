@@ -1,154 +1,145 @@
 import { Link } from 'react-router-dom';
-import { Facebook, Instagram, Phone, Mail, MapPin, Clock } from 'lucide-react';
+import { Phone, MapPin, Clock, Instagram, Facebook } from 'lucide-react';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
-
-
-  const services = [
-    { label: 'Implanturi dentare', to: '/servicii' },
-    { label: 'Ortodonție', to: '/servicii' },
-    { label: 'Estetică dentară', to: '/servicii' },
-    { label: 'Pedodonție', to: '/servicii' },
-    { label: 'Profilaxie', to: '/servicii' },
-  ];
-
   return (
-    <footer className="bg-[#0f172a] text-white relative overflow-hidden">
-      {/* Subtle gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[#1e3a5f]/20 to-transparent pointer-events-none" />
-      
-      {/* Main Footer Content */}
-      <div className="relative w-full px-4 sm:px-6 lg:px-12 xl:px-20 pt-20 pb-8">
-        <div className="max-w-7xl mx-auto">
-          
-          {/* Main Section - 3 Columns */}
-          <div className="flex flex-col lg:flex-row lg:justify-between gap-10 lg:gap-16 pb-12 border-b border-white/10">
-            
-            {/* Brand Column */}
-            <div className="lg:w-[260px] flex-shrink-0">
-              <Link to="/" className="inline-block mb-6">
-                <span className="font-bold text-2xl tracking-tight">DOCTOR SUCIU</span>
-                <span className="block text-[11px] tracking-[0.25em] text-white mt-1 font-medium">DENTAL CLINIC</span>
-              </Link>
-              <p className="text-white leading-relaxed mb-6 text-sm">
-                Clinică stomatologică modernă în Târgoviște. Oferim tratamente de înaltă calitate într-un mediu confortabil.
-              </p>
-              <div className="flex gap-3">
-                <a 
-                  href="https://facebook.com" 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center text-white hover:bg-[#0891b2] transition-all duration-300"
-                >
-                  <Facebook className="w-4 h-4" />
-                </a>
-                <a 
-                  href="https://instagram.com" 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center text-white hover:bg-[#0891b2] transition-all duration-300"
-                >
-                  <Instagram className="w-4 h-4" />
-                </a>
-              </div>
-            </div>
+    <footer className="bg-[#0f172a] text-white pt-10 pb-24">
+      {/* Main Content */}
+      <div className="px-4">
+        {/* Logo & Description */}
+        <div className="mb-8">
+          <div className="mb-3">
+            <span className="font-bold text-[18px] tracking-tight">DOCTOR SUCIU</span>
+            <span className="block text-[10px] tracking-[0.2em] text-white/60 font-medium mt-0.5">
+              DENTAL CLINIC
+            </span>
+          </div>
+          <p className="text-[13px] text-white/60 leading-relaxed">
+            Clinică stomatologică modernă în Târgoviște. 
+            Tratamente de înaltă calitate într-un mediu confortabil.
+          </p>
+        </div>
 
-            {/* Navigation Column */}
-            <div className="lg:w-[140px] flex-shrink-0">
-              <h4 className="text-sm font-semibold uppercase tracking-[0.15em] text-white mb-6">
-                Navigare
-              </h4>
-              <ul className="space-y-3">
-                <li><Link to="/" className="text-white hover:text-white/80 transition-colors duration-200 text-sm">Acasă</Link></li>
-                <li><Link to="/servicii" className="text-white hover:text-white/80 transition-colors duration-200 text-sm">Servicii</Link></li>
-                <li><Link to="/#medici" className="text-white hover:text-white/80 transition-colors duration-200 text-sm">Medici</Link></li>
-                <li><Link to="/blog" className="text-white hover:text-white/80 transition-colors duration-200 text-sm">Blog</Link></li>
-                <li><Link to="/contact" className="text-white hover:text-white/80 transition-colors duration-200 text-sm">Contact</Link></li>
-              </ul>
+        {/* Quick Contact */}
+        <div className="space-y-4 mb-8">
+          <a 
+            href="tel:+40770220110"
+            className="flex items-center gap-3"
+          >
+            <div className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center">
+              <Phone className="w-5 h-5 text-[#0d9488]" />
             </div>
-
-            {/* Services Column */}
-            <div className="lg:w-[160px] flex-shrink-0">
-              <h4 className="text-sm font-semibold uppercase tracking-[0.15em] text-white mb-6">
-                Servicii
-              </h4>
-              <ul className="space-y-3">
-                {services.map((service) => (
-                  <li key={service.label}>
-                    <Link 
-                      to={service.to} 
-                      className="text-white hover:text-white/80 transition-colors duration-200 text-sm"
-                    >
-                      {service.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
+            <div>
+              <p className="text-[11px] text-white/50">Sună acum</p>
+              <p className="font-semibold text-[15px]">0770 220 110</p>
             </div>
+          </a>
 
-            {/* Contact Column */}
-            <div className="lg:w-[220px] flex-shrink-0">
-              <h4 className="text-sm font-semibold uppercase tracking-[0.15em] text-white mb-6">
-                Contact
-              </h4>
-              <ul className="space-y-4">
-                <li>
-                  <a 
-                    href="tel:+40770220110" 
-                    className="flex items-center gap-3 text-white hover:text-white/80 transition-colors"
-                  >
-                    <Phone className="w-4 h-4 flex-shrink-0" />
-                    <span className="text-sm">0770 220 110</span>
-                  </a>
-                </li>
-                <li>
-                  <a 
-                    href="mailto:contact@doctorsuciu.ro" 
-                    className="flex items-center gap-3 text-white hover:text-white/80 transition-colors"
-                  >
-                    <Mail className="w-4 h-4 flex-shrink-0" />
-                    <span className="text-sm">contact@doctorsuciu.ro</span>
-                  </a>
-                </li>
-                <li>
-                  <div className="flex items-start gap-3 text-white">
-                    <MapPin className="w-4 h-4 flex-shrink-0 mt-0.5" />
-                    <span className="text-sm">Calea Domnească 234, Târgoviște</span>
-                  </div>
-                </li>
-                <li>
-                  <div className="flex items-center gap-3 text-white">
-                    <Clock className="w-4 h-4 flex-shrink-0" />
-                    <span className="text-sm">L-J: 9-18 | V: 9-15</span>
-                  </div>
-                </li>
-              </ul>
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center">
+              <MapPin className="w-5 h-5 text-[#0d9488]" />
+            </div>
+            <div>
+              <p className="text-[11px] text-white/50">Adresă</p>
+              <p className="font-semibold text-[14px]">Calea Domnească 234</p>
+              <p className="text-[12px] text-white/60">Târgoviște</p>
             </div>
           </div>
 
-          {/* Bottom Bar */}
-          <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-            <p className="text-sm text-white/40">
-              © {currentYear} Doctor Suciu Dental Clinic. Toate drepturile rezervate.
-            </p>
-            <div className="flex items-center gap-6">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center">
+              <Clock className="w-5 h-5 text-[#0d9488]" />
+            </div>
+            <div>
+              <p className="text-[11px] text-white/50">Program</p>
+              <p className="font-semibold text-[14px]">L-J: 9-18 | V: 9-15</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Navigation Links */}
+        <div className="grid grid-cols-2 gap-6 mb-8">
+          <div>
+            <h4 className="font-semibold text-[13px] mb-3 text-white/80">Navigare</h4>
+            <ul className="space-y-2.5">
+              <li>
+                <Link to="/" className="text-[13px] text-white/60 hover:text-white transition-colors">
+                  Acasă
+                </Link>
+              </li>
+              <li>
+                <Link to="/servicii" className="text-[13px] text-white/60 hover:text-white transition-colors">
+                  Servicii
+                </Link>
+              </li>
+              <li>
+                <Link to="/#medici" className="text-[13px] text-white/60 hover:text-white transition-colors">
+                  Medici
+                </Link>
+              </li>
+              <li>
+                <Link to="/blog" className="text-[13px] text-white/60 hover:text-white transition-colors">
+                  Blog
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="font-semibold text-[13px] mb-3 text-white/80">Servicii</h4>
+            <ul className="space-y-2.5">
+              <li>
+                <Link to="/servicii" className="text-[13px] text-white/60 hover:text-white transition-colors">
+                  Implanturi
+                </Link>
+              </li>
+              <li>
+                <Link to="/servicii" className="text-[13px] text-white/60 hover:text-white transition-colors">
+                  Ortodonție
+                </Link>
+              </li>
+              <li>
+                <Link to="/servicii" className="text-[13px] text-white/60 hover:text-white transition-colors">
+                  Estetică
+                </Link>
+              </li>
+              <li>
+                <Link to="/servicii" className="text-[13px] text-white/60 hover:text-white transition-colors">
+                  Urgențe
+                </Link>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Social & Legal */}
+        <div className="pt-6 border-t border-white/10">
+          <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center gap-3">
               <a 
-                href="#" 
-                className="text-sm text-white/40 hover:text-white/70 transition-colors duration-200"
+                href="https://facebook.com" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center hover:bg-[#0d9488] transition-colors"
               >
-                Politica de confidențialitate
+                <Facebook className="w-5 h-5" />
               </a>
-              <span className="w-1 h-1 rounded-full bg-white/20" />
               <a 
-                href="#" 
-                className="text-sm text-white/40 hover:text-white/70 transition-colors duration-200"
+                href="https://instagram.com" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center hover:bg-[#0d9488] transition-colors"
               >
-                Termeni și condiții
+                <Instagram className="w-5 h-5" />
               </a>
             </div>
           </div>
+
+          <p className="text-[11px] text-white/40 text-center">
+            © {currentYear} Doctor Suciu Dental Clinic. Toate drepturile rezervate.
+          </p>
         </div>
       </div>
     </footer>

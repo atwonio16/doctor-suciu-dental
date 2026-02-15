@@ -1,37 +1,13 @@
 import { useState } from 'react';
-import { X, ChevronLeft, ChevronRight } from 'lucide-react';
+import { X, Grid3X3, Maximize2 } from 'lucide-react';
 
 const galleryImages = [
-  {
-    src: '/hero_dental_chair.jpg',
-    alt: 'Cabinet modern cu echipament de ultimă generație',
-    title: 'Cabinet tratament',
-  },
-  {
-    src: '/technology_equipment.jpg',
-    alt: 'Tehnologie dentară avansată',
-    title: 'Echipamente moderne',
-  },
-  {
-    src: '/faq-clinic.png',
-    alt: 'Consultație pacient',
-    title: 'Îngrijire personalizată',
-  },
-  {
-    src: '/implant_detail_work.jpg',
-    alt: 'Procedură implant dentar',
-    title: 'Implantologie',
-  },
-  {
-    src: '/orthodontic_aligners.jpg',
-    alt: 'Aparate ortodontice și alignere',
-    title: 'Ortodonție',
-  },
-  {
-    src: '/services_overview_smile.jpg',
-    alt: 'Rezultate estetice dentare',
-    title: 'Estetică dentară',
-  },
+  { src: '/hero_dental_chair.jpg', alt: 'Cabinet modern', category: 'Cabinet' },
+  { src: '/technology_equipment.jpg', alt: 'Tehnologie avansată', category: 'Echipamente' },
+  { src: '/faq-clinic.png', alt: 'Consultație', category: 'Consultație' },
+  { src: '/implant_detail_work.jpg', alt: 'Procedură', category: 'Tratament' },
+  { src: '/orthodontic_aligners.jpg', alt: 'Aparate ortodontice', category: 'Ortodonție' },
+  { src: '/services_overview_smile.jpg', alt: 'Rezultate', category: 'Rezultate' },
 ];
 
 const ClinicGallery = () => {
@@ -46,194 +22,124 @@ const ClinicGallery = () => {
 
   const closeLightbox = () => {
     setLightboxOpen(false);
-    document.body.style.overflow = 'auto';
-  };
-
-  const nextImage = () => {
-    setCurrentImage((prev) => (prev + 1) % galleryImages.length);
-  };
-
-  const prevImage = () => {
-    setCurrentImage((prev) => (prev - 1 + galleryImages.length) % galleryImages.length);
+    document.body.style.overflow = '';
   };
 
   return (
-    <section id="clinica" className="relative w-full py-16 overflow-hidden bg-white">
-      <div className="w-full px-4 sm:px-6 lg:px-12 xl:px-20">
-        <div className="max-w-7xl mx-auto">
-          {/* Header */}
-          <div className="text-center mb-10">
-            <div className="flex items-center justify-center gap-3 mb-3">
-              <span className="w-12 h-[1px] bg-[#94a3b8]" />
-              <span className="text-xs font-semibold tracking-[0.15em] text-[#64748b] uppercase">
-                Clinica Noastră
-              </span>
-              <span className="w-12 h-[1px] bg-[#94a3b8]" />
-            </div>
-
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-[#0f172a] mb-3 tracking-tight">
-              Modern, curat, primitor
-            </h2>
-
-            <p className="text-lg text-[#64748b] max-w-3xl mx-auto whitespace-nowrap">
-              Clinica noastră din Târgoviște, echipată cu aparatură modernă pentru tratamente de calitate.
-            </p>
-          </div>
-
-          {/* Gallery - Creative Asymmetric Layout */}
-          <div className="grid grid-cols-12 grid-rows-2 gap-3 h-[500px] lg:h-[600px]">
-            {/* Main large image - left */}
-            <button
-              onClick={() => openLightbox(0)}
-              className="group relative overflow-hidden rounded-2xl col-span-12 lg:col-span-6 row-span-2"
-            >
-              <img
-                src={galleryImages[0].src}
-                alt={galleryImages[0].alt}
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                onError={(e) => {
-                  (e.target as HTMLImageElement).src = '/faq-clinic.png';
-                }}
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300" />
-              <div className="absolute bottom-0 left-0 right-0 p-6 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
-                <p className="text-white font-semibold text-lg">{galleryImages[0].title}</p>
-                <p className="text-white/70 text-sm mt-1">Click pentru a vedea</p>
-              </div>
-            </button>
-
-            {/* Top right - 2 images */}
-            <button
-              onClick={() => openLightbox(1)}
-              className="group relative overflow-hidden rounded-2xl col-span-6 lg:col-span-3"
-            >
-              <img
-                src={galleryImages[1].src}
-                alt={galleryImages[1].alt}
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                onError={(e) => {
-                  (e.target as HTMLImageElement).src = '/faq-clinic.png';
-                }}
-              />
-              <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                <span className="text-white font-medium">{galleryImages[1].title}</span>
-              </div>
-            </button>
-
-            <button
-              onClick={() => openLightbox(2)}
-              className="group relative overflow-hidden rounded-2xl col-span-6 lg:col-span-3"
-            >
-              <img
-                src={galleryImages[2].src}
-                alt={galleryImages[2].alt}
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                onError={(e) => {
-                  (e.target as HTMLImageElement).src = '/faq-clinic.png';
-                }}
-              />
-              <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                <span className="text-white font-medium">{galleryImages[2].title}</span>
-              </div>
-            </button>
-
-            {/* Bottom right - 3 smaller images */}
-            <button
-              onClick={() => openLightbox(3)}
-              className="group relative overflow-hidden rounded-2xl col-span-4 lg:col-span-2"
-            >
-              <img
-                src={galleryImages[3].src}
-                alt={galleryImages[3].alt}
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                onError={(e) => {
-                  (e.target as HTMLImageElement).src = '/faq-clinic.png';
-                }}
-              />
-              <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                <span className="text-white text-sm font-medium text-center px-2">{galleryImages[3].title}</span>
-              </div>
-            </button>
-
-            <button
-              onClick={() => openLightbox(4)}
-              className="group relative overflow-hidden rounded-2xl col-span-4 lg:col-span-2"
-            >
-              <img
-                src={galleryImages[4].src}
-                alt={galleryImages[4].alt}
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                onError={(e) => {
-                  (e.target as HTMLImageElement).src = '/faq-clinic.png';
-                }}
-              />
-              <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                <span className="text-white text-sm font-medium text-center px-2">{galleryImages[4].title}</span>
-              </div>
-            </button>
-
-            <button
-              onClick={() => openLightbox(5)}
-              className="group relative overflow-hidden rounded-2xl col-span-4 lg:col-span-2"
-            >
-              <img
-                src={galleryImages[5].src}
-                alt={galleryImages[5].alt}
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                onError={(e) => {
-                  (e.target as HTMLImageElement).src = '/faq-clinic.png';
-                }}
-              />
-              <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                <span className="text-white text-sm font-medium text-center px-2">{galleryImages[5].title}</span>
-              </div>
-            </button>
-          </div>
+    <section id="clinica" className="py-10 bg-white">
+      {/* Section Header */}
+      <div className="px-4 mb-5">
+        <div className="flex items-center gap-2 mb-2">
+          <Grid3X3 className="w-5 h-5 text-[#0d9488]" />
+          <span className="text-[12px] font-semibold text-[#0d9488] uppercase tracking-wide">
+            Clinica noastră
+          </span>
         </div>
+        <h2 className="text-title-1 text-gray-900">
+          Modern, curat, primitor
+        </h2>
+      </div>
+
+      {/* Masonry-style Grid */}
+      <div className="px-4">
+        <div className="grid grid-cols-2 gap-2">
+          {/* Large First Image */}
+          <button 
+            onClick={() => openLightbox(0)}
+            className="col-span-2 relative aspect-[16/9] rounded-2xl overflow-hidden press-effect"
+          >
+            <img
+              src={galleryImages[0].src}
+              alt={galleryImages[0].alt}
+              className="w-full h-full object-cover"
+              loading="lazy"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+            <div className="absolute bottom-3 left-3">
+              <span className="text-white font-semibold text-[15px]">{galleryImages[0].category}</span>
+            </div>
+            <div className="absolute top-3 right-3 w-8 h-8 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center">
+              <Maximize2 className="w-4 h-4 text-white" />
+            </div>
+          </button>
+
+          {/* Smaller Images */}
+          {galleryImages.slice(1, 5).map((image, index) => (
+            <button 
+              key={index + 1}
+              onClick={() => openLightbox(index + 1)}
+              className="relative aspect-square rounded-xl overflow-hidden press-effect"
+            >
+              <img
+                src={image.src}
+                alt={image.alt}
+                className="w-full h-full object-cover"
+                loading="lazy"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+              <span className="absolute bottom-2 left-2 text-white font-medium text-[12px]">
+                {image.category}
+              </span>
+            </button>
+          ))}
+        </div>
+
+        {/* View All Button */}
+        <button 
+          onClick={() => openLightbox(0)}
+          className="w-full mt-3 h-[48px] bg-gray-100 rounded-xl flex items-center justify-center gap-2 text-[14px] font-semibold text-gray-700 press-effect"
+        >
+          <Grid3X3 className="w-4 h-4" />
+          Vezi toate fotografiile
+        </button>
       </div>
 
       {/* Lightbox */}
       {lightboxOpen && (
         <div 
-          className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center"
+          className="fixed inset-0 z-50 bg-black"
           onClick={closeLightbox}
         >
+          {/* Close Button */}
           <button
             onClick={closeLightbox}
-            className="absolute top-6 right-6 w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20 transition-colors"
+            className="absolute top-4 right-4 z-10 w-10 h-10 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center"
           >
-            <X className="w-6 h-6" />
+            <X className="w-5 h-5 text-white" />
           </button>
 
-          <button
-            onClick={(e) => { e.stopPropagation(); prevImage(); }}
-            className="absolute left-6 w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20 transition-colors"
-          >
-            <ChevronLeft className="w-6 h-6" />
-          </button>
-
-          <button
-            onClick={(e) => { e.stopPropagation(); nextImage(); }}
-            className="absolute right-6 w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20 transition-colors"
-          >
-            <ChevronRight className="w-6 h-6" />
-          </button>
-
-          <img
-            src={galleryImages[currentImage].src}
-            alt={galleryImages[currentImage].alt}
-            className="max-w-[90vw] max-h-[85vh] object-contain rounded-lg"
-            onClick={(e) => e.stopPropagation()}
-            onError={(e) => {
-              (e.target as HTMLImageElement).src = '/faq-clinic.png';
-            }}
-          />
-
-          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-white text-center">
-            <p className="font-medium">{galleryImages[currentImage].title}</p>
-            <p className="text-sm text-white/60 mt-1">
+          {/* Counter */}
+          <div className="absolute top-4 left-4 z-10 bg-white/10 backdrop-blur-sm px-3 py-1 rounded-full">
+            <span className="text-white text-[14px] font-medium">
               {currentImage + 1} / {galleryImages.length}
-            </p>
+            </span>
+          </div>
+
+          {/* Image */}
+          <div className="h-full flex items-center justify-center p-4">
+            <img
+              src={galleryImages[currentImage].src}
+              alt={galleryImages[currentImage].alt}
+              className="max-w-full max-h-[80vh] object-contain rounded-lg"
+              onClick={(e) => e.stopPropagation()}
+            />
+          </div>
+
+          {/* Thumbnails */}
+          <div className="absolute bottom-4 left-0 right-0 px-4">
+            <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
+              {galleryImages.map((img, index) => (
+                <button
+                  key={index}
+                  onClick={(e) => { e.stopPropagation(); setCurrentImage(index); }}
+                  className={`flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden border-2 transition-all ${
+                    index === currentImage ? 'border-white' : 'border-transparent opacity-60'
+                  }`}
+                >
+                  <img src={img.src} alt={img.alt} className="w-full h-full object-cover" />
+                </button>
+              ))}
+            </div>
           </div>
         </div>
       )}

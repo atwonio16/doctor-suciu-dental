@@ -1,112 +1,107 @@
-import { ArrowRight, Phone, MapPin, Clock, Star } from 'lucide-react';
+import { Star, MapPin, Phone } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const HeroSection = () => {
   return (
-    <section id="hero" className="relative w-full pt-28 pb-12 sm:pt-32 sm:pb-16 lg:pt-36 lg:pb-20 overflow-hidden bg-white">
-      <div className="w-full px-4 sm:px-6 lg:px-12 xl:px-20">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col lg:grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-            
-            {/* Image - First on mobile */}
-            <div className="relative w-full flex items-center justify-center order-first lg:order-last">
-              <div className="relative w-full max-w-[600px] rounded-xl sm:rounded-2xl overflow-hidden border border-[#e2e8f0]">
-                <img
-                  src="/hero-clinic.jpg"
-                  alt="Clinică stomatologică modernă în Târgoviște"
-                  className="w-full h-56 sm:h-72 lg:h-[520px] object-cover object-center"
-                  onError={(e) => {
-                    (e.target as HTMLImageElement).src = '/hero-family1.png';
-                  }}
-                />
-              </div>
+    <section className="relative bg-white">
+      {/* Main Content */}
+      <div className="px-4 pt-2 pb-6">
+        {/* Rating Badge */}
+        <div className="flex items-center justify-center gap-2 mb-4">
+          <div className="flex items-center gap-1.5 bg-amber-50 px-3 py-1.5 rounded-full border border-amber-100">
+            <Star className="w-4 h-4 fill-amber-400 text-amber-400" />
+            <span className="font-bold text-[14px] text-gray-900">5.0</span>
+            <span className="text-[12px] text-gray-500">(53 recenzii)</span>
+          </div>
+          <div className="flex items-center gap-1 text-gray-500">
+            <MapPin className="w-4 h-4" />
+            <span className="text-[13px]">Târgoviște</span>
+          </div>
+        </div>
+
+        {/* Main Headline */}
+        <h1 className="text-display text-center text-gray-900 mb-3">
+          Zâmbetul perfect<br />
+          <span className="text-[#0d9488]">începe aici</span>
+        </h1>
+
+        {/* Subheadline */}
+        <p className="text-body-small text-center text-gray-500 mb-6 max-w-[280px] mx-auto">
+          Clinică stomatologică modernă în Târgoviște. Tratamente premium, fără durere.
+        </p>
+
+        {/* CTA Buttons */}
+        <div className="space-y-3 mb-6">
+          <Link to="/contact" className="btn-mobile-primary">
+            Programează-te acum
+          </Link>
+          <a 
+            href="tel:+40770220110" 
+            className="btn-mobile-secondary"
+          >
+            <Phone className="w-5 h-5" />
+            Sună la 0770 220 110
+          </a>
+        </div>
+
+        {/* Trust Badges */}
+        <div className="flex items-center justify-center gap-4 text-[12px] text-gray-500">
+          <span className="flex items-center gap-1">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#0d9488]" />
+            Fără durere
+          </span>
+          <span className="flex items-center gap-1">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#0d9488]" />
+            15+ ani experiență
+          </span>
+          <span className="flex items-center gap-1">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#0d9488]" />
+            Programare rapidă
+          </span>
+        </div>
+      </div>
+
+      {/* Hero Image */}
+      <div className="relative mx-4 rounded-2xl overflow-hidden shadow-lg">
+        <img
+          src="/hero-clinic.jpg"
+          alt="Clinică stomatologică modernă"
+          className="w-full aspect-[4/3] object-cover"
+          loading="eager"
+          onError={(e) => {
+            (e.target as HTMLImageElement).src = '/hero-family1.png';
+          }}
+        />
+        {/* Floating Card */}
+        <div className="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-sm rounded-xl p-3 shadow-lg">
+          <div className="flex items-center gap-3">
+            <div className="w-12 h-12 rounded-full bg-[#0d9488]/10 flex items-center justify-center flex-shrink-0">
+              <svg className="w-6 h-6 text-[#0d9488]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
             </div>
-
-            {/* Left - Text Content */}
-            <div className="text-center lg:text-left order-last lg:order-first">
-              {/* Title */}
-              <h1 className="text-3xl sm:text-4xl lg:text-[2.75rem] font-semibold text-[#0f172a] leading-[1.1] mb-4 tracking-tight">
-                Zâmbetul tău începe aici !
-              </h1>
-
-              {/* Subheadline - exact 2 rânduri */}
-              <p className="text-lg sm:text-xl text-[#334155] mb-5 max-w-xl mx-auto lg:mx-0 leading-relaxed">
-                Clinică dentară modernă în Târgoviște.<br className="hidden sm:block" />
-                <span className="sm:hidden"> </span>
-                Îngrijire premium, fără durere, cu rezultate garantate.
-              </p>
-
-              {/* Social Proof */}
-              <div className="flex items-center justify-center lg:justify-start gap-2 mb-5">
-                <div className="flex items-center">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-4 h-4 sm:w-5 sm:h-5 fill-amber-400 text-amber-400" />
-                  ))}
-                </div>
-                <span className="font-semibold text-[#0f172a] text-sm sm:text-base">5.0</span>
-                <span className="text-[#64748b] text-sm sm:text-base">din 53 recenzii Google</span>
-              </div>
-
-              {/* Benefits - Inline */}
-              <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-2 sm:gap-4 mb-6 text-sm sm:text-base text-[#475569]">
-                <span className="inline-flex items-center gap-1.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#0d9488] flex-shrink-0" />
-                  Fără durere
-                </span>
-                <span className="hidden sm:inline text-[#cbd5e1]">|</span>
-                <span className="inline-flex items-center gap-1.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#0d9488] flex-shrink-0" />
-                  Medici specializați
-                </span>
-                <span className="hidden sm:inline text-[#cbd5e1]">|</span>
-                <span className="inline-flex items-center gap-1.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#0d9488] flex-shrink-0" />
-                  Programări rapide
-                </span>
-              </div>
-
-              {/* CTAs */}
-              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-6 sm:mb-8">
-                <Link
-                  to="/contact"
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 font-semibold text-sm px-6 sm:px-8 py-4 rounded-full transition-all duration-300 bg-medical-navy text-white border-2 border-medical-navy hover:bg-transparent hover:text-medical-navy active:scale-95"
-                >
-                  PROGRAMEAZĂ-TE
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
-                <a
-                  href="tel:+40770220110"
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 font-semibold text-sm px-6 sm:px-8 py-4 rounded-full transition-all duration-300 bg-white text-medical-navy border-2 border-medical-warm hover:border-medical-navy active:scale-95"
-                >
-                  <Phone className="w-4 h-4" />
-                  SUNĂ ACUM
-                </a>
-              </div>
-
-              {/* Info */}
-              <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 sm:gap-6 text-sm">
-                <a href="tel:+40770220110" className="flex items-center gap-2 text-[#334155] hover:text-[#1e3a5f] transition-colors">
-                  <span className="w-8 h-8 rounded-full bg-[#e0f2fe] flex items-center justify-center text-[#0284c7]">
-                    <Phone className="w-3.5 h-3.5" />
-                  </span>
-                  <span className="font-medium">0770 220 110</span>
-                </a>
-
-                <a href="https://maps.google.com/?q=Calea+Domnească+234+Târgoviște" target="_blank" rel="noopener noreferrer" className="hidden sm:flex items-center gap-2 text-[#334155] hover:text-[#1e3a5f] transition-colors">
-                  <span className="w-8 h-8 rounded-full bg-[#e0f2fe] flex items-center justify-center text-[#0284c7]">
-                    <MapPin className="w-3.5 h-3.5" />
-                  </span>
-                  <span className="font-medium">Târgoviște</span>
-                </a>
-
-                <div className="hidden lg:flex items-center gap-2 text-[#334155]">
-                  <span className="w-8 h-8 rounded-full bg-[#e0f2fe] flex items-center justify-center text-[#0284c7]">
-                    <Clock className="w-3.5 h-3.5" />
-                  </span>
-                  <span className="font-medium">L-J: 9-18 | V: 9-15</span>
-                </div>
-              </div>
+            <div>
+              <p className="font-semibold text-[14px] text-gray-900">Consultație gratuită</p>
+              <p className="text-[12px] text-gray-500">Evaluare + plan de tratament</p>
             </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Quick Stats */}
+      <div className="px-4 py-6">
+        <div className="grid grid-cols-3 gap-4">
+          <div className="text-center">
+            <p className="text-[24px] font-bold text-[#1e3a5f]">2.5k+</p>
+            <p className="text-[12px] text-gray-500">Pacienți fericiți</p>
+          </div>
+          <div className="text-center border-x border-gray-100">
+            <p className="text-[24px] font-bold text-[#1e3a5f]">15+</p>
+            <p className="text-[12px] text-gray-500">Ani experiență</p>
+          </div>
+          <div className="text-center">
+            <p className="text-[24px] font-bold text-[#1e3a5f]">50+</p>
+            <p className="text-[12px] text-gray-500">Recenzii 5★</p>
           </div>
         </div>
       </div>

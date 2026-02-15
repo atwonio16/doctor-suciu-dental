@@ -1,201 +1,184 @@
 import { useState, useEffect, useCallback } from 'react';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Sparkles } from 'lucide-react';
 
-interface Case {
-  id: number;
-  beforeImage: string;
-  afterImage: string;
-  title: string;
-  description: string;
-}
-
-const cases: Case[][] = [
-  [
-    {
-      id: 1,
-      beforeImage: '/before-1.jpg',
-      afterImage: '/after-1.jpg',
-      title: 'Albire Profesională',
-      description: '8 nuanțe mai deschis în 60 minute',
-    },
-    {
-      id: 2,
-      beforeImage: '/before-2.jpg',
-      afterImage: '/after-2.jpg',
-      title: 'Fațete Ceramice',
-      description: 'Zâmbet perfect și natural',
-    },
-    {
-      id: 3,
-      beforeImage: '/before-3.jpg',
-      afterImage: '/after-3.jpg',
-      title: 'Ortodonție',
-      description: 'Dinți aliniați în 6 luni',
-    },
-  ],
-  [
-    {
-      id: 4,
-      beforeImage: '/before-4.jpg',
-      afterImage: '/after-4.jpg',
-      title: 'Coroane Dentare',
-      description: 'Restaurare estetică completă',
-    },
-    {
-      id: 5,
-      beforeImage: '/before-5.jpg',
-      afterImage: '/after-5.jpg',
-      title: 'Implant Dentar',
-      description: 'Recuperare funcțională totală',
-    },
-    {
-      id: 6,
-      beforeImage: '/before-6.jpg',
-      afterImage: '/after-6.jpg',
-      title: 'Estetică Dentară',
-      description: 'Transformare vizibilă',
-    },
-  ],
+const transformations = [
+  {
+    id: 1,
+    beforeImage: '/before-1.jpg',
+    afterImage: '/after-1.jpg',
+    title: 'Albire Profesională',
+    description: '8 nuanțe mai deschis',
+    duration: '60 minute',
+  },
+  {
+    id: 2,
+    beforeImage: '/before-2.jpg',
+    afterImage: '/after-2.jpg',
+    title: 'Fațete Ceramice',
+    description: 'Zâmbet perfect natural',
+    duration: '2 ședințe',
+  },
+  {
+    id: 3,
+    beforeImage: '/before-3.jpg',
+    afterImage: '/after-3.jpg',
+    title: 'Ortodonție',
+    description: 'Dinți aliniați',
+    duration: '6 luni',
+  },
 ];
 
 const BeforeAfterSection = () => {
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [touchStart, setTouchStart] = useState(0);
+  const [touchEnd, setTouchEnd] = useState(0);
 
   const nextSlide = useCallback(() => {
-    setCurrentSlide((prev) => (prev + 1) % cases.length);
+    setCurrentIndex((prev) => (prev + 1) % transformations.length);
   }, []);
 
-  const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + cases.length) % cases.length);
+  const prevSlide = useCallback(() => {
+    setCurrentIndex((prev) => (prev - 1 + transformations.length) % transformations.length);
+  }, []);
+
+  // Touch handlers
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchStart(e.targetTouches[0].clientX);
   };
 
-  useEffect(() => {
-    if (isPaused) return;
-    const interval = setInterval(nextSlide, 5000);
-    return () => clearInterval(interval);
-  }, [isPaused, nextSlide]);
+  const handleTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
 
-  const currentCases = cases[currentSlide];
+  const handleTouchEnd = () => {
+    if (touchStart - touchEnd > 50) nextSlide();
+    if (touchStart - touchEnd < -50) prevSlide();
+  };
+
+  // Auto-advance
+  useEffect(() => {
+    const interval = setInterval(nextSlide, 6000);
+    return () => clearInterval(interval);
+  }, [nextSlide]);
+
+  const current = transformations[currentIndex];
 
   return (
-    <section 
-      id="transformari"
-      className="w-full py-16 sm:py-20 bg-[#f8fafc]"
-      onMouseEnter={() => setIsPaused(true)}
-      onMouseLeave={() => setIsPaused(false)}
-    >
-      <div className="w-full px-4 sm:px-6 lg:px-12 xl:px-20">
-        <div className="max-w-7xl mx-auto">
-          {/* Header */}
-          <div className="text-center mb-12">
-            {/* Section Label */}
-            <div className="flex items-center justify-center gap-3 mb-4">
-              <span className="w-12 h-px bg-[#1e3a5f]" />
-              <span className="text-sm font-semibold tracking-wider text-[#1e3a5f] uppercase">
-                Rezultate Reale
-              </span>
-              <span className="w-12 h-px bg-[#1e3a5f]" />
+    <section id="transformari" className="py-10 bg-gray-50">
+      {/* Section Header */}
+      <div className="px-4 mb-5">
+        <div className="flex items-center gap-2 mb-2">
+          <Sparkles className="w-5 h-5 text-[#0d9488]" />
+          <span className="text-[12px] font-semibold text-[#0d9488] uppercase tracking-wide">
+            Transformări reale
+          </span>
+        </div>
+        <h2 className="text-title-1 text-gray-900">
+          Rezultate care vorbesc<br />de la sine
+        </h2>
+      </div>
+
+      {/* Before/After Card */}
+      <div className="px-4">
+        <div 
+          className="bg-white rounded-2xl overflow-hidden shadow-lg"
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+        >
+          {/* Images Grid */}
+          <div className="grid grid-cols-2 gap-0.5">
+            {/* Before */}
+            <div className="relative aspect-square">
+              <img
+                src={current.beforeImage}
+                alt="Înainte"
+                className="w-full h-full object-cover"
+                loading="lazy"
+              />
+              <div className="absolute top-3 left-3 bg-black/70 text-white text-[11px] font-semibold px-2.5 py-1 rounded-full">
+                ÎNAINTE
+              </div>
             </div>
             
-            <h2 className="text-3xl sm:text-4xl font-semibold text-[#0f172a] tracking-tight mb-4">
-              Transformări care vorbesc de la sine
-            </h2>
-            <p className="text-lg text-[#64748b] max-w-2xl mx-auto">
-              Vezi cum am transformat zâmbetele pacienților noștri
-            </p>
+            {/* After */}
+            <div className="relative aspect-square">
+              <img
+                src={current.afterImage}
+                alt="După"
+                className="w-full h-full object-cover"
+                loading="lazy"
+              />
+              <div className="absolute top-3 left-3 bg-[#0d9488] text-white text-[11px] font-semibold px-2.5 py-1 rounded-full">
+                DUPĂ
+              </div>
+            </div>
           </div>
 
-          {/* Cases Grid */}
-          <div className="relative">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {currentCases.map((caseItem) => (
-                <div 
-                  key={caseItem.id} 
-                  className="bg-white rounded-2xl border border-[#e2e8f0] p-4 shadow-sm hover:shadow-lg hover:shadow-[#1e3a5f]/5 transition-all duration-300"
-                >
-                  {/* Images Stack */}
-                  <div className="space-y-3 mb-4">
-                    {/* Before */}
-                    <div className="relative group overflow-hidden rounded-xl bg-[#f1f5f9]">
-                      <div className="aspect-[16/10]">
-                        <img
-                          src={caseItem.beforeImage}
-                          alt={`Înainte - ${caseItem.title}`}
-                          className="w-full h-full object-cover"
-                          onError={(e) => {
-                            (e.target as HTMLImageElement).src = '/placeholder-smile.jpg';
-                          }}
-                        />
-                      </div>
-                      <div className="absolute top-3 left-3 px-3 py-1.5 bg-[#0f172a]/90 backdrop-blur-sm rounded-full">
-                        <span className="text-xs font-semibold text-white tracking-wide">ÎNAINTE</span>
-                      </div>
-                    </div>
-
-                    {/* After */}
-                    <div className="relative group overflow-hidden rounded-xl bg-[#f1f5f9] ring-2 ring-[#0d9488]/20">
-                      <div className="aspect-[16/10]">
-                        <img
-                          src={caseItem.afterImage}
-                          alt={`După - ${caseItem.title}`}
-                          className="w-full h-full object-cover"
-                          onError={(e) => {
-                            (e.target as HTMLImageElement).src = '/placeholder-smile.jpg';
-                          }}
-                        />
-                      </div>
-                      <div className="absolute top-3 left-3 px-3 py-1.5 bg-[#0d9488] rounded-full">
-                        <span className="text-xs font-semibold text-white tracking-wide">DUPĂ</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Content */}
-                  <div className="text-center pt-2 border-t border-[#f1f5f9]">
-                    <h3 className="text-lg font-semibold text-[#0f172a] mb-1">
-                      {caseItem.title}
-                    </h3>
-                    <p className="text-sm text-[#64748b]">
-                      {caseItem.description}
-                    </p>
-                  </div>
-                </div>
-              ))}
+          {/* Info */}
+          <div className="p-4">
+            <div className="flex items-center justify-between mb-3">
+              <div>
+                <h3 className="font-bold text-[17px] text-gray-900">{current.title}</h3>
+                <p className="text-[13px] text-gray-500">{current.description}</p>
+              </div>
+              <div className="text-right">
+                <p className="text-[11px] text-gray-400 uppercase tracking-wide">Durată</p>
+                <p className="font-semibold text-[14px] text-[#0d9488]">{current.duration}</p>
+              </div>
             </div>
 
             {/* Navigation */}
-            <button
-              onClick={prevSlide}
-              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 lg:-translate-x-4 w-10 h-10 rounded-full bg-white border border-[#e2e8f0] shadow-md hover:shadow-lg hover:border-[#0d9488] flex items-center justify-center text-[#0f172a] hover:text-[#0d9488] transition-all"
-              aria-label="Anterior"
-            >
-              <ChevronLeft className="w-5 h-5" />
-            </button>
-            <button
-              onClick={nextSlide}
-              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 lg:translate-x-4 w-10 h-10 rounded-full bg-white border border-[#e2e8f0] shadow-md hover:shadow-lg hover:border-[#0d9488] flex items-center justify-center text-[#0f172a] hover:text-[#0d9488] transition-all"
-              aria-label="Următor"
-            >
-              <ChevronRight className="w-5 h-5" />
-            </button>
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                {transformations.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentIndex(index)}
+                    className={`h-2 rounded-full transition-all ${
+                      index === currentIndex 
+                        ? 'w-5 bg-[#1e3a5f]' 
+                        : 'w-2 bg-gray-200'
+                    }`}
+                  />
+                ))}
+              </div>
+              
+              <div className="flex items-center gap-2">
+                <button 
+                  onClick={prevSlide}
+                  className="w-9 h-9 rounded-full bg-gray-100 flex items-center justify-center active:bg-gray-200 transition-colors"
+                >
+                  <ChevronLeft className="w-5 h-5 text-gray-600" />
+                </button>
+                <button 
+                  onClick={nextSlide}
+                  className="w-9 h-9 rounded-full bg-[#1e3a5f] flex items-center justify-center active:bg-[#152a45] transition-colors"
+                >
+                  <ChevronRight className="w-5 h-5 text-white" />
+                </button>
+              </div>
+            </div>
           </div>
+        </div>
+      </div>
 
-          {/* Dots */}
-          <div className="flex justify-center gap-2 mt-10">
-            {cases.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrentSlide(index)}
-                className={`h-2 rounded-full transition-all duration-300 ${
-                  index === currentSlide
-                    ? 'w-8 bg-[#0d9488]'
-                    : 'w-2 bg-[#cbd5e1] hover:bg-[#94a3b8]'
-                }`}
-                aria-label={`Slide ${index + 1}`}
-              />
+      {/* Trust Badge */}
+      <div className="px-4 mt-5">
+        <div className="flex items-center justify-center gap-2 p-3 bg-white rounded-xl border border-gray-100">
+          <div className="flex -space-x-2">
+            {['AM', 'MD', 'EP'].map((initials, i) => (
+              <div 
+                key={i}
+                className="w-8 h-8 rounded-full bg-[#1e3a5f] border-2 border-white flex items-center justify-center text-white text-[10px] font-semibold"
+              >
+                {initials}
+              </div>
             ))}
           </div>
+          <p className="text-[13px] text-gray-600">
+            <span className="font-semibold text-gray-900">+500</span> de transformări reușite
+          </p>
         </div>
       </div>
     </section>

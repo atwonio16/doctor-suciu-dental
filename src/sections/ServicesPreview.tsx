@@ -1,103 +1,140 @@
-import { ArrowRight, CirclePlus, AlignCenter, Sparkles, Smile, Baby, AlertCircle } from 'lucide-react';
+import { 
+  CirclePlus, 
+  AlignCenter, 
+  Sparkles, 
+  Smile, 
+  Baby, 
+  AlertCircle,
+  ChevronRight 
+} from 'lucide-react';
 
 const services = [
   {
     id: 'implanturi',
     icon: CirclePlus,
     title: 'Implant dentar',
-    description: 'Soluții permanente pentru dinți lipsă. Tehnologie modernă, garanție 10 ani.',
-    bg: 'bg-indigo-50',
-    iconColor: 'text-indigo-600',
+    description: 'Soluții permanente pentru dinți lipsă',
+    price: 'de la 2.800 RON',
+    color: 'bg-indigo-500',
+    lightColor: 'bg-indigo-50',
   },
   {
     id: 'ortodontie',
     icon: AlignCenter,
     title: 'Ortodonție',
-    description: 'Aparate fixe și Invisalign. Îndreptăm dinții pentru un zâmbet perfect.',
-    bg: 'bg-cyan-50',
-    iconColor: 'text-cyan-600',
+    description: 'Aparate fixe și Invisalign',
+    price: 'de la 8.000 RON',
+    color: 'bg-cyan-500',
+    lightColor: 'bg-cyan-50',
   },
   {
     id: 'albire',
     icon: Sparkles,
     title: 'Albire dentară',
-    description: 'Zâmbet mai alb cu până la 8 nuanțe. Rezultate imediate, fără durere.',
-    bg: 'bg-sky-50',
-    iconColor: 'text-sky-600',
+    description: 'Zâmbet mai alb cu 8 nuanțe',
+    price: 'de la 350 RON',
+    color: 'bg-sky-500',
+    lightColor: 'bg-sky-50',
   },
   {
     id: 'estetica',
     icon: Smile,
     title: 'Estetică dentară',
-    description: 'Fațete, coroane și redesign de zâmbet. Transformări vizibile instant.',
-    bg: 'bg-rose-50',
-    iconColor: 'text-rose-600',
+    description: 'Fațete și redesign de zâmbet',
+    price: 'de la 1.200 RON',
+    color: 'bg-rose-500',
+    lightColor: 'bg-rose-50',
   },
   {
     id: 'copii',
     icon: Baby,
-    title: 'Stomatologie copii',
-    description: 'Atmosferă prietenoasă pentru cei mici. Pedodonție cu răbdare și blândețe.',
-    bg: 'bg-amber-50',
-    iconColor: 'text-amber-600',
+    title: 'Pentru copii',
+    description: 'Atmosferă prietenoasă',
+    price: 'Consultație gratuită',
+    color: 'bg-amber-500',
+    lightColor: 'bg-amber-50',
   },
   {
     id: 'urgente',
     icon: AlertCircle,
-    title: 'Urgențe stomatologice',
-    description: 'Durere de dinți, fracturi, infecții. Te ajutăm rapid în situații urgente.',
-    bg: 'bg-red-50',
-    iconColor: 'text-red-600',
+    title: 'Urgențe',
+    description: 'Programare rapidă 24/7',
+    price: 'Sună acum',
+    color: 'bg-red-500',
+    lightColor: 'bg-red-50',
   },
 ];
 
 const ServicesPreview = () => {
   return (
-    <section id="servicii" className="relative w-full py-16 overflow-hidden bg-white">
-      <div className="w-full px-4 sm:px-6 lg:px-12 xl:px-20">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-10">
-            <div className="flex items-center justify-center gap-3 mb-3">
-              <span className="w-12 h-[1px] bg-[#94a3b8]" />
-              <span className="text-xs font-semibold tracking-[0.15em] text-[#64748b] uppercase">
-                Serviciile Noastre
-              </span>
-              <span className="w-12 h-[1px] bg-[#94a3b8]" />
-            </div>
-
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-[#0f172a] mb-3 tracking-tight">
-              Soluții complete pentru zâmbetul tău
+    <section className="py-8 bg-gray-50">
+      {/* Section Header */}
+      <div className="px-4 mb-5">
+        <div className="flex items-center justify-between">
+          <div>
+            <span className="text-[12px] font-semibold text-[#0d9488] uppercase tracking-wide">
+              Serviciile noastre
+            </span>
+            <h2 className="text-title-1 text-gray-900 mt-1">
+              Cu ce te putem ajuta?
             </h2>
-
-            <p className="text-lg text-[#222222] max-w-2xl mx-auto">
-              De la consultații simple la tratamente complexe, suntem aici să te ajutăm.
-            </p>
           </div>
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
-            {services.map((service) => (
-              <a 
-                key={service.id}
-                href={`/servicii#${service.id}`}
-                className="group p-6 rounded-2xl bg-white border border-[#e2e8f0] transition-all duration-300 hover:shadow-xl hover:shadow-slate-200/50 hover:border-medical-navy/20"
-              >
-                {/* Icon - Colorful soft background */}
-                <div className={`w-14 h-14 rounded-2xl ${service.bg} flex items-center justify-center mb-5 transition-all duration-300 group-hover:scale-105`}>
-                  <service.icon className={`w-7 h-7 ${service.iconColor}`} strokeWidth={1.5} />
-                </div>
-
-                <h3 className="font-semibold text-[#0f172a] mb-2 text-lg group-hover:text-medical-navy transition-colors">{service.title}</h3>
-
-                <p className="text-sm text-[#222222] mb-4 leading-relaxed">{service.description}</p>
-
-                <span className="inline-flex items-center gap-1 text-sm font-semibold text-medical-teal group-hover:text-medical-navy transition-colors">
-                  Vezi prețuri
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </span>
-              </a>
-            ))}
-          </div>
+          <a 
+            href="/servicii" 
+            className="flex items-center gap-1 text-[14px] font-medium text-[#1e3a5f]"
+          >
+            Toate
+            <ChevronRight className="w-4 h-4" />
+          </a>
         </div>
+      </div>
+
+      {/* Horizontal Scroll Cards */}
+      <div className="horizontal-scroll">
+        {services.map((service) => (
+          <a 
+            key={service.id}
+            href={`/servicii#${service.id}`}
+            className="scroll-item w-[160px] press-effect"
+          >
+            <div className={`${service.lightColor} rounded-2xl p-4 h-full`}>
+              {/* Icon */}
+              <div className={`w-12 h-12 ${service.color} rounded-xl flex items-center justify-center mb-3`}>
+                <service.icon className="w-6 h-6 text-white" strokeWidth={2} />
+              </div>
+              
+              {/* Content */}
+              <h3 className="font-semibold text-[15px] text-gray-900 mb-1">
+                {service.title}
+              </h3>
+              <p className="text-[12px] text-gray-500 mb-2 line-clamp-2">
+                {service.description}
+              </p>
+              <p className="text-[12px] font-semibold text-[#0d9488]">
+                {service.price}
+              </p>
+            </div>
+          </a>
+        ))}
+      </div>
+
+      {/* Quick Action Banner */}
+      <div className="px-4 mt-5">
+        <a 
+          href="/servicii" 
+          className="flex items-center justify-between bg-[#1e3a5f] rounded-2xl p-4 press-effect"
+        >
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
+              <Sparkles className="w-5 h-5 text-white" />
+            </div>
+            <div>
+              <p className="font-semibold text-[15px] text-white">Vezi toate serviciile</p>
+              <p className="text-[12px] text-white/70">Prețuri transparente</p>
+            </div>
+          </div>
+          <ChevronRight className="w-5 h-5 text-white/70" />
+        </a>
       </div>
     </section>
   );

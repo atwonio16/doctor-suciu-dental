@@ -1,149 +1,138 @@
 import { useState } from 'react';
-import { ChevronRight } from 'lucide-react';
+import { ChevronRight, Award, MapPin } from 'lucide-react';
 
 const doctors = [
   {
     id: 'suciu',
-    name: 'Doctor Suciu Sebastian',
+    name: 'Dr. Suciu Sebastian',
     title: 'Medic Stomatolog',
     image: '/team_portrait.jpg',
-    description: 'Medic stomatolog cu competență în ortodonție, implantologie și tratamente minim invazive. Cu o experiență solidă și formare continuă, Dr. Suciu oferă pacienților planuri de tratament personalizate.',
-    tags: ['Expertiză', 'Experiență', 'Calitate', 'Tehnologie modernă'],
+    badge: 'Fondator',
+    experience: '15+ ani',
+    specialty: 'Implantologie & Ortodonție',
   },
   {
     id: 'popescu',
-    name: 'Doctor Maria Popescu',
+    name: 'Dr. Maria Popescu',
     title: 'Ortodont',
     image: '/services_overview_smile.jpg',
-    description: 'Specialist Invisalign Diamond Provider cu peste 10 ani de experiență în alinierea zâmbetelor. Creează planuri de tratament personalizate pentru adulți și adolescenți.',
-    tags: ['Invisalign', 'Ortodonție', 'Estetică', 'Pediatrie'],
+    badge: 'Invisalign Expert',
+    experience: '12+ ani',
+    specialty: 'Aparate invisible',
   },
   {
     id: 'ionescu',
-    name: 'Doctor Andrei Ionescu',
-    title: 'Medic Endodont',
+    name: 'Dr. Andrei Ionescu',
+    title: 'Endodont',
     image: '/implant_detail_work.jpg',
-    description: 'Expert în tratamente de canal cu microscop dentar. Salvează dinți compromiși cu precizie milimetrică și tehnici avansate.',
-    tags: ['Microscopie', 'Endodonție', 'Precizie', 'Tehnologie'],
+    badge: 'Microscopie',
+    experience: '10+ ani',
+    specialty: 'Tratamente canal',
   },
   {
     id: 'dumitrescu',
-    name: 'Doctor Elena Dumitrescu',
-    title: 'Stomatolog Pediatru',
+    name: 'Dr. Elena Dumitrescu',
+    title: 'Pedodont',
     image: '/testimonial_patient.jpg',
-    description: 'Transformă frica în încredere la cei mai mici pacienți. Cu blândețe și răbdare, creează experiențe pozitive la dentist pentru copii.',
-    tags: ['Pedodonție', 'Copii', 'Blândețe', 'Prevenție'],
-  },
-  {
-    id: 'marin',
-    name: 'Doctor Ioana Marin',
-    title: 'Chirurg Maxilo-Facial',
-    image: '/clinic_gallery_interior2.jpg',
-    description: 'Specialist în intervenții chirurgicale orale complexe și reconstrucție facială. Utilizează tehnici minim invazive pentru recuperare rapidă.',
-    tags: ['Chirurgie', 'Implantologie', 'Reconstrucție', 'Expertiză'],
+    badge: 'Pedodonție',
+    experience: '8+ ani',
+    specialty: 'Copii & adolescenți',
   },
 ];
 
 const TeamSection = () => {
   const [activeIndex, setActiveIndex] = useState(0);
-
-  const nextSlide = () => {
-    setActiveIndex((prev) => (prev + 1) % doctors.length);
-  };
-
-  const doctor = doctors[activeIndex];
+  const activeDoctor = doctors[activeIndex];
 
   return (
-    <section id="medici" className="relative w-full py-16 bg-white">
-      <div className="w-full px-4 sm:px-6 lg:px-12 xl:px-20">
-        <div className="max-w-7xl mx-auto">
-          {/* Header */}
-          <div className="text-center mb-8 sm:mb-10">
-            {/* Label */}
-            <div className="flex items-center justify-center gap-3 mb-3">
-              <span className="w-12 h-[1px] bg-[#94a3b8]" />
-              <span className="text-xs font-semibold tracking-[0.15em] text-[#64748b] uppercase">
-                Echipa Noastră
-              </span>
-              <span className="w-12 h-[1px] bg-[#94a3b8]" />
+    <section id="medici" className="py-10 bg-white">
+      {/* Section Header */}
+      <div className="px-4 mb-5">
+        <span className="text-[12px] font-semibold text-[#0d9488] uppercase tracking-wide">
+          Echipa noastră
+        </span>
+        <h2 className="text-title-1 text-gray-900 mt-1">
+          Medici specialiști
+        </h2>
+      </div>
+
+      {/* Featured Doctor Card */}
+      <div className="px-4 mb-5">
+        <div className="card-mobile-elevated overflow-hidden">
+          {/* Image */}
+          <div className="relative aspect-[4/3]">
+            <img
+              src={activeDoctor.image}
+              alt={activeDoctor.name}
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 gradient-overlay" />
+            
+            {/* Badge */}
+            <div className="absolute top-3 left-3">
+              <div className="flex items-center gap-1 bg-white/95 backdrop-blur-sm px-2.5 py-1 rounded-full">
+                <Award className="w-3.5 h-3.5 text-[#0d9488]" />
+                <span className="text-[11px] font-semibold text-gray-900">{activeDoctor.badge}</span>
+              </div>
             </div>
-            <h2 className="text-2xl sm:text-3xl lg:text-5xl font-semibold text-[#1e293b] mb-3">
-              Medici specialiști
-            </h2>
-            <p className="text-[#64748b] text-base sm:text-lg max-w-2xl mx-auto px-4 sm:px-0">
-              Medici dedicați care pun pe primul loc siguranța, confortul și rezultatele tale.
-            </p>
+
+            {/* Info Overlay */}
+            <div className="absolute bottom-0 left-0 right-0 p-4">
+              <h3 className="font-bold text-[20px] text-white mb-1">
+                {activeDoctor.name}
+              </h3>
+              <p className="text-[14px] text-white/90">{activeDoctor.title}</p>
+            </div>
           </div>
 
-          {/* Card - Vertical on mobile, horizontal on md+ */}
-          <div className="bg-white rounded-xl sm:rounded-2xl border border-[#e2e8f0] overflow-hidden shadow-sm">
-            <div className="flex flex-col md:grid md:grid-cols-[2fr_3fr] md:h-[420px]">
-              {/* Image - Full width on mobile */}
-              <div className="relative h-64 sm:h-72 md:h-full overflow-hidden bg-[#f1f5f9]">
-                <img
-                  src={doctor.image}
-                  alt={doctor.name}
-                  className="w-full h-full object-cover object-top transition-opacity duration-300"
-                />
+          {/* Details */}
+          <div className="p-4">
+            <div className="flex items-center gap-4 mb-4">
+              <div className="flex-1">
+                <p className="text-[12px] text-gray-400 mb-0.5">Experiență</p>
+                <p className="font-semibold text-[14px] text-gray-900">{activeDoctor.experience}</p>
               </div>
-              
-              {/* Content */}
-              <div className="p-5 sm:p-6 md:p-8 lg:p-10 flex flex-col justify-between">
-                <div>
-                  <h3 className="text-xl sm:text-2xl md:text-3xl font-semibold text-[#1e293b] mb-1 sm:mb-2">
-                    {doctor.name}
-                  </h3>
-                  <p className="text-[#1e3a5f] font-semibold mb-4 sm:mb-5 text-sm sm:text-base md:text-lg">
-                    {doctor.title}
-                  </p>
-                  <p className="text-[#64748b] leading-relaxed text-sm sm:text-base md:text-lg">
-                    {doctor.description}
-                  </p>
-                </div>
-                
-                <div className="mt-4 sm:mt-0">
-                  {/* Tags */}
-                  <div className="flex flex-wrap gap-2 sm:gap-3 mb-5 sm:mb-6">
-                    {doctor.tags.map((tag, idx) => (
-                      <span 
-                        key={idx}
-                        className="px-3 sm:px-4 py-1 sm:py-1.5 bg-[#f0f9ff] text-[#0284c7] text-xs sm:text-sm font-medium rounded-full"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-
-                  {/* Navigation */}
-                  <div className="flex items-center justify-between">
-                    {/* Dots */}
-                    <div className="flex items-center gap-1.5 sm:gap-2">
-                      {doctors.map((_, index) => (
-                        <button
-                          key={index}
-                          onClick={() => setActiveIndex(index)}
-                          className={`rounded-full transition-all duration-300 ${
-                            index === activeIndex
-                              ? 'w-2.5 h-2.5 sm:w-3 sm:h-3 bg-[#1e3a5f]'
-                              : 'w-2 h-2 sm:w-2.5 sm:h-2.5 bg-[#cbd5e1] hover:bg-[#94a3b8]'
-                          }`}
-                          aria-label={`Go to doctor ${index + 1}`}
-                        />
-                      ))}
-                    </div>
-
-                    {/* Next Arrow */}
-                    <button
-                      onClick={nextSlide}
-                      className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#1e3a5f] flex items-center justify-center text-white hover:bg-[#152a45] transition-colors shadow-md active:scale-95"
-                      aria-label="Next"
-                    >
-                      <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
-                    </button>
-                  </div>
-                </div>
+              <div className="flex-1 border-l border-gray-100 pl-4">
+                <p className="text-[12px] text-gray-400 mb-0.5">Specialitate</p>
+                <p className="font-semibold text-[14px] text-gray-900">{activeDoctor.specialty}</p>
               </div>
             </div>
+            
+            <a 
+              href={`/medici/${activeDoctor.id}`}
+              className="flex items-center justify-center gap-2 w-full h-[44px] bg-gray-50 rounded-xl text-[14px] font-semibold text-[#1e3a5f] press-effect"
+            >
+              Vezi profil complet
+              <ChevronRight className="w-4 h-4" />
+            </a>
+          </div>
+        </div>
+      </div>
+
+      {/* Doctor Selector Dots */}
+      <div className="flex items-center justify-center gap-2 mb-6">
+        {doctors.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => setActiveIndex(index)}
+            className={`h-2 rounded-full transition-all ${
+              index === activeIndex 
+                ? 'w-6 bg-[#1e3a5f]' 
+                : 'w-2 bg-gray-200'
+            }`}
+          />
+        ))}
+      </div>
+
+      {/* Location Info */}
+      <div className="px-4">
+        <div className="flex items-center gap-3 p-4 bg-gray-50 rounded-2xl">
+          <div className="w-10 h-10 bg-[#0d9488]/10 rounded-full flex items-center justify-center flex-shrink-0">
+            <MapPin className="w-5 h-5 text-[#0d9488]" />
+          </div>
+          <div>
+            <p className="font-semibold text-[14px] text-gray-900">Calea Domnească 234</p>
+            <p className="text-[12px] text-gray-500">Târgoviște, Dâmbovița</p>
           </div>
         </div>
       </div>
