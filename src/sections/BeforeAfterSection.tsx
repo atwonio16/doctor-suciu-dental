@@ -78,8 +78,8 @@ const BeforeAfterSection = () => {
   const activeCmsCases = cmsCases.filter(c => c.isActive !== false);
   const displayCases = useMemo(() => {
     const cases = activeCmsCases.length >= 1
-      ? activeCmsCases.sort((a, b) => a.order - b.order).slice(0, 3)
-      : defaultCases.slice(0, 3);
+      ? activeCmsCases.sort((a, b) => a.order - b.order)
+      : defaultCases;
     return cases;
   }, [activeCmsCases]);
 

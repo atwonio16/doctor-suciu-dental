@@ -40,11 +40,14 @@ export async function getById<T>(table: string, id: string): Promise<T | null> {
   return data;
 }
 
-export async function create<T>(table: string, item: Omit<T, 'id' | 'created_at' | 'updated_at'>): Promise<T | null> {
+export async function create<T extends { id?: string; created_at?: string; updated_at?: string }>(
+  table: string, 
+  item: Omit<T, 'id' | 'created_at' | 'updated_at'>
+): Promise<T | null> {
   console.log(`Creating in ${table}:`, item);
   const { data, error } = await supabase
     .from(table)
-    .insert([item])
+    .insert(item)
     .select()
     .single();
   
@@ -104,7 +107,7 @@ export async function reorder(table: string, ids: string[]): Promise<boolean> {
 
 // Services API
 export const servicesApi = {
-  getAll: (active?: boolean) => getAll<Service>('services', { active, orderBy: 'order_index' }),
+  getAll: () => getAll<Service>('services', { orderBy: 'order_index' }),
   getById: (id: string) => getById<Service>('services', id),
   create: (item: Omit<Service, 'id' | 'created_at' | 'updated_at'>) => create<Service>('services', item),
   update: (id: string, updates: Partial<Service>) => update<Service>('services', id, updates),
@@ -113,7 +116,7 @@ export const servicesApi = {
 };
 
 export const doctorsApi = {
-  getAll: (active?: boolean) => getAll<Doctor>('doctors', { active, orderBy: 'order_index' }),
+  getAll: () => getAll<Doctor>('doctors', { orderBy: 'order_index' }),
   getById: (id: string) => getById<Doctor>('doctors', id),
   create: (item: Omit<Doctor, 'id' | 'created_at' | 'updated_at'>) => create<Doctor>('doctors', item),
   update: (id: string, updates: Partial<Doctor>) => update<Doctor>('doctors', id, updates),
@@ -122,7 +125,7 @@ export const doctorsApi = {
 };
 
 export const beforeAfterApi = {
-  getAll: (active?: boolean) => getAll<BeforeAfter>('before_after', { active, orderBy: 'order_index' }),
+  getAll: () => getAll<BeforeAfter>('before_after', { orderBy: 'order_index' }),
   getById: (id: string) => getById<BeforeAfter>('before_after', id),
   create: (item: Omit<BeforeAfter, 'id' | 'created_at' | 'updated_at'>) => create<BeforeAfter>('before_after', item),
   update: (id: string, updates: Partial<BeforeAfter>) => update<BeforeAfter>('before_after', id, updates),
@@ -131,7 +134,7 @@ export const beforeAfterApi = {
 };
 
 export const galleryApi = {
-  getAll: (active?: boolean) => getAll<GalleryImage>('gallery', { active, orderBy: 'order_index' }),
+  getAll: () => getAll<GalleryImage>('gallery', { orderBy: 'order_index' }),
   getById: (id: string) => getById<GalleryImage>('gallery', id),
   create: (item: Omit<GalleryImage, 'id' | 'created_at' | 'updated_at'>) => create<GalleryImage>('gallery', item),
   update: (id: string, updates: Partial<GalleryImage>) => update<GalleryImage>('gallery', id, updates),
@@ -151,7 +154,7 @@ export const reviewsApi = {
 };
 
 export const faqApi = {
-  getAll: (active?: boolean) => getAll<FAQ>('faq', { active, orderBy: 'order_index' }),
+  getAll: () => getAll<FAQ>('faq', { orderBy: 'order_index' }),
   getById: (id: string) => getById<FAQ>('faq', id),
   create: (item: Omit<FAQ, 'id' | 'created_at' | 'updated_at'>) => create<FAQ>('faq', item),
   update: (id: string, updates: Partial<FAQ>) => update<FAQ>('faq', id, updates),
