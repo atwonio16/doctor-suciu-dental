@@ -1,0 +1,197 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Professional Medical Color System */
+    --background: 40 20% 98%;
+    --foreground: 215 45% 18%;
+    --card: 0 0% 100%;
+    --card-foreground: 215 45% 18%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 215 45% 18%;
+    --primary: 215 52% 25%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 40 20% 96%;
+    --secondary-foreground: 215 45% 18%;
+    --muted: 40 15% 95%;
+    --muted-foreground: 215 15% 45%;
+    --accent: 168 76% 32%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 40 15% 88%;
+    --input: 40 15% 88%;
+    --ring: 215 52% 25%;
+    --radius: 0.625rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-medical-cream text-foreground antialiased;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+  }
+  
+  .font-serif {
+    font-family: 'Playfair Display', serif;
+  }
+}
+
+/* Subtle background texture */
+.bg-medical-texture {
+  background-color: #faf9f7;
+  background-image: radial-gradient(#e8e5df 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* NO MORE GRADIENT TEXT - Professional solid colors only */
+/* Use this for emphasis instead of gradients */
+.text-emphasis {
+  color: #0d9488;
+  font-weight: 600;
+}
+
+/* Category pill - clean and professional */
+.category-pill {
+  @apply inline-flex items-center px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider;
+  background-color: #e6f4f3;
+  border: 1px solid #0d9488;
+  color: #0d9488;
+}
+
+/* Primary Button - Navy from doctor's scrub */
+.btn-primary {
+  @apply text-white font-semibold px-6 py-3 rounded-lg transition-all duration-200;
+  background-color: #1e3a5f;
+  box-shadow: 0 4px 14px rgba(30, 58, 95, 0.25);
+}
+.btn-primary:hover {
+  background-color: #152a45;
+  box-shadow: 0 6px 20px rgba(30, 58, 95, 0.35);
+  transform: translateY(-1px);
+}
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+/* Secondary Button - Teal */
+.btn-secondary {
+  @apply text-white font-semibold px-6 py-3 rounded-lg transition-all duration-200;
+  background-color: #0d9488;
+  box-shadow: 0 4px 14px rgba(13, 148, 136, 0.25);
+}
+.btn-secondary:hover {
+  background-color: #0f766e;
+  box-shadow: 0 6px 20px rgba(13, 148, 136, 0.35);
+  transform: translateY(-1px);
+}
+
+/* Outline Button */
+.btn-outline {
+  @apply font-semibold px-6 py-3 rounded-lg transition-all duration-200 bg-white;
+  border: 2px solid #e8e5df;
+  color: #1e3a5f;
+}
+.btn-outline:hover {
+  border-color: #0d9488;
+  color: #0d9488;
+  background-color: #e6f4f3;
+}
+
+/* Card hover effect */
+.card-hover {
+  @apply transition-all duration-200;
+}
+.card-hover:hover {
+  box-shadow: 0 12px 40px rgba(30, 58, 95, 0.12);
+  transform: translateY(-2px);
+}
+
+/* Section divider */
+.section-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #e8e5df, transparent);
+}
+
+/* Icon backgrounds */
+.icon-navy {
+  background-color: #e8eef5;
+  color: #1e3a5f;
+}
+.icon-teal {
+  background-color: #e6f4f3;
+  color: #0d9488;
+}
+.icon-coral {
+  background-color: #fdf2ef;
+  color: #e07a5f;
+}
+
+/* Line clamp utilities */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Focus visible styles for accessibility */
+:focus-visible {
+  outline: 2px solid #0891b2;
+  outline-offset: 2px;
+}
+
+/* Selection color */
+::selection {
+  background-color: #0891b2;
+  color: white;
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Scrollbar hide utility */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Safe area padding for mobile */
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom, 0);
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
