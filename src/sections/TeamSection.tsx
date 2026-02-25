@@ -165,13 +165,11 @@ const TeamSection = () => {
     }));
   }, [supabaseDoctors]);
 
-  // Use local default doctors (force local data) - shuffled randomly
+  // Use doctors from Supabase (CMS), fallback to default if empty
   const doctors = useMemo(() => {
-    // Shuffle array randomly
-    const shuffled = [...defaultDoctors].sort(() => Math.random() - 0.5);
-    return shuffled;
-    // if (cmsDoctors.length > 0) return cmsDoctors;
-    // return defaultDoctors;
+    if (cmsDoctors.length > 0) return cmsDoctors;
+    // Fallback to default doctors shuffled randomly
+    return [...defaultDoctors].sort(() => Math.random() - 0.5);
   }, [cmsDoctors]);
 
   const [activeIndex, setActiveIndex] = useState(0);
