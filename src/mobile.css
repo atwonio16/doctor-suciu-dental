@@ -137,46 +137,87 @@
 
 @media (max-width: 640px) {
   #hero {
-    min-height: auto !important;
-    padding-top: 100px !important;
-    padding-bottom: 40px !important;
+    min-height: 85vh !important;
+    min-height: 85dvh !important;
+    padding-top: 80px !important;
+    padding-bottom: 24px !important;
+    display: flex !important;
+    align-items: flex-start !important;
   }
 
   #hero h1 {
-    font-size: 1.75rem !important;
-    line-height: 1.2 !important;
+    font-size: 1.625rem !important;
+    line-height: 1.1 !important;
     text-align: center !important;
+    margin-bottom: 12px !important;
   }
 
-  #hero .flex-col-sm {
-    flex-direction: column !important;
-    gap: 12px !important;
+  #hero p {
+    text-align: center !important;
+    margin-bottom: 20px !important;
   }
 
+  /* CTAs - full width, stacked, compact spacing */
   #hero .cta-primary,
   #hero .cta-secondary {
     width: 100% !important;
     justify-content: center !important;
-    padding-top: 14px !important;
-    padding-bottom: 14px !important;
-    font-size: 16px !important;
+    padding: 14px 20px !important;
+    font-size: 15px !important;
+    min-height: 48px !important;
   }
 
-  #hero .contact-info {
-    flex-direction: column !important;
+  /* Gap between CTAs */
+  #hero .flex-col {
     gap: 8px !important;
-    text-align: center !important;
   }
 
+  /* Compact contact info - horizontal row */
+  #hero .contact-info {
+    flex-direction: row !important;
+    justify-content: center !important;
+    gap: 16px !important;
+    margin-bottom: 16px !important;
+    font-size: 13px !important;
+  }
+
+  /* Rating row */
   #hero .reassurances {
     flex-wrap: wrap !important;
     justify-content: center !important;
-    gap: 8px 12px !important;
+    gap: 6px 12px !important;
+    font-size: 12px !important;
   }
 
+  /* Image - LAST, smaller, compact */
   #hero .hero-image {
+    order: 2 !important;
+    margin-top: 8px !important;
+    max-width: 260px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  #hero .hero-image > div {
+    aspect-ratio: 16/10 !important;
+    border-radius: 12px !important;
+  }
+
+  /* Text content order-1 */
+  #hero .text-center {
+    order: 1 !important;
+  }
+
+  /* Grid to single column */
+  #hero .grid {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 16px !important;
+  }
+
+  /* Reduce max-width constraints on mobile */
+  #hero .max-w-7xl {
     max-width: 100% !important;
-    margin-top: 24px !important;
   }
 }
 

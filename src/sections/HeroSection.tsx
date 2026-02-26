@@ -1,9 +1,10 @@
-import { ArrowRight, Phone, ChevronDown, MapPin, Clock } from 'lucide-react';
+import { ArrowRight, Phone, ChevronDown, MapPin } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useCMSSettings } from '../hooks/useCMSSettings';
 
 const HeroSection = () => {
   const { googleReviews } = useCMSSettings();
+  
   const scrollToContent = () => {
     const nextSection = document.getElementById('transformari');
     if (nextSection) {
@@ -17,16 +18,16 @@ const HeroSection = () => {
       className="relative w-full bg-white flex items-center"
       style={{ minHeight: '100vh' }}
     >
-      <div className="w-full px-4 sm:px-6 lg:px-12 xl:px-20 pt-12 sm:pt-16 pb-8 sm:pb-16 lg:py-24">
+      <div className="w-full px-4 sm:px-6 lg:px-12 xl:px-20 pt-20 sm:pt-16 pb-6 sm:pb-16 lg:py-24">
         <div className="max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          <div className="grid lg:grid-cols-2 gap-6 lg:gap-16 items-center">
             
-            {/* Left - Text */}
-            <div className="text-center lg:text-left order-2 lg:order-1">
+            {/* Left - Text Content */}
+            <div className="text-center lg:text-left order-1">
               
-              {/* Headline - single line, no period, font-weight 800, tracking tight */}
+              {/* Headline */}
               <h1 
-                className="text-[1.75rem] sm:text-[2.25rem] lg:text-[3rem] leading-[1.15] mb-5 sm:mb-6 lg:whitespace-nowrap"
+                className="text-[1.625rem] sm:text-[2.25rem] lg:text-[3rem] leading-[1.1] mb-3 sm:mb-6 lg:whitespace-nowrap"
                 style={{ 
                   color: '#0F172A',
                   fontWeight: 800,
@@ -36,30 +37,30 @@ const HeroSection = () => {
                 Zâmbetul tău începe aici
               </h1>
 
-              {/* Subheadline - empathetic, human tone, single line on desktop */}
+              {/* Subtitle - max 2 lines */}
               <p 
-                className="text-[15px] sm:text-base lg:text-[17px] mb-6 sm:mb-8 leading-relaxed max-w-[560px] mx-auto lg:mx-0 px-1 sm:px-0"
+                className="text-[15px] sm:text-base lg:text-[17px] mb-5 sm:mb-8 leading-relaxed max-w-[480px] mx-auto lg:mx-0"
                 style={{ color: '#475569' }}
               >
                 Știm că nu îți place la dentist. De asta facem lucrurile altfel.
               </p>
 
-              {/* CTAs - Mobile: stacked full width, Desktop: side by side */}
-              <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center lg:justify-start gap-3 mb-6">
-                {/* CTA Primary - gentle invitation */}
+              {/* CTAs - Stacked on mobile */}
+              <div className="flex flex-col items-stretch gap-2 mb-4 sm:mb-6">
+                {/* Primary CTA */}
                 <Link
                   to="/contact"
-                  className="cta-primary inline-flex items-center justify-center gap-2 font-semibold text-[15px] px-7 py-4 sm:py-3 rounded-lg text-white hover:opacity-90 transition-opacity active:scale-[0.98]"
+                  className="cta-primary inline-flex items-center justify-center gap-2 font-semibold text-[15px] px-7 py-3.5 rounded-lg text-white hover:opacity-90 transition-opacity active:scale-[0.98]"
                   style={{ backgroundColor: '#0F2A44' }}
                 >
                   Hai să vorbim
                   <ArrowRight className="w-4 h-4 flex-shrink-0" />
                 </Link>
 
-                {/* CTA Secondary - reassurance, no commitment */}
+                {/* Secondary CTA */}
                 <a
                   href="tel:+40770220110"
-                  className="cta-secondary inline-flex items-center justify-center gap-2 font-medium text-[15px] px-6 py-4 sm:py-3 rounded-lg transition-all active:scale-[0.98]"
+                  className="cta-secondary inline-flex items-center justify-center gap-2 font-medium text-[15px] px-6 py-3.5 rounded-lg transition-all active:scale-[0.98]"
                   style={{ 
                     backgroundColor: 'transparent',
                     border: '1px solid rgba(15, 42, 68, 0.18)',
@@ -77,41 +78,34 @@ const HeroSection = () => {
                 </a>
               </div>
 
-              {/* Contact Info - Mobile: vertical stack, Desktop: horizontal */}
+              {/* Compact Contact Info - Phone + Location only */}
               <div 
-                className="contact-info flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-2 sm:gap-x-5 sm:gap-y-2 text-[13px] sm:text-[13px] mb-5 sm:mb-6" 
+                className="flex items-center justify-center lg:justify-start gap-4 text-[13px] mb-4" 
                 style={{ color: '#64748B' }}
               >
-                <div className="flex items-center justify-center gap-1.5">
+                <a 
+                  href="tel:+40770220110" 
+                  className="flex items-center gap-1.5 hover:text-gray-900 transition-colors"
+                >
                   <Phone className="w-3.5 h-3.5 flex-shrink-0" style={{ color: '#94A3B8' }} />
                   <span>0770 220 110</span>
-                </div>
-                <span className="hidden sm:inline text-gray-300">|</span>
-                <div className="flex items-center justify-center gap-1.5">
+                </a>
+                <span className="text-gray-300">|</span>
+                <div className="flex items-center gap-1.5">
                   <MapPin className="w-3.5 h-3.5 flex-shrink-0" style={{ color: '#94A3B8' }} />
                   <span>Târgoviște</span>
                 </div>
-                <span className="hidden sm:inline text-gray-300">|</span>
-                <div className="flex items-center justify-center gap-1.5">
-                  <Clock className="w-3.5 h-3.5 flex-shrink-0" style={{ color: '#94A3B8' }} />
-                  <span>L-J: 9-18 | V: 9-15</span>
-                </div>
               </div>
 
-              {/* Reassurances + Rating - Mobile: wrapped, Desktop: same row */}
+              {/* Rating - Compact */}
               <div 
-                className="reassurances flex flex-wrap items-center justify-center lg:justify-start gap-x-3 gap-y-2 text-[12px] sm:text-[12px]" 
+                className="flex items-center justify-center lg:justify-start gap-1 text-[12px]" 
                 style={{ color: '#94A3B8' }}
               >
-                {/* Reassurances - whisper */}
                 <span>Fără durere</span>
                 <span className="text-gray-300">·</span>
                 <span>Medici specializați</span>
-                
-                {/* Separator - hidden on very small screens */}
                 <span className="text-gray-300 hidden sm:inline">|</span>
-                
-                {/* Rating - validation */}
                 <div className="flex items-center gap-1" style={{ color: '#64748B' }}>
                   <div className="flex items-center gap-0.5">
                     {[...Array(5)].map((_, i) => (
@@ -121,16 +115,16 @@ const HeroSection = () => {
                     ))}
                   </div>
                   <span className="font-medium" style={{ color: '#0F172A' }}>{googleReviews.rating.toFixed(1)}</span>
-                  <span className="hidden sm:inline">din {googleReviews.reviewCount} recenzii Google</span>
+                  <span className="hidden sm:inline">din {googleReviews.reviewCount} recenzii</span>
                   <span className="sm:hidden">({googleReviews.reviewCount})</span>
                 </div>
               </div>
             </div>
 
-            {/* Right - Image */}
-            <div className="hero-image relative w-full flex items-center justify-center lg:justify-end order-1 lg:order-2">
+            {/* Right - Image - LAST on mobile */}
+            <div className="hero-image relative w-full flex items-center justify-center lg:justify-end order-2 mt-2 lg:mt-0">
               <div 
-                className="relative w-full max-w-[320px] sm:max-w-[440px] lg:max-w-[540px] aspect-[4/3] sm:aspect-square overflow-hidden"
+                className="relative w-full max-w-[280px] sm:max-w-[440px] lg:max-w-[540px] aspect-[16/10] sm:aspect-square overflow-hidden"
                 style={{ borderRadius: '16px' }}
               >
                 <img
@@ -149,7 +143,7 @@ const HeroSection = () => {
         </div>
       </div>
 
-      {/* Scroll indicator - CTA color, subtle bounce - hidden on mobile */}
+      {/* Scroll indicator - Desktop only */}
       <button 
         onClick={scrollToContent}
         className="hidden lg:block absolute bottom-8 left-1/2 -translate-x-1/2 transition-opacity hover:opacity-70 cursor-pointer"
