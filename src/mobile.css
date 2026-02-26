@@ -138,65 +138,85 @@
 @media (max-width: 640px) {
   #hero {
     min-height: auto !important;
-    padding-top: 60px !important;
-    padding-bottom: 20px !important;
+    padding-top: 56px !important;
+    padding-bottom: 24px !important;
     display: flex !important;
     align-items: flex-start !important;
   }
 
   #hero > div {
-    padding-top: 8px !important;
+    padding-top: 4px !important;
   }
 
   #hero h1 {
     font-size: 1.625rem !important;
     line-height: 1.1 !important;
     text-align: center !important;
-    margin-bottom: 6px !important;
+    margin-bottom: 8px !important;
   }
 
   /* Subtitle - tight spacing below headline */
   #hero h1 + p,
   #hero .text-center > p:first-of-type {
     text-align: center !important;
-    margin-bottom: 14px !important;
+    margin-bottom: 16px !important;
     font-size: 15px !important;
     line-height: 1.45 !important;
   }
 
-  /* CTAs container - tight spacing */
+  /* CTAs container - balanced spacing */
   #hero .flex-col {
-    gap: 6px !important;
+    gap: 8px !important;
     margin-bottom: 0 !important;
   }
 
-  /* CTAs - full width, compact */
-  #hero .cta-primary,
+  /* Primary CTA - dominant */
+  #hero .cta-primary {
+    width: 100% !important;
+    justify-content: center !important;
+    padding: 14px 20px !important;
+    font-size: 15px !important;
+    min-height: 48px !important;
+    border-radius: 12px !important;
+    box-shadow: 0 4px 14px rgba(15, 42, 68, 0.25) !important;
+  }
+
+  /* Secondary CTA - subtle */
   #hero .cta-secondary {
     width: 100% !important;
     justify-content: center !important;
-    padding: 12px 20px !important;
-    font-size: 15px !important;
-    min-height: 44px !important;
+    padding: 10px 20px !important;
+    font-size: 14px !important;
+    min-height: 40px !important;
+    background-color: #F8FAFC !important;
+    border: 1px solid #E2E8F0 !important;
+    color: #475569 !important;
+    border-radius: 10px !important;
+  }
+
+  /* Secondary CTA hover state for mobile */
+  #hero .cta-secondary:active {
+    background-color: #F1F5F9 !important;
   }
 
   /* Program + Location row under CTAs */
   #hero .flex-col > div:last-child {
     font-size: 12px !important;
-    padding-top: 2px !important;
-    padding-bottom: 2px !important;
+    padding-top: 4px !important;
+    padding-bottom: 0 !important;
   }
 
-  /* Image - LAST, minimal margins */
+  /* Image - clear separation, proper margins */
   #hero .hero-image {
     order: 2 !important;
-    margin-top: 10px !important;
-    margin-bottom: 6px !important;
+    margin-top: 16px !important;
+    margin-bottom: 4px !important;
   }
 
   #hero .hero-image > div {
     border-radius: 12px !important;
-    max-width: 240px !important;
+    max-width: 280px !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08) !important;
   }
 
   /* Text content order-1 */
@@ -204,24 +224,27 @@
     order: 1 !important;
   }
 
-  /* Grid to single column, tight gap */
+  /* Grid to single column */
   #hero .grid {
     display: flex !important;
     flex-direction: column !important;
-    gap: 4px !important;
+    gap: 8px !important;
   }
 
-  /* Trust line mobile (below image) - two rows layout */
+  /* Trust line mobile - grouped, readable */
   #hero > div > div > div:last-child {
-    margin-top: 12px !important;
+    margin-top: 20px !important;
+    padding-top: 16px !important;
+    border-top: 1px solid #F1F5F9 !important;
   }
 
-  /* Trust row spacing */
-  #hero > div > div > div:last-child > div:first-child {
-    margin-bottom: 4px !important;
+  /* Trust line text */
+  #hero > div > div > div:last-child .flex {
+    font-size: 12px !important;
+    line-height: 1.5 !important;
   }
 
-  /* Star icons in trust line */
+  /* Star icon in trust line */
   #hero > div > div > div:last-child svg {
     width: 12px !important;
     height: 12px !important;
