@@ -1,4 +1,4 @@
-import { ArrowRight, Phone, ChevronDown, MapPin } from 'lucide-react';
+import { ArrowRight, Phone, ChevronDown, MapPin, Clock } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useCMSSettings } from '../hooks/useCMSSettings';
 
@@ -46,7 +46,7 @@ const HeroSection = () => {
               </p>
 
               {/* CTAs - Stacked on mobile */}
-              <div className="flex flex-col items-stretch gap-1.5 sm:gap-2 mb-3 sm:mb-6">
+              <div className="flex flex-col items-stretch gap-1.5 sm:gap-2 sm:mb-6">
                 {/* Primary CTA */}
                 <Link
                   to="/contact"
@@ -76,11 +76,20 @@ const HeroSection = () => {
                   <Phone className="w-4 h-4 flex-shrink-0" />
                   <span className="whitespace-nowrap">Sună fără obligații</span>
                 </a>
+
+                {/* Working Hours - Mobile only */}
+                <div 
+                  className="sm:hidden flex items-center justify-center gap-1.5 text-[12px] py-1" 
+                  style={{ color: '#94A3B8' }}
+                >
+                  <Clock className="w-3.5 h-3.5" />
+                  <span>L–J: 9–18 | V: 9–15</span>
+                </div>
               </div>
 
-              {/* Contact Info - Phone + Location */}
+              {/* Contact Info - Desktop only */}
               <div 
-                className="flex items-center justify-center lg:justify-start gap-5 text-[13px] mb-3 sm:mb-0" 
+                className="hidden sm:flex items-center justify-center lg:justify-start gap-5 text-[13px] mb-3" 
                 style={{ color: '#64748B' }}
               >
                 <a 
@@ -142,7 +151,7 @@ const HeroSection = () => {
 
           {/* Trust Line - Mobile only (below image) */}
           <div 
-            className="sm:hidden flex items-center justify-center gap-1.5 text-[11px] mt-3 pt-2" 
+            className="sm:hidden flex items-center justify-center gap-1.5 text-[11px] mt-2" 
             style={{ color: '#94A3B8' }}
           >
             <span>Fără durere</span>

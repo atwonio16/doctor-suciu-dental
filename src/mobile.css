@@ -138,10 +138,14 @@
 @media (max-width: 640px) {
   #hero {
     min-height: auto !important;
-    padding-top: 76px !important;
+    padding-top: 64px !important;
     padding-bottom: 16px !important;
     display: flex !important;
     align-items: flex-start !important;
+  }
+
+  #hero > div {
+    padding-top: 12px !important;
   }
 
   #hero h1 {
@@ -163,7 +167,7 @@
   /* CTAs container - tight spacing */
   #hero .flex-col {
     gap: 6px !important;
-    margin-bottom: 12px !important;
+    margin-bottom: 0 !important;
   }
 
   /* CTAs - full width, compact */
@@ -176,35 +180,24 @@
     min-height: 44px !important;
   }
 
-  /* Contact info row - compact, icons more visible */
-  #hero .contact-info {
-    flex-direction: row !important;
-    justify-content: center !important;
-    gap: 20px !important;
-    margin-bottom: 12px !important;
-    font-size: 13px !important;
+  /* Working hours row - light, informational */
+  #hero .flex-col > div:last-child {
+    font-size: 12px !important;
+    color: #94a3b8 !important;
+    padding-top: 4px !important;
+    padding-bottom: 2px !important;
   }
 
-  #hero .contact-info svg {
-    width: 14px !important;
-    height: 14px !important;
-  }
-
-  /* Trust line - hidden on mobile (has separate mobile version) */
-  #hero .text-center .reassurances,
-  #hero .text-center > div:last-child {
-    display: none !important;
-  }
-
-  /* Image - LAST, compact margins */
+  /* Image - LAST, minimal margins */
   #hero .hero-image {
     order: 2 !important;
-    margin-top: 4px !important;
-    margin-bottom: 0 !important;
+    margin-top: 12px !important;
+    margin-bottom: 8px !important;
   }
 
   #hero .hero-image > div {
     border-radius: 12px !important;
+    max-width: 240px !important;
   }
 
   /* Text content order-1 */
@@ -219,10 +212,12 @@
     gap: 4px !important;
   }
 
-  /* Trust line mobile (below image) */
+  /* Trust line mobile (below image) - light visual weight */
   #hero > div > div:last-child {
     font-size: 11px !important;
     color: #94a3b8 !important;
+    margin-top: 0 !important;
+    padding-top: 0 !important;
   }
 
   #hero > div > div:last-child svg {
