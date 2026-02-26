@@ -6,16 +6,26 @@ export function MobileBottomBar() {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Contact pe WhatsApp"
-        className="fixed bottom-4 right-4 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-[0_12px_28px_rgba(37,211,102,0.34)] active:scale-[0.96] transition-transform"
+        className="fixed bottom-4 right-4 z-50 flex h-[52px] w-[52px] items-center justify-center rounded-full bg-[#25D366] text-white shadow-[0_10px_22px_rgba(37,211,102,0.28)] active:scale-[0.96] transition-transform"
         style={{ bottom: 'max(16px, calc(env(safe-area-inset-bottom) + 12px))' }}
       >
         <svg
-          className="h-6 w-6"
+          className="h-[22px] w-[22px]"
           viewBox="0 0 24 24"
-          fill="currentColor"
+          fill="none"
           aria-hidden="true"
         >
-          <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm6.7 13.95c-.29.82-1.68 1.53-2.35 1.62-.63.08-1.2.29-4.05-.85-3.43-1.38-5.62-4.9-5.78-5.12-.17-.22-1.38-1.84-1.38-3.5 0-1.67.88-2.48 1.18-2.82.3-.33.65-.42.87-.42.22 0 .43 0 .62.01.19 0 .45-.07.7.53.26.6 1.02 2.53 1.1 2.71.09.18.15.39.03.6-.12.22-.18.35-.36.54-.18.18-.37.38-.53.51-.18.15-.36.31-.22.62.14.31.63 1.03 1.35 1.67.93.83 1.71 1.09 1.95 1.21.24.12.38.1.52-.06.14-.16.6-.7.76-.94.16-.24.32-.2.53-.12.21.08 1.36.64 1.6.76.24.12.4.18.46.28.06.1.04.58-.25 1.4z" />
+          <path
+            d="M20 11.7c0 4.58-3.72 8.3-8.3 8.3-1.47 0-2.84-.38-4.05-1.05L4 20l1.04-3.49A8.25 8.25 0 0 1 3.4 11.7c0-4.58 3.72-8.3 8.3-8.3s8.3 3.72 8.3 8.3Z"
+            stroke="currentColor"
+            strokeWidth="1.9"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <path
+            d="M9.05 8.95c.14-.32.32-.45.57-.45h.43c.13 0 .24.07.29.2l.72 1.72a.55.55 0 0 1-.06.53l-.37.44a.38.38 0 0 0-.05.41c.45.74 1.06 1.34 1.8 1.8.13.08.31.06.42-.05l.44-.37a.53.53 0 0 1 .53-.06l1.72.72c.13.05.2.16.2.29v.43c0 .25-.13.43-.45.57-.39.17-.9.23-1.45.12-.96-.18-2.12-.87-3.28-2.03-1.16-1.16-1.85-2.32-2.03-3.28-.11-.55-.05-1.06.12-1.45Z"
+            fill="currentColor"
+          />
         </svg>
       </a>
 

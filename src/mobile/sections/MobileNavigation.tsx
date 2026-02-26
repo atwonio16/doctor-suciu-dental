@@ -13,6 +13,14 @@ export function MobileNavigation() {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
 
+  const handleLogoClick = () => {
+    setIsOpen(false);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 120);
+  };
+
   const activeHref = useMemo(() => {
     if (location.pathname === '/' && location.hash) {
       return `/${location.hash}`;
@@ -48,6 +56,7 @@ export function MobileNavigation() {
               to="/"
               className="flex min-w-0 flex-1 flex-col justify-center rounded-xl px-2 py-1"
               aria-label="Doctor Suciu Dental Clinic"
+              onClick={handleLogoClick}
             >
               <span className="truncate text-[13px] font-semibold tracking-tight text-slate-900 leading-none">
                 DOCTOR SUCIU
@@ -75,7 +84,7 @@ export function MobileNavigation() {
         <div className="fixed inset-0 z-40">
           <button
             type="button"
-            className="absolute inset-0 bg-slate-950/35 backdrop-blur-[1px]"
+            className="absolute inset-0 bg-slate-950/28"
             onClick={() => setIsOpen(false)}
             aria-label="Inchide meniul"
           />

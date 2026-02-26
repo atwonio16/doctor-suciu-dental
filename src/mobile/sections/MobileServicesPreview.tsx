@@ -87,7 +87,7 @@ export function MobileServicesPreview() {
   return (
     <section id="servicii" className="mobile-safe-x py-4">
       <div className="mx-auto max-w-[560px]">
-        <div className="rounded-[28px] border border-white/80 bg-white p-4 shadow-[0_16px_40px_rgba(15,23,42,0.06)]">
+        <div className="rounded-[24px] border border-slate-200 bg-white p-4 shadow-[0_10px_26px_rgba(15,23,42,0.05)]">
           <div className="mb-4">
             <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#123455]">Servicii</p>
             <h2 className="mt-1 text-[22px] font-semibold tracking-tight text-slate-900">
@@ -124,19 +124,13 @@ export function MobileServicesPreview() {
             ))}
           </div>
 
-          <div className="mt-4 grid gap-2">
+          <div className="mt-4">
             <Link
               to="/servicii"
               className="flex h-12 items-center justify-center gap-2 rounded-2xl bg-[#123455] px-4 text-[14px] font-semibold text-white active:scale-[0.985] transition-transform"
             >
               Vezi toate serviciile
               <ArrowRight className="h-4 w-4" />
-            </Link>
-            <Link
-              to="/contact"
-              className="flex h-11 items-center justify-center rounded-2xl border border-slate-200 bg-white px-4 text-[14px] font-medium text-slate-700 active:scale-[0.985] transition-transform"
-            >
-              Nu stii ce sa alegi? Te ghidam noi
             </Link>
           </div>
         </div>

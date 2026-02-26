@@ -75,15 +75,6 @@ export function MobileReviews() {
   }, [supabaseReviews]);
 
   useEffect(() => {
-    if (reviews.length <= 1) return;
-    const intervalId = window.setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % reviews.length);
-    }, 6000);
-
-    return () => window.clearInterval(intervalId);
-  }, [reviews.length]);
-
-  useEffect(() => {
     if (currentIndex >= reviews.length) {
       setCurrentIndex(0);
     }
@@ -112,7 +103,7 @@ export function MobileReviews() {
   return (
     <section id="reviews" className="mobile-safe-x py-4" aria-labelledby="mobile-reviews-title">
       <div className="mx-auto max-w-[560px]">
-        <div className="rounded-[26px] bg-white p-4 shadow-[0_12px_32px_rgba(15,23,42,0.05)]">
+        <div className="rounded-[24px] border border-slate-200 bg-white p-4 shadow-[0_10px_26px_rgba(15,23,42,0.05)]">
           <div className="mb-4">
             <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#123455]">Recenzii</p>
             <h2 id="mobile-reviews-title" className="mt-1 text-[22px] font-semibold tracking-tight text-slate-900">
@@ -155,7 +146,7 @@ export function MobileReviews() {
             >
               {reviews.map((review) => (
                 <div key={review.id} className="w-full shrink-0">
-                  <article className="rounded-2xl bg-[#fbfcfe] p-4 shadow-[0_8px_20px_rgba(15,23,42,0.04)]">
+                  <article className="rounded-2xl bg-[#fafbfc] p-4">
                     <div className="mb-3 flex items-start justify-between gap-3">
                       <div className="flex min-w-0 items-center gap-3">
                         <img
@@ -193,21 +184,20 @@ export function MobileReviews() {
             </div>
           </div>
 
-          <div className="mt-4 flex items-center gap-3">
-            <div className="mobile-scrollbar-hide flex items-center gap-1.5 overflow-x-auto pr-2">
+          <div className="mt-4 flex items-center justify-center">
+            <div className="mobile-scrollbar-hide flex items-center justify-center gap-1.5 overflow-x-auto">
               {reviews.map((_, index) => (
                 <button
                   key={index}
                   type="button"
                   onClick={() => goTo(index)}
                   className={`rounded-full transition-all ${
-                    index === currentIndex ? 'h-1.5 w-5 bg-[#123455]' : 'h-1.5 w-1.5 bg-slate-300'
+                    index === currentIndex ? 'h-1.5 w-4 bg-[#123455]' : 'h-1.5 w-1.5 bg-slate-300'
                   }`}
                   aria-label={`Recenzia ${index + 1}`}
                 />
               ))}
             </div>
-            <span className="text-[12px] text-slate-500">Swipe</span>
           </div>
         </div>
       </div>

@@ -1,6 +1,4 @@
 import { useEffect, useMemo, useRef, useState, type TouchEvent } from 'react';
-import { ChevronRight } from 'lucide-react';
-import { Link } from 'react-router-dom';
 import type { BeforeAfterCase } from '../../admin/types';
 import { usePublicBeforeAfter } from '../../hooks/useSupabaseData';
 
@@ -89,16 +87,6 @@ export function MobileBeforeAfter() {
   }, [supabaseCases]);
 
   useEffect(() => {
-    if (displayCases.length <= 1) return;
-
-    const intervalId = window.setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % displayCases.length);
-    }, 6500);
-
-    return () => window.clearInterval(intervalId);
-  }, [displayCases.length]);
-
-  useEffect(() => {
     if (currentIndex >= displayCases.length) {
       setCurrentIndex(0);
     }
@@ -130,7 +118,7 @@ export function MobileBeforeAfter() {
   return (
     <section id="transformari" className="mobile-safe-x py-4">
       <div className="mx-auto max-w-[560px]">
-        <div className="overflow-hidden rounded-[28px] border border-white/80 bg-gradient-to-b from-[#f8fbff] to-white p-4 shadow-[0_18px_45px_rgba(15,23,42,0.06)]">
+        <div className="overflow-hidden rounded-[24px] border border-slate-200 bg-white p-4 shadow-[0_10px_26px_rgba(15,23,42,0.05)]">
           <div className="mb-4 flex items-start justify-between gap-3">
             <div>
               <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#123455]">Cazuri reale</p>
@@ -206,28 +194,20 @@ export function MobileBeforeAfter() {
             </div>
           </div>
 
-          <div className="mt-4 flex items-center justify-between gap-3">
-            <div className="mobile-scrollbar-hide flex items-center gap-2 overflow-x-auto pr-2">
+          <div className="mt-4 flex items-center justify-center">
+            <div className="mobile-scrollbar-hide flex items-center justify-center gap-1.5 overflow-x-auto">
               {displayCases.map((_, index) => (
                 <button
                   key={index}
                   type="button"
                   onClick={() => goTo(index)}
                   className={`rounded-full transition-all ${
-                    index === currentIndex ? 'h-1.5 w-5 bg-[#123455]' : 'h-1.5 w-1.5 bg-slate-300'
+                    index === currentIndex ? 'h-1.5 w-4 bg-[#123455]' : 'h-1.5 w-1.5 bg-slate-300'
                   }`}
                   aria-label={`Cazul ${index + 1}`}
                 />
               ))}
             </div>
-
-            <Link
-              to="/contact"
-              className="inline-flex items-center gap-1 rounded-full border border-slate-200 bg-white px-3 py-1.5 text-[12px] font-semibold text-slate-700 active:scale-[0.98] transition-transform"
-            >
-              Vreau evaluare
-              <ChevronRight className="h-3.5 w-3.5 text-slate-400" />
-            </Link>
           </div>
         </div>
       </div>

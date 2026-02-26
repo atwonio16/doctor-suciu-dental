@@ -70,15 +70,6 @@ export function MobileTeam() {
   }, [supabaseDoctors]);
 
   useEffect(() => {
-    if (doctors.length <= 1) return;
-    const intervalId = window.setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % doctors.length);
-    }, 7000);
-
-    return () => window.clearInterval(intervalId);
-  }, [doctors.length]);
-
-  useEffect(() => {
     if (activeIndex >= doctors.length) {
       setActiveIndex(0);
     }
@@ -107,7 +98,7 @@ export function MobileTeam() {
   return (
     <section id="medici" className="mobile-safe-x py-4" aria-labelledby="mobile-team-title">
       <div className="mx-auto max-w-[560px]">
-        <div className="rounded-[28px] border border-white/80 bg-white p-4 shadow-[0_16px_40px_rgba(15,23,42,0.06)]">
+        <div className="rounded-[24px] border border-slate-200 bg-white p-4 shadow-[0_10px_26px_rgba(15,23,42,0.05)]">
           <div className="mb-4 flex items-start justify-between gap-3">
             <div>
               <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#123455]">Echipa</p>
@@ -148,7 +139,7 @@ export function MobileTeam() {
                       )}
 
                       <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent p-4">
-                        <div className="inline-flex items-center rounded-full border border-white/25 bg-white/15 px-2.5 py-1 text-[11px] font-medium text-white backdrop-blur">
+                        <div className="inline-flex items-center rounded-full border border-white/25 bg-black/20 px-2.5 py-1 text-[11px] font-medium text-white">
                           {doctor.role}
                         </div>
                       </div>
@@ -177,21 +168,20 @@ export function MobileTeam() {
             </div>
           </div>
 
-          <div className="mt-4 flex items-center justify-start gap-3">
-            <div className="mobile-scrollbar-hide flex items-center gap-1.5 overflow-x-auto pr-2">
+          <div className="mt-4 flex items-center justify-center">
+            <div className="mobile-scrollbar-hide flex items-center justify-center gap-1.5 overflow-x-auto">
               {doctors.map((_, index) => (
                 <button
                   key={index}
                   type="button"
                   onClick={() => goTo(index)}
                   className={`rounded-full transition-all ${
-                    index === activeIndex ? 'h-1.5 w-5 bg-[#123455]' : 'h-1.5 w-1.5 bg-slate-300'
+                    index === activeIndex ? 'h-1.5 w-4 bg-[#123455]' : 'h-1.5 w-1.5 bg-slate-300'
                   }`}
                   aria-label={`Membrul ${index + 1}`}
                 />
               ))}
             </div>
-            <span className="text-[12px] text-slate-500">Swipe</span>
           </div>
         </div>
       </div>
