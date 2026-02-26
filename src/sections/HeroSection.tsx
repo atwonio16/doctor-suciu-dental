@@ -2,6 +2,16 @@ import { ArrowRight, Phone, ChevronDown, MapPin, Clock } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useCMSSettings } from '../hooks/useCMSSettings';
 
+// Google logo component for social proof
+const GoogleLogo = () => (
+  <svg className="w-3.5 h-3.5 flex-shrink-0" viewBox="0 0 24 24">
+    <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+    <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+    <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+    <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+  </svg>
+);
+
 const HeroSection = () => {
   const { googleReviews } = useCMSSettings();
   
@@ -45,12 +55,12 @@ const HeroSection = () => {
                 Știm că nu îți place la dentist. De asta facem lucrurile altfel.
               </p>
 
-              {/* CTAs - Stacked on mobile */}
-              <div className="flex flex-col items-stretch gap-2 sm:gap-2 sm:mb-6">
+              {/* CTAs - Desktop only (shown in original order) */}
+              <div className="hidden sm:flex flex-col items-stretch gap-2 sm:mb-6">
                 {/* Primary CTA - Dominant */}
                 <Link
                   to="/contact"
-                  className="cta-primary inline-flex items-center justify-center gap-2 font-semibold text-[15px] px-7 py-3.5 rounded-xl text-white hover:opacity-90 transition-opacity active:scale-[0.98] shadow-lg"
+                  className="cta-primary inline-flex items-center justify-center gap-2 font-semibold text-[15px] px-7 py-3.5 rounded-xl text-white hover:opacity-90 transition-opacity active:scale-[0.98]"
                   style={{ 
                     backgroundColor: '#0F2A44',
                     boxShadow: '0 4px 14px rgba(15, 42, 68, 0.25)'
@@ -73,18 +83,6 @@ const HeroSection = () => {
                   <Phone className="w-4 h-4 flex-shrink-0" style={{ color: '#64748B' }} />
                   <span className="whitespace-nowrap">Sună fără obligații</span>
                 </a>
-
-                {/* Program + Location - Mobile only */}
-                <div className="sm:hidden flex items-center justify-center gap-5 text-[12px] pt-1">
-                  <div className="flex items-center gap-1.5" style={{ color: '#64748B' }}>
-                    <Clock className="w-3.5 h-3.5" style={{ color: '#94A3B8' }} />
-                    <span>L–J: 9–18 | V: 9–15</span>
-                  </div>
-                  <div className="flex items-center gap-1.5" style={{ color: '#64748B' }}>
-                    <MapPin className="w-3.5 h-3.5" style={{ color: '#94A3B8' }} />
-                    <span>Târgoviște</span>
-                  </div>
-                </div>
               </div>
 
               {/* Contact Info - Desktop only */}
@@ -149,24 +147,67 @@ const HeroSection = () => {
 
           </div>
 
-          {/* Trust Line - Mobile only (below image) */}
-          <div className="sm:hidden mt-5 pt-2 border-t border-gray-100">
-            <div className="flex flex-col items-center gap-2">
-              {/* Trust badges + Rating in one compact row */}
-              <div className="flex items-center justify-center flex-wrap gap-x-3 gap-y-1 text-[12px]">
-                <span style={{ color: '#64748B' }}>Fără durere</span>
-                <span className="text-gray-300">·</span>
-                <span style={{ color: '#64748B' }}>Medici specializați</span>
-                <span className="text-gray-300">·</span>
-                <div className="flex items-center gap-1">
-                  <svg className="w-3 h-3" viewBox="0 0 24 24" fill="#FABB05">
-                    <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
-                  </svg>
-                  <span className="font-medium" style={{ color: '#0F172A' }}>{googleReviews.rating.toFixed(1)}</span>
-                  <span style={{ color: '#64748B' }}>({googleReviews.reviewCount})</span>
-                </div>
+          {/* Mobile Layout - Reordered: Program/Location → CTAs → Social Proof */}
+          <div className="sm:hidden mt-4">
+            
+            {/* Program + Location */}
+            <div className="flex items-center justify-center gap-4 text-[12px] mb-4">
+              <div className="flex items-center gap-1.5" style={{ color: '#64748B' }}>
+                <Clock className="w-3.5 h-3.5" style={{ color: '#94A3B8' }} />
+                <span>L–J: 9–18 | V: 9–15</span>
+              </div>
+              <div className="flex items-center gap-1.5" style={{ color: '#64748B' }}>
+                <MapPin className="w-3.5 h-3.5" style={{ color: '#94A3B8' }} />
+                <span>Târgoviște</span>
               </div>
             </div>
+
+            {/* CTAs */}
+            <div className="flex flex-col items-stretch gap-2 mb-4">
+              {/* Primary CTA */}
+              <Link
+                to="/contact"
+                className="cta-primary inline-flex items-center justify-center gap-2 font-semibold text-[15px] px-7 py-3.5 rounded-xl text-white active:scale-[0.98]"
+                style={{ 
+                  backgroundColor: '#0F2A44',
+                  boxShadow: '0 4px 14px rgba(15, 42, 68, 0.25)'
+                }}
+              >
+                Hai să vorbim
+                <ArrowRight className="w-4 h-4 flex-shrink-0" />
+              </Link>
+
+              {/* Secondary CTA */}
+              <a
+                href="tel:+40770220110"
+                className="cta-secondary inline-flex items-center justify-center gap-2 font-medium text-[14px] px-6 py-2.5 rounded-lg active:scale-[0.98]"
+                style={{ 
+                  backgroundColor: '#F8FAFC',
+                  border: '1px solid #E2E8F0',
+                  color: '#475569'
+                }}
+              >
+                <Phone className="w-4 h-4 flex-shrink-0" style={{ color: '#64748B' }} />
+                <span className="whitespace-nowrap">Sună fără obligații</span>
+              </a>
+            </div>
+
+            {/* Social Proof */}
+            <div className="flex items-center justify-center gap-2 text-[12px] pt-3 border-t border-gray-100">
+              <span style={{ color: '#64748B' }}>Fără durere</span>
+              <span className="text-gray-300">·</span>
+              <span style={{ color: '#64748B' }}>Medici specializați</span>
+              <span className="text-gray-300">·</span>
+              <div className="flex items-center gap-1">
+                <GoogleLogo />
+                <svg className="w-3 h-3" viewBox="0 0 24 24" fill="#FABB05">
+                  <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                </svg>
+                <span className="font-medium" style={{ color: '#0F172A' }}>{googleReviews.rating.toFixed(1)}</span>
+                <span style={{ color: '#64748B' }}>({googleReviews.reviewCount} recenzii)</span>
+              </div>
+            </div>
+
           </div>
 
         </div>

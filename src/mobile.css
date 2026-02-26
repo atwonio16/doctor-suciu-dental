@@ -145,7 +145,7 @@
   }
 
   #hero > div {
-    padding-top: 4px !important;
+    padding-top: 0 !important;
   }
 
   #hero h1 {
@@ -153,18 +153,19 @@
     line-height: 1.1 !important;
     text-align: center !important;
     margin-bottom: 8px !important;
+    margin-top: 4px !important;
   }
 
   /* Subtitle - tight spacing below headline */
   #hero h1 + p,
   #hero .text-center > p:first-of-type {
     text-align: center !important;
-    margin-bottom: 16px !important;
+    margin-bottom: 12px !important;
     font-size: 15px !important;
     line-height: 1.45 !important;
   }
 
-  /* CTAs container - balanced spacing */
+  /* CTAs container */
   #hero .flex-col {
     gap: 8px !important;
     margin-bottom: 0 !important;
@@ -194,29 +195,22 @@
     border-radius: 10px !important;
   }
 
-  /* Secondary CTA hover state for mobile */
+  /* Secondary CTA active state for mobile */
   #hero .cta-secondary:active {
     background-color: #F1F5F9 !important;
   }
 
-  /* Program + Location row under CTAs */
-  #hero .flex-col > div:last-child {
-    font-size: 12px !important;
-    padding-top: 4px !important;
-    padding-bottom: 0 !important;
-  }
-
-  /* Image - clear separation, proper margins */
+  /* Image - positioned after subtitle */
   #hero .hero-image {
     order: 2 !important;
-    margin-top: 16px !important;
+    margin-top: 4px !important;
     margin-bottom: 4px !important;
   }
 
   #hero .hero-image > div {
     border-radius: 12px !important;
-    max-width: 280px !important;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08) !important;
+    max-width: 260px !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06) !important;
   }
 
   /* Text content order-1 */
@@ -228,24 +222,36 @@
   #hero .grid {
     display: flex !important;
     flex-direction: column !important;
-    gap: 8px !important;
+    gap: 4px !important;
   }
 
-  /* Trust line mobile - grouped, readable */
-  #hero > div > div > div:last-child {
-    margin-top: 20px !important;
-    padding-top: 16px !important;
-    border-top: 1px solid #F1F5F9 !important;
+  /* Mobile layout section (Program + CTAs + Social) */
+  #hero .sm\:hidden {
+    margin-top: 8px !important;
+  }
+
+  /* Program + Location row */
+  #hero .sm\:hidden .flex:first-child {
+    margin-bottom: 12px !important;
+    font-size: 12px !important;
+  }
+
+  /* Social proof section */
+  #hero .sm\:hidden .border-t {
+    margin-top: 12px !important;
+    padding-top: 12px !important;
+    border-color: #F1F5F9 !important;
   }
 
   /* Trust line text */
-  #hero > div > div > div:last-child .flex {
-    font-size: 12px !important;
-    line-height: 1.5 !important;
+  #hero .sm\:hidden .border-t .flex {
+    font-size: 11px !important;
+    flex-wrap: wrap !important;
+    gap: 4px 6px !important;
   }
 
-  /* Star icon in trust line */
-  #hero > div > div > div:last-child svg {
+  /* Star and Google icons in social proof */
+  #hero .sm\:hidden .border-t svg {
     width: 12px !important;
     height: 12px !important;
   }
