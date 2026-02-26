@@ -1,4 +1,4 @@
-import { ArrowRight, CalendarDays, ChevronRight, Clock, MapPin, ShieldCheck, Sparkles } from 'lucide-react';
+import { ArrowRight, CalendarDays, ChevronRight, Clock, MapPin } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useCMSSettings } from '../../hooks/useCMSSettings';
 
@@ -29,16 +29,25 @@ export function MobileHero() {
       <div className="mx-auto max-w-[560px]">
         <div className="mobile-panel relative overflow-hidden p-4">
           <div className="space-y-4">
-            <div className="flex flex-wrap items-center gap-x-2.5 gap-y-2 text-[12px] text-slate-600">
-              <span className="inline-flex items-center gap-1.5 font-medium text-[#0F2A44]">
-                <ShieldCheck className="h-3.5 w-3.5" />
-                Tratament bland, explicat clar
-              </span>
-              <span className="h-1 w-1 rounded-full bg-slate-300" aria-hidden />
-              <span className="inline-flex items-center gap-1.5">
-                <Sparkles className="h-3.5 w-3.5 text-[#1e7a44]" />
-                Clinica moderna in Targoviste
-              </span>
+            <div>
+              <h1
+                className="mobile-title whitespace-nowrap text-slate-950"
+                style={{
+                  fontSize: 'clamp(1.62rem, 7.1vw, 2.2rem)',
+                  lineHeight: 1,
+                  letterSpacing: '-0.055em',
+                  fontWeight: 800,
+                }}
+              >
+                Zambetul tau incepe{' '}
+                <span className="relative inline-block">
+                  <span className="absolute inset-x-0 bottom-[0.08em] h-[0.28em] rounded-full bg-[#e8f0fa]" aria-hidden />
+                  <span className="relative">aici</span>
+                </span>
+              </h1>
+              <p className="mobile-body mt-3 text-[15px] leading-relaxed">
+                Daca ai emotii la dentist, esti in locul potrivit. Lucram calm, cu rabdare si un plan clar pentru fiecare pas.
+              </p>
             </div>
 
             <div className="overflow-hidden rounded-[18px] border border-slate-200 bg-white p-1">
@@ -72,25 +81,7 @@ export function MobileHero() {
                     <span className="text-slate-600">din {googleReviews.reviewCount} recenzii</span>
                   </div>
                 </div>
-
-                <div className="absolute inset-x-2 bottom-2">
-                  <div className="rounded-[10px] border border-white/70 bg-white/92 px-3 py-2">
-                    <p className="text-[11px] font-medium text-slate-900">Atmosfera calma. Comunicare clara. Fara graba.</p>
-                  </div>
-                </div>
               </div>
-            </div>
-
-            <div>
-              <h1
-                className="mobile-title text-slate-950"
-                style={{ fontSize: 'clamp(1.95rem, 8.9vw, 2.55rem)', lineHeight: 0.98, letterSpacing: '-0.05em', fontWeight: 800 }}
-              >
-                Zambetul tau incepe aici
-              </h1>
-              <p className="mobile-body mt-3 text-[15px] leading-relaxed">
-                Daca ai emotii la dentist, esti in locul potrivit. Lucram calm, cu rabdare si un plan clar pentru fiecare pas.
-              </p>
             </div>
 
             <div className="overflow-hidden rounded-[14px] border border-slate-200 bg-[#f8fafc]">
