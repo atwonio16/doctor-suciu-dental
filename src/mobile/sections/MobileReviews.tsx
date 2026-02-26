@@ -118,12 +118,12 @@ export function MobileReviews() {
             href={googleReviews.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="mb-4 flex items-center justify-between gap-3 rounded-[16px] border border-[rgba(23,56,81,0.1)] bg-[#eef2f5] px-3 py-3"
+            className="mb-4 flex items-center justify-between gap-3 rounded-[14px] border border-slate-200 bg-white px-3 py-3"
           >
             <div className="min-w-0">
-              <p className="text-[10px] uppercase tracking-[0.16em] text-[#4b657e]">Google Reviews</p>
+              <p className="text-[10px] uppercase tracking-[0.16em] text-[#64748B]">Google Reviews</p>
               <div className="mt-1 flex items-center gap-2">
-                <span className="text-[18px] font-semibold text-[#173851]">{googleReviews.rating.toFixed(1)}</span>
+                <span className="text-[18px] font-semibold text-[#0F2A44]">{googleReviews.rating.toFixed(1)}</span>
                 <div className="flex items-center gap-0.5" aria-hidden>
                   {[...Array(5)].map((_, index) => (
                     <Star key={index} className="h-3.5 w-3.5 fill-[#f5b400] text-[#f5b400]" />
@@ -132,7 +132,7 @@ export function MobileReviews() {
                 <span className="truncate text-[12px] text-slate-600">{googleReviews.reviewCount} recenzii</span>
               </div>
             </div>
-            <ExternalLink className="h-4 w-4 shrink-0 text-[#4b6b8b]" />
+            <ExternalLink className="h-4 w-4 shrink-0 text-slate-400" />
           </a>
 
           <div
@@ -147,7 +147,7 @@ export function MobileReviews() {
             >
               {reviews.map((review) => (
                 <div key={review.id} className="w-full shrink-0">
-                  <article className="rounded-[16px] border border-[rgba(18,24,38,0.06)] bg-[#f7f5f0] p-4">
+                  <article className="rounded-[14px] border border-slate-200 bg-white p-4">
                     <div className="mb-3 flex items-start justify-between gap-3">
                       <div className="flex min-w-0 items-center gap-3">
                         <img
@@ -163,7 +163,7 @@ export function MobileReviews() {
                         </div>
                       </div>
 
-                      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-[12px] bg-white/80">
+                      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-[10px] border border-slate-100 bg-slate-50">
                         <Quote className="h-4 w-4 text-slate-400" />
                       </span>
                     </div>
@@ -179,7 +179,7 @@ export function MobileReviews() {
                       ))}
                     </div>
 
-                    <p className="text-[14px] leading-relaxed text-slate-700">{review.text}</p>
+                    <p className="text-[14px] leading-relaxed text-slate-700">"{review.text}"</p>
                   </article>
                 </div>
               ))}

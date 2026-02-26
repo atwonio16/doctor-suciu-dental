@@ -122,7 +122,7 @@ export function MobileTeam() {
             >
               {doctors.map((doctor) => (
                 <article key={doctor.id} className="w-full shrink-0">
-                  <div className="overflow-hidden rounded-[18px] border border-[rgba(18,24,38,0.08)] bg-[#f7f5f0]">
+                  <div className="overflow-hidden rounded-[16px] border border-slate-200 bg-white">
                     <div className="relative h-72 overflow-hidden bg-slate-100">
                       {doctor.image ? (
                         <img
@@ -140,14 +140,14 @@ export function MobileTeam() {
                       )}
 
                       <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent p-4">
-                        <div className="inline-flex items-center rounded-full border border-white/20 bg-black/25 px-2.5 py-1 text-[11px] font-medium text-white">
+                        <div className="inline-flex items-center rounded-full border border-white/25 bg-black/20 px-2.5 py-1 text-[11px] font-medium text-white">
                           {doctor.role}
                         </div>
                       </div>
                     </div>
 
                     <div className="p-4">
-                      <h3 className="mobile-title text-[18px] leading-tight text-slate-900" style={{ fontFamily: 'ui-serif, Georgia, Cambria, serif' }}>
+                      <h3 className="text-[18px] font-semibold leading-tight tracking-tight text-slate-900">
                         {doctor.name}
                       </h3>
                       <p className="mt-2 text-[14px] leading-relaxed text-slate-600">{doctor.description}</p>
@@ -157,7 +157,7 @@ export function MobileTeam() {
                           {doctor.tags.map((tag) => (
                             <span
                               key={tag}
-                              className="rounded-full border border-[rgba(18,24,38,0.08)] bg-white/80 px-2.5 py-1 text-[11px] text-slate-700"
+                              className="rounded-full border border-slate-200 bg-slate-50 px-2.5 py-1 text-[11px] text-slate-700"
                             >
                               {tag}
                             </span>

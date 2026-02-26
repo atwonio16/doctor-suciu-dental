@@ -97,7 +97,7 @@ export function MobileGallery() {
               <button
                 type="button"
                 onClick={() => openLightbox(0)}
-                className="flex h-10 items-center gap-1.5 rounded-[12px] border border-[rgba(18,24,38,0.1)] bg-white/80 px-3 text-[12px] font-semibold text-slate-700 active:scale-[0.98] transition-transform"
+                className="mobile-outline-btn flex h-10 items-center gap-1.5 px-3 text-[12px] font-semibold active:scale-[0.98] transition-transform"
               >
                 <Expand className="h-4 w-4" />
                 Deschide
@@ -130,7 +130,7 @@ export function MobileGallery() {
                       key={image.id}
                       type="button"
                       onClick={() => openLightbox(index)}
-                      className={`relative overflow-hidden rounded-[16px] border border-[rgba(18,24,38,0.06)] bg-slate-100 active:scale-[0.99] transition-transform ${layoutClass}`}
+                      className={`relative overflow-hidden rounded-[14px] border border-slate-200 bg-slate-100 active:scale-[0.99] transition-transform ${layoutClass}`}
                     >
                       <img
                         src={image.image_url}
@@ -156,11 +156,11 @@ export function MobileGallery() {
                 <button
                   type="button"
                   onClick={() => openLightbox(0)}
-                  className="flex h-11 flex-1 items-center justify-center rounded-[14px] border border-[rgba(18,24,38,0.1)] bg-white/80 text-[14px] font-medium text-slate-700 active:scale-[0.985] transition-transform"
+                  className="mobile-outline-btn flex h-11 flex-1 items-center justify-center text-[14px] font-medium active:scale-[0.985] transition-transform"
                 >
                   Vezi galeria completa
                 </button>
-                <span className="rounded-full border border-[rgba(18,24,38,0.08)] bg-[#f7f5f0] px-3 py-1.5 text-[11px] text-slate-600">
+                <span className="rounded-full border border-slate-200 bg-white px-3 py-1.5 text-[11px] text-slate-600">
                   {activeImages.length} imagini
                 </span>
               </div>

@@ -171,14 +171,14 @@ export function MobileServices() {
           <div className="mt-4 grid grid-cols-2 gap-2 text-[12px]">
             <a
               href="tel:+40770220110"
-              className="flex h-11 items-center justify-center gap-2 rounded-[14px] border border-[rgba(18,24,38,0.1)] bg-[#f7f5f0] font-semibold text-slate-800 active:scale-[0.985] transition-transform"
+              className="mobile-outline-btn flex h-11 items-center justify-center gap-2 font-semibold active:scale-[0.985] transition-transform"
             >
-              <ArrowRight className="h-4 w-4 text-[#173851]" />
+              <ArrowRight className="h-4 w-4 text-[#0F2A44]" />
               Suna pentru orientare
             </a>
             <Link
               to="/contact"
-              className="flex h-11 items-center justify-center gap-2 rounded-[14px] border border-[#173851] bg-[#173851] px-3 font-semibold text-white active:scale-[0.985] transition-transform"
+              className="mobile-primary-btn flex h-11 items-center justify-center gap-2 px-3 font-semibold active:scale-[0.985] transition-transform"
             >
               Programare
               <ArrowRight className="h-4 w-4" />
@@ -220,10 +220,10 @@ export function MobileServices() {
                 <article
                   key={service.id}
                   id={service.anchorId}
-                  className={`scroll-mt-24 rounded-[20px] border bg-white/90 p-4 shadow-[0_8px_20px_rgba(18,24,38,0.05)] transition-all ${
+                  className={`scroll-mt-24 rounded-[16px] border bg-white p-4 shadow-none transition-all ${
                     isHighlighted
-                      ? 'border-[rgba(23,56,81,0.18)] ring-2 ring-[#dfe7ef]'
-                      : 'border-white/80'
+                      ? 'border-[rgba(15,42,68,0.18)] ring-2 ring-[#e9f0f7]'
+                      : 'border-slate-200'
                   }`}
                 >
                   <div className="flex items-start gap-3">
@@ -237,12 +237,12 @@ export function MobileServices() {
                     <div className="min-w-0 flex-1">
                       <div className="flex flex-wrap gap-2">
                         {service.category && (
-                          <span className="rounded-full border border-[rgba(18,24,38,0.08)] bg-[#f7f5f0] px-2.5 py-1 text-[11px] font-medium text-slate-600">
+                          <span className="rounded-full border border-slate-200 bg-slate-50 px-2.5 py-1 text-[11px] font-medium text-slate-600">
                             {service.category}
                           </span>
                         )}
                         {service.duration && (
-                          <span className="inline-flex items-center gap-1 rounded-full border border-[rgba(18,24,38,0.08)] bg-white px-2.5 py-1 text-[11px] text-slate-600">
+                          <span className="inline-flex items-center gap-1 rounded-full border border-slate-200 bg-white px-2.5 py-1 text-[11px] text-slate-600">
                             <Clock className="h-3 w-3" />
                             {service.duration}
                           </span>
@@ -257,13 +257,13 @@ export function MobileServices() {
                           service.features.map((feature) => (
                             <span
                               key={feature}
-                              className="rounded-full border border-[rgba(18,24,38,0.08)] bg-white/80 px-2.5 py-1 text-[11px] text-slate-700"
+                              className="rounded-full border border-slate-200 bg-white px-2.5 py-1 text-[11px] text-slate-700"
                             >
                               {feature}
                             </span>
                           ))
                         ) : (
-                          <span className="rounded-full border border-[rgba(18,24,38,0.08)] bg-white/80 px-2.5 py-1 text-[11px] text-slate-600">
+                          <span className="rounded-full border border-slate-200 bg-white px-2.5 py-1 text-[11px] text-slate-600">
                             Consultatie si plan personalizat
                           </span>
                         )}
@@ -279,7 +279,7 @@ export function MobileServices() {
 
                         <Link
                           to="/contact"
-                          className="inline-flex h-10 items-center justify-center rounded-[12px] border border-[#173851] bg-[#173851] px-3 text-[12px] font-semibold text-white active:scale-[0.985] transition-transform"
+                          className="mobile-primary-btn inline-flex h-10 items-center justify-center px-3 text-[12px] font-semibold active:scale-[0.985] transition-transform"
                         >
                           Programeaza
                         </Link>

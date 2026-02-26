@@ -98,6 +98,18 @@
   .mobile-shell section {
     scroll-margin-top: 88px;
     position: relative;
+    background: #ffffff;
+  }
+
+  .mobile-shell section + section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: max(16px, env(safe-area-inset-left));
+    right: max(16px, env(safe-area-inset-right));
+    height: 1px;
+    background: rgba(15, 23, 42, 0.06);
+    pointer-events: none;
   }
 
   .mobile-panel {
@@ -196,6 +208,46 @@
     border-radius: 16px;
     border: 1px solid rgba(18, 24, 38, 0.08);
     background: #ffffff;
+  }
+
+  .mobile-card {
+    border-radius: 16px;
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    background: #ffffff;
+  }
+
+  .mobile-card-soft {
+    border-radius: 16px;
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    background: #f8fafc;
+  }
+
+  .mobile-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    border-radius: 999px;
+    border: 1px solid rgba(15, 42, 68, 0.12);
+    background: #f8fafc;
+    color: #0f2a44;
+    font-size: 11px;
+    line-height: 1;
+    padding: 7px 10px;
+    font-weight: 600;
+  }
+
+  .mobile-outline-btn {
+    border-radius: 12px;
+    border: 1px solid rgba(15, 23, 42, 0.1);
+    background: #ffffff;
+    color: #0f172a;
+  }
+
+  .mobile-primary-btn {
+    border-radius: 12px;
+    border: 1px solid #0f2a44;
+    background: #0f2a44;
+    color: #ffffff;
   }
 }
 

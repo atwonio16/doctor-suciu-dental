@@ -5,16 +5,14 @@ export function MobileFooter() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="mobile-safe-x relative overflow-hidden border-t border-white/10 bg-[#131b24] pt-8 text-white">
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-white/10" aria-hidden />
-      <div className="pointer-events-none absolute -right-16 top-8 h-28 w-28 rounded-full bg-[#28455f]/20" aria-hidden />
-      <div className="pointer-events-none absolute -left-10 bottom-24 h-24 w-24 rounded-full bg-[#3c6a5a]/12" aria-hidden />
+    <footer className="mobile-safe-x relative overflow-hidden border-t border-[#0F2A44]/10 bg-[#0F172A] pt-8 text-white">
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-white/8" aria-hidden />
 
       <div className="relative mx-auto max-w-[560px] pb-6">
-        <div className="rounded-[20px] border border-white/8 bg-white/[0.04] p-4">
+        <div className="rounded-[16px] border border-white/10 bg-white/[0.03] p-4">
           <Link to="/" className="inline-block">
             <span className="block text-[18px] font-semibold tracking-tight">DOCTOR SUCIU</span>
-            <span className="mt-1 block text-[10px] uppercase tracking-[0.2em] text-white/60">Dental Clinic</span>
+            <span className="mt-1 block text-[10px] uppercase tracking-[0.2em] text-white/60">DENTAL CLINIC</span>
           </Link>
 
           <p className="mt-3 text-[13px] leading-relaxed text-white/75">
@@ -24,19 +22,19 @@ export function MobileFooter() {
           <div className="mt-4 grid grid-cols-3 gap-2">
             <Link
               to="/"
-              className="flex h-10 items-center justify-center rounded-[12px] border border-white/10 bg-white/[0.04] text-[12px] font-medium text-white/90 active:scale-[0.985] transition-transform"
+              className="flex h-10 items-center justify-center rounded-[10px] border border-white/10 bg-white/[0.02] text-[12px] font-medium text-white/90 active:scale-[0.985] transition-transform"
             >
               Acasa
             </Link>
             <Link
               to="/servicii"
-              className="flex h-10 items-center justify-center rounded-[12px] border border-white/10 bg-white/[0.04] text-[12px] font-medium text-white/90 active:scale-[0.985] transition-transform"
+              className="flex h-10 items-center justify-center rounded-[10px] border border-white/10 bg-white/[0.02] text-[12px] font-medium text-white/90 active:scale-[0.985] transition-transform"
             >
               Servicii
             </Link>
             <Link
               to="/contact"
-              className="flex h-10 items-center justify-center rounded-[12px] border border-white/10 bg-white/[0.04] text-[12px] font-medium text-white/90 active:scale-[0.985] transition-transform"
+              className="flex h-10 items-center justify-center rounded-[10px] border border-white/10 bg-white/[0.02] text-[12px] font-medium text-white/90 active:scale-[0.985] transition-transform"
             >
               Contact
             </Link>
@@ -46,9 +44,9 @@ export function MobileFooter() {
         <div className="mt-3 grid gap-2">
           <a
             href="tel:+40770220110"
-            className="flex items-center gap-3 rounded-[16px] border border-white/10 bg-white/[0.04] px-4 py-3 text-white/90 active:scale-[0.99] transition-transform"
+            className="flex items-center gap-3 rounded-[14px] border border-white/10 bg-white/[0.03] px-4 py-3 text-white/90 active:scale-[0.99] transition-transform"
           >
-            <span className="flex h-10 w-10 items-center justify-center rounded-[12px] bg-white/8">
+            <span className="flex h-10 w-10 items-center justify-center rounded-[10px] bg-white/6">
               <Phone className="h-4 w-4" />
             </span>
             <span>
@@ -59,9 +57,9 @@ export function MobileFooter() {
 
           <a
             href="mailto:contact@doctorsuciu.ro"
-            className="flex items-center gap-3 rounded-[16px] border border-white/10 bg-white/[0.04] px-4 py-3 text-white/90 active:scale-[0.99] transition-transform"
+            className="flex items-center gap-3 rounded-[14px] border border-white/10 bg-white/[0.03] px-4 py-3 text-white/90 active:scale-[0.99] transition-transform"
           >
-            <span className="flex h-10 w-10 items-center justify-center rounded-[12px] bg-white/8">
+            <span className="flex h-10 w-10 items-center justify-center rounded-[10px] bg-white/6">
               <Mail className="h-4 w-4" />
             </span>
             <span className="min-w-0">
@@ -70,9 +68,9 @@ export function MobileFooter() {
             </span>
           </a>
 
-          <div className="rounded-[16px] border border-white/10 bg-white/[0.04] px-4 py-3 text-white/90">
+          <div className="rounded-[14px] border border-white/10 bg-white/[0.03] px-4 py-3 text-white/90">
             <div className="flex items-center gap-3">
-              <span className="flex h-10 w-10 items-center justify-center rounded-[12px] bg-white/8">
+              <span className="flex h-10 w-10 items-center justify-center rounded-[10px] bg-white/6">
                 <MapPin className="h-4 w-4" />
               </span>
               <span>
@@ -82,7 +80,7 @@ export function MobileFooter() {
             </div>
 
             <div className="mt-3 flex items-center gap-3">
-              <span className="flex h-10 w-10 items-center justify-center rounded-[12px] bg-white/8">
+              <span className="flex h-10 w-10 items-center justify-center rounded-[10px] bg-white/6">
                 <Clock className="h-4 w-4" />
               </span>
               <span>
@@ -100,7 +98,7 @@ export function MobileFooter() {
               href="https://facebook.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex h-10 w-10 items-center justify-center rounded-[12px] border border-white/10 bg-white/[0.04] text-white/80 active:scale-[0.96] transition-transform"
+              className="flex h-10 w-10 items-center justify-center rounded-[10px] border border-white/10 bg-white/[0.02] text-white/80 active:scale-[0.96] transition-transform"
               aria-label="Facebook"
             >
               <Facebook className="h-4 w-4" />
@@ -109,7 +107,7 @@ export function MobileFooter() {
               href="https://instagram.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex h-10 w-10 items-center justify-center rounded-[12px] border border-white/10 bg-white/[0.04] text-white/80 active:scale-[0.96] transition-transform"
+              className="flex h-10 w-10 items-center justify-center rounded-[10px] border border-white/10 bg-white/[0.02] text-white/80 active:scale-[0.96] transition-transform"
               aria-label="Instagram"
             >
               <Instagram className="h-4 w-4" />

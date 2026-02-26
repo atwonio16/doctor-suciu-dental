@@ -103,15 +103,15 @@ export function MobileServicesPreview() {
               <Link
                 key={item.anchorId}
                 to={`/servicii#${item.anchorId}`}
-                className="group relative flex items-start gap-3 rounded-[16px] border border-[rgba(18,24,38,0.08)] bg-white/80 p-3 active:scale-[0.99] transition-transform"
+                className="group relative flex items-start gap-3 rounded-[14px] border border-slate-200 bg-white p-3 active:scale-[0.99] transition-transform"
               >
                 <span
-                  className="absolute bottom-0 left-0 top-0 w-1 rounded-l-[16px]"
-                  style={{ backgroundColor: item.accent, opacity: 0.75 }}
+                  className="absolute bottom-2 left-2 top-2 w-[3px] rounded-full"
+                  style={{ backgroundColor: item.accent }}
                   aria-hidden
                 />
                 <span
-                  className="mt-0.5 flex h-11 w-11 shrink-0 items-center justify-center rounded-[12px]"
+                  className="mt-0.5 ml-2 flex h-11 w-11 shrink-0 items-center justify-center rounded-[10px] border border-slate-100"
                   style={{ backgroundColor: item.softBg, color: item.accent }}
                 >
                   <item.Icon className="h-5 w-5" strokeWidth={1.8} />
@@ -137,7 +137,7 @@ export function MobileServicesPreview() {
           <div className="mt-4">
             <Link
               to="/servicii"
-              className="flex h-12 items-center justify-center gap-2 rounded-[14px] border border-[#173851] bg-[#173851] px-4 text-[14px] font-semibold text-white active:scale-[0.985] transition-transform"
+              className="mobile-primary-btn flex h-12 items-center justify-center gap-2 px-4 text-[14px] font-semibold active:scale-[0.985] transition-transform"
             >
               Vezi toate serviciile
               <ArrowRight className="h-4 w-4" />
