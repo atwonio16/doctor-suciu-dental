@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-import { useIsMobile } from '../hooks/use-mobile';
 import HeroSection from '../sections/HeroSection';
 import BeforeAfterSection from '../sections/BeforeAfterSection';
 import ServicesPreview from '../sections/ServicesPreview';
@@ -8,21 +7,8 @@ import ReviewsSection from '../sections/ReviewsSection';
 import TeamSection from '../sections/TeamSection';
 import ClinicGallery from '../sections/ClinicGallery';
 import ContactSection from '../sections/ContactSection';
-// Mobile imports
-import HeroSectionMobile from '../sections/HeroSectionMobile';
-import ServicesPreviewMobile from '../sections/ServicesPreviewMobile';
-import TeamSectionMobile from '../sections/TeamSectionMobile';
-import ReviewsSectionMobile from '../sections/ReviewsSectionMobile';
-import BeforeAfterSectionMobile from '../sections/BeforeAfterSectionMobile';
-import ClinicGalleryMobile from '../sections/ClinicGalleryMobile';
-import WhyChooseSectionMobile from '../sections/WhyChooseSectionMobile';
-
-import ContactSectionMobile from '../sections/ContactSectionMobile';
 
 const HomePage = () => {
-  const isMobile = useIsMobile();
-  
-  // IMPORTANT: All hooks must be called before any conditional return
   useEffect(() => {
     // Handle scroll on page load if hash is present
     const hash = window.location.hash;
@@ -54,23 +40,6 @@ const HomePage = () => {
     return () => document.removeEventListener('click', handleAnchorClick);
   }, []);
 
-  // Show mobile version on small screens (after all hooks are called)
-  if (isMobile) {
-    return (
-      <main className="pb-20">
-        <HeroSectionMobile />
-        <ServicesPreviewMobile />
-        <BeforeAfterSectionMobile />
-        <WhyChooseSectionMobile />
-        <ReviewsSectionMobile />
-        <TeamSectionMobile />
-        <ClinicGalleryMobile />
-        <ContactSectionMobile />
-      </main>
-    );
-  }
-
-  // Desktop version
   return (
     <>
       {/* 1. Hero - Prima secțiune, critică */}

@@ -51,38 +51,57 @@ const ServiceFormPage = () => {
     e.preventDefault();
     setIsLoading(true);
 
-    // Mapare corectă către tipul Supabase Service
-    const serviceData = {
+    // Găsim numele categoriei din slug
+    const categoryName = PREDEFINED_CATEGORIES.find(c => c.slug === formData.categorySlug)?.name || formData.categorySlug;
+    
+    // Payload cu ambele câmpuri de categorie
+    const serviceData: any = {
       title: formData.title,
       description: formData.description,
-      long_description: formData.long_description,
-      price: formData.price,
-      duration: formData.duration,
-      features: formData.features.filter(f => f.trim() !== ''),
-      icon: formData.icon,
-      category: formData.category,
-      category_slug: formData.categorySlug,
-      order_index: formData.order_index,
+      price: formData.price || null,
       is_active: formData.is_active,
+      category: categoryName,        // Numele complet (ex: "Implantologie")
+      category_slug: formData.categorySlug,  // Slug-ul (ex: "implanturi")
     };
+    
+    // Adăugăm câmpuri opționale doar dacă au valori
+    if (formData.long_description?.trim()) {
+      serviceData.long_description = formData.long_description;
+    }
+    if (formData.duration?.trim()) {
+      serviceData.duration = formData.duration;
+    }
+    if (formData.features?.filter(f => f.trim()).length > 0) {
+      serviceData.features = formData.features.filter(f => f.trim());
+    }
 
     console.log('Saving service:', serviceData);
 
-    let result;
-    if (isEditing && id) {
-      result = await update(id, serviceData);
-    } else {
-      result = await create(serviceData);
-    }
+    try {
+      let result;
+      if (isEditing && id) {
+        result = await update(id, serviceData);
+      } else {
+        result = await create(serviceData);
+      }
 
-    console.log('Save result:', result);
+      console.log('Save result:', result);
 
-    setIsLoading(false);
-    
-    if (result) {
-      navigate('/admin/servicii');
-    } else {
-      alert('Eroare la salvare: ' + (result === null ? 'Nu s-a putut salva în baza de date' : JSON.stringify(result)));
+      if (result && result.id) {
+        console.log('Success! Navigating...');
+        navigate('/admin/servicii');
+      } else if (result === null) {
+        alert('Eroare: Nu s-a putut salva în baza de date. Verifică consola (F12) pentru detalii.');
+      } else {
+        console.warn('Result received but no id:', result);
+        alert('Atenție: Salvare incertă. Verifică lista de servicii.');
+        navigate('/admin/servicii');
+      }
+    } catch (err: any) {
+      console.error('Exception during save:', err);
+      alert('Eroare neașteptată: ' + (err?.message || 'Unknown error'));
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -91,14 +110,11 @@ const ServiceFormPage = () => {
   };
 
   const handleCategoryChange = (slug: string) => {
-    const category = PREDEFINED_CATEGORIES.find(c => c.slug === slug);
-    if (category) {
-      setFormData(prev => ({
-        ...prev,
-        categorySlug: category.slug,
-        category: category.name,
-      }));
-    }
+    setFormData(prev => ({
+      ...prev,
+      categorySlug: slug,
+      category: PREDEFINED_CATEGORIES.find(c => c.slug === slug)?.name || slug,
+    }));
   };
 
   const addFeature = () => {

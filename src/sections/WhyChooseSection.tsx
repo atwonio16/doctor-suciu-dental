@@ -24,11 +24,14 @@ const FAQItem = ({ faq, isOpen, onToggle }: FAQItemProps) => {
     >
       <button
         onClick={onToggle}
-        className="w-full flex items-center justify-between p-5 text-left"
+        className="faq-button w-full flex items-center justify-between p-4 sm:p-5 text-left min-h-[60px]"
+        aria-expanded={isOpen}
       >
-        <span className="font-medium text-gray-900 pr-4">{faq.question}</span>
+        <span className="font-medium text-gray-900 pr-4 text-[15px] sm:text-base leading-snug">
+          {faq.question}
+        </span>
         <ChevronDown
-          className={`w-5 h-5 text-gray-500 flex-shrink-0 transition-transform duration-200 ${
+          className={`faq-chevron w-5 h-5 text-gray-500 flex-shrink-0 transition-transform duration-200 ${
             isOpen ? 'rotate-180' : ''
           }`}
           strokeWidth={2}
@@ -38,8 +41,10 @@ const FAQItem = ({ faq, isOpen, onToggle }: FAQItemProps) => {
         className="overflow-hidden transition-all duration-200 ease-linear"
         style={{ height: isOpen ? height : 0 }}
       >
-        <div ref={contentRef} className="px-5 pb-5">
-          <p className="text-sm text-gray-500 leading-relaxed">{faq.answer}</p>
+        <div ref={contentRef} className="faq-answer px-4 sm:px-5 pb-4 sm:pb-5">
+          <p className="text-[14px] sm:text-sm text-gray-500 leading-[1.7]">
+            {faq.answer}
+          </p>
         </div>
       </div>
     </div>
@@ -92,15 +97,15 @@ const WhyChooseSection = () => {
             <h2 className="text-3xl sm:text-4xl lg:text-[2.5rem] font-semibold text-gray-900 tracking-tight mb-4">
               Înainte să ajungi la noi
             </h2>
-            <p className="text-base text-gray-500 mx-auto" style={{ whiteSpace: 'nowrap' }}>
+            <p className="text-base text-gray-500 max-w-2xl mx-auto px-4 sm:px-0">
               Răspunsuri la cele mai frecvente întrebări, ca să știi dinainte la ce să te aștepți și să vii liniștit.
             </p>
           </div>
 
           {/* FAQ Content - Grid with image, equal height */}
-          <div className="grid lg:grid-cols-5 gap-8 lg:gap-10 items-start">
+          <div className="grid lg:grid-cols-5 gap-6 sm:gap-8 lg:gap-10 items-start">
             {/* FAQ List - takes 3 columns */}
-            <div className="lg:col-span-3 space-y-4">
+            <div className="faq-list lg:col-span-3 space-y-3 sm:space-y-4">
               {faqs.map((faq, index) => (
                 <FAQItem
                   key={index}
@@ -111,9 +116,9 @@ const WhyChooseSection = () => {
               ))}
             </div>
 
-            {/* Image - equal height with accordion, secondary */}
-            <div className="lg:col-span-2 h-full">
-              <div className="relative rounded-lg overflow-hidden bg-gray-100 h-full">
+            {/* Image - equal height with accordion, secondary - hidden on mobile */}
+            <div className="faq-image-container lg:col-span-2 h-full hidden lg:block">
+              <div className="relative rounded-lg overflow-hidden bg-gray-100 h-full min-h-[400px]">
                 <img
                   src="/faq-clinic.png"
                   alt="Echipament stomatologic modern"

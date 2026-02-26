@@ -1,14 +1,28 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Phone, Menu, X } from 'lucide-react';
-import { useIsMobile } from '../hooks/use-mobile';
-import NavigationMobile from './NavigationMobile';
 
 const Navigation = () => {
-  const isMobile = useIsMobile();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
+
+  // Close mobile menu on route change
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+  }, [location.pathname]);
+
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isMobileMenuOpen]);
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -17,7 +31,7 @@ const Navigation = () => {
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      const headerOffset = 100;
+      const headerOffset = 80;
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
       window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
@@ -35,10 +49,11 @@ const Navigation = () => {
   };
 
   const handleNavClick = (href: string) => {
+    setIsMobileMenuOpen(false);
     if (href.includes('#')) {
       const [path, hash] = href.split('#');
       if (location.pathname === path || (path === '/' && location.pathname === '/')) {
-        scrollToSection(hash);
+        setTimeout(() => scrollToSection(hash), 100);
       } else {
         navigate(path);
         setTimeout(() => scrollToSection(hash), 300);
@@ -47,10 +62,6 @@ const Navigation = () => {
       navigate(href);
     }
   };
-
-  if (isMobile) {
-    return <NavigationMobile />;
-  }
 
   const navLinks = [
     { label: 'Vezi Servicii', href: '/servicii' },
@@ -62,14 +73,18 @@ const Navigation = () => {
     <>
       <header className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-gray-100">
         <div className="w-full px-4 sm:px-6 lg:px-12 xl:px-20">
-          <div className="max-w-7xl mx-auto flex items-center" style={{ height: '64px' }}>
+          <div className="header-inner max-w-7xl mx-auto flex items-center" style={{ height: '64px' }}>
             {/* Logo */}
-            <button onClick={handleHomeClick} className="flex flex-col leading-none flex-shrink-0 cursor-pointer">
+            <button 
+              onClick={handleHomeClick} 
+              className="flex flex-col leading-none flex-shrink-0 cursor-pointer active:opacity-70"
+              aria-label="Acasă"
+            >
               <span className="font-bold text-lg tracking-tight" style={{ color: '#0F172A' }}>DOCTOR SUCIU</span>
               <span className="text-[10px] tracking-[0.18em] font-medium" style={{ color: '#64748B' }}>DENTAL CLINIC</span>
             </button>
 
-            {/* Navigation - Designed links with subtle states */}
+            {/* Navigation - Desktop */}
             <nav className="hidden lg:flex items-center justify-center flex-1 gap-8">
               {navLinks.map((link) => {
                 const isActiveLink = location.pathname === link.href || 
@@ -104,19 +119,19 @@ const Navigation = () => {
               })}
             </nav>
 
-            {/* Right Side - Phone (calm reassurance) + CTA (dominant) */}
+            {/* Right Side - Phone + CTA - Desktop */}
             <div className="hidden lg:flex items-center gap-6 flex-shrink-0">
               <a 
                 href="tel:+40770220110" 
                 className="flex items-center gap-1.5 text-[13px] font-medium transition-colors hover:text-gray-700"
                 style={{ color: '#64748B' }}
               >
-                <Phone className="w-3.5 h-3.5" />
+                <Phone className="w-3.5 h-3.5 flex-shrink-0" />
                 0770 220 110
               </a>
               <Link 
                 to="/contact" 
-                className="inline-flex items-center justify-center gap-2 font-medium text-[14px] px-5 py-2 rounded-lg transition-all hover:bg-gray-50"
+                className="inline-flex items-center justify-center gap-2 font-medium text-[14px] px-5 py-2.5 rounded-lg transition-all hover:bg-gray-50 active:scale-95"
                 style={{ 
                   backgroundColor: 'transparent',
                   border: '1px solid #94A3B8',
@@ -128,7 +143,13 @@ const Navigation = () => {
             </div>
 
             {/* Mobile Menu Button */}
-            <button className="lg:hidden p-2 ml-auto" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} style={{ color: '#0F172A' }}>
+            <button 
+              className="lg:hidden p-2 ml-auto min-w-[44px] min-h-[44px] flex items-center justify-center active:scale-95" 
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} 
+              style={{ color: '#0F172A' }}
+              aria-label={isMobileMenuOpen ? 'Închide meniul' : 'Deschide meniul'}
+              aria-expanded={isMobileMenuOpen}
+            >
               {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
           </div>
@@ -137,18 +158,15 @@ const Navigation = () => {
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="fixed inset-0 z-40 lg:hidden">
-          <div className="absolute inset-0 bg-black/20" onClick={() => setIsMobileMenuOpen(false)} />
-          <div className="absolute top-[68px] left-0 right-0 bg-white p-6">
-            <nav className="flex flex-col gap-4">
+        <div className="mobile-menu-overlay lg:hidden">
+          <div className="mobile-menu-overlay absolute inset-0 bg-black/20" onClick={() => setIsMobileMenuOpen(false)} />
+          <div className="mobile-menu absolute top-[64px] left-0 right-0 bg-white border-b border-gray-100 max-h-[calc(100vh-64px)] overflow-y-auto">
+            <nav className="flex flex-col p-4">
               {navLinks.map((link) => (
                 <button
                   key={link.href}
-                  onClick={() => {
-                    setIsMobileMenuOpen(false);
-                    handleNavClick(link.href);
-                  }}
-                  className="text-left text-lg font-medium py-2"
+                  onClick={() => handleNavClick(link.href)}
+                  className="mobile-menu-item text-left text-lg font-medium py-4 px-2 border-b border-gray-100 active:bg-gray-50"
                   style={{ color: '#0F172A' }}
                 >
                   {link.label}
@@ -156,12 +174,16 @@ const Navigation = () => {
               ))}
               <a
                 href="tel:+40770220110"
-                className="flex items-center gap-2 text-lg font-medium py-2"
-                style={{ color: '#0F2A44' }}
+                className="mobile-menu-phone flex items-center gap-3 mt-4 p-4 bg-[#f8fafc] rounded-xl text-[#0F2A44] active:bg-[#f1f5f9]"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                <Phone className="w-5 h-5" />
-                0770 220 110
+                <div className="w-10 h-10 rounded-full bg-[#0F2A44]/10 flex items-center justify-center">
+                  <Phone className="w-5 h-5 text-[#0F2A44]" />
+                </div>
+                <div>
+                  <p className="text-xs text-gray-500 uppercase tracking-wider">Sună acum</p>
+                  <p className="text-lg font-semibold">0770 220 110</p>
+                </div>
               </a>
             </nav>
           </div>

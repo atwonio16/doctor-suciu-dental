@@ -26,17 +26,53 @@ export interface Service {
   updatedAt: string;
 }
 
-// Categorii predefinite pentru dropdown
+// Categorii predefinite pentru dropdown - cu subtitluri pentru afișare pe frontend
 export const PREDEFINED_CATEGORIES = [
-  { name: 'Implanturi Dentare', slug: 'implanturi' },
-  { name: 'Ortodonție', slug: 'ortodontie' },
-  { name: 'Albire Dentară', slug: 'albire' },
-  { name: 'Estetică Dentară', slug: 'estetica' },
-  { name: 'Protetică Dentară', slug: 'protetica' },
-  { name: 'Urgențe Stomatologice', slug: 'urgente' },
-  { name: 'Stomatologie Copii', slug: 'copii' },
-  { name: 'Servicii Generale', slug: 'general' },
-  { name: 'Radiologie', slug: 'radiologie' },
+  { 
+    name: 'Implantologie', 
+    slug: 'implanturi',
+    subtitle: 'Soluții durabile pentru înlocuirea dinților pierduți, cu aspect și funcționalitate naturală.'
+  },
+  { 
+    name: 'Ortodonție', 
+    slug: 'ortodontie',
+    subtitle: 'Aliniere dentară discretă și confortabilă, pentru un zâmbet echilibrat și sănătos.'
+  },
+  { 
+    name: 'Albire Dentară', 
+    slug: 'albire',
+    subtitle: 'Proceduri sigure pentru un zâmbet mai luminos, realizate sub supraveghere medicală.'
+  },
+  { 
+    name: 'Estetică Dentară', 
+    slug: 'estetica',
+    subtitle: 'Pentru un zâmbet natural, echilibrat și adaptat fizionomiei tale.'
+  },
+  { 
+    name: 'Protetică', 
+    slug: 'protetica',
+    subtitle: 'Restaurarea funcționalității și esteticii cu coroane, punți și proteze de calitate.'
+  },
+  { 
+    name: 'Urgențe Stomatologice', 
+    slug: 'urgente',
+    subtitle: 'Intervenții rapide pentru durere, traumatisme sau alte situații care necesită atenție imediată.'
+  },
+  { 
+    name: 'Stomatologie Copii', 
+    slug: 'copii',
+    subtitle: 'Îngrijire dentară blândă și prietenoasă, special adaptată pentru cei mici.'
+  },
+  { 
+    name: 'Servicii Generale', 
+    slug: 'general',
+    subtitle: 'Prevenție, igienizare și tratamente pentru menținerea sănătății dentare de zi cu zi.'
+  },
+  { 
+    name: 'Radiologie', 
+    slug: 'radiologie',
+    subtitle: 'Diagnostic precis cu echipament modern și doze minime de radiație.'
+  },
 ] as const;
 
 // Doctor Types
@@ -182,6 +218,13 @@ export interface ActivityLog {
   timestamp: string;
 }
 
+// Google Reviews Stats
+export interface GoogleReviewsStats {
+  rating: number; // 0-5 stars
+  reviewCount: number;
+  url: string; // Link to Google reviews
+}
+
 // CMS Settings
 export interface CMSSettings {
   siteName: string;
@@ -208,4 +251,5 @@ export interface CMSSettings {
     description: string;
     keywords: string;
   };
+  googleReviews: GoogleReviewsStats;
 }

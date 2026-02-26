@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Plus, Search, Edit2, Trash2, CheckCircle, XCircle, Loader2, GripVertical } from 'lucide-react';
 import { useAdminCMS } from '../hooks/useSupabaseAdmin';
@@ -6,8 +6,16 @@ import { doctorsApi } from '../../lib/cms';
 import type { Doctor } from '../../lib/supabase';
 
 const DoctorsPage = () => {
-  const { data: doctors, remove, update, loading } = useAdminCMS<Doctor>(doctorsApi);
+  const { data: doctors, remove, update, loading, error } = useAdminCMS<Doctor>(doctorsApi);
   const [searchQuery, setSearchQuery] = useState('');
+  
+  // Debug logging
+  useEffect(() => {
+    console.log('DoctorsPage - loading:', loading);
+    console.log('DoctorsPage - error:', error);
+    console.log('DoctorsPage - doctors count:', doctors?.length);
+    console.log('DoctorsPage - doctors:', doctors);
+  }, [doctors, loading, error]);
 
   const filteredDoctors = doctors.filter(doctor => {
     const matchesSearch = doctor.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -30,6 +38,21 @@ const DoctorsPage = () => {
     return (
       <div className="flex items-center justify-center h-64">
         <Loader2 className="w-8 h-8 animate-spin text-[#0d9488]" />
+      </div>
+    );
+  }
+  
+  if (error) {
+    return (
+      <div className="p-8 text-center">
+        <div className="text-red-600 font-semibold mb-2">Eroare la încărcarea datelor</div>
+        <div className="text-gray-600 text-sm">{error}</div>
+        <button 
+          onClick={() => window.location.reload()}
+          className="mt-4 px-4 py-2 bg-[#1e3a5f] text-white rounded-lg"
+        >
+          Reîncearcă
+        </button>
       </div>
     );
   }

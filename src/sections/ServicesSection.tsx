@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { 
   Stethoscope, Sparkles, Smile, CirclePlus, 
   Baby, AlertCircle, ArrowRight, type LucideIcon 
@@ -114,6 +114,7 @@ interface ServiceDisplay {
 
 const ServicesSection = () => {
   const { data: supabaseServices, loading } = usePublicServices();
+  const navigate = useNavigate();
 
   const services: ServiceDisplay[] = useMemo(() => {
     // If we have Supabase data, use it
@@ -135,6 +136,11 @@ const ServicesSection = () => {
     return defaultServices;
   }, [supabaseServices]);
 
+  const handleCardClick = (service: ServiceDisplay) => {
+    console.log('Card clicked:', service.title);
+    navigate('/servicii');
+  };
+
   return (
     <section id="servicii" className="w-full py-24 sm:py-28 lg:py-32 bg-white">
       <div className="w-full px-4 sm:px-6 lg:px-12 xl:px-20">
@@ -144,17 +150,17 @@ const ServicesSection = () => {
             <h2 className="text-3xl sm:text-4xl lg:text-[2.5rem] font-semibold text-gray-900 tracking-tight mb-4">
               Serviciile noastre
             </h2>
-            <p className="text-base text-gray-500 mx-auto" style={{ maxWidth: '480px' }}>
+            <p className="text-base text-gray-500 mx-auto px-4 sm:px-0" style={{ maxWidth: '480px' }}>
               De la consultații simple la tratamente complexe — suntem aici pentru tine.
             </p>
           </div>
 
           {/* Loading state */}
           {loading ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
               {[...Array(6)].map((_, i) => (
-                <div key={i} className="bg-white rounded-lg border border-gray-200 shadow-[0_1px_3px_0_rgba(0,0,0,0.04)] p-6 lg:p-7 animate-pulse">
-                  <div className="w-11 h-11 rounded-lg bg-gray-200 mb-5" />
+                <div key={i} className="service-card bg-white rounded-lg border border-gray-200 shadow-[0_1px_3px_0_rgba(0,0,0,0.04)] p-5 sm:p-6 lg:p-7 animate-pulse">
+                  <div className="service-icon w-11 h-11 rounded-lg bg-gray-200 mb-5" />
                   <div className="h-5 bg-gray-200 rounded w-3/4 mb-2.5" />
                   <div className="h-4 bg-gray-200 rounded w-full mb-2" />
                   <div className="h-4 bg-gray-200 rounded w-2/3" />
@@ -163,34 +169,39 @@ const ServicesSection = () => {
             </div>
           ) : (
             /* Services Grid - cards with subtle shadow for clarity */
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
               {services.map((service, index) => (
                 <div
                   key={service.id || index}
-                  className="group bg-white rounded-lg border border-gray-200 shadow-[0_1px_3px_0_rgba(0,0,0,0.04)] p-6 lg:p-7 transition-shadow hover:shadow-[0_2px_8px_0_rgba(0,0,0,0.06)]"
+                  onClick={() => handleCardClick(service)}
+                  className="service-card group bg-white rounded-lg border border-gray-200 shadow-[0_1px_3px_0_rgba(0,0,0,0.04)] p-5 sm:p-6 lg:p-7 transition-all hover:shadow-[0_2px_8px_0_rgba(0,0,0,0.06)] hover:border-gray-300 cursor-pointer relative z-10 active:scale-[0.98]"
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      handleCardClick(service);
+                    }
+                  }}
                 >
                   {/* Icon - colored, slightly smaller for hierarchy */}
-                  <div className={`w-11 h-11 rounded-lg ${service.bg} flex items-center justify-center mb-5`}>
+                  <div className={`service-icon w-11 h-11 rounded-lg ${service.bg} flex items-center justify-center mb-5 transition-transform group-hover:scale-105`}>
                     <service.icon className={`w-5 h-5 ${service.iconColor}`} strokeWidth={1.5} />
                   </div>
 
                   {/* Content */}
-                  <h3 className="text-[1.0625rem] font-medium text-gray-900 mb-2.5">
+                  <h3 className="service-title text-[1.0625rem] font-medium text-gray-900 mb-2.5 group-hover:text-[#1e3a5f] transition-colors">
                     {service.title}
                   </h3>
                   
-                  <p className="text-[13px] text-gray-500 leading-relaxed mb-5 line-clamp-2">
+                  <p className="service-description text-[14px] sm:text-[13px] text-gray-500 leading-relaxed mb-5 line-clamp-2">
                     {service.description}
                   </p>
 
                   {/* CTA - secondary link */}
-                  <Link 
-                    to="/servicii" 
-                    className="inline-flex items-center gap-1.5 text-[13px] font-medium text-gray-500 hover:text-gray-800 transition-colors"
-                  >
+                  <span className="inline-flex items-center gap-1.5 text-[13px] font-medium text-gray-500 group-hover:text-gray-800 transition-colors">
                     <span>Vezi detalii</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </Link>
+                    <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
+                  </span>
                 </div>
               ))}
             </div>
@@ -200,10 +211,10 @@ const ServicesSection = () => {
           <div className="text-center mt-16 sm:mt-20">
             <Link
               to="/servicii"
-              className="inline-flex items-center gap-2 text-[15px] font-medium text-gray-600 hover:text-gray-900 transition-colors"
+              className="inline-flex items-center justify-center gap-2 text-[15px] font-medium text-gray-600 hover:text-gray-900 transition-colors px-4 py-2 min-h-[44px]"
             >
               Vezi toate serviciile
-              <ArrowRight className="w-4 h-4" />
+              <ArrowRight className="w-4 h-4 flex-shrink-0" />
             </Link>
           </div>
         </div>

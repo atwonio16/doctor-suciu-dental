@@ -148,19 +148,32 @@ const ContactPage = () => {
         <div className="absolute inset-0 bg-gradient-to-br from-blue-50/20 via-transparent to-sky-50/10" />
         <div className="relative z-10 w-full px-4 sm:px-6 lg:px-12 xl:px-20">
           <div className="max-w-7xl mx-auto">
-            <div className="text-center mb-12">
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-black mb-4 tracking-tight">Primul pas către zâmbetul visat</h1>
-              <p className="text-lg text-[#64748b] max-w-3xl mx-auto whitespace-nowrap">Completează formularul și primești un plan personalizat în 30 de minute, fără costuri</p>
+            <div className="text-center mb-10">
+              <h2 className="text-3xl sm:text-4xl lg:text-[2.5rem] font-semibold text-gray-900 tracking-tight mb-4">
+                Scrie-ne și hai să vorbim
+              </h2>
+              <p className="text-base text-gray-500 mx-auto max-w-xl leading-relaxed">
+                Spune-ne pe scurt ce te preocupă, iar noi revenim către tine în cel mai scurt timp posibil cu un răspuns clar și onest.
+              </p>
             </div>
 
-            <div id="contact-form" className="bg-white rounded-3xl border border-[#e2e8f0] overflow-hidden mb-10">
-              <div className="grid lg:grid-cols-2 min-h-[550px]">
-                <div className="relative h-64 lg:h-full">
-                  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2795.745365495854!2d25.4493!3d44.9311!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40b2c5e0f7c3b0e7%3A0x7e7c7e7c7e7c7e7c!2sCalea%20Domneasc%C4%83%20234%2C%20T%C3%A2rgovi%C8%99te!5e0!3m2!1sro!2sro!4v1640000000000!5m2!1sro!2sro" width="100%" height="100%" style={{ border: 0 }} allowFullScreen loading="lazy" title="Doctor Suciu Dental Clinic" className="absolute inset-0" />
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent to-white/10 pointer-events-none hidden lg:block" />
+            <div id="contact-form" className="bg-white rounded-3xl border border-[#e2e8f0] shadow-sm overflow-hidden">
+              <div className="grid lg:grid-cols-2">
+                <div className="relative h-56 lg:h-auto lg:min-h-[480px] bg-gray-100">
+                  <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2795.745365495854!2d25.4493!3d44.9311!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40b2c5e0f7c3b0e7%3A0x7e7c7e7c7e7c7e7c!2sCalea%20Domneasc%C4%83%20234%2C%20T%C3%A2rgovi%C8%99te!5e0!3m2!1sro!2sro!4v1640000000000!5m2!1sro!2sro" 
+                    width="100%" 
+                    height="100%" 
+                    style={{ border: 0, filter: 'grayscale(20%) saturate(0.8)' }} 
+                    allowFullScreen 
+                    loading="lazy" 
+                    title="Doctor Suciu Dental Clinic" 
+                    className="absolute inset-0 opacity-90"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-r from-white/30 to-transparent pointer-events-none hidden lg:block" />
                 </div>
 
-                <div className="p-8 lg:p-12 flex flex-col justify-center">
+                <div className="p-8 lg:p-10 flex flex-col justify-center">
                   {isSubmitted ? (
                     <div className="flex flex-col items-center justify-center py-12 text-center">
                       <div className="w-20 h-20 rounded-full bg-[#0891b2]/10 flex items-center justify-center mb-4"><CheckCircle className="w-10 h-10 text-[#0891b2]" /></div>
@@ -169,20 +182,20 @@ const ContactPage = () => {
                   ) : (
                     <form onSubmit={handleSubmit} className="space-y-5">
                       <div className="grid sm:grid-cols-2 gap-4">
-                        <div><label className="block text-sm font-semibold text-black mb-2">Numele tău <span className="text-red-500">*</span></label><Input required placeholder="Ex: Maria Popescu" value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })} className="h-12 bg-[#f8fafc] border-[#e2e8f0] rounded-xl" /></div>
-                        <div><label className="block text-sm font-semibold text-black mb-2">Telefon <span className="text-red-500">*</span></label><Input type="tel" required placeholder="Ex: 0770 220 110" value={formData.phone} onChange={(e) => setFormData({ ...formData, phone: e.target.value })} className="h-12 bg-[#f8fafc] border-[#e2e8f0] rounded-xl" /></div>
+                        <div><label className="block text-sm font-medium text-gray-700 mb-2">Numele tău <span className="text-red-500">*</span></label><Input required placeholder="Ex: Maria Popescu" value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })} className="h-11 bg-[#f8fafc] border-[#e2e8f0] rounded-xl" /></div>
+                        <div><label className="block text-sm font-medium text-gray-700 mb-2">Telefon <span className="text-red-500">*</span></label><Input type="tel" required placeholder="Ex: 0770 220 110" value={formData.phone} onChange={(e) => setFormData({ ...formData, phone: e.target.value })} className="h-11 bg-[#f8fafc] border-[#e2e8f0] rounded-xl" /></div>
                       </div>
 
-                      <div><label className="block text-sm font-semibold text-black mb-2">Email</label><Input type="email" placeholder="Ex: maria@email.com" value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })} className="h-12 bg-[#f8fafc] border-[#e2e8f0] rounded-xl" /></div>
+                      <div><label className="block text-sm font-medium text-gray-700 mb-2">Email</label><Input type="email" placeholder="Ex: maria@email.com" value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })} className="h-11 bg-[#f8fafc] border-[#e2e8f0] rounded-xl" /></div>
 
                       <div>
-                        <label className="block text-sm font-semibold text-black mb-2">Ce serviciu te interesează?</label>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">Ce serviciu te interesează?</label>
                         <Select 
                           key={selectKey}
                           value={formData.service || undefined} 
                           onValueChange={(v) => setFormData({ ...formData, service: v })}
                         >
-                          <SelectTrigger className="h-12 bg-[#f8fafc] border-[#e2e8f0] rounded-xl">
+                          <SelectTrigger className="h-11 bg-[#f8fafc] border-[#e2e8f0] rounded-xl">
                             <SelectValue placeholder="Alege un serviciu din listă..." />
                           </SelectTrigger>
                           <SelectContent>
@@ -191,26 +204,26 @@ const ContactPage = () => {
                         </Select>
                       </div>
 
-                      <div><label className="block text-sm font-semibold text-black mb-2">Mesajul tău (opțional)</label><Textarea placeholder="Spune-ne pe scurt ce te preocupă..." value={formData.message} onChange={(e) => setFormData({ ...formData, message: e.target.value })} rows={3} className="bg-[#f8fafc] border-[#e2e8f0] rounded-xl resize-none" /></div>
+                      <div><label className="block text-sm font-medium text-gray-700 mb-2">Mesajul tău (opțional)</label><Textarea placeholder="Spune-ne pe scurt ce te preocupă..." value={formData.message} onChange={(e) => setFormData({ ...formData, message: e.target.value })} rows={3} className="bg-[#f8fafc] border-[#e2e8f0] rounded-xl resize-none" /></div>
 
-                      <button type="submit" disabled={isLoading} className="w-full flex items-center justify-center gap-2 py-4 text-base font-semibold px-6 rounded-full bg-[#1e3a5f] text-white border-2 border-[#1e3a5f] hover:bg-transparent hover:text-[#1e3a5f] disabled:opacity-70">{isLoading ? <Loader2 className="w-5 h-5 animate-spin" /> : <Send className="w-5 h-5" />}{isLoading ? 'Se trimite...' : 'TRIMITE MESAJUL'}</button>
-
-                      <div className="flex flex-wrap items-center justify-center gap-6 pt-2 text-xs text-[#64748b]">
-                        <span className="flex items-center gap-1"><CheckCircle className="w-4 h-4 text-[#0891b2]" />Răspuns în 30 min</span>
-                        <span className="flex items-center gap-1"><CheckCircle className="w-4 h-4 text-[#0891b2]" />Evaluare gratuită</span>
-                        <span className="flex items-center gap-1"><CheckCircle className="w-4 h-4 text-[#0891b2]" />Fără obligații</span>
+                      <div className="pt-2">
+                        <button type="submit" disabled={isLoading} className="w-full flex items-center justify-center gap-2 py-3 text-base font-medium px-6 rounded-full bg-[#1e3a5f] text-white border border-[#1e3a5f] hover:bg-transparent hover:text-[#1e3a5f] disabled:opacity-70 transition-colors">{isLoading ? <Loader2 className="w-5 h-5 animate-spin" /> : <Send className="w-5 h-5" />}{isLoading ? 'Se trimite...' : 'Trimite mesajul'}</button>
                       </div>
+
+                      <p className="text-center text-xs text-gray-400 pt-2">
+                        Îți răspundem în cel mai scurt timp posibil, fără nicio obligație din partea ta.
+                      </p>
                     </form>
                   )}
                 </div>
               </div>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-              <div className="flex items-center justify-center gap-3 p-4 bg-white rounded-xl border border-[#e2e8f0]"><div className="w-10 h-10 rounded-full bg-[#0891b2]/10 flex items-center justify-center"><Clock className="w-5 h-5 text-[#0891b2]" /></div><div className="text-left"><p className="text-xs text-[#64748b] uppercase tracking-wider">Program</p><p className="font-semibold text-[#0f172a]">L-J: 9-18 | V: 9-15</p></div></div>
-              <a href="https://maps.google.com/?q=Calea+Domnească+234+Târgoviște" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-3 p-4 bg-white rounded-xl border border-[#e2e8f0] hover:border-[#1e3a5f]"><div className="w-10 h-10 rounded-full bg-[#1e3a5f]/10 flex items-center justify-center"><MapPin className="w-5 h-5 text-[#1e3a5f]" /></div><div className="text-left"><p className="text-xs text-[#64748b] uppercase tracking-wider">Adresă</p><p className="font-semibold text-black">Calea Domnească 234</p></div></a>
-              <button onClick={() => setShowEmailModal(true)} className="flex items-center justify-center gap-3 p-4 bg-white rounded-xl border border-[#e2e8f0] hover:border-[#1e3a5f] text-left w-full"><div className="w-10 h-10 rounded-full bg-[#8b5cf6]/10 flex items-center justify-center"><Mail className="w-5 h-5 text-[#8b5cf6]" /></div><div className="text-left"><p className="text-xs text-[#64748b] uppercase tracking-wider">Email</p><p className="font-semibold text-black text-sm">contact@doctorsuciu.ro</p></div></button>
-              <a href="tel:+40770220110" className="flex items-center justify-center gap-3 p-4 bg-white rounded-xl border border-[#e2e8f0] hover:border-[#1e3a5f]"><div className="w-10 h-10 rounded-full bg-[#0891b2]/10 flex items-center justify-center"><Phone className="w-5 h-5 text-[#0891b2]" /></div><div className="text-left"><p className="text-xs text-[#64748b] uppercase tracking-wider">Telefon</p><p className="font-semibold text-black">0770 220 110</p></div></a>
+            <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              <div className="flex items-center justify-center gap-3 p-3 bg-white rounded-xl border border-[#e2e8f0]"><div className="w-9 h-9 rounded-full bg-[#0891b2]/10 flex items-center justify-center"><Clock className="w-4 h-4 text-[#0891b2]" /></div><div className="text-left"><p className="text-[11px] text-[#64748b] uppercase tracking-wider">Program</p><p className="text-sm font-medium text-[#0f172a]">L-J: 9-18 | V: 9-15</p></div></div>
+              <a href="https://maps.google.com/?q=Calea+Domnească+234+Târgoviște" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-3 p-3 bg-white rounded-xl border border-[#e2e8f0] hover:border-[#1e3a5f] transition-colors"><div className="w-9 h-9 rounded-full bg-[#1e3a5f]/10 flex items-center justify-center"><MapPin className="w-4 h-4 text-[#1e3a5f]" /></div><div className="text-left"><p className="text-[11px] text-[#64748b] uppercase tracking-wider">Adresă</p><p className="text-sm font-medium text-black">Calea Domnească 234</p></div></a>
+              <button onClick={() => setShowEmailModal(true)} className="flex items-center justify-center gap-3 p-3 bg-white rounded-xl border border-[#e2e8f0] hover:border-[#1e3a5f] text-left w-full transition-colors"><div className="w-9 h-9 rounded-full bg-[#8b5cf6]/10 flex items-center justify-center"><Mail className="w-4 h-4 text-[#8b5cf6]" /></div><div className="text-left"><p className="text-[11px] text-[#64748b] uppercase tracking-wider">Email</p><p className="text-sm font-medium text-black">contact@doctorsuciu.ro</p></div></button>
+              <a href="tel:+40770220110" className="flex items-center justify-center gap-3 p-3 bg-white rounded-xl border border-[#e2e8f0] hover:border-[#1e3a5f] transition-colors"><div className="w-9 h-9 rounded-full bg-[#0891b2]/10 flex items-center justify-center"><Phone className="w-4 h-4 text-[#0891b2]" /></div><div className="text-left"><p className="text-[11px] text-[#64748b] uppercase tracking-wider">Telefon</p><p className="text-sm font-medium text-black">0770 220 110</p></div></a>
             </div>
           </div>
         </div>

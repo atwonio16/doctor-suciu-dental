@@ -1,0 +1,750 @@
+/**
+ * MOBILE UI/UX FIXES
+ * 
+ * STRICT RULES:
+ * - ONLY mobile styles (max-width: 768px)
+ * - NO desktop style changes
+ * - Touch-first design
+ * - Elderly-friendly
+ */
+
+/* ========================================
+   GLOBAL MOBILE RULES (375px - 768px)
+   ======================================== */
+
+@media (max-width: 768px) {
+  /* Prevent horizontal overflow */
+  html, body {
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
+  }
+
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Body text minimum 16px to prevent zoom on iOS */
+  body {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  /* Touch-friendly tap targets - minimum 44px */
+  button, 
+  a, 
+  [role="button"],
+  input,
+  select,
+  textarea,
+  .tap-target {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Remove hover effects on mobile (touch devices) */
+  @media (hover: none) {
+    *:hover {
+      transform: none !important;
+    }
+    
+    .hover\:scale-105:hover,
+    .hover\:scale-110:hover,
+    .card-hover:hover {
+      transform: none !important;
+    }
+  }
+
+  /* Section padding for mobile */
+  section {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+
+  /* Ensure images don't overflow */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Touch-friendly form elements */
+  input, select, textarea {
+    font-size: 16px !important; /* Prevents zoom on iOS */
+  }
+}
+
+/* ========================================
+   MOBILE SPECIFIC (375px - 640px)
+   ======================================== */
+
+@media (max-width: 640px) {
+  /* Single column layouts */
+  .mobile-stack {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  /* Full width buttons */
+  .mobile-full-width {
+    width: 100% !important;
+  }
+
+  /* Hide desktop-only elements */
+  .desktop-only {
+    display: none !important;
+  }
+
+  /* Mobile-only elements */
+  .mobile-only {
+    display: block !important;
+  }
+
+  /* No horizontal scroll containers */
+  .no-scroll-x {
+    overflow-x: hidden !important;
+  }
+
+  /* Swipe containers */
+  .swipe-container {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .swipe-container::-webkit-scrollbar {
+    display: none;
+  }
+
+  .swipe-item {
+    scroll-snap-align: center;
+    flex-shrink: 0;
+  }
+}
+
+@media (min-width: 641px) {
+  .mobile-only {
+    display: none !important;
+  }
+}
+
+/* ========================================
+   HERO SECTION MOBILE
+   ======================================== */
+
+@media (max-width: 640px) {
+  #hero {
+    min-height: auto !important;
+    padding-top: 100px !important;
+    padding-bottom: 40px !important;
+  }
+
+  #hero h1 {
+    font-size: 1.75rem !important;
+    line-height: 1.2 !important;
+    text-align: center !important;
+  }
+
+  #hero .flex-col-sm {
+    flex-direction: column !important;
+    gap: 12px !important;
+  }
+
+  #hero .cta-primary,
+  #hero .cta-secondary {
+    width: 100% !important;
+    justify-content: center !important;
+    padding-top: 14px !important;
+    padding-bottom: 14px !important;
+    font-size: 16px !important;
+  }
+
+  #hero .contact-info {
+    flex-direction: column !important;
+    gap: 8px !important;
+    text-align: center !important;
+  }
+
+  #hero .reassurances {
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 8px 12px !important;
+  }
+
+  #hero .hero-image {
+    max-width: 100% !important;
+    margin-top: 24px !important;
+  }
+}
+
+/* ========================================
+   BEFORE/AFTER SECTION MOBILE
+   ======================================== */
+
+@media (max-width: 640px) {
+  #transformari .swipe-container {
+    cursor: grab;
+    touch-action: pan-x;
+  }
+
+  #transformari .swipe-container:active {
+    cursor: grabbing;
+  }
+
+  /* Hide arrows on mobile */
+  #transformari .nav-arrow {
+    display: none !important;
+  }
+
+  #transformari .case-images {
+    gap: 8px !important;
+  }
+
+  #transformari .case-label {
+    font-size: 10px !important;
+    padding: 4px 8px !important;
+  }
+
+  #transformari .case-title {
+    font-size: 1rem !important;
+  }
+
+  #transformari .case-description {
+    font-size: 14px !important;
+    padding: 0 12px !important;
+  }
+
+  /* Pagination dots - larger touch targets */
+  #transformari .pagination-dot {
+    min-height: 44px;
+    min-width: 44px;
+    padding: 12px 4px;
+    margin: 0 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #transformari .pagination-dot-inner {
+    height: 6px;
+    border-radius: 3px;
+    transition: all 0.2s ease;
+  }
+
+  #transformari .pagination-dot-inner.active {
+    width: 24px;
+    background-color: #374151;
+  }
+
+  #transformari .pagination-dot-inner.inactive {
+    width: 6px;
+    background-color: #d1d5db;
+  }
+}
+
+/* ========================================
+   SERVICES SECTION MOBILE
+   ======================================== */
+
+@media (max-width: 640px) {
+  #servicii .service-card {
+    padding: 20px !important;
+    margin-bottom: 12px !important;
+  }
+
+  #servicii .service-icon {
+    width: 48px !important;
+    height: 48px !important;
+  }
+
+  #servicii .service-icon svg {
+    width: 24px !important;
+    height: 24px !important;
+  }
+
+  #servicii .service-title {
+    font-size: 1.0625rem !important;
+  }
+
+  #servicii .service-description {
+    font-size: 15px !important;
+    line-height: 1.6 !important;
+  }
+
+  /* Entire card clickable with large tap area */
+  #servicii .service-card {
+    position: relative;
+  }
+
+  #servicii .service-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+  }
+
+  #servicii .service-card > * {
+    position: relative;
+    z-index: 2;
+  }
+}
+
+/* ========================================
+   FAQ SECTION MOBILE
+   ======================================== */
+
+@media (max-width: 640px) {
+  /* Large clickable headers */
+  .faq-button {
+    padding: 20px !important;
+    min-height: 60px !important;
+  }
+
+  .faq-button span {
+    font-size: 16px !important;
+    line-height: 1.5 !important;
+    padding-right: 40px !important;
+  }
+
+  .faq-answer {
+    padding: 0 20px 20px !important;
+  }
+
+  .faq-answer p {
+    font-size: 15px !important;
+    line-height: 1.7 !important;
+  }
+
+  .faq-chevron {
+    width: 24px !important;
+    height: 24px !important;
+  }
+
+  /* Hide FAQ image on mobile to save space */
+  .faq-image-container {
+    display: none !important;
+  }
+
+  .faq-list {
+    width: 100% !important;
+  }
+}
+
+/* ========================================
+   REVIEWS SECTION MOBILE
+   ======================================== */
+
+@media (max-width: 640px) {
+  /* Hide arrows on mobile */
+  #reviews .nav-arrow {
+    display: none !important;
+  }
+
+  /* One review per screen */
+  #reviews .review-card {
+    width: 100% !important;
+    padding: 20px !important;
+  }
+
+  #reviews .review-text {
+    font-size: 15px !important;
+    line-height: 1.7 !important;
+    -webkit-line-clamp: unset !important;
+    display: block !important;
+  }
+
+  #reviews .reviewer-name {
+    font-size: 16px !important;
+  }
+
+  #reviews .review-avatar {
+    width: 48px !important;
+    height: 48px !important;
+  }
+
+  /* Swipe hint animation */
+  @keyframes swipeHint {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(10px); }
+  }
+
+  #reviews .swipe-hint {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 16px;
+    color: #9ca3af;
+    font-size: 13px;
+  }
+
+  #reviews .swipe-hint svg {
+    animation: swipeHint 1.5s ease-in-out infinite;
+  }
+}
+
+@media (min-width: 641px) {
+  #reviews .swipe-hint {
+    display: none !important;
+  }
+}
+
+/* ========================================
+   TEAM SECTION MOBILE
+   ======================================== */
+
+@media (max-width: 640px) {
+  /* Hide arrows on mobile */
+  #medici .nav-arrow {
+    display: none !important;
+  }
+
+  /* One member visible at a time */
+  #medici .team-card {
+    width: 100% !important;
+  }
+
+  #medici .team-image {
+    height: 280px !important;
+  }
+
+  #medici .team-content {
+    padding: 24px 20px !important;
+  }
+
+  #medici .team-name {
+    font-size: 1.125rem !important;
+  }
+
+  #medici .team-role {
+    font-size: 13px !important;
+  }
+
+  #medici .team-description {
+    font-size: 15px !important;
+    line-height: 1.7 !important;
+  }
+
+  #medici .team-tags {
+    flex-wrap: wrap !important;
+    gap: 6px !important;
+  }
+
+  #medici .team-tag {
+    font-size: 11px !important;
+    padding: 4px 8px !important;
+  }
+
+  /* Larger pagination dots for touch */
+  #medici .pagination-dot {
+    min-height: 44px;
+    min-width: 44px;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+/* ========================================
+   GALLERY SECTION MOBILE
+   ======================================== */
+
+@media (max-width: 640px) {
+  #clinica {
+    padding-top: 60px !important;
+    padding-bottom: 60px !important;
+  }
+
+  #clinica .gallery-grid {
+    gap: 8px !important;
+  }
+
+  #clinica .gallery-item {
+    border-radius: 8px !important;
+  }
+
+  /* Lightbox mobile optimization */
+  .lightbox-controls {
+    padding: 16px !important;
+  }
+
+  .lightbox-close {
+    top: 12px !important;
+    right: 12px !important;
+    width: 44px !important;
+    height: 44px !important;
+  }
+
+  .lightbox-nav {
+    width: 44px !important;
+    height: 44px !important;
+  }
+}
+
+/* ========================================
+   CONTACT SECTION MOBILE
+   ======================================== */
+
+@media (max-width: 640px) {
+  #contact {
+    padding-top: 60px !important;
+    padding-bottom: 60px !important;
+  }
+
+  #contact .contact-form-container {
+    padding: 24px 20px !important;
+  }
+
+  /* Full width inputs */
+  #contact input,
+  #contact select,
+  #contact textarea {
+    width: 100% !important;
+    font-size: 16px !important;
+  }
+
+  /* Stack form grid */
+  #contact .form-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 16px !important;
+  }
+
+  /* Map height for mobile */
+  #contact .map-container {
+    height: 200px !important;
+    min-height: 200px !important;
+  }
+
+  /* Contact cards - stack vertically */
+  #contact .contact-cards {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px !important;
+  }
+
+  #contact .contact-card {
+    width: 100% !important;
+    padding: 16px !important;
+    justify-content: flex-start !important;
+  }
+
+  #contact .contact-card-icon {
+    width: 40px !important;
+    height: 40px !important;
+  }
+
+  #contact .contact-card-text {
+    font-size: 14px !important;
+  }
+
+  /* Submit button */
+  #contact .submit-button {
+    width: 100% !important;
+    padding: 14px !important;
+    font-size: 16px !important;
+  }
+
+  /* Keyboard safe spacing */
+  #contact .keyboard-safe {
+    padding-bottom: 100px !important;
+  }
+}
+
+/* ========================================
+   FOOTER MOBILE
+   ======================================== */
+
+@media (max-width: 640px) {
+  footer {
+    padding-top: 40px !important;
+    padding-bottom: 24px !important;
+  }
+
+  /* Single column layout */
+  footer .footer-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 32px !important;
+  }
+
+  footer .footer-section {
+    width: 100% !important;
+  }
+
+  footer .footer-heading {
+    font-size: 12px !important;
+    margin-bottom: 16px !important;
+  }
+
+  footer .footer-link {
+    font-size: 15px !important;
+    padding: 8px 0 !important;
+    display: block !important;
+  }
+
+  footer .footer-contact-item {
+    padding: 12px 0 !important;
+  }
+
+  footer .footer-contact-text {
+    font-size: 15px !important;
+  }
+
+  footer .social-links {
+    justify-content: center !important;
+    gap: 16px !important;
+  }
+
+  footer .social-link {
+    width: 48px !important;
+    height: 48px !important;
+  }
+
+  footer .social-link svg {
+    width: 20px !important;
+    height: 20px !important;
+  }
+
+  footer .copyright {
+    margin-top: 32px !important;
+    padding-top: 20px !important;
+  }
+}
+
+/* ========================================
+   NAVIGATION MOBILE
+   ======================================== */
+
+@media (max-width: 640px) {
+  header {
+    height: 60px !important;
+  }
+
+  header .header-inner {
+    height: 60px !important;
+  }
+
+  /* Mobile menu overlay */
+  .mobile-menu-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 40;
+  }
+
+  .mobile-menu {
+    position: fixed;
+    top: 60px;
+    left: 0;
+    right: 0;
+    background: white;
+    padding: 24px 20px;
+    border-bottom: 1px solid #e5e7eb;
+    z-index: 41;
+  }
+
+  .mobile-menu-item {
+    display: block;
+    width: 100%;
+    padding: 16px 0;
+    font-size: 18px;
+    font-weight: 500;
+    color: #0f172a;
+    text-align: left;
+    border-bottom: 1px solid #f3f4f6;
+  }
+
+  .mobile-menu-item:last-child {
+    border-bottom: none;
+  }
+
+  .mobile-menu-phone {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 16px;
+    padding: 16px;
+    background: #f8fafc;
+    border-radius: 12px;
+    color: #0f2a44;
+    font-size: 18px;
+    font-weight: 600;
+  }
+}
+
+/* ========================================
+   UTILITY CLASSES
+   ======================================== */
+
+@media (max-width: 640px) {
+  /* Text utilities */
+  .mobile-text-center {
+    text-align: center !important;
+  }
+
+  .mobile-text-left {
+    text-align: left !important;
+  }
+
+  /* Spacing utilities */
+  .mobile-py-8 {
+    padding-top: 32px !important;
+    padding-bottom: 32px !important;
+  }
+
+  .mobile-py-12 {
+    padding-top: 48px !important;
+    padding-bottom: 48px !important;
+  }
+
+  /* Flex utilities */
+  .mobile-flex-col {
+    flex-direction: column !important;
+  }
+
+  .mobile-items-center {
+    align-items: center !important;
+  }
+
+  /* Safe area for notched devices */
+  .safe-area-inset {
+    padding-left: max(20px, env(safe-area-inset-left)) !important;
+    padding-right: max(20px, env(safe-area-inset-right)) !important;
+  }
+
+  .safe-area-bottom {
+    padding-bottom: max(20px, env(safe-area-inset-bottom)) !important;
+  }
+}
+
+/* ========================================
+   REDUCED MOTION
+   ======================================== */
+
+@media (max-width: 640px) and (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ========================================
+   HIGH CONTRAST MODE
+   ======================================== */
+
+@media (max-width: 640px) and (prefers-contrast: high) {
+  .tap-target,
+  button,
+  a {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+  }
+}

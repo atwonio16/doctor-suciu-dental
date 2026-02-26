@@ -1,7 +1,15 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { Lock, User, Eye, EyeOff, Shield } from 'lucide-react';
+import { Lock, User, Eye, EyeOff, Shield, AlertCircle } from 'lucide-react';
+
+// Logo component
+const ClinicLogo = () => (
+  <div className="flex flex-col items-center justify-center leading-tight text-center">
+    <span className="font-bold text-lg tracking-tight whitespace-nowrap" style={{ color: '#0F172A' }}>DOCTOR SUCIU</span>
+    <span className="text-[9px] tracking-[0.2em] font-medium mt-0.5" style={{ color: '#64748B' }}>DENTAL CLINIC</span>
+  </div>
+);
 
 const LoginPage = () => {
   const [username, setUsername] = useState('');
@@ -9,6 +17,7 @@ const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [lockoutTime, setLockoutTime] = useState(0);
   
   const { login, isAuthenticated } = useAuth();
   const navigate = useNavigate();
@@ -22,6 +31,7 @@ const LoginPage = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
+    setLockoutTime(0);
     setIsLoading(true);
 
     if (!username.trim() || !password.trim()) {
@@ -30,12 +40,21 @@ const LoginPage = () => {
       return;
     }
 
-    const success = await login(username, password);
-    
-    if (success) {
-      navigate('/admin', { replace: true });
-    } else {
-      setError('Username sau parolă incorecte');
+    try {
+      const success = await login(username, password);
+      
+      if (success) {
+        navigate('/admin', { replace: true });
+      } else {
+        setError('Username sau parolă incorecte');
+      }
+    } catch (err: any) {
+      if (err.message && err.message.includes('minute')) {
+        // Extract remaining time from error message
+        const match = err.message.match(/(\d+)/);
+        if (match) setLockoutTime(parseInt(match[1]));
+      }
+      setError(err.message || 'A apărut o eroare. Încearcă din nou.');
     }
     
     setIsLoading(false);
@@ -47,12 +66,12 @@ const LoginPage = () => {
         {/* Card */}
         <div className="bg-white rounded-2xl shadow-xl shadow-gray-200/50 overflow-hidden">
           {/* Header */}
-          <div className="bg-[#1e3a5f] p-8 text-center">
-            <div className="w-16 h-16 rounded-2xl bg-white/10 flex items-center justify-center mx-auto mb-4">
-              <Shield className="w-8 h-8 text-white" />
+          <div className="bg-gradient-to-br from-[#F8FAFC] to-[#F1F5F9] p-8 text-center">
+            <div className="mb-5">
+              <ClinicLogo />
             </div>
-            <h1 className="text-2xl font-bold text-white mb-1">Doctor Suciu</h1>
-            <p className="text-white/60 text-sm">Panou de Administrare</p>
+            <h1 className="text-xl font-bold text-gray-900 mb-1">Panou de Administrare</h1>
+            <p className="text-gray-500 text-sm">Acces securizat - Autorizați necesari</p>
           </div>
 
           {/* Form */}
@@ -61,11 +80,16 @@ const LoginPage = () => {
             <p className="text-sm text-gray-500 mb-6">Introdu datele de acces</p>
 
             {error && (
-              <div className="mb-4 p-3 bg-red-50 border border-red-100 rounded-xl flex items-center gap-2 text-sm text-red-600">
-                <div className="w-5 h-5 rounded-full bg-red-100 flex items-center justify-center flex-shrink-0">
-                  <span className="text-xs font-bold">!</span>
+              <div className="mb-4 p-4 bg-red-50 border border-red-100 rounded-xl flex items-start gap-3 text-sm text-red-600">
+                <AlertCircle className="w-5 h-5 flex-shrink-0 mt-0.5" />
+                <div>
+                  <p className="font-medium">{error}</p>
+                  {lockoutTime > 0 && (
+                    <p className="text-xs mt-1 text-red-500">
+                      Încearcă din nou în {lockoutTime} minute pentru siguranța contului.
+                    </p>
+                  )}
                 </div>
-                {error}
               </div>
             )}
 
@@ -84,7 +108,7 @@ const LoginPage = () => {
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                     className="w-full pl-10 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#1e3a5f] focus:border-transparent transition-all outline-none"
-                    placeholder="admin"
+                    placeholder="Introdu username-ul"
                     autoComplete="username"
                   />
                 </div>
@@ -138,14 +162,19 @@ const LoginPage = () => {
               </button>
             </form>
 
-            {/* Default credentials hint */}
-            <div className="mt-6 p-4 bg-amber-50 rounded-xl border border-amber-100">
-              <p className="text-xs text-amber-800">
-                <span className="font-semibold">Date default:</span> admin / admin123
-              </p>
-              <p className="text-xs text-amber-700 mt-1">
-                Schimbă parola după prima autentificare!
-              </p>
+            {/* Security notice */}
+            <div className="mt-6 p-4 bg-blue-50 rounded-xl border border-blue-100">
+              <div className="flex items-start gap-3">
+                <Shield className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
+                <div>
+                  <p className="text-xs text-blue-800 font-medium">
+                    Acces restricționat
+                  </p>
+                  <p className="text-xs text-blue-600 mt-1">
+                    Acest panou este protejat. După 5 încercări eșuate, contul va fi blocat temporar pentru securitate.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>

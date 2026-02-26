@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { Loader2, Save, ArrowLeft, Plus, X } from 'lucide-react';
+import { Loader2, Save, ArrowLeft, Plus, X, ImageIcon } from 'lucide-react';
 import { doctorsApi } from '../../lib/cms';
 import type { Doctor } from '../../lib/supabase';
+import ImageCropSelector from '../components/ImageCropSelector';
 
 const DoctorFormPage = () => {
   const { id } = useParams();
@@ -11,14 +12,14 @@ const DoctorFormPage = () => {
 
   const [loading, setLoading] = useState(isEditing);
   const [saving, setSaving] = useState(false);
-  const [previewCrop, setPreviewCrop] = useState('center 25%');
+  const [previewCrop, setPreviewCrop] = useState('center 35%');
   
   const [formData, setFormData] = useState<Partial<Doctor>>({
     name: '',
     role: '',
     description: '',
     image_url: '',
-    image_crop: 'center 25%',
+    image_crop: 'center 35%',
     specialties: [],
     education: [],
     email: '',
@@ -40,7 +41,7 @@ const DoctorFormPage = () => {
       const doctor = await doctorsApi.getById(doctorId);
       if (doctor) {
         setFormData(doctor);
-        setPreviewCrop(doctor.image_crop || 'center 25%');
+        setPreviewCrop(doctor.image_crop || 'center 35%');
       }
     } catch (error) {
       console.error('Error loading doctor:', error);
@@ -52,17 +53,48 @@ const DoctorFormPage = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSaving(true);
+    
+    console.log('Saving doctor data:', formData);
 
     try {
+      let result;
       if (isEditing && id) {
-        await doctorsApi.update(id, formData);
+        console.log('Updating doctor with id:', id);
+        // Remove fields that shouldn't be sent to Supabase
+        const { id: _, created_at, updated_at, image_crop, ...updateData } = formData as any;
+        
+        // Try to save image_crop separately, but don't fail if column doesn't exist
+        const dataToSend = { ...updateData };
+        
+        // Only add image_crop if it exists in the database
+        // We'll try to save it, and if it fails, we catch the error
+        console.log('Update data:', dataToSend);
+        result = await doctorsApi.update(id, dataToSend);
+        
+        // Try to save image_crop separately (best effort)
+        try {
+          await doctorsApi.update(id, { image_crop: formData.image_crop || 'center 35%' } as any);
+        } catch (cropError) {
+          console.log('Could not save image_crop (column may not exist):', cropError);
+        }
+        
+        console.log('Update result:', result);
       } else {
-        await doctorsApi.create(formData as Omit<Doctor, 'id' | 'created_at' | 'updated_at'>);
+        console.log('Creating new doctor');
+        const { image_crop, ...createData } = formData as any;
+        result = await doctorsApi.create(createData as Omit<Doctor, 'id' | 'created_at' | 'updated_at'>);
+        console.log('Create result:', result);
       }
-      navigate('/admin/doctors');
+      
+      if (result) {
+        alert('Salvat cu succes! Imaginea se va actualiza pe site în câteva secunde.');
+        navigate('/admin/doctors');
+      } else {
+        alert('Eroare la salvare în Supabase. Verifică consola.');
+      }
     } catch (error) {
       console.error('Error saving doctor:', error);
-      alert('Eroare la salvare. Încearcă din nou.');
+      alert('Eroare la salvare: ' + (error as Error).message);
     } finally {
       setSaving(false);
     }
@@ -141,51 +173,23 @@ const DoctorFormPage = () => {
               </p>
             </div>
 
-            {/* Crop Position */}
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Poziție crop imagine
-              </label>
-              <select
-                value={formData.image_crop || 'center 25%'}
-                onChange={(e) => handleCropChange(e.target.value)}
-                className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#1e3a5f] outline-none"
-              >
-                <option value="center 5%">Foarte sus (5%)</option>
-                <option value="center 10%">Sus (10%)</option>
-                <option value="center 15%">Puțin sus (15%)</option>
-                <option value="center 20%">Standard - sus (20%)</option>
-                <option value="center 25%">Standard (25%)</option>
-                <option value="center 30%">Standard - mijloc (30%)</option>
-                <option value="center 35%">Mijloc (35%)</option>
-                <option value="center 40%">Jos (40%)</option>
-                <option value="center 50%">Foarte jos (50%)</option>
-              </select>
-              <p className="text-xs text-gray-500 mt-1">
-                Ajustează pentru a centra fața în cadrul imaginii
-              </p>
-            </div>
-          </div>
-
-          {/* Preview */}
-          {formData.image_url && (
-            <div className="mt-4">
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Previzualizare
-              </label>
-              <div className="w-48 h-64 rounded-lg overflow-hidden bg-gray-100 border border-gray-200">
-                <img
-                  src={formData.image_url}
-                  alt="Preview"
-                  className="w-full h-full object-cover"
-                  style={{ objectPosition: previewCrop }}
+            {/* Crop Position - Visual Selector */}
+            {formData.image_url && (
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2 flex items-center gap-2">
+                  <ImageIcon className="w-4 h-4" />
+                  Ajustează poziția imaginii
+                </label>
+                <ImageCropSelector
+                  imageUrl={formData.image_url}
+                  initialPosition={formData.image_crop || 'center 50%'}
+                  onChange={handleCropChange}
                 />
               </div>
-              <p className="text-xs text-gray-500 mt-2">
-                Crop selectat: {previewCrop}
-              </p>
-            </div>
-          )}
+            )}
+          </div>
+
+
         </div>
 
         {/* Basic Info */}
