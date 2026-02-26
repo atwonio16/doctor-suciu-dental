@@ -89,47 +89,46 @@ export function MobileServicesPreview() {
       <div className="mx-auto max-w-[560px]">
         <div className="mobile-panel p-4">
           <div className="mb-4">
-            <p className="mobile-kicker">Servicii</p>
-            <h2 className="mobile-title mt-1 text-[23px]">
-              Ce putem face pentru tine
-            </h2>
-            <p className="mobile-body mt-1 text-[13px]">
+            <h2 className="mobile-title text-[23px]">Ce putem face pentru tine</h2>
+            <p className="mobile-body mt-2 text-[13px]">
               Alege direct ce te intereseaza sau intra pe pagina de servicii pentru lista completa.
             </p>
           </div>
 
-          <div className="space-y-2.5">
+          <div className="overflow-hidden rounded-[16px] border border-slate-200 bg-white">
             {items.map((item, index) => (
               <Link
                 key={item.anchorId}
                 to={`/servicii#${item.anchorId}`}
-                className="group relative flex items-start gap-3 rounded-[14px] border border-slate-200 bg-white p-3 active:scale-[0.99] transition-transform"
+                className={`group grid grid-cols-[44px_1fr_auto] items-start gap-3 px-3 py-3.5 transition-colors active:bg-slate-50 ${
+                  index < items.length - 1 ? 'border-b border-slate-100' : ''
+                }`}
               >
                 <span
-                  className="absolute bottom-2 left-2 top-2 w-[3px] rounded-full"
-                  style={{ backgroundColor: item.accent }}
-                  aria-hidden
-                />
-                <span
-                  className="mt-0.5 ml-2 flex h-11 w-11 shrink-0 items-center justify-center rounded-[10px] border border-slate-100"
+                  className={`mt-0.5 flex h-11 w-11 shrink-0 items-center justify-center rounded-[10px] border ${
+                    index === 0 ? 'border-[#dbe8f4]' : 'border-slate-100'
+                  }`}
                   style={{ backgroundColor: item.softBg, color: item.accent }}
                 >
                   <item.Icon className="h-5 w-5" strokeWidth={1.8} />
                 </span>
 
                 <span className="min-w-0 flex-1">
-                  <span className="flex items-center gap-2">
-                    <span className="block text-[15px] font-semibold text-slate-900">{item.title}</span>
-                    <span className="text-[10px] uppercase tracking-[0.14em] text-slate-400">
-                      0{index + 1}
-                    </span>
-                  </span>
+                  <span className="block text-[15px] font-semibold leading-snug text-slate-900">{item.title}</span>
                   <span className="mt-0.5 block text-[13px] leading-relaxed text-slate-600">
                     {item.description}
                   </span>
+                  {index === 0 ? (
+                    <span className="mt-2 inline-flex items-center text-[12px] font-medium text-[#0F2A44]">
+                      Plan personalizat si explicat clar
+                    </span>
+                  ) : null}
                 </span>
 
-                <ArrowRight className="mt-2 h-4 w-4 shrink-0 text-slate-300 transition-transform group-active:translate-x-0.5" />
+                <span className="mt-1 flex flex-col items-end gap-2">
+                  <span className="text-[10px] font-medium tracking-[0.12em] text-slate-400">0{index + 1}</span>
+                  <ArrowRight className="h-4 w-4 shrink-0 text-slate-300 transition-transform group-active:translate-x-0.5" />
+                </span>
               </Link>
             ))}
           </div>

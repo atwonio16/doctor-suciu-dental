@@ -81,10 +81,7 @@ export function MobileContact() {
     >
       <div className="mx-auto max-w-[560px] space-y-4">
         <div className="mobile-panel p-4">
-          <p className="mobile-kicker">Contact</p>
-          <h2 id="mobile-contact-title" className="mobile-title mt-1 text-[23px]">
-            Hai sa ne cunoastem
-          </h2>
+          <h2 id="mobile-contact-title" className="mobile-title text-[23px]">Hai sa ne cunoastem</h2>
           <p className="mobile-body mt-2 text-[14px]">
             Spune-ne ce te preocupa si iti raspundem cat mai repede, fara obligatii.
           </p>

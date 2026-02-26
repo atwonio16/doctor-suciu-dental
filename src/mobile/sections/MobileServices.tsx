@@ -160,10 +160,7 @@ export function MobileServices() {
     >
       <div className="mx-auto max-w-[560px] space-y-4">
         <div className="mobile-panel p-4">
-          <p className="mobile-kicker">Pagina servicii</p>
-          <h1 id="mobile-services-title" className="mobile-title mt-1 text-[25px]">
-            Serviciile clinicii
-          </h1>
+          <h1 id="mobile-services-title" className="mobile-title text-[25px]">Serviciile clinicii</h1>
           <p className="mobile-body mt-2 text-[14px]">
             Am lasat pe mobil cele mai cautate 3 servicii, ca sa ajungi rapid unde ai nevoie. Restul le discutam la consultatie.
           </p>

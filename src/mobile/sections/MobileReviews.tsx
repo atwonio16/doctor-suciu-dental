@@ -105,11 +105,8 @@ export function MobileReviews() {
       <div className="mx-auto max-w-[560px]">
         <div className="mobile-panel p-4">
           <div className="mb-4">
-            <p className="mobile-kicker">Recenzii</p>
-            <h2 id="mobile-reviews-title" className="mobile-title mt-1 text-[23px]">
-              Ce spun pacientii
-            </h2>
-            <p className="mobile-body mt-1 text-[13px]">
+            <h2 id="mobile-reviews-title" className="mobile-title text-[23px]">Ce spun pacientii</h2>
+            <p className="mobile-body mt-2 text-[13px]">
               Experiente reale de la oameni care au trecut prin tratamente in clinica noastra.
             </p>
           </div>

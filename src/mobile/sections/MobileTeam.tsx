@@ -101,11 +101,8 @@ export function MobileTeam() {
         <div className="mobile-panel p-4">
           <div className="mb-4 flex items-start justify-between gap-3">
             <div>
-              <p className="mobile-kicker">Echipa</p>
-              <h2 id="mobile-team-title" className="mobile-title mt-1 text-[23px]">
-                Oameni care te asculta
-              </h2>
-              <p className="mobile-body mt-1 text-[13px]">
+              <h2 id="mobile-team-title" className="mobile-title text-[23px]">Oameni care te asculta</h2>
+              <p className="mobile-body mt-2 text-[13px]">
                 Medici si asistenti cu experienta, comunicare buna si grija pentru confort.
               </p>
             </div>

@@ -74,7 +74,18 @@ export function MobileNavigation() {
               aria-controls="mobile-menu-panel"
               aria-label={isOpen ? 'Inchide meniul' : 'Deschide meniul'}
             >
-              {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+              <span className="relative h-5 w-5">
+                <Menu
+                  className={`absolute inset-0 h-5 w-5 transition-all duration-200 ${
+                    isOpen ? 'rotate-90 scale-75 opacity-0' : 'rotate-0 scale-100 opacity-100'
+                  }`}
+                />
+                <X
+                  className={`absolute inset-0 h-5 w-5 transition-all duration-200 ${
+                    isOpen ? 'rotate-0 scale-100 opacity-100' : '-rotate-90 scale-75 opacity-0'
+                  }`}
+                />
+              </span>
             </button>
           </div>
         </div>

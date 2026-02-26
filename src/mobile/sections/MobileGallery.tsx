@@ -84,11 +84,8 @@ export function MobileGallery() {
         <div className="mobile-panel p-4">
           <div className="mb-4 flex items-start justify-between gap-3">
             <div>
-              <p className="mobile-kicker">Clinica</p>
-              <h2 id="mobile-gallery-title" className="mobile-title mt-1 text-[23px]">
-                Un spatiu curat si primitor
-              </h2>
-              <p className="mobile-body mt-1 text-[13px]">
+              <h2 id="mobile-gallery-title" className="mobile-title text-[23px]">Un spatiu curat si primitor</h2>
+              <p className="mobile-body mt-2 text-[13px]">
                 Fotografii reale din clinica. Apasa pe imagine pentru vizualizare full screen.
               </p>
             </div>

@@ -87,7 +87,6 @@ export function MobileHero() {
                 <div className="absolute left-2 top-2 max-w-[92%] rounded-[9px] border border-slate-200 bg-white px-2.5 py-1.5 shadow-[0_4px_12px_rgba(15,23,42,0.07)]">
                   <div className="flex items-center gap-1.5 text-[11.5px] text-slate-700 whitespace-nowrap">
                     <GoogleMark />
-                    <span className="text-slate-500">Google</span>
                     <span className="font-semibold text-slate-900">{googleReviews.rating.toFixed(1)}</span>
                     <div className="flex shrink-0 items-center gap-0.5" aria-hidden>
                       {[...Array(5)].map((_, index) => (
