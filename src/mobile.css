@@ -138,31 +138,32 @@
 @media (max-width: 640px) {
   #hero {
     min-height: auto !important;
-    padding-top: 56px !important;
+    padding-top: 72px !important;
     padding-bottom: 24px !important;
     display: flex !important;
     align-items: flex-start !important;
   }
 
   #hero > div {
-    padding-top: 0 !important;
+    padding-top: 8px !important;
   }
 
   #hero h1 {
     font-size: 1.625rem !important;
     line-height: 1.1 !important;
     text-align: center !important;
-    margin-bottom: 8px !important;
-    margin-top: 4px !important;
+    margin-bottom: 10px !important;
+    margin-top: 0 !important;
   }
 
-  /* Subtitle - tight spacing below headline */
+  /* Subtitle - lighter, one line on mobile */
   #hero h1 + p,
   #hero .text-center > p:first-of-type {
     text-align: center !important;
-    margin-bottom: 12px !important;
-    font-size: 15px !important;
-    line-height: 1.45 !important;
+    margin-bottom: 16px !important;
+    font-size: 14px !important;
+    line-height: 1.4 !important;
+    color: #64748B !important;
   }
 
   /* CTAs container */
@@ -236,24 +237,24 @@
     font-size: 12px !important;
   }
 
-  /* Social proof section */
+  /* Social proof section - Google reviews only */
   #hero .sm\:hidden .border-t {
-    margin-top: 12px !important;
+    margin-top: 16px !important;
     padding-top: 12px !important;
     border-color: #F1F5F9 !important;
   }
 
-  /* Trust line text */
+  /* Trust line - clean Google reviews row */
   #hero .sm\:hidden .border-t .flex {
     font-size: 11px !important;
-    flex-wrap: wrap !important;
-    gap: 4px 6px !important;
+    gap: 4px !important;
+    color: #64748B !important;
   }
 
   /* Star and Google icons in social proof */
   #hero .sm\:hidden .border-t svg {
-    width: 12px !important;
-    height: 12px !important;
+    width: 11px !important;
+    height: 11px !important;
   }
 }
 

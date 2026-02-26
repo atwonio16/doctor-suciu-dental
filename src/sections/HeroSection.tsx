@@ -47,12 +47,13 @@ const HeroSection = () => {
                 Zâmbetul tău începe aici
               </h1>
 
-              {/* Subtitle */}
+              {/* Subtitle - Mobile: shorter, lighter, one line */}
               <p 
                 className="text-[15px] sm:text-base lg:text-[17px] mb-4 sm:mb-8 leading-relaxed max-w-[480px] mx-auto lg:mx-0"
                 style={{ color: '#475569' }}
               >
-                Știm că nu îți place la dentist. De asta facem lucrurile altfel.
+                <span className="sm:hidden">Grijă blândă pentru zâmbetul tău</span>
+                <span className="hidden sm:inline">Știm că nu îți place la dentist. De asta facem lucrurile altfel.</span>
               </p>
 
               {/* CTAs - Desktop only (shown in original order) */}
@@ -192,20 +193,18 @@ const HeroSection = () => {
               </a>
             </div>
 
-            {/* Social Proof */}
-            <div className="flex items-center justify-center gap-2 text-[12px] pt-3 border-t border-gray-100">
-              <span style={{ color: '#64748B' }}>Fără durere</span>
-              <span className="text-gray-300">·</span>
-              <span style={{ color: '#64748B' }}>Medici specializați</span>
-              <span className="text-gray-300">·</span>
-              <div className="flex items-center gap-1">
-                <GoogleLogo />
-                <svg className="w-3 h-3" viewBox="0 0 24 24" fill="#FABB05">
-                  <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
-                </svg>
-                <span className="font-medium" style={{ color: '#0F172A' }}>{googleReviews.rating.toFixed(1)}</span>
-                <span style={{ color: '#64748B' }}>({googleReviews.reviewCount} recenzii)</span>
+            {/* Social Proof - Mobile: Google reviews only, clean row */}
+            <div className="flex items-center justify-center gap-1.5 text-[11px] pt-3 border-t border-gray-100">
+              <GoogleLogo />
+              <div className="flex items-center gap-0.5">
+                {[...Array(5)].map((_, i) => (
+                  <svg key={i} className="w-3 h-3" viewBox="0 0 24 24" fill="#FABB05">
+                    <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                  </svg>
+                ))}
               </div>
+              <span className="font-medium" style={{ color: '#0F172A' }}>{googleReviews.rating.toFixed(1)}</span>
+              <span style={{ color: '#64748B' }}>({googleReviews.reviewCount} recenzii)</span>
             </div>
 
           </div>
