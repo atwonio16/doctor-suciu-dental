@@ -11,12 +11,6 @@ const GoogleMark = () => (
   </svg>
 );
 
-const heroStats = [
-  { value: '100%', label: 'empatie' },
-  { value: 'plan', label: 'clar' },
-  { value: 'fara', label: 'presiune' },
-];
-
 export function MobileHero() {
   const { googleReviews } = useCMSSettings();
 
@@ -25,119 +19,120 @@ export function MobileHero() {
       id="hero"
       className="mobile-safe-x pb-4"
       style={{ paddingTop: 'calc(env(safe-area-inset-top) + 84px)' }}
+      aria-labelledby="mobile-hero-title"
     >
       <div className="mx-auto max-w-[560px]">
-        <div className="mobile-panel relative overflow-hidden p-4">
-          <div className="space-y-4">
-            <div>
-              <h1
-                className="mobile-title whitespace-nowrap text-slate-950"
-                style={{
-                  fontSize: 'clamp(1.62rem, 7.1vw, 2.2rem)',
-                  lineHeight: 1,
-                  letterSpacing: '-0.055em',
-                  fontWeight: 800,
-                }}
-              >
-                Zambetul tau incepe{' '}
-                <span className="relative inline-block">
-                  <span className="absolute inset-x-0 bottom-[0.08em] h-[0.28em] rounded-full bg-[#e8f0fa]" aria-hidden />
-                  <span className="relative">aici</span>
-                </span>
-              </h1>
-              <p className="mobile-body mt-3 text-[15px] leading-relaxed">
-                Daca ai emotii la dentist, esti in locul potrivit. Lucram calm, cu rabdare si un plan clar pentru fiecare pas.
-              </p>
-            </div>
-
-            <div className="overflow-hidden rounded-[18px] border border-slate-200 bg-white p-1">
-              <div className="relative aspect-[16/11] overflow-hidden rounded-[14px] bg-slate-100">
-                <img
-                  src="/poza-hero.jpg"
-                  alt="Interiorul clinicii Doctor Suciu"
-                  className="h-full w-full object-cover"
-                  style={{ objectPosition: 'center 58%' }}
-                  loading="eager"
-                  decoding="async"
-                  fetchPriority="high"
-                  onError={(event) => {
-                    (event.target as HTMLImageElement).src = '/hero-family1.png';
+        <div className="mobile-panel p-4">
+          <div className="overflow-hidden rounded-[18px] border border-slate-200 bg-white p-4 shadow-[0_8px_22px_rgba(15,23,42,0.04)]">
+            <div className="grid gap-4">
+              <div>
+                <h1
+                  id="mobile-hero-title"
+                  className="mobile-title whitespace-nowrap text-slate-950"
+                  style={{
+                    fontSize: 'clamp(1.34rem, 6.25vw, 2.16rem)',
+                    lineHeight: 1,
+                    letterSpacing: '-0.055em',
+                    fontWeight: 800,
                   }}
-                />
-
-                <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-slate-900/25 to-transparent" aria-hidden />
-
-                <div className="absolute left-2 top-2 max-w-[calc(100%-16px)] rounded-[10px] border border-slate-200 bg-white px-2.5 py-1.5 shadow-[0_4px_12px_rgba(15,23,42,0.07)]">
-                  <div className="mobile-scrollbar-hide flex items-center gap-1.5 overflow-x-auto whitespace-nowrap text-[11px] leading-none text-slate-700">
-                    <GoogleMark />
-                    <span className="font-semibold text-slate-900">{googleReviews.rating.toFixed(1)}</span>
-                    <div className="flex shrink-0 items-center gap-0.5" aria-hidden>
-                      {[...Array(5)].map((_, index) => (
-                        <svg key={index} className="h-3 w-3" viewBox="0 0 24 24" fill="#FABB05" aria-hidden>
-                          <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
-                        </svg>
-                      ))}
-                    </div>
-                    <span className="text-slate-600">din {googleReviews.reviewCount} recenzii</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="overflow-hidden rounded-[14px] border border-slate-200 bg-[#f8fafc]">
-              <div className="grid grid-cols-3 divide-x divide-slate-200">
-                {heroStats.map((item) => (
-                  <div key={`${item.value}-${item.label}`} className="px-2 py-3 text-center">
-                    <p className="text-[17px] font-semibold leading-none text-[#0F2A44]">{item.value}</p>
-                    <p className="mt-1 text-[11px] leading-none text-slate-600">{item.label}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <Link
-              to="/contact"
-              className="mobile-primary-btn flex h-14 items-center gap-3 px-3 shadow-[0_10px_18px_rgba(15,42,68,0.14)] active:scale-[0.985] transition-transform"
-            >
-              <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-[9px] bg-white/14">
-                <CalendarDays className="h-4 w-4 text-white" />
-              </span>
-              <span className="min-w-0 flex-1 text-left">
-                <span className="block text-[15px] font-semibold leading-none text-white">Vreau sa ma programez</span>
-                <span className="mt-1 block truncate text-[11px] leading-none text-white/75">
-                  Iti raspundem rapid si stabilim pasul potrivit
-                </span>
-              </span>
-              <ArrowRight className="h-4 w-4 shrink-0 text-white" />
-            </Link>
-
-            <div className="overflow-hidden rounded-[14px] border border-slate-200 bg-white">
-              <div className="grid grid-cols-2 divide-x divide-slate-200 text-[12px]">
-                <div className="px-3 py-3">
-                  <div className="mb-1 flex items-center gap-1.5 text-slate-500">
-                    <Clock className="h-3.5 w-3.5" />
-                    <span>Program</span>
-                  </div>
-                  <p className="font-semibold text-slate-900">Luni - Joi 9-18</p>
-                  <p className="text-slate-500">Vineri 9-15</p>
-                </div>
-
-                <a
-                  href="https://maps.google.com/?q=Calea+Domneasca+234+Targoviste"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-3 py-3 active:bg-slate-50"
                 >
-                  <div className="mb-1 flex items-center gap-1.5 text-slate-500">
-                    <MapPin className="h-3.5 w-3.5" />
-                    <span>Locatie</span>
+                  Incepi tratamentul in{' '}
+                  <span className="relative inline-block text-[#0F2A44]">
+                    <span
+                      className="absolute inset-x-0 bottom-[0.08em] h-[0.26em] rounded-full bg-[#e8f0fa]"
+                      aria-hidden
+                    />
+                    <span className="relative">siguranta</span>
+                  </span>
+                </h1>
+
+                <p className="mobile-body mt-3 text-[14px] leading-relaxed">
+                  Lucram calm, cu rabdare, iti explicam fiecare pas si stabilim un plan clar inainte de orice tratament.
+                </p>
+              </div>
+
+              <div className="mobile-card-soft flex items-center gap-2 px-3 py-2">
+                <GoogleMark />
+                <span className="text-[12px] font-semibold text-slate-900">{googleReviews.rating.toFixed(1)}</span>
+                <span className="flex items-center gap-0.5 text-[#FABB05]" aria-hidden>
+                  {[...Array(5)].map((_, index) => (
+                    <svg key={index} className="h-3 w-3" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                    </svg>
+                  ))}
+                </span>
+                <span className="min-w-0 truncate text-[12px] text-slate-600">din {googleReviews.reviewCount} recenzii Google</span>
+              </div>
+
+              <div className="overflow-hidden rounded-[16px] border border-slate-200 bg-white p-1">
+                <div className="relative aspect-[16/10.8] overflow-hidden rounded-[12px] bg-slate-100">
+                  <img
+                    src="/poza-hero.jpg"
+                    alt="Recepția clinicii Doctor Suciu Dental Clinic din Targoviste, luminoasa si ordonata"
+                    className="h-full w-full object-cover"
+                    style={{ objectPosition: 'center 58%' }}
+                    loading="eager"
+                    decoding="async"
+                    fetchPriority="high"
+                    onError={(event) => {
+                      (event.target as HTMLImageElement).src = '/hero-family1.png';
+                    }}
+                  />
+
+                  <div className="absolute inset-x-2 bottom-2">
+                    <div className="rounded-[10px] border border-white/80 bg-white/94 px-3 py-2">
+                      <p className="text-[11px] font-medium text-slate-900">Pacienti reali. Fara graba. Fara presiune.</p>
+                    </div>
                   </div>
-                  <p className="font-semibold text-slate-900">Calea Domneasca 234</p>
-                  <p className="inline-flex items-center gap-1 text-[#0F2A44]">
-                    Targoviste
-                    <ChevronRight className="h-3.5 w-3.5" />
-                  </p>
-                </a>
+                </div>
+              </div>
+
+              <div className="grid gap-1.5">
+                <Link
+                  to="/contact"
+                  className="mobile-primary-btn flex h-14 items-center gap-3 px-3 shadow-[0_10px_18px_rgba(15,42,68,0.14)] active:scale-[0.985] transition-transform"
+                >
+                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-[9px] bg-white/14">
+                    <CalendarDays className="h-4 w-4 text-white" />
+                  </span>
+                  <span className="min-w-0 flex-1 text-left">
+                    <span className="block text-[15px] font-semibold leading-none text-white">Vreau sa ma programez</span>
+                    <span className="mt-1 block truncate text-[11px] leading-none text-white/75">
+                      Raspundem rapid. Fara obligatii.
+                    </span>
+                  </span>
+                  <ArrowRight className="h-4 w-4 shrink-0 text-white" />
+                </Link>
+              </div>
+
+              <div className="overflow-hidden rounded-[14px] border border-slate-200 bg-[#f8fafc]">
+                <div className="grid grid-cols-2 divide-x divide-slate-200 text-[12px]">
+                  <div className="px-3 py-3">
+                    <div className="mb-1 flex items-center gap-1.5 text-slate-500">
+                      <Clock className="h-3.5 w-3.5" />
+                      <span>Program</span>
+                    </div>
+                    <p className="font-semibold text-slate-900">Luni - Joi 9-18</p>
+                    <p className="text-slate-500">Vineri 9-15</p>
+                  </div>
+
+                  <a
+                    href="https://maps.google.com/?q=Calea+Domneasca+234+Targoviste"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-3 py-3 active:bg-slate-50"
+                  >
+                    <div className="mb-1 flex items-center gap-1.5 text-slate-500">
+                      <MapPin className="h-3.5 w-3.5" />
+                      <span>Locatie</span>
+                    </div>
+                    <p className="font-semibold text-slate-900">Calea Domneasca 234</p>
+                    <p className="inline-flex items-center gap-1 text-[#0F2A44]">
+                      Targoviste
+                      <ChevronRight className="h-3.5 w-3.5" />
+                    </p>
+                  </a>
+                </div>
               </div>
             </div>
           </div>
