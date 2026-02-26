@@ -103,13 +103,13 @@ export function MobileReviews() {
   return (
     <section id="reviews" className="mobile-safe-x py-4" aria-labelledby="mobile-reviews-title">
       <div className="mx-auto max-w-[560px]">
-        <div className="rounded-[24px] border border-slate-200 bg-white p-4 shadow-[0_10px_26px_rgba(15,23,42,0.05)]">
+        <div className="mobile-panel p-4">
           <div className="mb-4">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#123455]">Recenzii</p>
-            <h2 id="mobile-reviews-title" className="mt-1 text-[22px] font-semibold tracking-tight text-slate-900">
+            <p className="mobile-kicker">Recenzii</p>
+            <h2 id="mobile-reviews-title" className="mobile-title mt-1 text-[23px]">
               Ce spun pacientii
             </h2>
-            <p className="mt-1 text-[13px] leading-relaxed text-slate-600">
+            <p className="mobile-body mt-1 text-[13px]">
               Experiente reale de la oameni care au trecut prin tratamente in clinica noastra.
             </p>
           </div>
@@ -118,12 +118,12 @@ export function MobileReviews() {
             href={googleReviews.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="mb-4 flex items-center justify-between gap-3 rounded-2xl bg-[#eef5fb] px-3 py-3"
+            className="mb-4 flex items-center justify-between gap-3 rounded-[16px] border border-[rgba(23,56,81,0.1)] bg-[#eef2f5] px-3 py-3"
           >
             <div className="min-w-0">
-              <p className="text-[11px] uppercase tracking-[0.14em] text-[#4b6b8b]">Google Reviews</p>
+              <p className="text-[10px] uppercase tracking-[0.16em] text-[#4b657e]">Google Reviews</p>
               <div className="mt-1 flex items-center gap-2">
-                <span className="text-[18px] font-semibold text-[#123455]">{googleReviews.rating.toFixed(1)}</span>
+                <span className="text-[18px] font-semibold text-[#173851]">{googleReviews.rating.toFixed(1)}</span>
                 <div className="flex items-center gap-0.5" aria-hidden>
                   {[...Array(5)].map((_, index) => (
                     <Star key={index} className="h-3.5 w-3.5 fill-[#f5b400] text-[#f5b400]" />
@@ -139,14 +139,15 @@ export function MobileReviews() {
             className="overflow-hidden"
             onTouchStart={handleTouchStart}
             onTouchEnd={handleTouchEnd}
+            style={{ touchAction: 'pan-y' }}
           >
             <div
-              className="flex transition-transform duration-500 ease-out"
+              className="mobile-carousel-track flex"
               style={{ transform: `translateX(-${currentIndex * 100}%)` }}
             >
               {reviews.map((review) => (
                 <div key={review.id} className="w-full shrink-0">
-                  <article className="rounded-2xl bg-[#fafbfc] p-4">
+                  <article className="rounded-[16px] border border-[rgba(18,24,38,0.06)] bg-[#f7f5f0] p-4">
                     <div className="mb-3 flex items-start justify-between gap-3">
                       <div className="flex min-w-0 items-center gap-3">
                         <img
@@ -154,6 +155,7 @@ export function MobileReviews() {
                           alt={review.authorName}
                           className="h-11 w-11 shrink-0 rounded-full object-cover"
                           loading="lazy"
+                          decoding="async"
                         />
                         <div className="min-w-0">
                           <p className="truncate text-[14px] font-semibold text-slate-900">{review.authorName}</p>
@@ -161,7 +163,7 @@ export function MobileReviews() {
                         </div>
                       </div>
 
-                      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-white">
+                      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-[12px] bg-white/80">
                         <Quote className="h-4 w-4 text-slate-400" />
                       </span>
                     </div>
@@ -177,7 +179,7 @@ export function MobileReviews() {
                       ))}
                     </div>
 
-                    <p className="text-[14px] leading-relaxed text-slate-700">"{review.text}"</p>
+                    <p className="text-[14px] leading-relaxed text-slate-700">{review.text}</p>
                   </article>
                 </div>
               ))}
@@ -185,15 +187,13 @@ export function MobileReviews() {
           </div>
 
           <div className="mt-4 flex items-center justify-center">
-            <div className="mobile-scrollbar-hide flex items-center justify-center gap-1.5 overflow-x-auto">
+            <div className="mobile-scrollbar-hide mobile-dot-nav overflow-x-auto">
               {reviews.map((_, index) => (
                 <button
                   key={index}
                   type="button"
                   onClick={() => goTo(index)}
-                  className={`rounded-full transition-all ${
-                    index === currentIndex ? 'h-1.5 w-4 bg-[#123455]' : 'h-1.5 w-1.5 bg-slate-300'
-                  }`}
+                  data-active={index === currentIndex ? 'true' : 'false'}
                   aria-label={`Recenzia ${index + 1}`}
                 />
               ))}

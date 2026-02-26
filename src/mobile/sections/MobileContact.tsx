@@ -80,21 +80,21 @@ export function MobileContact() {
       aria-labelledby="mobile-contact-title"
     >
       <div className="mx-auto max-w-[560px] space-y-4">
-        <div className="rounded-[28px] border border-white/80 bg-gradient-to-b from-white to-[#f5f8fc] p-4 shadow-[0_18px_45px_rgba(15,23,42,0.07)]">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#123455]">Contact</p>
-          <h2 id="mobile-contact-title" className="mt-1 text-[22px] font-semibold tracking-tight text-slate-900">
+        <div className="mobile-panel p-4">
+          <p className="mobile-kicker">Contact</p>
+          <h2 id="mobile-contact-title" className="mobile-title mt-1 text-[23px]">
             Hai sa ne cunoastem
           </h2>
-          <p className="mt-2 text-[14px] leading-relaxed text-slate-600">
+          <p className="mobile-body mt-2 text-[14px]">
             Spune-ne ce te preocupa si iti raspundem cat mai repede, fara obligatii.
           </p>
 
           <div className="mt-4 grid gap-2">
             <a
               href="tel:+40770220110"
-              className="flex items-center gap-3 rounded-2xl border border-slate-100 bg-white px-3 py-3 active:scale-[0.99] transition-transform"
+              className="flex items-center gap-3 rounded-[16px] border border-[rgba(18,24,38,0.08)] bg-[#f7f5f0] px-3 py-3 active:scale-[0.99] transition-transform"
             >
-              <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#eef5fb] text-[#123455]">
+              <span className="flex h-11 w-11 items-center justify-center rounded-[12px] bg-[#e8edf3] text-[#173851]">
                 <Phone className="h-4 w-4" />
               </span>
               <span className="min-w-0">
@@ -108,14 +108,14 @@ export function MobileContact() {
                 href="https://maps.google.com/?q=Calea+Domneasca+234+Targoviste"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex min-h-[76px] flex-col items-start justify-center rounded-2xl border border-slate-100 bg-white px-3 py-3"
+                className="flex min-h-[76px] flex-col items-start justify-center rounded-[16px] border border-[rgba(18,24,38,0.08)] bg-white/80 px-3 py-3"
               >
-                <MapPin className="mb-2 h-4 w-4 text-[#123455]" />
+                <MapPin className="mb-2 h-4 w-4 text-[#173851]" />
                 <span className="text-[13px] font-medium text-slate-900">Calea Domneasca 234</span>
                 <span className="text-[12px] text-slate-500">Targoviste</span>
               </a>
 
-              <div className="flex min-h-[76px] flex-col items-start justify-center rounded-2xl border border-slate-100 bg-white px-3 py-3">
+              <div className="flex min-h-[76px] flex-col items-start justify-center rounded-[16px] border border-[rgba(18,24,38,0.08)] bg-white/80 px-3 py-3">
                 <Clock className="mb-2 h-4 w-4 text-[#0f6e8a]" />
                 <span className="text-[13px] font-medium text-slate-900">Program</span>
                 <span className="text-[12px] text-slate-500">L-J: 9-18 | V: 9-15</span>
@@ -126,7 +126,7 @@ export function MobileContact() {
               href="https://wa.me/40770220110"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex h-11 items-center justify-center gap-2 rounded-2xl border border-[#c9f1d7] bg-[#ecfbf2] text-[13px] font-semibold text-[#0f6e3b]"
+              className="flex h-11 items-center justify-center gap-2 rounded-[14px] border border-[#d7eadf] bg-[#edf5f0] text-[13px] font-semibold text-[#1f6c43]"
             >
               <MessageCircle className="h-4 w-4" />
               Scrie pe WhatsApp
@@ -134,10 +134,10 @@ export function MobileContact() {
           </div>
         </div>
 
-        <div className="rounded-[28px] border border-white/80 bg-white p-4 shadow-[0_16px_40px_rgba(15,23,42,0.06)]">
+        <div className="mobile-panel p-4">
           {isSubmitted ? (
             <div className="py-8 text-center" aria-live="polite">
-              <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-[#ecfbf2]">
+              <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-[16px] bg-[#ecfbf2]">
                 <CheckCircle className="h-8 w-8 text-[#0f6e3b]" />
               </div>
               <h3 className="text-[18px] font-semibold text-slate-900">Mesaj trimis</h3>
@@ -160,7 +160,7 @@ export function MobileContact() {
                   onChange={(event) => setFormData((prev) => ({ ...prev, name: event.target.value }))}
                   required
                   disabled={isLoading}
-                  className="h-12 rounded-2xl border-slate-200 bg-slate-50 px-4"
+                  className="h-12 rounded-[14px] border-[rgba(18,24,38,0.12)] bg-[#f8f6f1] px-4"
                 />
               </div>
 
@@ -180,7 +180,7 @@ export function MobileContact() {
                     onChange={(event) => setFormData((prev) => ({ ...prev, phone: event.target.value }))}
                     required
                     disabled={isLoading}
-                    className="h-12 rounded-2xl border-slate-200 bg-slate-50 px-4"
+                    className="h-12 rounded-[14px] border-[rgba(18,24,38,0.12)] bg-[#f8f6f1] px-4"
                   />
                 </div>
 
@@ -198,7 +198,7 @@ export function MobileContact() {
                     value={formData.email}
                     onChange={(event) => setFormData((prev) => ({ ...prev, email: event.target.value }))}
                     disabled={isLoading}
-                    className="h-12 rounded-2xl border-slate-200 bg-slate-50 px-4"
+                    className="h-12 rounded-[14px] border-[rgba(18,24,38,0.12)] bg-[#f8f6f1] px-4"
                   />
                 </div>
               </div>
@@ -212,7 +212,7 @@ export function MobileContact() {
                   onValueChange={(value) => setFormData((prev) => ({ ...prev, service: value }))}
                   disabled={isLoading}
                 >
-                  <SelectTrigger className="h-12 rounded-2xl border-slate-200 bg-slate-50 px-4">
+                  <SelectTrigger className="h-12 rounded-[14px] border-[rgba(18,24,38,0.12)] bg-[#f8f6f1] px-4">
                     <SelectValue placeholder="Ce te intereseaza?" />
                   </SelectTrigger>
                   <SelectContent>
@@ -237,14 +237,14 @@ export function MobileContact() {
                   onChange={(event) => setFormData((prev) => ({ ...prev, message: event.target.value }))}
                   rows={4}
                   disabled={isLoading}
-                  className="resize-none rounded-2xl border-slate-200 bg-slate-50 px-4 py-3"
+                  className="resize-none rounded-[14px] border-[rgba(18,24,38,0.12)] bg-[#f8f6f1] px-4 py-3"
                 />
               </div>
 
               <button
                 type="submit"
                 disabled={isLoading}
-                className="flex h-12 w-full items-center justify-center gap-2 rounded-2xl bg-[#123455] px-4 text-[15px] font-semibold text-white shadow-[0_10px_22px_rgba(18,52,85,0.2)] active:scale-[0.985] transition-transform disabled:opacity-70"
+                className="flex h-12 w-full items-center justify-center gap-2 rounded-[14px] border border-[#173851] bg-[#173851] px-4 text-[15px] font-semibold text-white shadow-[0_8px_18px_rgba(23,56,81,0.14)] active:scale-[0.985] transition-transform disabled:opacity-70"
               >
                 {isLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Send className="h-4 w-4" />}
                 {isLoading ? 'Se trimite...' : 'Trimite mesajul'}
@@ -257,18 +257,36 @@ export function MobileContact() {
           )}
         </div>
 
-        <div className="overflow-hidden rounded-[24px] border border-white/80 bg-white p-2 shadow-[0_12px_32px_rgba(15,23,42,0.05)]">
-          <div className="overflow-hidden rounded-2xl border border-slate-100">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2795.745365495854!2d25.4493!3d44.9311!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40b2c5e0f7c3b0e7%3A0x7e7c7e7c7e7c7e7c!2sCalea%20Domneasc%C4%83%20234%2C%20T%C3%A2rgovi%C8%99te!5e0!3m2!1sro!2sro!4v1640000000000!5m2!1sro!2sro"
-              width="100%"
-              height="240"
-              style={{ border: 0 }}
-              allowFullScreen
-              loading="lazy"
-              title="Doctor Suciu Dental Clinic - Harta"
-              referrerPolicy="no-referrer-when-downgrade"
-            />
+        <div className="mobile-panel overflow-hidden p-2">
+          <div className="overflow-hidden rounded-[16px] border border-[rgba(18,24,38,0.08)]">
+            {isStandalonePage ? (
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2795.745365495854!2d25.4493!3d44.9311!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40b2c5e0f7c3b0e7%3A0x7e7c7e7c7e7c7e7c!2sCalea%20Domneasc%C4%83%20234%2C%20T%C3%A2rgovi%C8%99te!5e0!3m2!1sro!2sro!4v1640000000000!5m2!1sro!2sro"
+                width="100%"
+                height="240"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                title="Doctor Suciu Dental Clinic - Harta"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
+            ) : (
+              <a
+                href="https://maps.google.com/?q=Calea+Domneasca+234+Targoviste"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex min-h-[180px] flex-col items-start justify-between bg-[linear-gradient(135deg,#eef2f5_0%,#f7f5f0_100%)] p-4"
+              >
+                <div>
+                  <p className="text-[11px] uppercase tracking-[0.14em] text-[#173851]">Locatie</p>
+                  <p className="mt-2 text-[16px] font-semibold text-slate-900">Calea Domneasca 234</p>
+                  <p className="text-[13px] text-slate-600">Targoviste</p>
+                </div>
+                <span className="rounded-[12px] border border-[rgba(18,24,38,0.1)] bg-white/85 px-3 py-2 text-[13px] font-medium text-slate-700">
+                  Deschide in Google Maps
+                </span>
+              </a>
+            )}
           </div>
         </div>
       </div>

@@ -98,31 +98,31 @@ export function MobileTeam() {
   return (
     <section id="medici" className="mobile-safe-x py-4" aria-labelledby="mobile-team-title">
       <div className="mx-auto max-w-[560px]">
-        <div className="rounded-[24px] border border-slate-200 bg-white p-4 shadow-[0_10px_26px_rgba(15,23,42,0.05)]">
+        <div className="mobile-panel p-4">
           <div className="mb-4 flex items-start justify-between gap-3">
             <div>
-              <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#123455]">Echipa</p>
-              <h2 id="mobile-team-title" className="mt-1 text-[22px] font-semibold tracking-tight text-slate-900">
+              <p className="mobile-kicker">Echipa</p>
+              <h2 id="mobile-team-title" className="mobile-title mt-1 text-[23px]">
                 Oameni care te asculta
               </h2>
-              <p className="mt-1 text-[13px] leading-relaxed text-slate-600">
+              <p className="mobile-body mt-1 text-[13px]">
                 Medici si asistenti cu experienta, comunicare buna si grija pentru confort.
               </p>
             </div>
 
-            <p className="shrink-0 rounded-full border border-slate-200 bg-white px-2.5 py-1 text-[11px] text-slate-500">
+            <p className="mobile-muted-chip shrink-0">
               Swipe
             </p>
           </div>
 
-          <div onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd} className="overflow-hidden">
+          <div onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd} className="overflow-hidden" style={{ touchAction: 'pan-y' }}>
             <div
-              className="flex transition-transform duration-500 ease-out"
+              className="mobile-carousel-track flex"
               style={{ transform: `translateX(-${activeIndex * 100}%)` }}
             >
               {doctors.map((doctor) => (
                 <article key={doctor.id} className="w-full shrink-0">
-                  <div className="overflow-hidden rounded-2xl border border-slate-100 bg-slate-50">
+                  <div className="overflow-hidden rounded-[18px] border border-[rgba(18,24,38,0.08)] bg-[#f7f5f0]">
                     <div className="relative h-72 overflow-hidden bg-slate-100">
                       {doctor.image ? (
                         <img
@@ -131,6 +131,7 @@ export function MobileTeam() {
                           className="h-full w-full object-cover"
                           style={{ objectPosition: doctor.imageCrop || 'center 35%' }}
                           loading="lazy"
+                          decoding="async"
                         />
                       ) : (
                         <div className="flex h-full w-full items-center justify-center text-slate-400">
@@ -138,15 +139,17 @@ export function MobileTeam() {
                         </div>
                       )}
 
-                      <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent p-4">
-                        <div className="inline-flex items-center rounded-full border border-white/25 bg-black/20 px-2.5 py-1 text-[11px] font-medium text-white">
+                      <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent p-4">
+                        <div className="inline-flex items-center rounded-full border border-white/20 bg-black/25 px-2.5 py-1 text-[11px] font-medium text-white">
                           {doctor.role}
                         </div>
                       </div>
                     </div>
 
                     <div className="p-4">
-                      <h3 className="text-[18px] font-semibold leading-tight text-slate-900">{doctor.name}</h3>
+                      <h3 className="mobile-title text-[18px] leading-tight text-slate-900" style={{ fontFamily: 'ui-serif, Georgia, Cambria, serif' }}>
+                        {doctor.name}
+                      </h3>
                       <p className="mt-2 text-[14px] leading-relaxed text-slate-600">{doctor.description}</p>
 
                       {doctor.tags && doctor.tags.length > 0 && (
@@ -154,7 +157,7 @@ export function MobileTeam() {
                           {doctor.tags.map((tag) => (
                             <span
                               key={tag}
-                              className="rounded-full border border-slate-200 bg-white px-2.5 py-1 text-[11px] text-slate-700"
+                              className="rounded-full border border-[rgba(18,24,38,0.08)] bg-white/80 px-2.5 py-1 text-[11px] text-slate-700"
                             >
                               {tag}
                             </span>
@@ -169,15 +172,13 @@ export function MobileTeam() {
           </div>
 
           <div className="mt-4 flex items-center justify-center">
-            <div className="mobile-scrollbar-hide flex items-center justify-center gap-1.5 overflow-x-auto">
+            <div className="mobile-scrollbar-hide mobile-dot-nav overflow-x-auto">
               {doctors.map((_, index) => (
                 <button
                   key={index}
                   type="button"
                   onClick={() => goTo(index)}
-                  className={`rounded-full transition-all ${
-                    index === activeIndex ? 'h-1.5 w-4 bg-[#123455]' : 'h-1.5 w-1.5 bg-slate-300'
-                  }`}
+                  data-active={index === activeIndex ? 'true' : 'false'}
                   aria-label={`Membrul ${index + 1}`}
                 />
               ))}

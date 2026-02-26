@@ -81,14 +81,14 @@ export function MobileGallery() {
   return (
     <section id="clinica" className="mobile-safe-x py-4" aria-labelledby="mobile-gallery-title">
       <div className="mx-auto max-w-[560px]">
-        <div className="rounded-[26px] bg-white p-4 shadow-[0_12px_32px_rgba(15,23,42,0.05)]">
+        <div className="mobile-panel p-4">
           <div className="mb-4 flex items-start justify-between gap-3">
             <div>
-              <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#123455]">Clinica</p>
-              <h2 id="mobile-gallery-title" className="mt-1 text-[22px] font-semibold tracking-tight text-slate-900">
+              <p className="mobile-kicker">Clinica</p>
+              <h2 id="mobile-gallery-title" className="mobile-title mt-1 text-[23px]">
                 Un spatiu curat si primitor
               </h2>
-              <p className="mt-1 text-[13px] leading-relaxed text-slate-600">
+              <p className="mobile-body mt-1 text-[13px]">
                 Fotografii reale din clinica. Apasa pe imagine pentru vizualizare full screen.
               </p>
             </div>
@@ -97,7 +97,7 @@ export function MobileGallery() {
               <button
                 type="button"
                 onClick={() => openLightbox(0)}
-                className="flex h-10 items-center gap-1.5 rounded-xl border border-slate-200 bg-white px-3 text-[12px] font-semibold text-slate-700 active:scale-[0.98] transition-transform"
+                className="flex h-10 items-center gap-1.5 rounded-[12px] border border-[rgba(18,24,38,0.1)] bg-white/80 px-3 text-[12px] font-semibold text-slate-700 active:scale-[0.98] transition-transform"
               >
                 <Expand className="h-4 w-4" />
                 Deschide
@@ -107,10 +107,10 @@ export function MobileGallery() {
 
           {activeImages.length === 0 ? (
             <div className="grid grid-cols-3 gap-2">
-              <div className="col-span-2 row-span-2 aspect-square rounded-2xl bg-slate-100" />
-              <div className="aspect-square rounded-2xl bg-slate-100" />
-              <div className="aspect-square rounded-2xl bg-slate-100" />
-              <div className="col-span-3 h-12 rounded-2xl bg-slate-100" />
+              <div className="col-span-2 row-span-2 aspect-square rounded-[16px] bg-slate-100" />
+              <div className="aspect-square rounded-[16px] bg-slate-100" />
+              <div className="aspect-square rounded-[16px] bg-slate-100" />
+              <div className="col-span-3 h-12 rounded-[16px] bg-slate-100" />
             </div>
           ) : (
             <>
@@ -118,28 +118,31 @@ export function MobileGallery() {
                 {visibleGridImages.map((image, index) => {
                   const layoutClass =
                     index === 0
-                      ? 'col-span-2 aspect-[16/10]'
+                      ? 'col-span-2 aspect-[16/9.8]'
                       : index === 3
-                        ? 'col-span-2 aspect-[16/10]'
-                        : 'aspect-square';
+                        ? 'col-span-2 aspect-[16/10.5]'
+                        : index === 4
+                          ? 'aspect-[4/5]'
+                          : 'aspect-square';
 
                   return (
                     <button
                       key={image.id}
                       type="button"
                       onClick={() => openLightbox(index)}
-                      className={`relative overflow-hidden rounded-2xl bg-slate-100 active:scale-[0.99] transition-transform ${layoutClass}`}
+                      className={`relative overflow-hidden rounded-[16px] border border-[rgba(18,24,38,0.06)] bg-slate-100 active:scale-[0.99] transition-transform ${layoutClass}`}
                     >
                       <img
                         src={image.image_url}
                         alt={image.title || 'Imagine din clinica'}
                         className="h-full w-full object-cover"
                         loading="lazy"
+                        decoding="async"
                       />
 
                       {index === visibleGridImages.length - 1 && activeImages.length > visibleGridImages.length && (
                         <div className="absolute inset-0 flex items-center justify-center bg-slate-950/50">
-                          <span className="rounded-full border border-white/30 bg-white/15 px-3 py-1 text-[12px] font-semibold text-white backdrop-blur">
+                          <span className="rounded-full border border-white/30 bg-white/10 px-3 py-1 text-[12px] font-semibold text-white">
                             +{activeImages.length - visibleGridImages.length} imagini
                           </span>
                         </div>
@@ -153,11 +156,11 @@ export function MobileGallery() {
                 <button
                   type="button"
                   onClick={() => openLightbox(0)}
-                  className="flex h-11 flex-1 items-center justify-center rounded-2xl border border-slate-200 bg-white text-[14px] font-medium text-slate-700 active:scale-[0.985] transition-transform"
+                  className="flex h-11 flex-1 items-center justify-center rounded-[14px] border border-[rgba(18,24,38,0.1)] bg-white/80 text-[14px] font-medium text-slate-700 active:scale-[0.985] transition-transform"
                 >
                   Vezi galeria completa
                 </button>
-                <span className="rounded-full bg-slate-100 px-3 py-1.5 text-[11px] text-slate-600">
+                <span className="rounded-full border border-[rgba(18,24,38,0.08)] bg-[#f7f5f0] px-3 py-1.5 text-[11px] text-slate-600">
                   {activeImages.length} imagini
                 </span>
               </div>
@@ -194,7 +197,7 @@ export function MobileGallery() {
               <button
                 type="button"
                 onClick={() => setLightboxOpen(false)}
-                className="flex h-11 w-11 items-center justify-center rounded-2xl border border-white/15 bg-white/10 text-white active:scale-[0.96] transition-transform"
+                className="flex h-11 w-11 items-center justify-center rounded-[14px] border border-white/15 bg-white/8 text-white active:scale-[0.96] transition-transform"
                 aria-label="Inchide galeria"
               >
                 <X className="h-5 w-5" />
@@ -206,7 +209,7 @@ export function MobileGallery() {
                 <button
                   type="button"
                   onClick={() => goTo(currentImage - 1)}
-                  className="absolute left-3 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-2xl border border-white/15 bg-white/10 text-white active:scale-[0.96] transition-transform"
+                  className="absolute left-3 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-[14px] border border-white/15 bg-white/8 text-white active:scale-[0.96] transition-transform"
                   aria-label="Imagine anterioara"
                 >
                   <ChevronLeft className="h-5 w-5" />
@@ -217,7 +220,7 @@ export function MobileGallery() {
                 <img
                   src={activeImages[currentImage].image_url}
                   alt={activeImages[currentImage].title || 'Imagine din clinica'}
-                  className="max-h-full max-w-full rounded-2xl object-contain"
+                  className="max-h-full max-w-full rounded-[16px] object-contain"
                 />
               </div>
 
@@ -225,7 +228,7 @@ export function MobileGallery() {
                 <button
                   type="button"
                   onClick={() => goTo(currentImage + 1)}
-                  className="absolute right-3 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-2xl border border-white/15 bg-white/10 text-white active:scale-[0.96] transition-transform"
+                  className="absolute right-3 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-[14px] border border-white/15 bg-white/8 text-white active:scale-[0.96] transition-transform"
                   aria-label="Imagine urmatoare"
                 >
                   <ChevronRight className="h-5 w-5" />
@@ -237,7 +240,7 @@ export function MobileGallery() {
               className="mobile-safe-x py-3 text-white"
               style={{ paddingBottom: 'calc(env(safe-area-inset-bottom) + 14px)' }}
             >
-              <div className="rounded-2xl border border-white/10 bg-white/5 px-3 py-2 backdrop-blur">
+              <div className="rounded-[14px] border border-white/10 bg-white/5 px-3 py-2">
                 <p className="text-[13px] font-medium">
                   {activeImages[currentImage].title || 'Doctor Suciu Dental Clinic'}
                 </p>

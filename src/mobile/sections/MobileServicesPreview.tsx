@@ -87,33 +87,43 @@ export function MobileServicesPreview() {
   return (
     <section id="servicii" className="mobile-safe-x py-4">
       <div className="mx-auto max-w-[560px]">
-        <div className="rounded-[24px] border border-slate-200 bg-white p-4 shadow-[0_10px_26px_rgba(15,23,42,0.05)]">
+        <div className="mobile-panel p-4">
           <div className="mb-4">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#123455]">Servicii</p>
-            <h2 className="mt-1 text-[22px] font-semibold tracking-tight text-slate-900">
+            <p className="mobile-kicker">Servicii</p>
+            <h2 className="mobile-title mt-1 text-[23px]">
               Ce putem face pentru tine
             </h2>
-            <p className="mt-1 text-[13px] leading-relaxed text-slate-600">
+            <p className="mobile-body mt-1 text-[13px]">
               Alege direct ce te intereseaza sau intra pe pagina de servicii pentru lista completa.
             </p>
           </div>
 
-          <div className="space-y-2">
-            {items.map((item) => (
+          <div className="space-y-2.5">
+            {items.map((item, index) => (
               <Link
                 key={item.anchorId}
                 to={`/servicii#${item.anchorId}`}
-                className="group flex items-start gap-3 rounded-2xl border border-slate-100 bg-white p-3 active:scale-[0.99] transition-transform"
+                className="group relative flex items-start gap-3 rounded-[16px] border border-[rgba(18,24,38,0.08)] bg-white/80 p-3 active:scale-[0.99] transition-transform"
               >
                 <span
-                  className="mt-0.5 flex h-11 w-11 shrink-0 items-center justify-center rounded-xl"
+                  className="absolute bottom-0 left-0 top-0 w-1 rounded-l-[16px]"
+                  style={{ backgroundColor: item.accent, opacity: 0.75 }}
+                  aria-hidden
+                />
+                <span
+                  className="mt-0.5 flex h-11 w-11 shrink-0 items-center justify-center rounded-[12px]"
                   style={{ backgroundColor: item.softBg, color: item.accent }}
                 >
                   <item.Icon className="h-5 w-5" strokeWidth={1.8} />
                 </span>
 
                 <span className="min-w-0 flex-1">
-                  <span className="block text-[15px] font-semibold text-slate-900">{item.title}</span>
+                  <span className="flex items-center gap-2">
+                    <span className="block text-[15px] font-semibold text-slate-900">{item.title}</span>
+                    <span className="text-[10px] uppercase tracking-[0.14em] text-slate-400">
+                      0{index + 1}
+                    </span>
+                  </span>
                   <span className="mt-0.5 block text-[13px] leading-relaxed text-slate-600">
                     {item.description}
                   </span>
@@ -127,7 +137,7 @@ export function MobileServicesPreview() {
           <div className="mt-4">
             <Link
               to="/servicii"
-              className="flex h-12 items-center justify-center gap-2 rounded-2xl bg-[#123455] px-4 text-[14px] font-semibold text-white active:scale-[0.985] transition-transform"
+              className="flex h-12 items-center justify-center gap-2 rounded-[14px] border border-[#173851] bg-[#173851] px-4 text-[14px] font-semibold text-white active:scale-[0.985] transition-transform"
             >
               Vezi toate serviciile
               <ArrowRight className="h-4 w-4" />

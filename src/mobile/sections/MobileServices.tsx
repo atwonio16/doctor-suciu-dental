@@ -159,26 +159,26 @@ export function MobileServices() {
       aria-labelledby="mobile-services-title"
     >
       <div className="mx-auto max-w-[560px] space-y-4">
-        <div className="rounded-[28px] border border-white/80 bg-gradient-to-b from-white to-[#f5f8fc] p-4 shadow-[0_18px_45px_rgba(15,23,42,0.07)]">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#123455]">Pagina servicii</p>
-          <h1 id="mobile-services-title" className="mt-1 text-[24px] font-semibold tracking-tight text-slate-900">
+        <div className="mobile-panel p-4">
+          <p className="mobile-kicker">Pagina servicii</p>
+          <h1 id="mobile-services-title" className="mobile-title mt-1 text-[25px]">
             Serviciile clinicii
           </h1>
-          <p className="mt-2 text-[14px] leading-relaxed text-slate-600">
+          <p className="mobile-body mt-2 text-[14px]">
             Am lasat pe mobil cele mai cautate 3 servicii, ca sa ajungi rapid unde ai nevoie. Restul le discutam la consultatie.
           </p>
 
           <div className="mt-4 grid grid-cols-2 gap-2 text-[12px]">
             <a
               href="tel:+40770220110"
-              className="flex h-11 items-center justify-center gap-2 rounded-2xl border border-slate-200 bg-white font-semibold text-slate-800 active:scale-[0.985] transition-transform"
+              className="flex h-11 items-center justify-center gap-2 rounded-[14px] border border-[rgba(18,24,38,0.1)] bg-[#f7f5f0] font-semibold text-slate-800 active:scale-[0.985] transition-transform"
             >
-              <ArrowRight className="h-4 w-4 text-[#123455]" />
+              <ArrowRight className="h-4 w-4 text-[#173851]" />
               Suna pentru orientare
             </a>
             <Link
               to="/contact"
-              className="flex h-11 items-center justify-center gap-2 rounded-2xl bg-[#123455] px-3 font-semibold text-white active:scale-[0.985] transition-transform"
+              className="flex h-11 items-center justify-center gap-2 rounded-[14px] border border-[#173851] bg-[#173851] px-3 font-semibold text-white active:scale-[0.985] transition-transform"
             >
               Programare
               <ArrowRight className="h-4 w-4" />
@@ -195,9 +195,9 @@ export function MobileServices() {
         {loading && supabaseServices.length === 0 ? (
           <div className="space-y-3">
             {[1, 2, 3].map((item) => (
-              <div key={item} className="animate-pulse rounded-3xl border border-white/80 bg-white p-4">
+              <div key={item} className="animate-pulse rounded-[20px] border border-[rgba(18,24,38,0.08)] bg-white/85 p-4">
                 <div className="mb-3 flex items-start gap-3">
-                  <div className="h-12 w-12 rounded-2xl bg-slate-100" />
+                  <div className="h-12 w-12 rounded-[14px] bg-slate-100" />
                   <div className="flex-1 space-y-2">
                     <div className="h-4 w-2/3 rounded bg-slate-100" />
                     <div className="h-3 w-full rounded bg-slate-100" />
@@ -220,15 +220,15 @@ export function MobileServices() {
                 <article
                   key={service.id}
                   id={service.anchorId}
-                  className={`scroll-mt-24 rounded-3xl border bg-white p-4 shadow-[0_12px_34px_rgba(15,23,42,0.05)] transition-all ${
+                  className={`scroll-mt-24 rounded-[20px] border bg-white/90 p-4 shadow-[0_8px_20px_rgba(18,24,38,0.05)] transition-all ${
                     isHighlighted
-                      ? 'border-[#c8d9ea] ring-2 ring-[#dfeefa]'
+                      ? 'border-[rgba(23,56,81,0.18)] ring-2 ring-[#dfe7ef]'
                       : 'border-white/80'
                   }`}
                 >
                   <div className="flex items-start gap-3">
                     <div
-                      className="mt-0.5 flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl"
+                      className="mt-0.5 flex h-12 w-12 shrink-0 items-center justify-center rounded-[14px]"
                       style={{ backgroundColor: service.softBg, color: service.accent }}
                     >
                       <service.Icon className="h-5 w-5" strokeWidth={1.8} />
@@ -237,12 +237,12 @@ export function MobileServices() {
                     <div className="min-w-0 flex-1">
                       <div className="flex flex-wrap gap-2">
                         {service.category && (
-                          <span className="rounded-full border border-slate-200 bg-slate-50 px-2.5 py-1 text-[11px] font-medium text-slate-600">
+                          <span className="rounded-full border border-[rgba(18,24,38,0.08)] bg-[#f7f5f0] px-2.5 py-1 text-[11px] font-medium text-slate-600">
                             {service.category}
                           </span>
                         )}
                         {service.duration && (
-                          <span className="inline-flex items-center gap-1 rounded-full border border-slate-200 bg-white px-2.5 py-1 text-[11px] text-slate-600">
+                          <span className="inline-flex items-center gap-1 rounded-full border border-[rgba(18,24,38,0.08)] bg-white px-2.5 py-1 text-[11px] text-slate-600">
                             <Clock className="h-3 w-3" />
                             {service.duration}
                           </span>
@@ -257,13 +257,13 @@ export function MobileServices() {
                           service.features.map((feature) => (
                             <span
                               key={feature}
-                              className="rounded-full border border-slate-200 bg-white px-2.5 py-1 text-[11px] text-slate-700"
+                              className="rounded-full border border-[rgba(18,24,38,0.08)] bg-white/80 px-2.5 py-1 text-[11px] text-slate-700"
                             >
                               {feature}
                             </span>
                           ))
                         ) : (
-                          <span className="rounded-full border border-slate-200 bg-white px-2.5 py-1 text-[11px] text-slate-600">
+                          <span className="rounded-full border border-[rgba(18,24,38,0.08)] bg-white/80 px-2.5 py-1 text-[11px] text-slate-600">
                             Consultatie si plan personalizat
                           </span>
                         )}
@@ -279,7 +279,7 @@ export function MobileServices() {
 
                         <Link
                           to="/contact"
-                          className="inline-flex h-10 items-center justify-center rounded-xl bg-[#123455] px-3 text-[12px] font-semibold text-white active:scale-[0.985] transition-transform"
+                          className="inline-flex h-10 items-center justify-center rounded-[12px] border border-[#173851] bg-[#173851] px-3 text-[12px] font-semibold text-white active:scale-[0.985] transition-transform"
                         >
                           Programeaza
                         </Link>
