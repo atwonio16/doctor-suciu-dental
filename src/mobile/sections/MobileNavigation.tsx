@@ -69,7 +69,7 @@ export function MobileNavigation() {
             <button
               type="button"
               onClick={() => setIsOpen((prev) => !prev)}
-              className="flex h-10 w-10 items-center justify-center rounded-[10px] border border-slate-200 bg-white text-slate-900 active:scale-[0.96] transition-transform"
+              className="flex h-10 w-10 items-center justify-center rounded-[10px] bg-transparent text-slate-900 active:scale-[0.96] active:bg-slate-100 transition-transform"
               aria-expanded={isOpen}
               aria-controls="mobile-menu-panel"
               aria-label={isOpen ? 'Inchide meniul' : 'Deschide meniul'}
