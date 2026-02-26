@@ -79,21 +79,19 @@ export function MobileHero() {
                   }}
                 />
 
-                <div className="absolute inset-x-2 bottom-2 rounded-[10px] border border-white/70 bg-white/92 px-3 py-2">
-                  <div className="flex items-center justify-between gap-2">
-                    <div>
-                      <p className="text-[10px] uppercase tracking-[0.14em] text-slate-500">Google Reviews</p>
-                      <div className="mt-0.5 text-[12px] text-slate-700">
-                        <span className="font-semibold text-slate-900">{googleReviews.rating.toFixed(1)}</span>{' '}
-                        din {googleReviews.reviewCount} recenzii
-                      </div>
+                <div className="absolute left-2 top-2 max-w-[88%] rounded-[10px] border border-slate-200 bg-white px-3 py-2 shadow-[0_6px_16px_rgba(15,23,42,0.08)]">
+                  <p className="text-[10px] uppercase tracking-[0.14em] text-slate-500">Google Reviews</p>
+                  <div className="mt-1 flex items-center justify-between gap-3">
+                    <div className="text-[12px] text-slate-700">
+                      <span className="font-semibold text-slate-900">{googleReviews.rating.toFixed(1)}</span>{' '}
+                      din {googleReviews.reviewCount} recenzii
                     </div>
-                    <div className="flex items-center gap-1" aria-hidden>
-                    {[...Array(5)].map((_, index) => (
-                      <svg key={index} className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="#FABB05" aria-hidden>
-                        <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
-                      </svg>
-                    ))}
+                    <div className="flex shrink-0 items-center gap-1" aria-hidden>
+                      {[...Array(5)].map((_, index) => (
+                        <svg key={index} className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="#FABB05" aria-hidden>
+                          <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                        </svg>
+                      ))}
                     </div>
                   </div>
                 </div>
