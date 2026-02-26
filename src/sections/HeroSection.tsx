@@ -27,7 +27,7 @@ const HeroSection = () => {
               
               {/* Headline */}
               <h1 
-                className="text-[1.625rem] sm:text-[2.25rem] lg:text-[3rem] leading-[1.1] mb-3 sm:mb-6 lg:whitespace-nowrap"
+                className="text-[1.625rem] sm:text-[2.25rem] lg:text-[3rem] leading-[1.1] mb-2 sm:mb-6 lg:whitespace-nowrap"
                 style={{ 
                   color: '#0F172A',
                   fontWeight: 800,
@@ -37,20 +37,20 @@ const HeroSection = () => {
                 Zâmbetul tău începe aici
               </h1>
 
-              {/* Subtitle - max 2 lines */}
+              {/* Subtitle */}
               <p 
-                className="text-[15px] sm:text-base lg:text-[17px] mb-5 sm:mb-8 leading-relaxed max-w-[480px] mx-auto lg:mx-0"
+                className="text-[15px] sm:text-base lg:text-[17px] mb-4 sm:mb-8 leading-relaxed max-w-[480px] mx-auto lg:mx-0"
                 style={{ color: '#475569' }}
               >
                 Știm că nu îți place la dentist. De asta facem lucrurile altfel.
               </p>
 
               {/* CTAs - Stacked on mobile */}
-              <div className="flex flex-col items-stretch gap-2 mb-4 sm:mb-6">
+              <div className="flex flex-col items-stretch gap-1.5 sm:gap-2 mb-3 sm:mb-6">
                 {/* Primary CTA */}
                 <Link
                   to="/contact"
-                  className="cta-primary inline-flex items-center justify-center gap-2 font-semibold text-[15px] px-7 py-3.5 rounded-lg text-white hover:opacity-90 transition-opacity active:scale-[0.98]"
+                  className="cta-primary inline-flex items-center justify-center gap-2 font-semibold text-[15px] px-7 py-3 rounded-lg text-white hover:opacity-90 transition-opacity active:scale-[0.98]"
                   style={{ backgroundColor: '#0F2A44' }}
                 >
                   Hai să vorbim
@@ -60,7 +60,7 @@ const HeroSection = () => {
                 {/* Secondary CTA */}
                 <a
                   href="tel:+40770220110"
-                  className="cta-secondary inline-flex items-center justify-center gap-2 font-medium text-[15px] px-6 py-3.5 rounded-lg transition-all active:scale-[0.98]"
+                  className="cta-secondary inline-flex items-center justify-center gap-2 font-medium text-[15px] px-6 py-3 rounded-lg transition-all active:scale-[0.98]"
                   style={{ 
                     backgroundColor: 'transparent',
                     border: '1px solid rgba(15, 42, 68, 0.18)',
@@ -78,54 +78,53 @@ const HeroSection = () => {
                 </a>
               </div>
 
-              {/* Compact Contact Info - Phone + Location only */}
+              {/* Contact Info - Phone + Location */}
               <div 
-                className="flex items-center justify-center lg:justify-start gap-4 text-[13px] mb-4" 
+                className="flex items-center justify-center lg:justify-start gap-5 text-[13px] mb-3 sm:mb-0" 
                 style={{ color: '#64748B' }}
               >
                 <a 
                   href="tel:+40770220110" 
                   className="flex items-center gap-1.5 hover:text-gray-900 transition-colors"
                 >
-                  <Phone className="w-3.5 h-3.5 flex-shrink-0" style={{ color: '#94A3B8' }} />
+                  <Phone className="w-4 h-4 flex-shrink-0" style={{ color: '#64748B' }} />
                   <span>0770 220 110</span>
                 </a>
                 <span className="text-gray-300">|</span>
                 <div className="flex items-center gap-1.5">
-                  <MapPin className="w-3.5 h-3.5 flex-shrink-0" style={{ color: '#94A3B8' }} />
+                  <MapPin className="w-4 h-4 flex-shrink-0" style={{ color: '#64748B' }} />
                   <span>Târgoviște</span>
                 </div>
               </div>
 
-              {/* Rating - Compact */}
+              {/* Trust Line - Desktop only */}
               <div 
-                className="flex items-center justify-center lg:justify-start gap-1 text-[12px]" 
+                className="hidden sm:flex items-center justify-center lg:justify-start gap-1 text-[12px] mt-4" 
                 style={{ color: '#94A3B8' }}
               >
                 <span>Fără durere</span>
                 <span className="text-gray-300">·</span>
                 <span>Medici specializați</span>
-                <span className="text-gray-300 hidden sm:inline">|</span>
+                <span className="text-gray-300">|</span>
                 <div className="flex items-center gap-1" style={{ color: '#64748B' }}>
                   <div className="flex items-center gap-0.5">
                     {[...Array(5)].map((_, i) => (
-                      <svg key={i} className="w-3 h-3 sm:w-3.5 sm:h-3.5" viewBox="0 0 24 24" fill="#FABB05">
+                      <svg key={i} className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="#FABB05">
                         <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
                       </svg>
                     ))}
                   </div>
                   <span className="font-medium" style={{ color: '#0F172A' }}>{googleReviews.rating.toFixed(1)}</span>
-                  <span className="hidden sm:inline">din {googleReviews.reviewCount} recenzii</span>
-                  <span className="sm:hidden">({googleReviews.reviewCount})</span>
+                  <span>din {googleReviews.reviewCount} recenzii</span>
                 </div>
               </div>
             </div>
 
-            {/* Right - Image - LAST on mobile */}
-            <div className="hero-image relative w-full flex items-center justify-center lg:justify-end order-2 mt-2 lg:mt-0">
+            {/* Right - Image */}
+            <div className="hero-image relative w-full flex items-center justify-center lg:justify-end order-2 mt-1 lg:mt-0">
               <div 
-                className="relative w-full max-w-[280px] sm:max-w-[440px] lg:max-w-[540px] aspect-[16/10] sm:aspect-square overflow-hidden"
-                style={{ borderRadius: '16px' }}
+                className="relative w-full max-w-[260px] sm:max-w-[440px] lg:max-w-[540px] aspect-[16/10] sm:aspect-square overflow-hidden"
+                style={{ borderRadius: '12px' }}
               >
                 <img
                   src="/poza-hero.jpg"
@@ -140,6 +139,25 @@ const HeroSection = () => {
             </div>
 
           </div>
+
+          {/* Trust Line - Mobile only (below image) */}
+          <div 
+            className="sm:hidden flex items-center justify-center gap-1.5 text-[11px] mt-3 pt-2" 
+            style={{ color: '#94A3B8' }}
+          >
+            <span>Fără durere</span>
+            <span className="text-gray-300">·</span>
+            <span>Medici specializați</span>
+            <span className="text-gray-300">·</span>
+            <div className="flex items-center gap-0.5" style={{ color: '#64748B' }}>
+              <svg className="w-2.5 h-2.5" viewBox="0 0 24 24" fill="#FABB05">
+                <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+              </svg>
+              <span className="font-medium text-[11px]" style={{ color: '#0F172A' }}>{googleReviews.rating.toFixed(1)}</span>
+              <span>({googleReviews.reviewCount})</span>
+            </div>
+          </div>
+
         </div>
       </div>
 

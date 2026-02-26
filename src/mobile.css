@@ -137,10 +137,9 @@
 
 @media (max-width: 640px) {
   #hero {
-    min-height: 85vh !important;
-    min-height: 85dvh !important;
-    padding-top: 80px !important;
-    padding-bottom: 24px !important;
+    min-height: auto !important;
+    padding-top: 76px !important;
+    padding-bottom: 16px !important;
     display: flex !important;
     align-items: flex-start !important;
   }
@@ -149,57 +148,62 @@
     font-size: 1.625rem !important;
     line-height: 1.1 !important;
     text-align: center !important;
+    margin-bottom: 8px !important;
+  }
+
+  /* Subtitle - tight spacing below headline */
+  #hero h1 + p,
+  #hero .text-center > p:first-of-type {
+    text-align: center !important;
+    margin-bottom: 16px !important;
+    font-size: 15px !important;
+    line-height: 1.45 !important;
+  }
+
+  /* CTAs container - tight spacing */
+  #hero .flex-col {
+    gap: 6px !important;
     margin-bottom: 12px !important;
   }
 
-  #hero p {
-    text-align: center !important;
-    margin-bottom: 20px !important;
-  }
-
-  /* CTAs - full width, stacked, compact spacing */
+  /* CTAs - full width, compact */
   #hero .cta-primary,
   #hero .cta-secondary {
     width: 100% !important;
     justify-content: center !important;
-    padding: 14px 20px !important;
+    padding: 12px 20px !important;
     font-size: 15px !important;
-    min-height: 48px !important;
+    min-height: 44px !important;
   }
 
-  /* Gap between CTAs */
-  #hero .flex-col {
-    gap: 8px !important;
-  }
-
-  /* Compact contact info - horizontal row */
+  /* Contact info row - compact, icons more visible */
   #hero .contact-info {
     flex-direction: row !important;
     justify-content: center !important;
-    gap: 16px !important;
-    margin-bottom: 16px !important;
+    gap: 20px !important;
+    margin-bottom: 12px !important;
     font-size: 13px !important;
   }
 
-  /* Rating row */
-  #hero .reassurances {
-    flex-wrap: wrap !important;
-    justify-content: center !important;
-    gap: 6px 12px !important;
-    font-size: 12px !important;
+  #hero .contact-info svg {
+    width: 14px !important;
+    height: 14px !important;
   }
 
-  /* Image - LAST, smaller, compact */
+  /* Trust line - hidden on mobile (has separate mobile version) */
+  #hero .text-center .reassurances,
+  #hero .text-center > div:last-child {
+    display: none !important;
+  }
+
+  /* Image - LAST, compact margins */
   #hero .hero-image {
     order: 2 !important;
-    margin-top: 8px !important;
-    max-width: 260px !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
+    margin-top: 4px !important;
+    margin-bottom: 0 !important;
   }
 
   #hero .hero-image > div {
-    aspect-ratio: 16/10 !important;
     border-radius: 12px !important;
   }
 
@@ -208,16 +212,22 @@
     order: 1 !important;
   }
 
-  /* Grid to single column */
+  /* Grid to single column, tight gap */
   #hero .grid {
     display: flex !important;
     flex-direction: column !important;
-    gap: 16px !important;
+    gap: 4px !important;
   }
 
-  /* Reduce max-width constraints on mobile */
-  #hero .max-w-7xl {
-    max-width: 100% !important;
+  /* Trust line mobile (below image) */
+  #hero > div > div:last-child {
+    font-size: 11px !important;
+    color: #94a3b8 !important;
+  }
+
+  #hero > div > div:last-child svg {
+    width: 10px !important;
+    height: 10px !important;
   }
 }
 
