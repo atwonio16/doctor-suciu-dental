@@ -123,7 +123,7 @@ export function MobileContact() {
               href="https://wa.me/40770220110"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex h-11 items-center justify-center gap-2 rounded-[12px] border border-[#d9ebdf] bg-[#f4fbf6] text-[13px] font-semibold text-[#1f6c43]"
+              className="flex h-11 items-center justify-center gap-2 rounded-[12px] border border-[#0B1E32]/20 bg-[#0B1E32]/5 text-[13px] font-semibold text-[#0B1E32]"
             >
               <MessageCircle className="h-4 w-4" />
               Scrie pe WhatsApp

@@ -6,7 +6,7 @@ export function MobileBottomBar() {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Contact pe WhatsApp"
-        className="fixed bottom-4 right-4 z-50 flex h-[54px] w-[54px] items-center justify-center rounded-full border border-white/70 bg-[#25D366] text-white shadow-[0_10px_22px_rgba(20,106,54,0.22)] active:scale-[0.96] transition-transform"
+        className="fixed bottom-4 right-4 z-50 flex h-[54px] w-[54px] items-center justify-center rounded-full border border-white/70 bg-[#0B1E32] text-white shadow-[0_10px_22px_rgba(11,30,50,0.25)] active:scale-[0.96] transition-transform"
         style={{ bottom: 'max(16px, calc(env(safe-area-inset-bottom) + 12px))' }}
       >
         <svg className="h-[22px] w-[22px]" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">

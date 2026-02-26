@@ -51,17 +51,17 @@ export function MobileNavigation() {
           className="mx-auto mt-0 max-w-[560px] border-b border-slate-100 bg-white"
           style={{ paddingTop: 'env(safe-area-inset-top)' }}
         >
-          <div className="flex h-14 items-center gap-2 px-1">
+          <div className="flex h-[70px] items-center gap-3 px-2">
             <Link
               to="/"
               className="flex min-w-0 flex-1 flex-col justify-center rounded-md px-3 py-1"
               aria-label="Doctor Suciu Dental Clinic"
               onClick={handleLogoClick}
             >
-              <span className="truncate text-[13px] font-bold tracking-tight text-slate-900 leading-none">
+              <span className="truncate text-[15px] font-black tracking-tight text-slate-900 leading-none">
                 DOCTOR SUCIU
               </span>
-              <span className="mt-0.5 text-[9px] uppercase tracking-[0.18em] text-slate-500 leading-none">
+              <span className="mt-1 text-[10px] font-bold uppercase tracking-[0.2em] text-slate-500 leading-none">
                 DENTAL CLINIC
               </span>
             </Link>
@@ -69,19 +69,19 @@ export function MobileNavigation() {
             <button
               type="button"
               onClick={() => setIsOpen((prev) => !prev)}
-              className="flex h-10 w-10 items-center justify-center rounded-[10px] bg-transparent text-slate-900 active:scale-[0.96] active:bg-slate-100 transition-transform"
+              className="flex h-12 w-12 items-center justify-center rounded-[12px] bg-transparent text-slate-900 active:scale-[0.96] active:bg-slate-100 transition-transform"
               aria-expanded={isOpen}
               aria-controls="mobile-menu-panel"
               aria-label={isOpen ? 'Inchide meniul' : 'Deschide meniul'}
             >
-              <span className="relative h-5 w-5">
+              <span className="relative h-6 w-6">
                 <Menu
-                  className={`absolute inset-0 h-5 w-5 transition-all duration-200 ${
+                  className={`absolute inset-0 h-6 w-6 transition-all duration-200 ${
                     isOpen ? 'rotate-90 scale-75 opacity-0' : 'rotate-0 scale-100 opacity-100'
                   }`}
                 />
                 <X
-                  className={`absolute inset-0 h-5 w-5 transition-all duration-200 ${
+                  className={`absolute inset-0 h-6 w-6 transition-all duration-200 ${
                     isOpen ? 'rotate-0 scale-100 opacity-100' : '-rotate-90 scale-75 opacity-0'
                   }`}
                 />

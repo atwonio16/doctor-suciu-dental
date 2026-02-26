@@ -1,9 +1,9 @@
-import { ArrowRight, CalendarDays, ChevronRight, Clock, MapPin } from 'lucide-react';
+import { ArrowRight, ChevronRight, Clock, MapPin } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useCMSSettings } from '../../hooks/useCMSSettings';
 
 const GoogleMark = () => (
-  <svg className="h-3.5 w-3.5 shrink-0" viewBox="0 0 24 24" aria-hidden>
+  <svg className="h-4 w-4 shrink-0" viewBox="0 0 24 24" aria-hidden>
     <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
     <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" />
     <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" />
@@ -17,126 +17,116 @@ export function MobileHero() {
   return (
     <section
       id="hero"
-      className="mobile-safe-x pb-4"
-      style={{ paddingTop: 'calc(env(safe-area-inset-top) + 84px)' }}
+      className="relative overflow-hidden pb-8"
+      style={{ paddingTop: 'calc(env(safe-area-inset-top) + 80px)' }}
       aria-labelledby="mobile-hero-title"
     >
-      <div className="mx-auto max-w-[560px]">
-        <div className="mobile-panel p-4">
-          <div className="overflow-hidden rounded-[18px] border border-slate-200 bg-white p-4 shadow-[0_8px_22px_rgba(15,23,42,0.04)]">
-            <div className="grid gap-4">
-              <div>
-                <h1
-                  id="mobile-hero-title"
-                  className="mobile-title whitespace-nowrap text-slate-950"
-                  style={{
-                    fontSize: 'clamp(1.34rem, 6.25vw, 2.16rem)',
-                    lineHeight: 1,
-                    letterSpacing: '-0.055em',
-                    fontWeight: 800,
-                  }}
-                >
-                  Incepi tratamentul in{' '}
-                  <span className="relative inline-block text-[#0F2A44]">
-                    <span
-                      className="absolute inset-x-0 bottom-[0.08em] h-[0.26em] rounded-full bg-[#e8f0fa]"
-                      aria-hidden
-                    />
-                    <span className="relative">siguranta</span>
-                  </span>
-                </h1>
+      {/* Decorativ: gradient blur */}
+      <div className="pointer-events-none absolute -top-20 left-1/2 h-64 w-64 -translate-x-1/2 rounded-full bg-teal-100/30 blur-3xl" />
 
-                <p className="mobile-body mt-3 text-[14px] leading-relaxed">
-                  Lucram calm, cu rabdare, iti explicam fiecare pas si stabilim un plan clar inainte de orice tratament.
-                </p>
-              </div>
+      <div className="relative mx-auto max-w-[480px] px-5">
+        {/* Headline Section */}
+        <div className="text-center">
+          <h1
+            id="mobile-hero-title"
+            className="text-[#0B1E32]"
+            style={{
+              fontSize: 'clamp(2.25rem, 10vw, 2.75rem)',
+              lineHeight: 1.1,
+              letterSpacing: '-0.02em',
+              fontWeight: 800,
+            }}
+          >
+            Zâmbetul tău
+            <br />
+            începe aici!
+          </h1>
 
-              <div className="mobile-card-soft flex items-center gap-2 px-3 py-2">
-                <GoogleMark />
-                <span className="text-[12px] font-semibold text-slate-900">{googleReviews.rating.toFixed(1)}</span>
-                <span className="flex items-center gap-0.5 text-[#FABB05]" aria-hidden>
-                  {[...Array(5)].map((_, index) => (
-                    <svg key={index} className="h-3 w-3" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
-                    </svg>
-                  ))}
-                </span>
-                <span className="min-w-0 truncate text-[12px] text-slate-600">din {googleReviews.reviewCount} recenzii Google</span>
-              </div>
+          <p className="mx-auto mt-3 text-[15px] leading-[1.5] text-slate-500">
+            Îngrijire dentară modernă, fără griji.
+          </p>
+        </div>
 
-              <div className="overflow-hidden rounded-[16px] border border-slate-200 bg-white p-1">
-                <div className="relative aspect-[16/10.8] overflow-hidden rounded-[12px] bg-slate-100">
-                  <img
-                    src="/poza-hero.jpg"
-                    alt="Recepția clinicii Doctor Suciu Dental Clinic din Targoviste, luminoasa si ordonata"
-                    className="h-full w-full object-cover"
-                    style={{ objectPosition: 'center 58%' }}
-                    loading="eager"
-                    decoding="async"
-                    fetchPriority="high"
-                    onError={(event) => {
-                      (event.target as HTMLImageElement).src = '/hero-family1.png';
-                    }}
-                  />
+        {/* Program & Locatie - Grid simetric */}
+        <div className="mt-5 grid grid-cols-2 gap-3">
+          {/* Program */}
+          <div className="flex items-center gap-2.5 rounded-xl border border-slate-100 bg-white p-3">
+            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-slate-50">
+              <Clock className="h-4 w-4 text-slate-400" />
+            </div>
+            <div className="min-w-0">
+              <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Program</p>
+              <p className="truncate text-[13px] font-semibold text-slate-900">Lun - Joi 9-18</p>
+            </div>
+          </div>
 
-                  <div className="absolute inset-x-2 bottom-2">
-                    <div className="rounded-[10px] border border-white/80 bg-white/94 px-3 py-2">
-                      <p className="text-[11px] font-medium text-slate-900">Pacienti reali. Fara graba. Fara presiune.</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
+          {/* Locatie - Link */}
+          <a
+            href="https://maps.google.com/?q=Calea+Domneasca+234+Targoviste"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group flex items-center gap-2.5 rounded-xl border border-slate-100 bg-white p-3 transition-all active:bg-slate-50"
+          >
+            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-slate-50">
+              <MapPin className="h-4 w-4 text-[#0B1E32]" />
+            </div>
+            <div className="min-w-0 flex-1">
+              <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Locație</p>
+              <p className="truncate text-[13px] font-semibold text-slate-900">Târgoviște</p>
+            </div>
+            <ChevronRight className="h-4 w-4 shrink-0 text-slate-300 transition-transform group-hover:translate-x-0.5" />
+          </a>
+        </div>
 
-              <div className="grid gap-1.5">
-                <Link
-                  to="/contact"
-                  className="mobile-primary-btn flex h-14 items-center gap-3 px-3 shadow-[0_10px_18px_rgba(15,42,68,0.14)] active:scale-[0.985] transition-transform"
-                >
-                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-[9px] bg-white/14">
-                    <CalendarDays className="h-4 w-4 text-white" />
-                  </span>
-                  <span className="min-w-0 flex-1 text-left">
-                    <span className="block text-[15px] font-semibold leading-none text-white">Vreau sa ma programez</span>
-                    <span className="mt-1 block truncate text-[11px] leading-none text-white/75">
-                      Raspundem rapid. Fara obligatii.
-                    </span>
-                  </span>
-                  <ArrowRight className="h-4 w-4 shrink-0 text-white" />
-                </Link>
-              </div>
+        {/* CTA Principal */}
+        <div className="mt-5">
+          <Link
+            to="/contact"
+            className="group flex h-[50px] w-full items-center justify-center gap-2 rounded-full bg-[#0B1E32] text-white shadow-lg shadow-slate-900/20 active:scale-[0.98] transition-all"
+          >
+            <span className="text-[16px] font-bold">Vreau să mă programez</span>
+            <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
+          </Link>
+        </div>
 
-              <div className="overflow-hidden rounded-[14px] border border-slate-200 bg-[#f8fafc]">
-                <div className="grid grid-cols-2 divide-x divide-slate-200 text-[12px]">
-                  <div className="px-3 py-3">
-                    <div className="mb-1 flex items-center gap-1.5 text-slate-500">
-                      <Clock className="h-3.5 w-3.5" />
-                      <span>Program</span>
-                    </div>
-                    <p className="font-semibold text-slate-900">Luni - Joi 9-18</p>
-                    <p className="text-slate-500">Vineri 9-15</p>
-                  </div>
-
-                  <a
-                    href="https://maps.google.com/?q=Calea+Domneasca+234+Targoviste"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="px-3 py-3 active:bg-slate-50"
-                  >
-                    <div className="mb-1 flex items-center gap-1.5 text-slate-500">
-                      <MapPin className="h-3.5 w-3.5" />
-                      <span>Locatie</span>
-                    </div>
-                    <p className="font-semibold text-slate-900">Calea Domneasca 234</p>
-                    <p className="inline-flex items-center gap-1 text-[#0F2A44]">
-                      Targoviste
-                      <ChevronRight className="h-3.5 w-3.5" />
-                    </p>
-                  </a>
-                </div>
-              </div>
+        {/* Hero Image */}
+        <div className="mt-5">
+          <div className="relative overflow-hidden rounded-2xl">
+            <div className="relative aspect-[4/3] overflow-hidden bg-slate-100">
+              <img
+                src="/poza-hero.jpg"
+                alt="Clinica Doctor Suciu Dental Clinic"
+                className="h-full w-full object-cover"
+                style={{ objectPosition: 'center 35%' }}
+                loading="eager"
+                decoding="async"
+                fetchPriority="high"
+                onError={(event) => {
+                  (event.target as HTMLImageElement).src = '/hero-family1.png';
+                }}
+              />
             </div>
           </div>
         </div>
+
+        {/* Google Reviews */}
+        <a 
+          href="https://www.google.com/search?q=doctor+suciu+dental+clinic+targoviste"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-4 flex items-center justify-center gap-2 text-center"
+        >
+          <GoogleMark />
+          <span className="text-[15px] font-bold text-slate-900">{googleReviews.rating.toFixed(1)}</span>
+          <span className="flex text-amber-400">
+            {[...Array(5)].map((_, i) => (
+              <svg key={i} className="h-3.5 w-3.5" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+              </svg>
+            ))}
+          </span>
+          <span className="text-[13px] text-slate-500">din {googleReviews.reviewCount} recenzii</span>
+        </a>
       </div>
     </section>
   );
