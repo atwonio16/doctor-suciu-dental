@@ -85,63 +85,55 @@ export function MobileServicesPreview() {
   }, [supabaseServices]);
 
   return (
-    <section id="servicii" className="mobile-safe-x py-4">
-      <div className="mx-auto max-w-[560px]">
-        <div className="mobile-panel p-4">
-          <div className="mb-4">
-            <h2 className="mobile-title text-[23px]">Ce putem face pentru tine</h2>
-            <p className="mobile-body mt-2 text-[13px]">
-              Alege direct ce te intereseaza sau intra pe pagina de servicii pentru lista completa.
-            </p>
-          </div>
+    <section id="servicii" className="py-6" style={{ scrollMarginTop: '88px' }}>
+      <div className="mx-auto max-w-[480px] px-5">
+        {/* Header */}
+        <div className="mb-5">
+          <h2 className="text-[22px] font-bold text-[#0B1E32] tracking-tight">Ce putem face pentru tine</h2>
+          <p className="mt-1 text-[14px] leading-[1.5] text-slate-500">
+            Alege ce te intereseaza sau vezi lista completa.
+          </p>
+        </div>
 
-          <div className="overflow-hidden rounded-[16px] border border-slate-200 bg-white">
-            {items.map((item, index) => (
-              <Link
-                key={item.anchorId}
-                to={`/servicii#${item.anchorId}`}
-                className={`group grid grid-cols-[44px_1fr_auto] items-start gap-3 px-3 py-3.5 transition-colors active:bg-slate-50 ${
-                  index < items.length - 1 ? 'border-b border-slate-100' : ''
-                }`}
-              >
-                <span
-                  className={`mt-0.5 flex h-11 w-11 shrink-0 items-center justify-center rounded-[10px] border ${
-                    index === 0 ? 'border-[#dbe8f4]' : 'border-slate-100'
-                  }`}
-                  style={{ backgroundColor: item.softBg, color: item.accent }}
-                >
-                  <item.Icon className="h-5 w-5" strokeWidth={1.8} />
-                </span>
-
-                <span className="min-w-0 flex-1">
-                  <span className="block text-[15px] font-semibold leading-snug text-slate-900">{item.title}</span>
-                  <span className="mt-0.5 block text-[13px] leading-relaxed text-slate-600">
-                    {item.description}
-                  </span>
-                  {index === 0 ? (
-                    <span className="mt-2 inline-flex items-center text-[12px] font-medium text-[#0F2A44]">
-                      Plan personalizat si explicat clar
-                    </span>
-                  ) : null}
-                </span>
-
-                <span className="mt-1 flex flex-col items-end gap-2">
-                  <span className="text-[10px] font-medium tracking-[0.12em] text-slate-400">0{index + 1}</span>
-                  <ArrowRight className="h-4 w-4 shrink-0 text-slate-300 transition-transform group-active:translate-x-0.5" />
-                </span>
-              </Link>
-            ))}
-          </div>
-
-          <div className="mt-4">
+        {/* Services List */}
+        <div className="space-y-3">
+          {items.map((item, index) => (
             <Link
-              to="/servicii"
-              className="mobile-primary-btn flex h-12 items-center justify-center gap-2 px-4 text-[14px] font-semibold active:scale-[0.985] transition-transform"
+              key={item.anchorId}
+              to={`/servicii#${item.anchorId}`}
+              className="group flex items-center gap-3 rounded-2xl border border-slate-200 bg-white p-4 transition-all active:scale-[0.98] active:bg-slate-50"
             >
-              Vezi toate serviciile
-              <ArrowRight className="h-4 w-4" />
+              {/* Icon */}
+              <span
+                className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl"
+                style={{ backgroundColor: item.softBg, color: item.accent }}
+              >
+                <item.Icon className="h-5 w-5" strokeWidth={1.8} />
+              </span>
+
+              {/* Content */}
+              <div className="min-w-0 flex-1">
+                <h3 className="text-[15px] font-semibold text-slate-900">{item.title}</h3>
+                <p className="mt-0.5 text-[13px] leading-relaxed text-slate-500">
+                  {item.description}
+                </p>
+              </div>
+
+              {/* Arrow */}
+              <ArrowRight className="h-5 w-5 shrink-0 text-slate-300 transition-transform group-hover:translate-x-1" />
             </Link>
-          </div>
+          ))}
+        </div>
+
+        {/* CTA */}
+        <div className="mt-5">
+          <Link
+            to="/servicii"
+            className="flex h-[48px] w-full items-center justify-center gap-2 rounded-full bg-[#0B1E32] text-white text-[15px] font-semibold transition-transform active:scale-[0.98]"
+          >
+            Vezi toate serviciile
+            <ArrowRight className="h-4 w-4" />
+          </Link>
         </div>
       </div>
     </section>

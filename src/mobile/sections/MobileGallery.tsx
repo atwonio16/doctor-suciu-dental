@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState, type TouchEvent } from 'react';
-import { ChevronLeft, ChevronRight, Expand, X } from 'lucide-react';
+import { ChevronLeft, ChevronRight, X } from 'lucide-react';
 import { usePublicGallery } from '../../hooks/useSupabaseData';
 
 export function MobileGallery() {
@@ -16,8 +16,6 @@ export function MobileGallery() {
         .sort((a, b) => (a.order_index ?? 0) - (b.order_index ?? 0)),
     [galleryImages]
   );
-
-  const visibleGridImages = activeImages.slice(0, 5);
 
   useEffect(() => {
     if (!lightboxOpen) return;
@@ -79,99 +77,70 @@ export function MobileGallery() {
   };
 
   return (
-    <section id="clinica" className="mobile-safe-x py-4" aria-labelledby="mobile-gallery-title">
-      <div className="mx-auto max-w-[560px]">
-        <div className="mobile-panel p-4">
-          <div className="mb-4 flex items-start justify-between gap-3">
-            <div>
-              <h2 id="mobile-gallery-title" className="mobile-title text-[23px]">Un spatiu curat si primitor</h2>
-              <p className="mobile-body mt-2 text-[13px]">
-                Fotografii reale din clinica. Apasa pe imagine pentru vizualizare full screen.
-              </p>
-            </div>
-
-            {activeImages.length > 0 && (
-              <button
-                type="button"
-                onClick={() => openLightbox(0)}
-                className="mobile-outline-btn flex h-10 items-center gap-1.5 px-3 text-[12px] font-semibold active:scale-[0.98] transition-transform"
-              >
-                <Expand className="h-4 w-4" />
-                Deschide
-              </button>
-            )}
-          </div>
-
-          {activeImages.length === 0 ? (
-            <div className="grid grid-cols-3 gap-2">
-              <div className="col-span-2 row-span-2 aspect-square rounded-[16px] bg-slate-100" />
-              <div className="aspect-square rounded-[16px] bg-slate-100" />
-              <div className="aspect-square rounded-[16px] bg-slate-100" />
-              <div className="col-span-3 h-12 rounded-[16px] bg-slate-100" />
-            </div>
-          ) : (
-            <>
-              <div className="grid grid-cols-2 gap-2">
-                {visibleGridImages.map((image, index) => {
-                  const layoutClass =
-                    index === 0
-                      ? 'col-span-2 aspect-[16/9.8]'
-                      : index === 3
-                        ? 'col-span-2 aspect-[16/10.5]'
-                        : index === 4
-                          ? 'aspect-[4/5]'
-                          : 'aspect-square';
-
-                  return (
-                    <button
-                      key={image.id}
-                      type="button"
-                      onClick={() => openLightbox(index)}
-                      className={`relative overflow-hidden rounded-[14px] border border-slate-200 bg-slate-100 active:scale-[0.99] transition-transform ${layoutClass}`}
-                    >
-                      <img
-                        src={image.image_url}
-                        alt={image.title || 'Imagine din clinica'}
-                        className="h-full w-full object-cover"
-                        loading="lazy"
-                        decoding="async"
-                      />
-
-                      {index === visibleGridImages.length - 1 && activeImages.length > visibleGridImages.length && (
-                        <div className="absolute inset-0 flex items-center justify-center bg-slate-950/50">
-                          <span className="rounded-full border border-white/30 bg-white/10 px-3 py-1 text-[12px] font-semibold text-white">
-                            +{activeImages.length - visibleGridImages.length} imagini
-                          </span>
-                        </div>
-                      )}
-                    </button>
-                  );
-                })}
-              </div>
-
-              <div className="mt-3 flex items-center gap-2">
-                <button
-                  type="button"
-                  onClick={() => openLightbox(0)}
-                  className="mobile-outline-btn flex h-11 flex-1 items-center justify-center text-[14px] font-medium active:scale-[0.985] transition-transform"
-                >
-                  Vezi galeria completa
-                </button>
-                <span className="rounded-full border border-slate-200 bg-white px-3 py-1.5 text-[11px] text-slate-600">
-                  {activeImages.length} imagini
-                </span>
-              </div>
-            </>
-          )}
+    <section id="clinica" className="py-6" style={{ scrollMarginTop: '88px' }}>
+      <div className="mx-auto max-w-[480px] px-5">
+        {/* Header */}
+        <div className="mb-5">
+          <h2 className="text-[22px] font-bold text-[#0B1E32] tracking-tight">Un spatiu curat si primitor</h2>
+          <p className="mt-1 text-[14px] leading-[1.5] text-slate-500">
+            Fotografii reale din clinica noastra.
+          </p>
         </div>
+
+        {/* Gallery Grid */}
+        {activeImages.length === 0 ? (
+          <div className="grid grid-cols-2 gap-2">
+            <div className="col-span-2 aspect-[2/1] rounded-2xl bg-slate-100" />
+            <div className="aspect-square rounded-2xl bg-slate-100" />
+            <div className="aspect-square rounded-2xl bg-slate-100" />
+          </div>
+        ) : (
+          <>
+            <div className="grid grid-cols-2 gap-2">
+              {activeImages.slice(0, 4).map((image, index) => (
+                <button
+                  key={image.id}
+                  type="button"
+                  onClick={() => openLightbox(index)}
+                  className={`relative overflow-hidden rounded-2xl bg-slate-100 active:scale-[0.98] transition-transform ${
+                    index === 0 ? 'col-span-2 aspect-[2/1]' : 'aspect-square'
+                  }`}
+                >
+                  <img
+                    src={image.image_url}
+                    alt={image.title || 'Imagine din clinica'}
+                    className="h-full w-full object-cover"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  {index === 3 && activeImages.length > 4 && (
+                    <div className="absolute inset-0 flex items-center justify-center bg-[#0B1E32]/60">
+                      <span className="rounded-full border border-white/30 bg-white/10 px-4 py-2 text-[14px] font-semibold text-white">
+                        +{activeImages.length - 4} imagini
+                      </span>
+                    </div>
+                  )}
+                </button>
+              ))}
+            </div>
+
+            <button
+              type="button"
+              onClick={() => openLightbox(0)}
+              className="mt-4 flex h-[48px] w-full items-center justify-center rounded-full border border-slate-200 bg-white text-[15px] font-semibold text-slate-900 transition-all active:scale-[0.98] active:bg-slate-50"
+            >
+              Vezi galeria completa ({activeImages.length} imagini)
+            </button>
+          </>
+        )}
       </div>
 
+      {/* Lightbox */}
       {lightboxOpen && activeImages.length > 0 && (
         <div
           className="fixed inset-0 z-[60] bg-slate-950/95"
           role="dialog"
           aria-modal="true"
-          aria-label="Galerie imagini clinica"
           onClick={() => setLightboxOpen(false)}
         >
           <div
@@ -180,34 +149,33 @@ export function MobileGallery() {
             onTouchEnd={handleTouchEnd}
             onClick={(event) => event.stopPropagation()}
           >
+            {/* Header */}
             <div
-              className="mobile-safe-x flex items-center justify-between py-3 text-white"
-              style={{ paddingTop: 'calc(env(safe-area-inset-top) + 10px)' }}
+              className="flex items-center justify-between px-5 py-4 text-white"
+              style={{ paddingTop: 'calc(env(safe-area-inset-top) + 16px)' }}
             >
               <div>
-                <p className="text-[11px] uppercase tracking-[0.14em] text-white/70">Galerie</p>
-                <p className="text-[13px] font-medium">
+                <p className="text-[11px] font-bold uppercase tracking-wider text-white/60">Galerie</p>
+                <p className="text-[15px] font-semibold">
                   {currentImage + 1} / {activeImages.length}
                 </p>
               </div>
-
               <button
                 type="button"
                 onClick={() => setLightboxOpen(false)}
-                className="flex h-11 w-11 items-center justify-center rounded-[14px] border border-white/15 bg-white/8 text-white active:scale-[0.96] transition-transform"
-                aria-label="Inchide galeria"
+                className="flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white transition-transform active:scale-95"
               >
                 <X className="h-5 w-5" />
               </button>
             </div>
 
+            {/* Image */}
             <div className="relative flex-1">
               {activeImages.length > 1 && (
                 <button
                   type="button"
                   onClick={() => goTo(currentImage - 1)}
-                  className="absolute left-3 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-[14px] border border-white/15 bg-white/8 text-white active:scale-[0.96] transition-transform"
-                  aria-label="Imagine anterioara"
+                  className="absolute left-3 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white transition-transform active:scale-95"
                 >
                   <ChevronLeft className="h-5 w-5" />
                 </button>
@@ -217,7 +185,7 @@ export function MobileGallery() {
                 <img
                   src={activeImages[currentImage].image_url}
                   alt={activeImages[currentImage].title || 'Imagine din clinica'}
-                  className="max-h-full max-w-full rounded-[16px] object-contain"
+                  className="max-h-full max-w-full rounded-2xl object-contain"
                 />
               </div>
 
@@ -225,24 +193,18 @@ export function MobileGallery() {
                 <button
                   type="button"
                   onClick={() => goTo(currentImage + 1)}
-                  className="absolute right-3 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-[14px] border border-white/15 bg-white/8 text-white active:scale-[0.96] transition-transform"
-                  aria-label="Imagine urmatoare"
+                  className="absolute right-3 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white transition-transform active:scale-95"
                 >
                   <ChevronRight className="h-5 w-5" />
                 </button>
               )}
             </div>
 
-            <div
-              className="mobile-safe-x py-3 text-white"
-              style={{ paddingBottom: 'calc(env(safe-area-inset-bottom) + 14px)' }}
-            >
-              <div className="rounded-[14px] border border-white/10 bg-white/5 px-3 py-2">
-                <p className="text-[13px] font-medium">
-                  {activeImages[currentImage].title || 'Doctor Suciu Dental Clinic'}
-                </p>
-                <p className="mt-0.5 text-[12px] text-white/70">Swipe stanga/dreapta pentru urmatoarea imagine</p>
-              </div>
+            {/* Footer */}
+            <div className="px-5 py-4" style={{ paddingBottom: 'calc(env(safe-area-inset-bottom) + 16px)' }}>
+              <p className="text-center text-[14px] text-white">
+                {activeImages[currentImage].title || 'Doctor Suciu Dental Clinic'}
+              </p>
             </div>
           </div>
         </div>

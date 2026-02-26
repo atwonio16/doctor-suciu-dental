@@ -101,101 +101,101 @@ export function MobileReviews() {
   };
 
   return (
-    <section id="reviews" className="mobile-safe-x py-4" aria-labelledby="mobile-reviews-title">
-      <div className="mx-auto max-w-[560px]">
-        <div className="mobile-panel p-4">
-          <div className="mb-4">
-            <h2 id="mobile-reviews-title" className="mobile-title text-[23px]">Ce spun pacientii</h2>
-            <p className="mobile-body mt-2 text-[13px]">
-              Experiente reale de la oameni care au trecut prin tratamente in clinica noastra.
-            </p>
-          </div>
+    <section id="reviews" className="py-6" style={{ scrollMarginTop: '88px' }}>
+      <div className="mx-auto max-w-[480px] px-5">
+        {/* Header */}
+        <div className="mb-5">
+          <h2 className="text-[22px] font-bold text-[#0B1E32] tracking-tight">Ce spun pacientii</h2>
+          <p className="mt-1 text-[14px] leading-[1.5] text-slate-500">
+            Experiente reale de la oameni care ne-au trecut pragul.
+          </p>
+        </div>
 
-          <a
-            href={googleReviews.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mb-4 flex items-center justify-between gap-3 rounded-[14px] border border-slate-200 bg-white px-3 py-3"
-          >
-            <div className="min-w-0">
-              <p className="text-[10px] uppercase tracking-[0.16em] text-[#64748B]">Google Reviews</p>
-              <div className="mt-1 flex items-center gap-2">
-                <span className="text-[18px] font-semibold text-[#0F2A44]">{googleReviews.rating.toFixed(1)}</span>
-                <div className="flex items-center gap-0.5" aria-hidden>
-                  {[...Array(5)].map((_, index) => (
-                    <Star key={index} className="h-3.5 w-3.5 fill-[#f5b400] text-[#f5b400]" />
-                  ))}
-                </div>
-                <span className="truncate text-[12px] text-slate-600">{googleReviews.reviewCount} recenzii</span>
+        {/* Google Reviews Card */}
+        <a
+          href={googleReviews.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mb-4 flex items-center justify-between gap-3 rounded-2xl border border-slate-200 bg-white p-4 transition-all active:scale-[0.98] active:bg-slate-50"
+        >
+          <div>
+            <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Google Reviews</p>
+            <div className="mt-1 flex items-center gap-2">
+              <span className="text-[18px] font-bold text-[#0B1E32]">{googleReviews.rating.toFixed(1)}</span>
+              <div className="flex text-amber-400">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="h-4 w-4 fill-current" />
+                ))}
               </div>
+              <span className="text-[13px] text-slate-500">{googleReviews.reviewCount} recenzii</span>
             </div>
-            <ExternalLink className="h-4 w-4 shrink-0 text-slate-400" />
-          </a>
+          </div>
+          <ExternalLink className="h-5 w-5 shrink-0 text-slate-400" />
+        </a>
 
+        {/* Reviews Carousel */}
+        <div
+          className="overflow-hidden rounded-2xl border border-slate-200 bg-white"
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
+          style={{ touchAction: 'pan-y' }}
+        >
           <div
-            className="overflow-hidden"
-            onTouchStart={handleTouchStart}
-            onTouchEnd={handleTouchEnd}
-            style={{ touchAction: 'pan-y' }}
+            className="flex transition-transform duration-300 ease-out"
+            style={{ transform: `translateX(-${currentIndex * 100}%)` }}
           >
-            <div
-              className="mobile-carousel-track flex"
-              style={{ transform: `translateX(-${currentIndex * 100}%)` }}
-            >
-              {reviews.map((review) => (
-                <div key={review.id} className="w-full shrink-0">
-                  <article className="rounded-[14px] border border-slate-200 bg-white p-4">
-                    <div className="mb-3 flex items-start justify-between gap-3">
-                      <div className="flex min-w-0 items-center gap-3">
-                        <img
-                          src={review.avatar}
-                          alt={review.authorName}
-                          className="h-11 w-11 shrink-0 rounded-full object-cover"
-                          loading="lazy"
-                          decoding="async"
-                        />
-                        <div className="min-w-0">
-                          <p className="truncate text-[14px] font-semibold text-slate-900">{review.authorName}</p>
-                          <p className="truncate text-[12px] text-slate-500">{review.date}</p>
-                        </div>
-                      </div>
-
-                      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-[10px] border border-slate-100 bg-slate-50">
-                        <Quote className="h-4 w-4 text-slate-400" />
-                      </span>
+            {reviews.map((review) => (
+              <div key={review.id} className="w-full shrink-0 p-4">
+                <article>
+                  {/* Author */}
+                  <div className="mb-3 flex items-center gap-3">
+                    <img
+                      src={review.avatar}
+                      alt={review.authorName}
+                      className="h-11 w-11 shrink-0 rounded-full object-cover"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <div className="min-w-0 flex-1">
+                      <p className="truncate text-[15px] font-semibold text-slate-900">{review.authorName}</p>
+                      <p className="text-[12px] text-slate-500">{review.date}</p>
                     </div>
+                    <Quote className="h-5 w-5 shrink-0 text-slate-300" />
+                  </div>
 
-                    <div className="mb-3 flex items-center gap-0.5" aria-label={`Scor ${review.rating} din 5`}>
-                      {[...Array(5)].map((_, index) => (
-                        <Star
-                          key={index}
-                          className={`h-4 w-4 ${
-                            index < review.rating ? 'fill-[#f5b400] text-[#f5b400]' : 'text-slate-200'
-                          }`}
-                        />
-                      ))}
-                    </div>
+                  {/* Rating */}
+                  <div className="mb-3 flex text-amber-400">
+                    {[...Array(5)].map((_, i) => (
+                      <Star
+                        key={i}
+                        className={`h-4 w-4 ${i < review.rating ? 'fill-current' : 'text-slate-200'}`}
+                      />
+                    ))}
+                  </div>
 
-                    <p className="text-[14px] leading-relaxed text-slate-700">"{review.text}"</p>
-                  </article>
-                </div>
-              ))}
-            </div>
+                  {/* Text */}
+                  <p className="text-[14px] leading-relaxed text-slate-700">"{review.text}"</p>
+                </article>
+              </div>
+            ))}
           </div>
+        </div>
 
-          <div className="mt-4 flex items-center justify-center">
-            <div className="mobile-scrollbar-hide mobile-dot-nav overflow-x-auto">
-              {reviews.map((_, index) => (
-                <button
-                  key={index}
-                  type="button"
-                  onClick={() => goTo(index)}
-                  data-active={index === currentIndex ? 'true' : 'false'}
-                  aria-label={`Recenzia ${index + 1}`}
-                />
-              ))}
-            </div>
-          </div>
+        {/* Dots Navigation */}
+        <div className="mt-4 flex items-center justify-center gap-2">
+          {reviews.map((_, index) => (
+            <button
+              key={index}
+              type="button"
+              onClick={() => goTo(index)}
+              className={`h-2 rounded-full transition-all ${
+                index === currentIndex 
+                  ? 'w-6 bg-[#0B1E32]' 
+                  : 'w-2 bg-slate-300'
+              }`}
+              aria-label={`Recenzia ${index + 1}`}
+            />
+          ))}
         </div>
       </div>
     </section>

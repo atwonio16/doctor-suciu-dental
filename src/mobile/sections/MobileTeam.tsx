@@ -96,91 +96,91 @@ export function MobileTeam() {
   };
 
   return (
-    <section id="medici" className="mobile-safe-x py-4" aria-labelledby="mobile-team-title">
-      <div className="mx-auto max-w-[560px]">
-        <div className="mobile-panel p-4">
-          <div className="mb-4 flex items-start justify-between gap-3">
-            <div>
-              <h2 id="mobile-team-title" className="mobile-title text-[23px]">Oameni care te asculta</h2>
-              <p className="mobile-body mt-2 text-[13px]">
-                Medici si asistenti cu experienta, comunicare buna si grija pentru confort.
-              </p>
-            </div>
+    <section id="medici" className="py-6" style={{ scrollMarginTop: '88px' }}>
+      <div className="mx-auto max-w-[480px] px-5">
+        {/* Header */}
+        <div className="mb-5">
+          <h2 className="text-[22px] font-bold text-[#0B1E32] tracking-tight">Oameni care te asculta</h2>
+          <p className="mt-1 text-[14px] leading-[1.5] text-slate-500">
+            Medici cu experienta, comunicare buna si grija pentru confort.
+          </p>
+        </div>
 
-            <p className="mobile-muted-chip shrink-0">
-              Swipe
-            </p>
-          </div>
-
-          <div onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd} className="overflow-hidden" style={{ touchAction: 'pan-y' }}>
-            <div
-              className="mobile-carousel-track flex"
-              style={{ transform: `translateX(-${activeIndex * 100}%)` }}
-            >
-              {doctors.map((doctor) => (
-                <article key={doctor.id} className="w-full shrink-0">
-                  <div className="overflow-hidden rounded-[16px] border border-slate-200 bg-white">
-                    <div className="relative h-72 overflow-hidden bg-slate-100">
-                      {doctor.image ? (
-                        <img
-                          src={doctor.image}
-                          alt={doctor.name}
-                          className="h-full w-full object-cover"
-                          style={{ objectPosition: doctor.imageCrop || 'center 35%' }}
-                          loading="lazy"
-                          decoding="async"
-                        />
-                      ) : (
-                        <div className="flex h-full w-full items-center justify-center text-slate-400">
-                          <Stethoscope className="h-8 w-8" />
-                        </div>
-                      )}
-
-                      <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent p-4">
-                        <div className="inline-flex items-center rounded-full border border-white/25 bg-black/20 px-2.5 py-1 text-[11px] font-medium text-white">
-                          {doctor.role}
-                        </div>
-                      </div>
+        {/* Carousel */}
+        <div 
+          onTouchStart={handleTouchStart} 
+          onTouchEnd={handleTouchEnd} 
+          className="overflow-hidden rounded-2xl border border-slate-200 bg-white"
+          style={{ touchAction: 'pan-y' }}
+        >
+          <div
+            className="flex transition-transform duration-300 ease-out"
+            style={{ transform: `translateX(-${activeIndex * 100}%)` }}
+          >
+            {doctors.map((doctor) => (
+              <article key={doctor.id} className="w-full shrink-0">
+                {/* Image */}
+                <div className="relative h-64 overflow-hidden bg-slate-100">
+                  {doctor.image ? (
+                    <img
+                      src={doctor.image}
+                      alt={doctor.name}
+                      className="h-full w-full object-cover"
+                      style={{ objectPosition: doctor.imageCrop || 'center 35%' }}
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  ) : (
+                    <div className="flex h-full w-full items-center justify-center text-slate-400">
+                      <Stethoscope className="h-8 w-8" />
                     </div>
+                  )}
 
-                    <div className="p-4">
-                      <h3 className="text-[18px] font-semibold leading-tight tracking-tight text-slate-900">
-                        {doctor.name}
-                      </h3>
-                      <p className="mt-2 text-[14px] leading-relaxed text-slate-600">{doctor.description}</p>
-
-                      {doctor.tags && doctor.tags.length > 0 && (
-                        <div className="mt-3 flex flex-wrap gap-2">
-                          {doctor.tags.map((tag) => (
-                            <span
-                              key={tag}
-                              className="rounded-full border border-slate-200 bg-slate-50 px-2.5 py-1 text-[11px] text-slate-700"
-                            >
-                              {tag}
-                            </span>
-                          ))}
-                        </div>
-                      )}
-                    </div>
+                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 to-transparent p-4">
+                    <span className="inline-flex rounded-full bg-white/20 px-3 py-1 text-[12px] font-medium text-white backdrop-blur-sm">
+                      {doctor.role}
+                    </span>
                   </div>
-                </article>
-              ))}
-            </div>
-          </div>
+                </div>
 
-          <div className="mt-4 flex items-center justify-center">
-            <div className="mobile-scrollbar-hide mobile-dot-nav overflow-x-auto">
-              {doctors.map((_, index) => (
-                <button
-                  key={index}
-                  type="button"
-                  onClick={() => goTo(index)}
-                  data-active={index === activeIndex ? 'true' : 'false'}
-                  aria-label={`Membrul ${index + 1}`}
-                />
-              ))}
-            </div>
+                {/* Content */}
+                <div className="p-4">
+                  <h3 className="text-[18px] font-semibold text-slate-900">{doctor.name}</h3>
+                  <p className="mt-2 text-[14px] leading-relaxed text-slate-600">{doctor.description}</p>
+
+                  {doctor.tags && doctor.tags.length > 0 && (
+                    <div className="mt-3 flex flex-wrap gap-2">
+                      {doctor.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-[12px] text-slate-700"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </article>
+            ))}
           </div>
+        </div>
+
+        {/* Dots Navigation */}
+        <div className="mt-4 flex items-center justify-center gap-2">
+          {doctors.map((_, index) => (
+            <button
+              key={index}
+              type="button"
+              onClick={() => goTo(index)}
+              className={`h-2 rounded-full transition-all ${
+                index === activeIndex 
+                  ? 'w-6 bg-[#0B1E32]' 
+                  : 'w-2 bg-slate-300'
+              }`}
+              aria-label={`Membrul ${index + 1}`}
+            />
+          ))}
         </div>
       </div>
     </section>
