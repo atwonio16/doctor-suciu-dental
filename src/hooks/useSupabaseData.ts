@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { supabase } from '../lib/supabase';
+import { supabase, isSupabaseConfigured } from '../lib/supabase';
 import type {
     Service,
     Doctor,
@@ -35,6 +35,15 @@ export function useSupabaseTable<T>(
             setError(null);
 
             try {
+                if (!isSupabaseConfigured) {
+                    if (!cancelled) {
+                        setError('Supabase is not configured');
+                        setData([]);
+                        setLoading(false);
+                    }
+                    return;
+                }
+
                 let query = supabase.from(table).select('*');
 
                 if (options?.filterColumn && options?.filterValue !== undefined) {

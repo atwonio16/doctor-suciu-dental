@@ -2,25 +2,25 @@ import { createClient } from '@supabase/supabase-js';
 
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
 const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+export const isSupabaseConfigured = Boolean(supabaseUrl && supabaseKey);
 
-// Debug info (doar pentru development)
+const fallbackSupabaseUrl = 'https://placeholder-project.supabase.co';
+const fallbackSupabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.placeholder.placeholder';
+
+// Debug info (development only)
 if (import.meta.env.DEV) {
   console.log('Supabase URL:', supabaseUrl ? 'Set' : 'NOT SET');
   console.log('Supabase Key:', supabaseKey ? 'Set' : 'NOT SET');
 }
 
-if (!supabaseUrl || !supabaseKey) {
-  console.error('❌ Missing Supabase environment variables!');
+if (!isSupabaseConfigured) {
+  console.error('Missing Supabase environment variables.');
   console.error('VITE_SUPABASE_URL:', supabaseUrl || 'MISSING');
   console.error('VITE_SUPABASE_ANON_KEY:', supabaseKey ? 'SET (hidden)' : 'MISSING');
-  
-  throw new Error(
-    'Missing Supabase environment variables. ' +
-    'Please ensure VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY are set in your environment.'
-  );
+  console.warn('Continuing in fallback mode (Supabase disabled).');
 }
 
-export const supabase = createClient(supabaseUrl, supabaseKey, {
+export const supabase = createClient(supabaseUrl || fallbackSupabaseUrl, supabaseKey || fallbackSupabaseKey, {
   auth: {
     autoRefreshToken: true,
     persistSession: true,
@@ -30,20 +30,21 @@ export const supabase = createClient(supabaseUrl, supabaseKey, {
 
 // Test connection function
 export async function testSupabaseConnection(): Promise<boolean> {
+  if (!isSupabaseConfigured) return false;
+
   try {
-    const { data, error } = await supabase.from('services').select('count', { count: 'exact', head: true });
+    const { error } = await supabase.from('services').select('count', { count: 'exact', head: true });
     if (error) {
       console.error('Supabase connection test failed:', error);
       return false;
     }
-    console.log('✅ Supabase connection successful');
+    console.log('Supabase connection successful');
     return true;
   } catch (err) {
     console.error('Supabase connection test error:', err);
     return false;
   }
 }
-
 // Tipuri pentru tabele
 export interface Service {
   id: string;
