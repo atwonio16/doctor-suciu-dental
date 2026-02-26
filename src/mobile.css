@@ -138,28 +138,28 @@
 @media (max-width: 640px) {
   #hero {
     min-height: auto !important;
-    padding-top: 64px !important;
-    padding-bottom: 16px !important;
+    padding-top: 60px !important;
+    padding-bottom: 20px !important;
     display: flex !important;
     align-items: flex-start !important;
   }
 
   #hero > div {
-    padding-top: 12px !important;
+    padding-top: 8px !important;
   }
 
   #hero h1 {
     font-size: 1.625rem !important;
     line-height: 1.1 !important;
     text-align: center !important;
-    margin-bottom: 8px !important;
+    margin-bottom: 6px !important;
   }
 
   /* Subtitle - tight spacing below headline */
   #hero h1 + p,
   #hero .text-center > p:first-of-type {
     text-align: center !important;
-    margin-bottom: 16px !important;
+    margin-bottom: 14px !important;
     font-size: 15px !important;
     line-height: 1.45 !important;
   }
@@ -180,19 +180,18 @@
     min-height: 44px !important;
   }
 
-  /* Working hours row - light, informational */
+  /* Program + Location row under CTAs */
   #hero .flex-col > div:last-child {
     font-size: 12px !important;
-    color: #94a3b8 !important;
-    padding-top: 4px !important;
+    padding-top: 2px !important;
     padding-bottom: 2px !important;
   }
 
   /* Image - LAST, minimal margins */
   #hero .hero-image {
     order: 2 !important;
-    margin-top: 12px !important;
-    margin-bottom: 8px !important;
+    margin-top: 10px !important;
+    margin-bottom: 6px !important;
   }
 
   #hero .hero-image > div {
@@ -212,17 +211,20 @@
     gap: 4px !important;
   }
 
-  /* Trust line mobile (below image) - light visual weight */
-  #hero > div > div:last-child {
-    font-size: 11px !important;
-    color: #94a3b8 !important;
-    margin-top: 0 !important;
-    padding-top: 0 !important;
+  /* Trust line mobile (below image) - two rows layout */
+  #hero > div > div > div:last-child {
+    margin-top: 12px !important;
   }
 
-  #hero > div > div:last-child svg {
-    width: 10px !important;
-    height: 10px !important;
+  /* Trust row spacing */
+  #hero > div > div > div:last-child > div:first-child {
+    margin-bottom: 4px !important;
+  }
+
+  /* Star icons in trust line */
+  #hero > div > div > div:last-child svg {
+    width: 12px !important;
+    height: 12px !important;
   }
 }
 

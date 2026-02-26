@@ -77,13 +77,16 @@ const HeroSection = () => {
                   <span className="whitespace-nowrap">Sună fără obligații</span>
                 </a>
 
-                {/* Working Hours - Mobile only */}
-                <div 
-                  className="sm:hidden flex items-center justify-center gap-1.5 text-[12px] py-1" 
-                  style={{ color: '#94A3B8' }}
-                >
-                  <Clock className="w-3.5 h-3.5" />
-                  <span>L–J: 9–18 | V: 9–15</span>
+                {/* Program + Location - Mobile only */}
+                <div className="sm:hidden flex items-center justify-center gap-4 text-[12px] py-1">
+                  <div className="flex items-center gap-1.5" style={{ color: '#64748B' }}>
+                    <Clock className="w-3.5 h-3.5" style={{ color: '#94A3B8' }} />
+                    <span>L–J: 9–18 | V: 9–15</span>
+                  </div>
+                  <div className="flex items-center gap-1.5" style={{ color: '#64748B' }}>
+                    <MapPin className="w-3.5 h-3.5" style={{ color: '#94A3B8' }} />
+                    <span>Târgoviște</span>
+                  </div>
                 </div>
               </div>
 
@@ -149,21 +152,31 @@ const HeroSection = () => {
 
           </div>
 
-          {/* Trust Line - Mobile only (below image) */}
-          <div 
-            className="sm:hidden flex items-center justify-center gap-1.5 text-[11px] mt-2" 
-            style={{ color: '#94A3B8' }}
-          >
-            <span>Fără durere</span>
-            <span className="text-gray-300">·</span>
-            <span>Medici specializați</span>
-            <span className="text-gray-300">·</span>
-            <div className="flex items-center gap-0.5" style={{ color: '#64748B' }}>
-              <svg className="w-2.5 h-2.5" viewBox="0 0 24 24" fill="#FABB05">
-                <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
-              </svg>
-              <span className="font-medium text-[11px]" style={{ color: '#0F172A' }}>{googleReviews.rating.toFixed(1)}</span>
-              <span>({googleReviews.reviewCount})</span>
+          {/* Trust Line - Mobile only (below image) - Two rows layout */}
+          <div className="sm:hidden mt-3">
+            {/* Row 1: Trust badges */}
+            <div 
+              className="flex items-center justify-center gap-2 text-[11px] mb-1.5" 
+              style={{ color: '#64748B' }}
+            >
+              <span>Fără durere</span>
+              <span className="text-gray-300">·</span>
+              <span>Medici specializați</span>
+            </div>
+            {/* Row 2: Rating */}
+            <div 
+              className="flex items-center justify-center gap-1.5 text-[11px]" 
+              style={{ color: '#64748B' }}
+            >
+              <div className="flex items-center gap-0.5">
+                {[...Array(5)].map((_, i) => (
+                  <svg key={i} className="w-3 h-3" viewBox="0 0 24 24" fill="#FABB05">
+                    <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                  </svg>
+                ))}
+              </div>
+              <span className="font-medium" style={{ color: '#0F172A' }}>{googleReviews.rating.toFixed(1)}</span>
+              <span style={{ color: '#94A3B8' }}>({googleReviews.reviewCount} recenzii)</span>
             </div>
           </div>
 
