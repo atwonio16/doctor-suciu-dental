@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { MobileHero } from './sections/MobileHero';
 import { MobileBeforeAfter } from './sections/MobileBeforeAfter';
 import { MobileServicesPreview } from './sections/MobileServicesPreview';
-import { MobileWhyChoose } from './sections/MobileWhyChoose';
+
 import { MobileFAQ } from './sections/MobileFAQ';
 import { MobileReviews } from './sections/MobileReviews';
 import { MobileTeam } from './sections/MobileTeam';
@@ -30,7 +30,6 @@ export function MobileHomePage() {
       <MobileHero />
       <MobileBeforeAfter />
       <MobileServicesPreview />
-      <MobileWhyChoose />
       <MobileFAQ />
       <MobileReviews />
       <MobileTeam />
