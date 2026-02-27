@@ -32,8 +32,8 @@ export function MobileHero() {
               fontSize: 'clamp(2.75rem, 12vw, 3.25rem)',
               lineHeight: 1.05,
               letterSpacing: '-0.04em',
-              fontWeight: 700,
-              fontFamily: '"Montserrat", "Inter", system-ui, sans-serif',
+              fontWeight: 800,
+              fontFamily: '"DM Serif Display", Georgia, serif',
             }}
           >
             Zâmbetul tău
