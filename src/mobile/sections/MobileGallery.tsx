@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState, type TouchEvent } from 'react';
-import { X, Maximize2, ChevronLeft, ChevronRight } from 'lucide-react';
+import { X, Maximize2 } from 'lucide-react';
 import { usePublicGallery } from '../../hooks/useSupabaseData';
 import { SwipeHint } from '../components/SwipeHint';
 
@@ -181,18 +181,8 @@ export function MobileGallery() {
               </button>
             </div>
 
-            {/* Image cu navigare */}
+            {/* Image */}
             <div className="relative flex-1">
-              {activeImages.length > 1 && (
-                <button
-                  type="button"
-                  onClick={() => goTo(currentImage - 1)}
-                  className="absolute left-3 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/10 text-white transition-transform active:scale-95"
-                >
-                  <ChevronLeft className="h-5 w-5" />
-                </button>
-              )}
-
               <div className="flex h-full items-center justify-center px-4">
                 <img
                   src={activeImages[currentImage].image_url}
@@ -200,22 +190,12 @@ export function MobileGallery() {
                   className="max-h-full max-w-full object-contain"
                 />
               </div>
-
-              {activeImages.length > 1 && (
-                <button
-                  type="button"
-                  onClick={() => goTo(currentImage + 1)}
-                  className="absolute right-3 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/10 text-white transition-transform active:scale-95"
-                >
-                  <ChevronRight className="h-5 w-5" />
-                </button>
-              )}
             </div>
 
-            {/* Footer */}
-            <div className="px-5 py-4" style={{ paddingBottom: 'calc(env(safe-area-inset-bottom) + 16px)' }}>
-              <p className="text-center text-[14px] text-white">
-                {activeImages[currentImage].title || 'Doctor Suciu Dental Clinic'}
+            {/* Footer - doar numărul pozei */}
+            <div className="px-5 py-4 text-center" style={{ paddingBottom: 'calc(env(safe-area-inset-bottom) + 16px)' }}>
+              <p className="text-[15px] font-semibold text-white">
+                {currentImage + 1} / {activeImages.length}
               </p>
             </div>
           </div>
