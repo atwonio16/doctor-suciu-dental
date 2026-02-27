@@ -118,12 +118,9 @@ export function MobileBeforeAfter() {
   return (
     <section id="transformari" className="py-6" style={{ scrollMarginTop: '88px' }}>
       <div className="mx-auto max-w-[480px] px-5">
-        {/* Header */}
+        {/* Header - doar titlu */}
         <div className="mb-5">
           <h2 className="text-[22px] font-bold text-[#0B1E32] tracking-tight">Transformari naturale</h2>
-          <p className="mt-1 text-[14px] leading-[1.5] text-slate-500">
-            Exemple reale, gandite estetic si functional.
-          </p>
         </div>
 
         {/* Carousel */}
@@ -139,12 +136,10 @@ export function MobileBeforeAfter() {
           >
             {displayCases.map((caseItem) => (
               <div key={caseItem.id} className="w-full shrink-0 p-4">
-                {/* Before/After Images */}
+                {/* Before/After Images cu badge pe imagine */}
                 <div className="grid grid-cols-2 gap-2">
-                  <div className="overflow-hidden rounded-xl border border-slate-100">
-                    <div className="bg-slate-50 px-3 py-1.5">
-                      <p className="text-[10px] font-semibold uppercase tracking-wider text-slate-400">Inainte</p>
-                    </div>
+                  {/* Before */}
+                  <div className="relative overflow-hidden rounded-xl">
                     <div className="aspect-[4/3] bg-slate-100">
                       <img
                         src={caseItem.beforeImage || getPlaceholder('before', caseItem.title)}
@@ -154,12 +149,14 @@ export function MobileBeforeAfter() {
                         decoding="async"
                       />
                     </div>
+                    {/* Badge pe imagine */}
+                    <div className="absolute left-2 top-2 rounded-md bg-white px-2 py-1 shadow-sm">
+                      <p className="text-[11px] font-bold uppercase tracking-wider text-slate-900">Inainte</p>
+                    </div>
                   </div>
 
-                  <div className="overflow-hidden rounded-xl border border-slate-100">
-                    <div className="bg-[#f7fbff] px-3 py-1.5">
-                      <p className="text-[10px] font-semibold uppercase tracking-wider text-[#0B1E32]">Dupa</p>
-                    </div>
+                  {/* After */}
+                  <div className="relative overflow-hidden rounded-xl">
                     <div className="aspect-[4/3] bg-slate-100">
                       <img
                         src={caseItem.afterImage || getPlaceholder('after', caseItem.title)}
@@ -169,14 +166,15 @@ export function MobileBeforeAfter() {
                         decoding="async"
                       />
                     </div>
+                    {/* Badge pe imagine */}
+                    <div className="absolute left-2 top-2 rounded-md bg-white px-2 py-1 shadow-sm">
+                      <p className="text-[11px] font-bold uppercase tracking-wider text-slate-900">Dupa</p>
+                    </div>
                   </div>
                 </div>
 
-                {/* Content */}
+                {/* Content - doar titlu si descriere scurta */}
                 <div className="mt-4">
-                  {caseItem.serviceType && (
-                    <p className="mb-1 text-[12px] font-medium text-[#0B1E32]">{caseItem.serviceType}</p>
-                  )}
                   <h3 className="text-[16px] font-semibold text-slate-900">{caseItem.title}</h3>
                   <p className="mt-1 text-[14px] leading-relaxed text-slate-600">{caseItem.description}</p>
                 </div>

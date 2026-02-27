@@ -48,10 +48,10 @@ export function MobileNavigation() {
     <>
       <header className="fixed inset-x-0 top-0 z-50 mobile-safe-x">
         <div
-          className="mx-auto mt-0 max-w-[560px] border-b border-slate-100 bg-white"
+          className="mx-auto mt-0 max-w-[480px] border-b border-slate-100 bg-white"
           style={{ paddingTop: 'env(safe-area-inset-top)' }}
         >
-          <div className="flex h-[70px] items-center gap-3 px-2">
+          <div className="flex h-[70px] items-center gap-3 px-5">
             <Link
               to="/"
               className="flex min-w-0 flex-1 flex-col justify-center rounded-md px-3 py-1"
