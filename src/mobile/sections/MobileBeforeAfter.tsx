@@ -168,27 +168,26 @@ export function MobileBeforeAfter() {
                   </div>
                 </div>
 
-                {/* Content */}
-                <div className="mt-4">
+                {/* Content - doar titlu */}
+                <div className="mt-4 text-center">
                   <h3 className="text-[16px] font-semibold text-slate-900">{caseItem.title}</h3>
-                  <p className="mt-1 text-[14px] leading-relaxed text-slate-600">{caseItem.description}</p>
                 </div>
               </div>
             ))}
           </div>
         </div>
 
-        {/* Dots Navigation */}
-        <div className="mt-5 flex items-center justify-center gap-2">
+        {/* Bullets Navigation */}
+        <div className="mt-4 flex items-center justify-center gap-2">
           {displayCases.map((_, index) => (
             <button
               key={index}
               type="button"
               onClick={() => goTo(index)}
-              className={`h-2 rounded-full transition-all ${
+              className={`h-2.5 w-2.5 rounded-full transition-all ${
                 index === currentIndex 
-                  ? 'w-6 bg-[#0B1E32]' 
-                  : 'w-2 bg-slate-300'
+                  ? 'bg-[#0B1E32] scale-110' 
+                  : 'bg-slate-300'
               }`}
               aria-label={`Cazul ${index + 1}`}
             />
