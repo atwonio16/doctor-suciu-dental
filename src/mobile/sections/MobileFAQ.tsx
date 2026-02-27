@@ -43,12 +43,9 @@ export function MobileFAQ() {
   return (
     <section id="faq" className="py-6" style={{ scrollMarginTop: '88px' }}>
       <div className="mx-auto max-w-[480px] px-5">
-        {/* Header - fără icon, subtitlu pe un rând */}
-        <div className="mb-5 text-center">
+        {/* Header */}
+        <div className="mb-4 text-center">
           <h2 className="text-[22px] font-bold text-[#0B1E32] tracking-tight">Întrebări frecvente</h2>
-          <p className="mt-1 text-[14px] text-slate-500">
-            Răspunsuri la cele mai comune întrebări ale pacienților.
-          </p>
         </div>
 
         {/* FAQ List - separator doar prin linie */}
@@ -67,15 +64,15 @@ export function MobileFAQ() {
                   className="flex w-full items-center justify-between gap-3 py-4 text-left transition-colors active:bg-slate-50"
                   aria-expanded={isOpen}
                 >
-                  <span className={`text-[15px] pr-2 transition-colors ${isOpen ? 'font-semibold text-[#0B1E32]' : 'font-medium text-slate-900'}`}>
+                  <span className={`text-[15px] transition-colors ${isOpen ? 'font-semibold text-[#0B1E32]' : 'font-medium text-slate-900'}`}>
                     {faq.question}
                   </span>
                   <div
-                    className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full transition-all duration-300 ${
-                      isOpen ? 'rotate-180 bg-[#0B1E32] text-white' : 'bg-slate-100 text-slate-500'
+                    className={`flex h-7 w-7 shrink-0 items-center justify-center transition-all duration-300 ${
+                      isOpen ? 'rotate-180 text-[#0B1E32]' : 'text-slate-400'
                     }`}
                   >
-                    <ChevronDown className="h-4 w-4" />
+                    <ChevronDown className="h-5 w-5" />
                   </div>
                 </button>
 
@@ -86,7 +83,7 @@ export function MobileFAQ() {
                   }`}
                 >
                   <div className="overflow-hidden">
-                    <p className="text-[14px] leading-relaxed text-slate-600 pr-10">
+                    <p className="text-[14px] leading-relaxed text-slate-600">
                       {faq.answer}
                     </p>
                   </div>
