@@ -368,30 +368,22 @@ const TeamSection = () => {
             </button>
           </div>
 
-          {/* Pagination Dots - larger touch targets on mobile */}
-          <div className="flex items-center justify-center gap-1 mt-8">
+          {/* Pagination Dots */}
+          <div className="flex items-center justify-center gap-2 mt-6">
             {doctors.map((_, index) => (
               <button
                 key={index}
                 onClick={() => handleDotClick(index)}
-                className="pagination-dot p-3 flex items-center justify-center"
+                className="pagination-dot w-2 h-2 rounded-full transition-all duration-300 flex items-center justify-center"
                 aria-label={`Go to doctor ${index + 1}`}
-              >
-                <span 
-                  className={`h-2 rounded-full transition-all duration-300 ${
-                    index === activeIndex 
-                      ? 'w-8 bg-[#1e3a5f]' 
-                      : 'w-2 bg-[#cbd5e1]'
-                  }`}
-                />
-              </button>
+                style={{
+                  backgroundColor: index === activeIndex ? '#374151' : '#D1D5DB'
+                }}
+              />
             ))}
           </div>
 
-          {/* Swipe hint for mobile */}
-          <p className="mobile-only text-center text-xs text-gray-400 mt-4">
-            Glisează pentru a vedea mai multe
-          </p>
+
 
         </div>
       </div>

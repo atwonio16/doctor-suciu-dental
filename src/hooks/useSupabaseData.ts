@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { supabase, isSupabaseConfigured } from '../lib/supabase';
 import type {
     Service,
@@ -11,7 +11,7 @@ import type {
 } from '../lib/supabase';
 
 /**
- * Generic hook to fetch data from a Supabase table.
+ * Generic hook to fetch data from a Supabase table with realtime updates.
  * Used by all public-facing sections to replace localStorage reads.
  */
 export function useSupabaseTable<T>(
@@ -22,15 +22,15 @@ export function useSupabaseTable<T>(
         orderBy?: string;
         ascending?: boolean;
     }
-): { data: T[]; loading: boolean; error: string | null } {
+): { data: T[]; loading: boolean; error: string | null; refetch: () => void } {
     const [data, setData] = useState<T[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
 
-    useEffect(() => {
+    const fetchData = useCallback(async () => {
         let cancelled = false;
 
-        const fetchData = async () => {
+        const doFetch = async () => {
             setLoading(true);
             setError(null);
 
@@ -79,14 +79,42 @@ export function useSupabaseTable<T>(
             }
         };
 
-        fetchData();
+        doFetch();
 
         return () => {
             cancelled = true;
         };
     }, [table, options?.filterColumn, options?.filterValue, options?.orderBy, options?.ascending]);
 
-    return { data, loading, error };
+    useEffect(() => {
+        fetchData();
+
+        // Subscribe to realtime changes
+        if (isSupabaseConfigured) {
+            const channel = supabase
+                .channel(`${table}_changes`)
+                .on(
+                    'postgres_changes',
+                    {
+                        event: '*',
+                        schema: 'public',
+                        table: table,
+                    },
+                    (payload) => {
+                        console.log(`${table} changed:`, payload);
+                        // Refetch data when any change occurs
+                        fetchData();
+                    }
+                )
+                .subscribe();
+
+            return () => {
+                supabase.removeChannel(channel);
+            };
+        }
+    }, [fetchData, table]);
+
+    return { data, loading, error, refetch: fetchData };
 }
 
 // ============================================

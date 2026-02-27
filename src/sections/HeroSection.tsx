@@ -1,4 +1,4 @@
-import { ArrowRight, Phone, ChevronDown, MapPin, Clock } from 'lucide-react';
+import { ArrowRight, ChevronDown, MapPin, Clock, Phone } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useCMSSettings } from '../hooks/useCMSSettings';
 
@@ -83,13 +83,8 @@ const HeroSection = () => {
                 style={{ color: '#64748B' }}
               >
                 <div className="flex items-center justify-center gap-1.5">
-                  <Phone className="w-3.5 h-3.5 flex-shrink-0" style={{ color: '#94A3B8' }} />
-                  <span>0770 220 110</span>
-                </div>
-                <span className="hidden sm:inline text-gray-300">|</span>
-                <div className="flex items-center justify-center gap-1.5">
                   <MapPin className="w-3.5 h-3.5 flex-shrink-0" style={{ color: '#94A3B8' }} />
-                  <span>Târgoviște</span>
+                  <span>Târgoviște, Calea Domnească 234</span>
                 </div>
                 <span className="hidden sm:inline text-gray-300">|</span>
                 <div className="flex items-center justify-center gap-1.5">

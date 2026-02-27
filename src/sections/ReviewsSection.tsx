@@ -317,12 +317,7 @@ const ReviewsSection = () => {
               </div>
             </div>
 
-            {/* Swipe hint for mobile */}
-            <div className="swipe-hint mobile-only">
-              <ChevronLeft className="w-4 h-4" />
-              <span>Glisează pentru mai multe</span>
-              <ChevronRight className="w-4 h-4" />
-            </div>
+
           </div>
 
           {/* Google Reviews Link */}

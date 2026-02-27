@@ -1,5 +1,5 @@
 import { useState, useCallback, useEffect, useRef } from 'react';
-import { Phone, MapPin, Clock, Send, CheckCircle, Loader2, Mail, X } from 'lucide-react';
+import { Phone, MapPin, Clock, Send, CheckCircle, Loader2, Mail, X, AlertCircle } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import {
@@ -9,6 +9,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import { validateName, validatePhone, validateEmail, validateMessage, sanitizeHtml, contactFormRateLimiter } from '@/lib/validation';
 
 const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzlmLFfxYhvS_6MRgeY1_hIG6jCgMX5ygOalhlpa6RxjVl3AZtPYc50ihpC6TmHMKDO5w/exec';
 
@@ -249,14 +250,63 @@ const ContactSection = () => {
     return () => observer.disconnect();
   }, []);
 
+  const [formErrors, setFormErrors] = useState<Record<string, string>>({});
+
+  const validateForm = useCallback(() => {
+    const errors: Record<string, string> = {};
+    
+    const nameValidation = validateName(formData.name);
+    if (!nameValidation.isValid) errors.name = nameValidation.error!;
+    
+    const phoneValidation = validatePhone(formData.phone);
+    if (!phoneValidation.isValid) errors.phone = phoneValidation.error!;
+    
+    if (formData.email) {
+      const emailValidation = validateEmail(formData.email);
+      if (!emailValidation.isValid) errors.email = emailValidation.error!;
+    }
+    
+    if (formData.message) {
+      const messageValidation = validateMessage(formData.message);
+      if (!messageValidation.isValid) errors.message = messageValidation.error!;
+    }
+    
+    setFormErrors(errors);
+    return Object.keys(errors).length === 0;
+  }, [formData]);
+
   const handleSubmit = useCallback(async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Rate limiting check
+    const clientKey = 'contact_form_' + (formData.phone || formData.email || 'anonymous');
+    if (!contactFormRateLimiter.canProceed(clientKey)) {
+      const remainingTime = Math.ceil(contactFormRateLimiter.getRemainingTime(clientKey) / 1000);
+      alert(`Prea multe încercări. Te rugăm să aștepți ${remainingTime} secunde.`);
+      return;
+    }
+    
+    // Validate form
+    if (!validateForm()) {
+      return;
+    }
+    
     setIsLoading(true);
+    contactFormRateLimiter.recordAttempt(clientKey);
+
+    // Sanitize data before sending
+    const sanitizedData = {
+      name: sanitizeHtml(formData.name),
+      phone: sanitizeHtml(formData.phone),
+      email: formData.email ? sanitizeHtml(formData.email) : '',
+      service: sanitizeHtml(formData.service),
+      message: sanitizeHtml(formData.message),
+    };
 
     try {
       await fetch(GOOGLE_SCRIPT_URL, {
         method: 'POST',
-        body: JSON.stringify(formData),
+        body: JSON.stringify(sanitizedData),
         headers: { 'Content-Type': 'application/json' },
         mode: 'no-cors',
       });
@@ -264,13 +314,14 @@ const ContactSection = () => {
       setTimeout(() => {
         setIsSubmitted(false);
         setFormData({ name: '', phone: '', email: '', service: '', message: '' });
+        setFormErrors({});
       }, 5000);
     } catch {
-      alert('Eroare la trimitere');
+      alert('Eroare la trimitere. Te rugăm să încerci din nou.');
     } finally {
       setIsLoading(false);
     }
-  }, [formData]);
+  }, [formData, validateForm]);
 
   const openEmailModal = useCallback(() => setShowEmailModal(true), []);
   const closeEmailModal = useCallback(() => setShowEmailModal(false), []);
@@ -334,11 +385,19 @@ const ContactSection = () => {
                           name="name"
                           placeholder="Ex: Maria Popescu"
                           value={formData.name}
-                          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                          onChange={(e) => {
+                            setFormData({ ...formData, name: e.target.value });
+                            if (formErrors.name) setFormErrors({ ...formErrors, name: '' });
+                          }}
                           required
                           disabled={isLoading}
-                          className="h-12 bg-[#f8fafc] border-[#e2e8f0] rounded-xl text-base"
+                          className={`h-12 bg-[#f8fafc] border-[#e2e8f0] rounded-xl text-base ${formErrors.name ? 'border-red-500 focus:border-red-500' : ''}`}
                         />
+                        {formErrors.name && (
+                          <p className="mt-1 text-xs text-red-500 flex items-center gap-1">
+                            <AlertCircle className="w-3 h-3" /> {formErrors.name}
+                          </p>
+                        )}
                       </div>
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -349,11 +408,19 @@ const ContactSection = () => {
                           type="tel"
                           placeholder="Ex: 0770 220 110"
                           value={formData.phone}
-                          onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                          onChange={(e) => {
+                            setFormData({ ...formData, phone: e.target.value });
+                            if (formErrors.phone) setFormErrors({ ...formErrors, phone: '' });
+                          }}
                           required
                           disabled={isLoading}
-                          className="h-12 bg-[#f8fafc] border-[#e2e8f0] rounded-xl text-base"
+                          className={`h-12 bg-[#f8fafc] border-[#e2e8f0] rounded-xl text-base ${formErrors.phone ? 'border-red-500 focus:border-red-500' : ''}`}
                         />
+                        {formErrors.phone && (
+                          <p className="mt-1 text-xs text-red-500 flex items-center gap-1">
+                            <AlertCircle className="w-3 h-3" /> {formErrors.phone}
+                          </p>
+                        )}
                       </div>
                     </div>
 
@@ -366,10 +433,18 @@ const ContactSection = () => {
                         type="email"
                         placeholder="Ex: maria@email.com"
                         value={formData.email}
-                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                        onChange={(e) => {
+                          setFormData({ ...formData, email: e.target.value });
+                          if (formErrors.email) setFormErrors({ ...formErrors, email: '' });
+                        }}
                         disabled={isLoading}
-                        className="h-12 bg-[#f8fafc] border-[#e2e8f0] rounded-xl text-base"
+                        className={`h-12 bg-[#f8fafc] border-[#e2e8f0] rounded-xl text-base ${formErrors.email ? 'border-red-500 focus:border-red-500' : ''}`}
                       />
+                      {formErrors.email && (
+                        <p className="mt-1 text-xs text-red-500 flex items-center gap-1">
+                          <AlertCircle className="w-3 h-3" /> {formErrors.email}
+                        </p>
+                      )}
                     </div>
 
                     <div>
@@ -400,11 +475,23 @@ const ContactSection = () => {
                         name="message"
                         placeholder="Spune-ne pe scurt ce te preocupă..."
                         value={formData.message}
-                        onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                        onChange={(e) => {
+                          setFormData({ ...formData, message: e.target.value });
+                          if (formErrors.message) setFormErrors({ ...formErrors, message: '' });
+                        }}
                         rows={3}
                         disabled={isLoading}
-                        className="bg-[#f8fafc] border-[#e2e8f0] rounded-xl resize-none text-base"
+                        maxLength={2000}
+                        className={`bg-[#f8fafc] border-[#e2e8f0] rounded-xl resize-none text-base ${formErrors.message ? 'border-red-500 focus:border-red-500' : ''}`}
                       />
+                      {formErrors.message && (
+                        <p className="mt-1 text-xs text-red-500 flex items-center gap-1">
+                          <AlertCircle className="w-3 h-3" /> {formErrors.message}
+                        </p>
+                      )}
+                      <p className="mt-1 text-xs text-gray-400 text-right">
+                        {formData.message.length}/2000
+                      </p>
                     </div>
 
                     <div className="pt-2">

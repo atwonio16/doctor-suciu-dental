@@ -12,14 +12,21 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-// Admin credentials - SECURE (change these in production via environment variables)
-// Using strong credentials with mixed case, numbers, and special characters
+// Admin credentials - loaded from environment variables
+// VITE_ADMIN_USERNAME and VITE_ADMIN_PASSWORD must be set in .env
 const getStoredCredentials = () => {
-  // In production, these should come from environment variables or secure storage
-  // For now using hashed/encoded values to prevent casual reading
+  const username = import.meta.env.VITE_ADMIN_USERNAME;
+  const password = import.meta.env.VITE_ADMIN_PASSWORD;
+  
+  // Fallback only for development - NEVER use in production
+  if (!username || !password) {
+    console.warn('Admin credentials not configured in environment variables');
+    return null;
+  }
+  
   return {
-    username: atob('YWRtaW5kc2M='), // encoded 'admindsc'
-    password: atob('RFNDMjAyNCFUZWFt'), // encoded 'DSC2024!Team'
+    username,
+    password,
     user: {
       id: '1',
       username: 'admin',
@@ -100,6 +107,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     await new Promise(resolve => setTimeout(resolve, 500));
     
     const creds = getStoredCredentials();
+    
+    if (!creds) {
+      throw new Error('Sistemul de autentificare nu este configurat corect.');
+    }
     
     // Constant-time comparison (simplified)
     const usernameMatch = username === creds.username;

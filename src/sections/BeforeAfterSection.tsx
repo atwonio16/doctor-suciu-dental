@@ -226,7 +226,7 @@ const BeforeAfterSection = () => {
                       {/* BEFORE */}
                       <div className="relative">
                         <div className="absolute top-2 sm:top-3 left-2 sm:left-3 z-10">
-                          <span className="case-label inline-block px-2 py-1 bg-black/50 text-white text-[10px] font-medium uppercase tracking-wider rounded-sm">
+                          <span className="case-label inline-block px-2 py-1 bg-white text-gray-900 text-[10px] font-medium uppercase tracking-wider rounded-sm shadow-sm">
                             Înainte
                           </span>
                         </div>
@@ -243,7 +243,7 @@ const BeforeAfterSection = () => {
                       {/* AFTER */}
                       <div className="relative">
                         <div className="absolute top-2 sm:top-3 left-2 sm:left-3 z-10">
-                          <span className="case-label inline-block px-2 py-1 bg-gray-800/80 text-white text-[10px] font-medium uppercase tracking-wider rounded-sm">
+                          <span className="case-label inline-block px-2 py-1 bg-white text-gray-900 text-[10px] font-medium uppercase tracking-wider rounded-sm shadow-sm">
                             După
                           </span>
                         </div>
@@ -272,8 +272,8 @@ const BeforeAfterSection = () => {
               </div>
             </div>
 
-            {/* Case indicators - with larger touch targets on mobile */}
-            <div className="flex justify-center items-center gap-1 mt-8">
+            {/* Case indicators - buline perfecte 6x6px */}
+            <div className="flex justify-center items-center mt-6" style={{ gap: '8px' }}>
               {displayCases.map((_, idx) => (
                 <button
                   key={idx}
@@ -281,22 +281,20 @@ const BeforeAfterSection = () => {
                     setIsPaused(true);
                     setCurrentIndex(idx);
                   }}
-                  className="pagination-dot p-3 flex items-center justify-center"
+                  className={`rounded-full transition-colors ${
+                    idx === currentIndex ? 'bg-[#0B1E32]' : 'bg-slate-300'
+                  }`}
+                  style={{
+                    width: '6px',
+                    height: '6px',
+                    padding: 0,
+                    border: 'none',
+                    flexShrink: 0
+                  }}
                   aria-label={`Cazul ${idx + 1}`}
-                >
-                  <span 
-                    className={`pagination-dot-inner block h-1.5 rounded-full transition-all duration-200 ${
-                      idx === currentIndex ? 'w-6 bg-gray-700' : 'w-1.5 bg-gray-300'
-                    }`}
-                  />
-                </button>
+                />
               ))}
             </div>
-
-            {/* Swipe hint for mobile */}
-            <p className="mobile-only text-center text-xs text-gray-400 mt-4">
-              Glisează pentru a vedea mai multe
-            </p>
           </div>
         </div>
       </div>
