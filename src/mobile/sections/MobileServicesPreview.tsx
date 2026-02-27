@@ -66,9 +66,9 @@ export function MobileServicesPreview() {
                     {service.description}
                   </p>
                   
-                  {/* Vezi detalii */}
+                  {/* Vezi preturi */}
                   <div className="mt-3 flex items-center gap-1.5 text-[13px] font-medium text-slate-400 group-hover:text-[#0B1E32] transition-colors">
-                    <span>Vezi detalii</span>
+                    <span>Vezi prețuri</span>
                     <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
                   </div>
                 </div>
@@ -81,7 +81,7 @@ export function MobileServicesPreview() {
         <div className="mt-6 text-center">
           <Link
             to="/servicii"
-            className="inline-flex items-center gap-2 text-[15px] font-semibold text-slate-600 hover:text-[#0B1E32] transition-colors"
+            className="inline-flex items-center gap-2 text-[15px] font-semibold text-[#0B1E32] hover:opacity-80 transition-opacity"
           >
             Vezi toate serviciile
             <ArrowRight className="h-4 w-4" />
