@@ -18,9 +18,16 @@ const getStoredCredentials = () => {
   const username = import.meta.env.VITE_ADMIN_USERNAME;
   const password = import.meta.env.VITE_ADMIN_PASSWORD;
   
+  // Debug log (will show in browser console)
+  console.log('Environment check:', { 
+    hasUsername: !!username, 
+    hasPassword: !!password,
+    usernameLength: username?.length || 0
+  });
+  
   // Fallback only for development - NEVER use in production
   if (!username || !password) {
-    console.warn('Admin credentials not configured in environment variables');
+    console.error('Admin credentials not configured in environment variables');
     return null;
   }
   
