@@ -49,7 +49,7 @@ export function MobileFAQ() {
         </div>
 
         {/* FAQ List - separator doar prin linie */}
-        <div>
+        <div className="border-t border-slate-200">
           {faqs.map((faq, index) => {
             const isOpen = openIndex === index;
 

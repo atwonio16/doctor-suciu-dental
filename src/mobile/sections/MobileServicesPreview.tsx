@@ -77,11 +77,11 @@ export function MobileServicesPreview() {
           ))}
         </div>
 
-        {/* CTA */}
-        <div className="mt-6 text-center">
+        {/* CTA - buton mare navy */}
+        <div className="mt-6">
           <Link
             to="/servicii"
-            className="inline-flex items-center gap-2 text-[15px] font-bold text-[#0B1E32] hover:opacity-80 transition-opacity"
+            className="flex h-[48px] w-full items-center justify-center gap-2 rounded-full bg-[#0B1E32] text-[15px] font-semibold text-white shadow-[0_4px_14px_rgba(11,30,50,0.25)] transition-all active:scale-[0.98] hover:shadow-[0_6px_20px_rgba(11,30,50,0.35)]"
           >
             Vezi toate serviciile
             <ArrowRight className="h-4 w-4" />
