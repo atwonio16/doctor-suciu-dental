@@ -139,11 +139,11 @@ export function MobileBeforeAfter() {
           >
             {displayCases.map((caseItem) => (
               <div key={caseItem.id} className="w-full shrink-0 p-4">
-                {/* Before/After Images cu badge pe imagine */}
-                <div className="grid grid-cols-2 gap-2">
+                {/* Before/After Images - una sub alta */}
+                <div className="space-y-2">
                   {/* Before */}
                   <div className="relative overflow-hidden rounded-xl">
-                    <div className="aspect-[4/3] bg-slate-100">
+                    <div className="aspect-[16/10] bg-slate-100">
                       <img
                         src={caseItem.beforeImage || getPlaceholder('before', caseItem.title)}
                         alt={`Inainte - ${caseItem.title}`}
@@ -153,14 +153,14 @@ export function MobileBeforeAfter() {
                       />
                     </div>
                     {/* Badge pe imagine */}
-                    <div className="absolute left-2 top-2 rounded-md bg-white px-2 py-1 shadow-sm">
-                      <p className="text-[11px] font-bold uppercase tracking-wider text-slate-900">Inainte</p>
+                    <div className="absolute left-3 top-3 rounded-lg bg-white px-3 py-1.5 shadow-md">
+                      <p className="text-[12px] font-bold uppercase tracking-wider text-slate-900">Inainte</p>
                     </div>
                   </div>
 
                   {/* After */}
                   <div className="relative overflow-hidden rounded-xl">
-                    <div className="aspect-[4/3] bg-slate-100">
+                    <div className="aspect-[16/10] bg-slate-100">
                       <img
                         src={caseItem.afterImage || getPlaceholder('after', caseItem.title)}
                         alt={`Dupa - ${caseItem.title}`}
@@ -170,8 +170,8 @@ export function MobileBeforeAfter() {
                       />
                     </div>
                     {/* Badge pe imagine */}
-                    <div className="absolute left-2 top-2 rounded-md bg-white px-2 py-1 shadow-sm">
-                      <p className="text-[11px] font-bold uppercase tracking-wider text-slate-900">Dupa</p>
+                    <div className="absolute left-3 top-3 rounded-lg bg-white px-3 py-1.5 shadow-md">
+                      <p className="text-[12px] font-bold uppercase tracking-wider text-slate-900">Dupa</p>
                     </div>
                   </div>
                 </div>
