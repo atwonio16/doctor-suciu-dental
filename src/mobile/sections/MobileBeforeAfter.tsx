@@ -118,9 +118,12 @@ export function MobileBeforeAfter() {
   return (
     <section id="transformari" className="py-6" style={{ scrollMarginTop: '88px' }}>
       <div className="mx-auto max-w-[480px] px-5">
-        {/* Header - doar titlu */}
-        <div className="mb-5">
+        {/* Header */}
+        <div className="mb-5 text-center">
           <h2 className="text-[22px] font-bold text-[#0B1E32] tracking-tight">Transformari naturale</h2>
+          <p className="mt-1 text-[14px] leading-[1.5] text-slate-500">
+            Exemple reale, gandite estetic si functional.
+          </p>
         </div>
 
         {/* Carousel */}

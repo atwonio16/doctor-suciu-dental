@@ -88,7 +88,7 @@ export function MobileServicesPreview() {
     <section id="servicii" className="py-6" style={{ scrollMarginTop: '88px' }}>
       <div className="mx-auto max-w-[480px] px-5">
         {/* Header */}
-        <div className="mb-5">
+        <div className="mb-5 text-center">
           <h2 className="text-[22px] font-bold text-[#0B1E32] tracking-tight">Ce putem face pentru tine</h2>
           <p className="mt-1 text-[14px] leading-[1.5] text-slate-500">
             Alege ce te intereseaza sau vezi lista completa.

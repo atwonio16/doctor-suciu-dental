@@ -104,7 +104,7 @@ export function MobileReviews() {
     <section id="reviews" className="py-6" style={{ scrollMarginTop: '88px' }}>
       <div className="mx-auto max-w-[480px] px-5">
         {/* Header */}
-        <div className="mb-5">
+        <div className="mb-5 text-center">
           <h2 className="text-[22px] font-bold text-[#0B1E32] tracking-tight">Ce spun pacientii</h2>
           <p className="mt-1 text-[14px] leading-[1.5] text-slate-500">
             Experiente reale de la oameni care ne-au trecut pragul.

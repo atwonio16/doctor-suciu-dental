@@ -4,6 +4,7 @@ import { MobileHero } from './sections/MobileHero';
 import { MobileBeforeAfter } from './sections/MobileBeforeAfter';
 import { MobileServicesPreview } from './sections/MobileServicesPreview';
 import { MobileWhyChoose } from './sections/MobileWhyChoose';
+import { MobileFAQ } from './sections/MobileFAQ';
 import { MobileReviews } from './sections/MobileReviews';
 import { MobileTeam } from './sections/MobileTeam';
 import { MobileGallery } from './sections/MobileGallery';
@@ -30,6 +31,7 @@ export function MobileHomePage() {
       <MobileBeforeAfter />
       <MobileServicesPreview />
       <MobileWhyChoose />
+      <MobileFAQ />
       <MobileReviews />
       <MobileTeam />
       <MobileGallery />

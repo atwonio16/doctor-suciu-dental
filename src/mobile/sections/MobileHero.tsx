@@ -27,6 +27,7 @@ export function MobileHero() {
       <div className="relative mx-auto max-w-[480px] px-5">
         {/* Headline Section */}
         <div className="text-center">
+          <p className="mb-2 text-[12px] font-bold uppercase tracking-[0.2em] text-[#0B1E32]/60">Bine ai venit</p>
           <h1
             id="mobile-hero-title"
             className="text-[#0B1E32]"
