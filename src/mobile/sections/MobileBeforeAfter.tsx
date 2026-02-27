@@ -177,14 +177,15 @@ export function MobileBeforeAfter() {
           </div>
         </div>
 
-        {/* Bullets Navigation - cercuri mici */}
-        <div className="mt-4 flex items-center justify-center gap-1.5">
+        {/* Bullets Navigation - cercuri perfecte mici */}
+        <div className="mt-4 flex items-center justify-center gap-2">
           {displayCases.map((_, index) => (
             <button
               key={index}
               type="button"
               onClick={() => goTo(index)}
-              className={`h-1.5 w-1.5 rounded-full transition-all ${
+              style={{ width: '6px', height: '6px' }}
+              className={`rounded-full transition-colors ${
                 index === currentIndex 
                   ? 'bg-[#0B1E32]' 
                   : 'bg-slate-300'
