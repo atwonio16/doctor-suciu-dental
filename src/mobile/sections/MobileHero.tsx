@@ -31,7 +31,7 @@ export function MobileHero() {
             style={{
               fontSize: 'clamp(2.75rem, 12vw, 3.25rem)',
               lineHeight: 1.05,
-              letterSpacing: '-0.04em',
+              letterSpacing: '-0.01em',
               fontWeight: 800,
               fontFamily: '"DM Serif Display", Georgia, serif',
             }}
