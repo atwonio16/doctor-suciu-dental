@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Clock, Loader2, MapPin, Phone, Send, CheckCircle, MessageCircle } from 'lucide-react';
+import { Loader2, Send, CheckCircle } from 'lucide-react';
 import { useLocation } from 'react-router-dom';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -214,47 +214,7 @@ export function MobileContact() {
           )}
         </div>
 
-        {/* Contact Info - pe rânduri separate, fără carduri */}
-        <div className="space-y-3 mb-5">
-          {/* Telefon */}
-          <a
-            href="tel:+40770220110"
-            className="flex items-center gap-3 py-3 text-slate-900"
-          >
-            <Phone className="h-5 w-5 text-[#0B1E32]" />
-            <span className="text-[16px] font-semibold">0770 220 110</span>
-          </a>
-
-          {/* Program */}
-          <div className="flex items-center gap-3 py-3 text-slate-900">
-            <Clock className="h-5 w-5 text-[#0B1E32]" />
-            <span className="text-[15px]">L-J: 9-18 | V: 9-15</span>
-          </div>
-
-          {/* Adresă */}
-          <a
-            href="https://maps.google.com/?q=Calea+Domneasca+234+Targoviste"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-3 py-3 text-slate-900"
-          >
-            <MapPin className="h-5 w-5 text-[#0B1E32]" />
-            <span className="text-[15px]">Calea Domnească 234, Târgoviște</span>
-          </a>
-
-          {/* WhatsApp */}
-          <a
-            href="https://wa.me/40770220110"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex h-[48px] w-full items-center justify-center gap-2 rounded-full bg-[#25D366] text-[15px] font-semibold text-white shadow-[0_4px_14px_rgba(37,211,102,0.35)] transition-all active:scale-[0.98]"
-          >
-            <MessageCircle className="h-5 w-5" />
-            Scrie-ne pe WhatsApp
-          </a>
-        </div>
-
-        {/* Hartă Google Maps */}
+        {/* Hartă Google Maps -->
         <div className="overflow-hidden rounded-2xl border border-slate-200">
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2795.745365495854!2d25.4493!3d44.9311!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40b2c5e0f7c3b0e7%3A0x7e7c7e7c7e7c7e7c!2sCalea%20Domneasc%C4%83%20234%2C%20T%C3%A2rgovi%C8%99te!5e0!3m2!1sro!2sro!4v1640000000000!5m2!1sro!2sro"
