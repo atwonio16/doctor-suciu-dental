@@ -58,10 +58,10 @@ export function MobileNavigation() {
               aria-label="Doctor Suciu Dental Clinic"
               onClick={handleLogoClick}
             >
-              <span className="truncate text-[15px] font-black tracking-tight text-slate-900 leading-none">
+              <span className="truncate text-[15px] font-black tracking-tight text-slate-900 leading-none" style={{ fontWeight: 900 }}>
                 DOCTOR SUCIU
               </span>
-              <span className="mt-1 text-[10px] font-bold uppercase tracking-[0.2em] text-slate-500 leading-none">
+              <span className="mt-1 text-[10px] font-black uppercase tracking-[0.18em] text-slate-500 leading-none" style={{ fontWeight: 800 }}>
                 DENTAL CLINIC
               </span>
             </Link>

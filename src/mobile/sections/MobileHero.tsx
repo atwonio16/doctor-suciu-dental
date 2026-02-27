@@ -18,7 +18,7 @@ export function MobileHero() {
     <section
       id="hero"
       className="relative overflow-hidden pb-8"
-      style={{ paddingTop: 'calc(env(safe-area-inset-top) + 80px)' }}
+      style={{ paddingTop: 'calc(env(safe-area-inset-top) + 88px)' }}
       aria-labelledby="mobile-hero-title"
     >
       {/* Decorativ: gradient blur */}
@@ -44,8 +44,8 @@ export function MobileHero() {
             începe aici!
           </h1>
 
-          {/* Subheadline creativ, 2 rânduri, culoare mai închisă */}
-          <p className="mx-auto mt-4 max-w-[320px] text-[16px] leading-[1.5] text-slate-700">
+          {/* Subheadline mai prezent - mai mare și mai lizibil */}
+          <p className="mx-auto mt-5 max-w-[340px] text-[18px] leading-[1.55] font-medium text-slate-700">
             O echipă calmă, care ascultă și explică tot. 
             Fără durere, doar zâmbete cu încredere.
           </p>
@@ -56,10 +56,10 @@ export function MobileHero() {
           href="https://www.google.com/search?q=doctor+suciu+dental+clinic+targoviste"
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-5 flex items-center justify-center gap-2 text-center"
+          className="mt-6 flex items-center justify-center gap-2 text-center"
         >
           <GoogleMark />
-          <span className="text-[16px] font-bold text-slate-900">{googleReviews.rating.toFixed(1)}</span>
+          <span className="text-[16px] font-semibold text-slate-900">{googleReviews.rating.toFixed(1)}</span>
           <span className="flex text-amber-400">
             {[...Array(5)].map((_, i) => (
               <svg key={i} className="h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
@@ -70,13 +70,13 @@ export function MobileHero() {
           <span className="text-[15px] font-semibold text-[#2563EB]">din {googleReviews.reviewCount} recenzii</span>
         </a>
 
-        {/* CTA Principal */}
+        {/* CTA Principal - text mai gros si letter spacing putin marit */}
         <div className="mt-5">
           <Link
             to="/contact"
             className="group flex h-[52px] w-full items-center justify-center gap-2 rounded-full bg-[#0B1E32] text-white shadow-lg shadow-slate-900/20 active:scale-[0.98] transition-all"
           >
-            <span className="text-[16px] font-semibold leading-none">
+            <span className="text-[16px] font-bold tracking-wide leading-none">
               Vreau să mă programez
             </span>
             <ArrowRight className="h-5 w-5 leading-none transition-transform group-hover:translate-x-1" />
