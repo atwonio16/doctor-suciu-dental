@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { ArrowRight, Loader2, ChevronDown } from 'lucide-react';
+import { Link, useLocation } from 'react-router-dom';
+import { Loader2, ChevronDown } from 'lucide-react';
 import { usePublicServices } from '../hooks/useSupabaseData';
 
 // Configurație categorii - trebuie să corespundă cu desktop
@@ -60,8 +60,8 @@ const CATEGORY_CONFIG: Record<string, CategoryConfig> = {
 
 export function MobileServicesPage() {
   const location = useLocation();
-  const navigate = useNavigate();
   const [expandedCategory, setExpandedCategory] = useState<string | null>(null);
+  const [expandedService, setExpandedService] = useState<string | null>(null);
   const [activeTab, setActiveTab] = useState<string>('all');
   
   // Fetch services din Supabase - la fel ca desktop
@@ -106,18 +106,12 @@ export function MobileServicesPage() {
     }
   }, [categoriesWithServices, location.hash]);
 
-  const handleServiceClick = (service: typeof services[0]) => {
-    navigate('/contact', {
-      state: {
-        service: service.title,
-        category: service.category,
-        fromServices: true
-      }
-    });
-  };
-
   const toggleCategory = (slug: string) => {
     setExpandedCategory(expandedCategory === slug ? null : slug);
+  };
+
+  const toggleService = (serviceId: string) => {
+    setExpandedService(expandedService === serviceId ? null : serviceId);
   };
 
   if (loading) {
@@ -226,32 +220,66 @@ export function MobileServicesPage() {
                   }`}>
                     <div className="overflow-hidden">
                       <div className="px-4 pb-4 space-y-2">
-                        {categoryServices.map((service) => (
-                          <button
-                            key={service.id}
-                            onClick={() => handleServiceClick(service)}
-                            className="w-full flex items-center justify-between p-3 bg-white rounded-xl text-left active:scale-[0.98] transition-all"
-                          >
-                            <div className="flex-1 pr-3">
-                              <h3 className="font-medium text-[14px] text-slate-900">
-                                {service.title}
-                              </h3>
-                              {service.description && (
-                                <p className="text-[12px] text-slate-500 line-clamp-1 mt-0.5">
-                                  {service.description}
-                                </p>
-                              )}
+                        {categoryServices.map((service) => {
+                          const isServiceExpanded = expandedService === service.id;
+                          return (
+                            <div
+                              key={service.id}
+                              className="bg-white rounded-xl overflow-hidden"
+                            >
+                              {/* Service Header */}
+                              <button
+                                onClick={() => toggleService(service.id)}
+                                className="w-full flex items-center justify-between p-3 text-left"
+                              >
+                                <div className="flex-1 pr-3">
+                                  <h3 className="font-medium text-[14px] text-slate-900">
+                                    {service.title}
+                                  </h3>
+                                  {!isServiceExpanded && service.description && (
+                                    <p className="text-[12px] text-slate-500 line-clamp-1 mt-0.5">
+                                      {service.description}
+                                    </p>
+                                  )}
+                                </div>
+                                <div className="flex items-center gap-2">
+                                  {service.price && (
+                                    <span className="text-[13px] font-semibold text-[#0B1E32]">
+                                      {service.price}
+                                    </span>
+                                  )}
+                                  <ChevronDown 
+                                    className={`w-4 h-4 text-slate-400 transition-transform duration-300 ${
+                                      isServiceExpanded ? 'rotate-180' : ''
+                                    }`}
+                                  />
+                                </div>
+                              </button>
+                              
+                              {/* Expanded Content */}
+                              <div className={`grid transition-all duration-300 ${
+                                isServiceExpanded ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'
+                              }`}>
+                                <div className="overflow-hidden">
+                                  <div className="px-3 pb-3">
+                                    {service.description && (
+                                      <p className="text-[13px] text-slate-600 leading-relaxed mb-3">
+                                        {service.description}
+                                      </p>
+                                    )}
+                                    <Link
+                                      to="/contact"
+                                      state={{ service: service.title, category: service.category }}
+                                      className="inline-flex items-center justify-center h-10 px-4 rounded-full bg-[#0B1E32] text-white text-[13px] font-medium"
+                                    >
+                                      Programează-te
+                                    </Link>
+                                  </div>
+                                </div>
+                              </div>
                             </div>
-                            <div className="flex items-center gap-2">
-                              {service.price && (
-                                <span className="text-[13px] font-semibold text-[#0B1E32]">
-                                  {service.price}
-                                </span>
-                              )}
-                              <ArrowRight className="w-4 h-4 text-slate-300" />
-                            </div>
-                          </button>
-                        ))}
+                          );
+                        })}
                       </div>
                     </div>
                   </div>
@@ -289,7 +317,6 @@ export function MobileServicesPage() {
             className="inline-flex items-center justify-center gap-2 h-[46px] px-6 rounded-full bg-[#0B1E32] text-white text-[14px] font-semibold active:scale-[0.98] transition-all"
           >
             Programează-te
-            <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
       </section>
