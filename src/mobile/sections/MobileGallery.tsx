@@ -126,7 +126,7 @@ export function MobileGallery() {
                   type="button"
                   onClick={() => goTo(index)}
                   className={`rounded-full transition-colors ${
-                    index === currentIndex 
+                    index === currentImage 
                       ? 'bg-[#0B1E32]' 
                       : 'bg-slate-300'
                   }`}
