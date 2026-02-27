@@ -95,7 +95,7 @@ export function MobileFAQ() {
 
         {/* CTA - buton verde WhatsApp */}
         <div className="mt-6 text-center">
-          <p className="text-[14px] text-slate-600">Nu ai găsit răspunsul căutat?</p>
+          <p className="text-[15px] font-semibold text-slate-700">Ai o nedumerire?</p>
           <a
             href="https://wa.me/40770220110"
             target="_blank"
