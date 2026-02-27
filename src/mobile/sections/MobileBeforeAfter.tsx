@@ -168,8 +168,8 @@ export function MobileBeforeAfter() {
                   </div>
                 </div>
 
-                {/* Content - doar titlu */}
-                <div className="mt-4 text-center">
+                {/* Content - doar titlu, aliniat stanga */}
+                <div className="mt-4">
                   <h3 className="text-[16px] font-semibold text-slate-900">{caseItem.title}</h3>
                 </div>
               </div>
@@ -177,16 +177,16 @@ export function MobileBeforeAfter() {
           </div>
         </div>
 
-        {/* Bullets Navigation */}
-        <div className="mt-4 flex items-center justify-center gap-2">
+        {/* Bullets Navigation - cercuri mici */}
+        <div className="mt-4 flex items-center justify-center gap-1.5">
           {displayCases.map((_, index) => (
             <button
               key={index}
               type="button"
               onClick={() => goTo(index)}
-              className={`h-2.5 w-2.5 rounded-full transition-all ${
+              className={`h-1.5 w-1.5 rounded-full transition-all ${
                 index === currentIndex 
-                  ? 'bg-[#0B1E32] scale-110' 
+                  ? 'bg-[#0B1E32]' 
                   : 'bg-slate-300'
               }`}
               aria-label={`Cazul ${index + 1}`}
