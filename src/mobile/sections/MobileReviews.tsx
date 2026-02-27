@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState, type TouchEvent } from 'react';
+import { useMemo, useRef, useState, type TouchEvent } from 'react';
 import { ExternalLink, Quote, Star } from 'lucide-react';
 import type { Review } from '../../admin/types';
 import { usePublicReviews } from '../../hooks/useSupabaseData';
@@ -10,8 +10,8 @@ const defaultReviews: Review[] = [
     authorName: 'Andreea M.',
     avatar: '/reviews/brooke-balentine-7LuPlRljfmM-unsplash.jpg',
     rating: 5,
-    date: 'acum 2 saptamani',
-    text: 'Am venit cu emotii si am plecat mult mai relaxata. Totul a fost explicat clar, iar echipa a avut multa rabdare.',
+    date: 'acum 2 săptămâni',
+    text: 'Am venit cu emoții și am plecat mult mai relaxată. Totul a fost explicat clar, iar echipa a avut multă răbdare.',
     isPublished: true,
     isFeatured: false,
     order: 0,
@@ -23,8 +23,8 @@ const defaultReviews: Review[] = [
     authorName: 'Mihai D.',
     avatar: '/reviews/michael-dagonakis-KE4bV4dKlwk-unsplash.jpg',
     rating: 5,
-    date: 'acum o luna',
-    text: 'Tratamentul a fost bine planificat si comunicat pas cu pas. Profesionalism si atmosfera calma.',
+    date: 'acum o lună',
+    text: 'Tratamentul a fost bine planificat și comunicat pas cu pas. Profesionalism și atmosferă calmă.',
     isPublished: true,
     isFeatured: false,
     order: 1,
@@ -36,8 +36,8 @@ const defaultReviews: Review[] = [
     authorName: 'Elena P.',
     avatar: '/reviews/caroline-badran-K4Y7oLEpiZU-unsplash.jpg',
     rating: 5,
-    date: 'acum 3 saptamani',
-    text: 'Mi-a placut atentia la detalii si faptul ca rezultatul a ramas natural. Recomand cu incredere.',
+    date: 'acum 3 săptămâni',
+    text: 'Mi-a plăcut atenția la detalii și faptul că rezultatul a rămas natural. Recomand cu încredere.',
     isPublished: true,
     isFeatured: false,
     order: 2,
@@ -61,7 +61,7 @@ export function MobileReviews() {
           review.avatar_url ||
           `https://ui-avatars.com/api/?name=${encodeURIComponent(review.author_name)}&background=123455&color=ffffff&size=128`,
         rating: review.rating,
-        date: review.date_text || 'recenzie verificata',
+        date: review.date_text || 'recenzie verificată',
         text: review.content,
         isPublished: review.is_published,
         isFeatured: review.is_featured,
@@ -70,15 +70,8 @@ export function MobileReviews() {
         updatedAt: review.updated_at,
       }));
     }
-
     return defaultReviews;
   }, [supabaseReviews]);
-
-  useEffect(() => {
-    if (currentIndex >= reviews.length) {
-      setCurrentIndex(0);
-    }
-  }, [currentIndex, reviews.length]);
 
   const goTo = (index: number) => {
     const count = reviews.length;
@@ -105,9 +98,9 @@ export function MobileReviews() {
       <div className="mx-auto max-w-[480px] px-5">
         {/* Header */}
         <div className="mb-5 text-center">
-          <h2 className="text-[22px] font-bold text-[#0B1E32] tracking-tight">Ce spun pacientii</h2>
+          <h2 className="text-[22px] font-bold text-[#0B1E32] tracking-tight">Ce spun pacienții</h2>
           <p className="mt-1 text-[14px] leading-[1.5] text-slate-500">
-            Experiente reale de la oameni care ne-au trecut pragul.
+            Experiențe reale de la oameni care ne-au trecut pragul.
           </p>
         </div>
 
@@ -116,7 +109,7 @@ export function MobileReviews() {
           href={googleReviews.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="mb-4 flex items-center justify-between gap-3 rounded-2xl border border-slate-200 bg-white p-4 transition-all active:scale-[0.98] active:bg-slate-50"
+          className="mb-4 flex items-center justify-between gap-3 rounded-2xl bg-white p-4 shadow-[0_2px_8px_rgba(0,0,0,0.06)] transition-all active:scale-[0.98]"
         >
           <div>
             <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Google Reviews</p>
@@ -133,16 +126,19 @@ export function MobileReviews() {
           <ExternalLink className="h-5 w-5 shrink-0 text-slate-400" />
         </a>
 
-        {/* Reviews Carousel */}
+        {/* Reviews Carousel - optimizat */}
         <div
-          className="overflow-hidden rounded-2xl border border-slate-200 bg-white"
+          className="overflow-hidden rounded-2xl bg-white shadow-[0_2px_8px_rgba(0,0,0,0.06)]"
           onTouchStart={handleTouchStart}
           onTouchEnd={handleTouchEnd}
           style={{ touchAction: 'pan-y' }}
         >
           <div
-            className="flex transition-transform duration-300 ease-out"
-            style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+            className="flex will-change-transform"
+            style={{ 
+              transform: `translate3d(-${currentIndex * 100}%, 0, 0)`,
+              transition: 'transform 300ms ease-out'
+            }}
           >
             {reviews.map((review) => (
               <div key={review.id} className="w-full shrink-0 p-4">
@@ -181,17 +177,18 @@ export function MobileReviews() {
           </div>
         </div>
 
-        {/* Dots Navigation */}
+        {/* Bullets Navigation - 6x6px perfect circles */}
         <div className="mt-4 flex items-center justify-center gap-2">
           {reviews.map((_, index) => (
             <button
               key={index}
               type="button"
               onClick={() => goTo(index)}
-              className={`h-2 rounded-full transition-all ${
+              style={{ width: '6px', height: '6px' }}
+              className={`rounded-full transition-colors ${
                 index === currentIndex 
-                  ? 'w-6 bg-[#0B1E32]' 
-                  : 'w-2 bg-slate-300'
+                  ? 'bg-[#0B1E32]' 
+                  : 'bg-slate-300'
               }`}
               aria-label={`Recenzia ${index + 1}`}
             />
