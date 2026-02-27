@@ -1,19 +1,8 @@
 import { ArrowRight, CirclePlus, AlignCenter, Smile } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { useMemo } from 'react';
-import { usePublicServices } from '../../hooks/useSupabaseData';
 
-type ServicePreviewItem = {
-  id: string;
-  title: string;
-  description: string;
-  Icon: typeof CirclePlus;
-  bg: string;
-  iconColor: string;
-};
-
-// Servicii diverse - fără duplicate
-const defaultServices: ServicePreviewItem[] = [
+// 3 servicii reprezentative - fără duplicate, mereu aceleași
+const services = [
   {
     id: 'implanturi',
     title: 'Implant dentar',
@@ -41,88 +30,10 @@ const defaultServices: ServicePreviewItem[] = [
 ];
 
 export function MobileServicesPreview() {
-  const { data: supabaseServices } = usePublicServices();
-
-  const services = useMemo<ServicePreviewItem[]>(() => {
-    if (supabaseServices.length > 0) {
-      // Luăm primele 3 servicii diverse (fără duplicate de categorii)
-      const uniqueServices: ServicePreviewItem[] = [];
-      const usedCategories = new Set<string>();
-      
-      for (const service of supabaseServices) {
-        const category = service.category?.toLowerCase() || '';
-        const title = service.title.toLowerCase();
-        
-        // Determinăm categoria generală
-        let generalCategory = 'other';
-        if (title.includes('implant') || category.includes('implant')) generalCategory = 'implant';
-        else if (title.includes('ortodon') || title.includes('invisalign') || category.includes('ortodon')) generalCategory = 'ortodontie';
-        else if (title.includes('estetic') || title.includes('fatet') || title.includes('coroan') || category.includes('estetic')) generalCategory = 'estetica';
-        else if (title.includes('chirurg') || category.includes('chirurg')) generalCategory = 'chirurgie';
-        else if (title.includes('pedo') || title.includes('copil') || category.includes('pedo')) generalCategory = 'pedo';
-        
-        // Adăugăm doar dacă nu avem deja această categorie
-        if (!usedCategories.has(generalCategory) && uniqueServices.length < 3) {
-          usedCategories.add(generalCategory);
-          
-          // Alegem icon și culori în funcție de categorie
-          let Icon = CirclePlus;
-          let bg = 'bg-slate-100';
-          let iconColor = 'text-slate-600';
-          
-          if (generalCategory === 'implant') {
-            Icon = CirclePlus;
-            bg = 'bg-slate-100';
-            iconColor = 'text-slate-600';
-          } else if (generalCategory === 'ortodontie') {
-            Icon = AlignCenter;
-            bg = 'bg-sky-50';
-            iconColor = 'text-sky-600';
-          } else if (generalCategory === 'estetica') {
-            Icon = Smile;
-            bg = 'bg-teal-50';
-            iconColor = 'text-teal-600';
-          } else if (generalCategory === 'chirurgie') {
-            Icon = CirclePlus;
-            bg = 'bg-amber-50';
-            iconColor = 'text-amber-600';
-          } else if (generalCategory === 'pedo') {
-            Icon = Smile;
-            bg = 'bg-rose-50';
-            iconColor = 'text-rose-600';
-          }
-          
-          uniqueServices.push({
-            id: service.id,
-            title: service.title,
-            description: service.description || 'Tratament personalizat în funcție de nevoile tale.',
-            Icon,
-            bg,
-            iconColor,
-          });
-        }
-      }
-      
-      // Dacă nu avem destule servicii unice, completăm cu fallback
-      if (uniqueServices.length < 3) {
-        for (const fallback of defaultServices) {
-          if (uniqueServices.length >= 3) break;
-          if (!uniqueServices.some(s => s.title.toLowerCase().includes(fallback.id))) {
-            uniqueServices.push(fallback);
-          }
-        }
-      }
-      
-      return uniqueServices.slice(0, 3);
-    }
-
-    return defaultServices;
-  }, [supabaseServices]);
-
   return (
     <section id="servicii" className="py-10" style={{ scrollMarginTop: '88px' }}>
       <div className="mx-auto max-w-[480px] px-5">
-        {/* Header - inspirat din desktop */}
+        {/* Header */}
         <div className="mb-6 text-center">
           <h2 className="text-[22px] font-bold text-[#0B1E32] tracking-tight">
             Serviciile noastre
@@ -132,7 +43,7 @@ export function MobileServicesPreview() {
           </p>
         </div>
 
-        {/* Services Cards - design inspirat din desktop */}
+        {/* Services Cards */}
         <div className="space-y-3">
           {services.map((service) => (
             <Link
@@ -155,7 +66,7 @@ export function MobileServicesPreview() {
                     {service.description}
                   </p>
                   
-                  {/* Vezi detalii link */}
+                  {/* Vezi detalii */}
                   <div className="mt-3 flex items-center gap-1.5 text-[13px] font-medium text-slate-400 group-hover:text-[#0B1E32] transition-colors">
                     <span>Vezi detalii</span>
                     <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
@@ -166,7 +77,7 @@ export function MobileServicesPreview() {
           ))}
         </div>
 
-        {/* CTA Link - stil text ca pe desktop */}
+        {/* CTA */}
         <div className="mt-6 text-center">
           <Link
             to="/servicii"
