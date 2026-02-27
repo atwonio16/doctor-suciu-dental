@@ -142,7 +142,7 @@ export function MobileBeforeAfter() {
                 {/* Before/After Images - fără card, badge fine */}
                 <div className="space-y-2">
                   {/* Before */}
-                  <div className="relative overflow-hidden rounded-2xl">
+                  <div className="overflow-hidden rounded-2xl">
                     <div className="aspect-[16/10] bg-slate-100">
                       <img
                         src={caseItem.beforeImage || getPlaceholder('before', caseItem.title)}
@@ -152,14 +152,10 @@ export function MobileBeforeAfter() {
                         decoding="async"
                       />
                     </div>
-                    {/* Badge fin - text alb pe navy */}
-                    <div className="absolute left-3 top-3 rounded-md bg-[#0B1E32]/90 px-2.5 py-1">
-                      <p className="text-[11px] font-semibold uppercase tracking-wider text-white">Înainte</p>
-                    </div>
                   </div>
 
                   {/* After */}
-                  <div className="relative overflow-hidden rounded-2xl">
+                  <div className="overflow-hidden rounded-2xl">
                     <div className="aspect-[16/10] bg-slate-100">
                       <img
                         src={caseItem.afterImage || getPlaceholder('after', caseItem.title)}
@@ -168,10 +164,6 @@ export function MobileBeforeAfter() {
                         loading="lazy"
                         decoding="async"
                       />
-                    </div>
-                    {/* Badge fin - text alb pe navy */}
-                    <div className="absolute left-3 top-3 rounded-md bg-[#0B1E32]/90 px-2.5 py-1">
-                      <p className="text-[11px] font-semibold uppercase tracking-wider text-white">După</p>
                     </div>
                   </div>
                 </div>
