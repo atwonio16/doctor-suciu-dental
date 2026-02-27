@@ -143,7 +143,7 @@ export function MobileBeforeAfter() {
                 <div className="space-y-2">
                   {/* Before */}
                   <div className="overflow-hidden rounded-2xl">
-                    <div className="aspect-[16/10] bg-slate-100">
+                    <div className="aspect-[16/10] bg-slate-50">
                       <img
                         src={caseItem.beforeImage || getPlaceholder('before', caseItem.title)}
                         alt={`Înainte - ${caseItem.title}`}
@@ -156,7 +156,7 @@ export function MobileBeforeAfter() {
 
                   {/* After */}
                   <div className="overflow-hidden rounded-2xl">
-                    <div className="aspect-[16/10] bg-slate-100">
+                    <div className="aspect-[16/10] bg-slate-50">
                       <img
                         src={caseItem.afterImage || getPlaceholder('after', caseItem.title)}
                         alt={`După - ${caseItem.title}`}
