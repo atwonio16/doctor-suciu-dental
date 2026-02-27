@@ -1,4 +1,4 @@
-import { ArrowRight, ChevronRight, Clock, MapPin } from 'lucide-react';
+import { ArrowRight, ChevronRight, Clock, MapPin, Star } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useCMSSettings } from '../../hooks/useCMSSettings';
 
@@ -27,16 +27,16 @@ export function MobileHero() {
       <div className="relative mx-auto max-w-[480px] px-5">
         {/* Headline Section */}
         <div className="text-center">
-          {/* Headline cu font Serif elegant */}
+          {/* Headline cu font bold și personalitate */}
           <h1
             id="mobile-hero-title"
             className="text-[#0B1E32]"
             style={{
-              fontSize: 'clamp(2.5rem, 11vw, 3.25rem)',
-              lineHeight: 1.15,
-              letterSpacing: '-0.02em',
-              fontWeight: 400,
-              fontFamily: '"Playfair Display", "Georgia", "Times New Roman", serif',
+              fontSize: 'clamp(2.25rem, 10vw, 2.75rem)',
+              lineHeight: 1.1,
+              letterSpacing: '-0.03em',
+              fontWeight: 800,
+              fontFamily: '"Montserrat", "Inter", system-ui, sans-serif',
             }}
           >
             Zâmbetul tău
@@ -44,29 +44,42 @@ export function MobileHero() {
             începe aici!
           </h1>
 
-          {/* Subheadline mai mare și mai interesant */}
-          <p className="mx-auto mt-5 max-w-[320px] text-[17px] leading-[1.6] text-slate-500">
-            Îngrijire dentară cu blândețe, fără grabă și fără griji. 
-            Te ascultăm și îți explicăm tot pas cu pas.
+          {/* Subheadline creativ, 2 rânduri, culoare mai închisă */}
+          <p className="mx-auto mt-4 max-w-[340px] text-[16px] leading-[1.55] text-slate-700">
+            Lucrăm cu răbdare și grijă. Fără durere, fără grabă, 
+            doar rezultate care să te facă să zâmbești cu încredere.
           </p>
         </div>
 
-        {/* Program & Locatie - pe un singur rand ca text */}
-        <div className="mt-6 flex items-center justify-center gap-6 text-[14px] text-slate-600">
-          <div className="flex items-center gap-1.5">
-            <Clock className="h-4 w-4 text-slate-400" />
-            <span>Lun - Joi 9-18, Vineri 9-15</span>
-          </div>
-          <span className="text-slate-300">|</span>
+        {/* Info bar: Locatie | Orar | Rating - pe un singur rand */}
+        <div className="mt-5 flex items-center justify-center gap-4 text-[13px]">
           <a
             href="https://maps.google.com/?q=Calea+Domneasca+234+Targoviste"
             target="_blank"
             rel="noopener noreferrer"
-            className="group flex items-center gap-1.5 transition-colors hover:text-[#0B1E32]"
+            className="group flex items-center gap-1 text-[#0B1E32] font-medium hover:underline"
           >
-            <MapPin className="h-4 w-4 text-slate-400" />
+            <MapPin className="h-3.5 w-3.5" />
             <span>Târgoviște</span>
-            <ChevronRight className="h-3.5 w-3.5 text-slate-400 transition-transform group-hover:translate-x-0.5" />
+            <ChevronRight className="h-3 w-3 transition-transform group-hover:translate-x-0.5" />
+          </a>
+          <span className="text-slate-300">|</span>
+          <div className="flex items-center gap-1 text-slate-600">
+            <Clock className="h-3.5 w-3.5 text-slate-400" />
+            <span>L-J: 9-18 | V: 9-15</span>
+          </div>
+          <span className="text-slate-300">|</span>
+          <a 
+            href="https://www.google.com/search?q=doctor+suciu+dental+clinic+targoviste"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-1"
+          >
+            <GoogleMark />
+            <span className="font-bold text-slate-900">{googleReviews.rating.toFixed(1)}</span>
+            <span className="flex text-amber-400">
+              <Star className="h-3 w-3 fill-current" />
+            </span>
           </a>
         </div>
 
@@ -103,24 +116,7 @@ export function MobileHero() {
           </div>
         </div>
 
-        {/* Google Reviews */}
-        <a 
-          href="https://www.google.com/search?q=doctor+suciu+dental+clinic+targoviste"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="mt-4 flex items-center justify-center gap-2 text-center"
-        >
-          <GoogleMark />
-          <span className="text-[15px] font-bold text-slate-900">{googleReviews.rating.toFixed(1)}</span>
-          <span className="flex text-amber-400">
-            {[...Array(5)].map((_, i) => (
-              <svg key={i} className="h-3.5 w-3.5" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-              </svg>
-            ))}
-          </span>
-          <span className="text-[13px] text-slate-500">din {googleReviews.reviewCount} recenzii</span>
-        </a>
+
       </div>
     </section>
   );
