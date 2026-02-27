@@ -5,7 +5,7 @@ export function MobileFooter() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="relative overflow-hidden border-t border-slate-800 bg-[#0B1E32] pt-8 text-white">
+    <footer className="relative overflow-hidden bg-[#0B1E32] pt-8 text-white">
       <div className="mx-auto max-w-[480px] px-5 pb-8">
         {/* Logo Card */}
         <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-5">
@@ -119,7 +119,7 @@ export function MobileFooter() {
         </div>
 
         {/* Copyright */}
-        <div className="mt-5 border-t border-white/10 pt-5 text-center">
+        <div className="mt-5 pt-5 text-center">
           <p className="text-[12px] text-white/40">© {currentYear} Doctor Suciu Dental Clinic. Toate drepturile rezervate.</p>
         </div>
       </div>
