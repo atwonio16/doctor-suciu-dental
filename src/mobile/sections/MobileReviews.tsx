@@ -3,6 +3,7 @@ import { ExternalLink, Quote, Star } from 'lucide-react';
 import type { Review } from '../../admin/types';
 import { usePublicReviews } from '../../hooks/useSupabaseData';
 import { useCMSSettings } from '../../hooks/useCMSSettings';
+import { SwipeHint } from '../components/SwipeHint';
 
 const defaultReviews: Review[] = [
   {
@@ -177,8 +178,13 @@ export function MobileReviews() {
           </div>
         </div>
 
+        {/* Swipe Hint */}
+        <div className="mt-3">
+          <SwipeHint />
+        </div>
+
         {/* Bullets Navigation - cercuri perfecte 6x6px */}
-        <div className="mt-4 flex items-center justify-center" style={{ gap: '8px' }}>
+        <div className="mt-3 flex items-center justify-center" style={{ gap: '8px' }}>
           {reviews.map((_, index) => (
             <button
               key={index}

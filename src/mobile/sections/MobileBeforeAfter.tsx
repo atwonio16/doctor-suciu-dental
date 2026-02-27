@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState, type TouchEvent } from 'react';
 import type { BeforeAfterCase } from '../../admin/types';
 import { usePublicBeforeAfter } from '../../hooks/useSupabaseData';
+import { SwipeHint } from '../components/SwipeHint';
 
 const defaultCases: BeforeAfterCase[] = [
   {
@@ -177,8 +178,13 @@ export function MobileBeforeAfter() {
           </div>
         </div>
 
+        {/* Swipe Hint */}
+        <div className="mt-3">
+          <SwipeHint />
+        </div>
+
         {/* Bullets Navigation - cercuri perfecte 6x6px */}
-        <div className="mt-4 flex items-center justify-center" style={{ gap: '8px' }}>
+        <div className="mt-3 flex items-center justify-center" style={{ gap: '8px' }}>
           {displayCases.map((_, index) => (
             <button
               key={index}

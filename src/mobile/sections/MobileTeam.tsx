@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState, type TouchEvent } from 'react';
 import { Stethoscope } from 'lucide-react';
 import type { Doctor } from '../../admin/types';
 import { usePublicDoctors } from '../../hooks/useSupabaseData';
+import { SwipeHint } from '../components/SwipeHint';
 
 const defaultDoctors: Doctor[] = [
   {
@@ -166,8 +167,13 @@ export function MobileTeam() {
           </div>
         </div>
 
+        {/* Swipe Hint */}
+        <div className="mt-3">
+          <SwipeHint />
+        </div>
+
         {/* Bullets Navigation - cercuri perfecte 6x6px */}
-        <div className="mt-4 flex items-center justify-center" style={{ gap: '8px' }}>
+        <div className="mt-3 flex items-center justify-center" style={{ gap: '8px' }}>
           {doctors.map((_, index) => (
             <button
               key={index}
