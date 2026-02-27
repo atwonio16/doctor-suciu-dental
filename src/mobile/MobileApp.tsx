@@ -2,7 +2,7 @@ import { Routes, Route } from 'react-router-dom';
 import { MobileNavigation } from './sections/MobileNavigation';
 import { MobileFooter } from './sections/MobileFooter';
 import { MobileHomePage } from './MobileHomePage';
-import { MobileServices } from './sections/MobileServices';
+import { MobileServicesPage } from './MobileServicesPage';
 import { MobileContact } from './sections/MobileContact';
 import { MobileBottomBar } from './sections/MobileBottomBar';
 
@@ -18,7 +18,7 @@ export function MobileApp() {
       <main className="relative">
         <Routes>
           <Route path="/" element={<MobileHomePage />} />
-          <Route path="/servicii" element={<MobileServices />} />
+          <Route path="/servicii" element={<MobileServicesPage />} />
           <Route path="/contact" element={<MobileContact />} />
           <Route path="/medici/:id" element={<MobileHomePage />} />
         </Routes>
