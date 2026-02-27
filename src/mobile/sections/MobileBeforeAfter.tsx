@@ -177,19 +177,27 @@ export function MobileBeforeAfter() {
           </div>
         </div>
 
-        {/* Bullets Navigation - cercuri perfecte mici */}
-        <div className="mt-4 flex items-center justify-center gap-2">
+        {/* Bullets Navigation - cercuri perfecte 6x6px */}
+        <div className="mt-4 flex items-center justify-center" style={{ gap: '8px' }}>
           {displayCases.map((_, index) => (
             <button
               key={index}
               type="button"
               onClick={() => goTo(index)}
-              style={{ width: '6px', height: '6px' }}
               className={`rounded-full transition-colors ${
                 index === currentIndex 
                   ? 'bg-[#0B1E32]' 
                   : 'bg-slate-300'
               }`}
+              style={{ 
+                width: '6px !important', 
+                height: '6px !important',
+                minWidth: '6px',
+                minHeight: '6px',
+                padding: 0,
+                border: 'none',
+                flexShrink: 0
+              }}
               aria-label={`Cazul ${index + 1}`}
             />
           ))}
