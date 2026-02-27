@@ -12,7 +12,7 @@ export function SwipeHint() {
         <path d="M15 18l-6-6 6-6" />
       </svg>
       
-      <span className="text-[11px] font-medium uppercase tracking-wider">Swipe</span>
+      <span className="text-[12px] font-medium tracking-wide">Glisează</span>
       
       {/* Săgeată dreapta cu animație */}
       <svg 
