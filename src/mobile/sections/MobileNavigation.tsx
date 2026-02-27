@@ -35,7 +35,7 @@ export function MobileNavigation() {
   return (
     <>
       {/* Header */}
-      <header className="fixed inset-x-0 top-0 z-50 bg-white/95 backdrop-blur-sm">
+      <header className="fixed inset-x-0 top-0 z-50 bg-white shadow-sm shadow-slate-200/50">
         <div
           className="mx-auto max-w-[480px]"
           style={{ paddingTop: 'env(safe-area-inset-top)' }}
@@ -43,14 +43,14 @@ export function MobileNavigation() {
           <div className="flex h-[70px] items-center justify-between px-5">
             <Link
               to="/"
-              className="flex flex-col justify-center"
+              className="flex flex-col justify-center px-3 py-1"
               aria-label="Doctor Suciu Dental Clinic"
               onClick={handleLogoClick}
             >
-              <span className="text-[15px] font-black tracking-tight text-[#0B1E32]">
+              <span className="text-[15px] font-black tracking-tight text-slate-900" style={{ fontWeight: 900 }}>
                 DOCTOR SUCIU
               </span>
-              <span className="text-[10px] font-extrabold uppercase tracking-[0.18em] text-slate-500">
+              <span className="mt-1 text-[10px] font-black uppercase tracking-[0.18em] text-slate-500" style={{ fontWeight: 800 }}>
                 DENTAL CLINIC
               </span>
             </Link>
