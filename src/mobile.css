@@ -101,16 +101,7 @@
     background: #ffffff;
   }
 
-  .mobile-shell section + section::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: max(16px, env(safe-area-inset-left));
-    right: max(16px, env(safe-area-inset-right));
-    height: 1px;
-    background: rgba(15, 23, 42, 0.06);
-    pointer-events: none;
-  }
+
 
   .mobile-panel {
     border-radius: 0;
