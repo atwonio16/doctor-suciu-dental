@@ -27,15 +27,16 @@ export function MobileHero() {
       <div className="relative mx-auto max-w-[480px] px-5">
         {/* Headline Section */}
         <div className="text-center">
-          <p className="mb-2 text-[12px] font-bold uppercase tracking-[0.2em] text-[#0B1E32]/60">Bine ai venit</p>
+          {/* Headline cu font Serif elegant */}
           <h1
             id="mobile-hero-title"
             className="text-[#0B1E32]"
             style={{
-              fontSize: 'clamp(2.25rem, 10vw, 2.75rem)',
-              lineHeight: 1.1,
+              fontSize: 'clamp(2.5rem, 11vw, 3.25rem)',
+              lineHeight: 1.15,
               letterSpacing: '-0.02em',
-              fontWeight: 800,
+              fontWeight: 400,
+              fontFamily: '"Playfair Display", "Georgia", "Times New Roman", serif',
             }}
           >
             Zâmbetul tău
@@ -43,60 +44,52 @@ export function MobileHero() {
             începe aici!
           </h1>
 
-          <p className="mx-auto mt-3 text-[15px] leading-[1.5] text-slate-500">
-            Îngrijire dentară modernă, fără griji.
+          {/* Subheadline mai mare și mai interesant */}
+          <p className="mx-auto mt-5 max-w-[320px] text-[17px] leading-[1.6] text-slate-500">
+            Îngrijire dentară cu blândețe, fără grabă și fără griji. 
+            Te ascultăm și îți explicăm tot pas cu pas.
           </p>
         </div>
 
-        {/* Program & Locatie - Grid simetric */}
-        <div className="mt-5 grid grid-cols-2 gap-3">
-          {/* Program */}
-          <div className="flex items-center gap-2.5 rounded-xl border border-slate-100 bg-white p-3">
-            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-slate-50">
-              <Clock className="h-4 w-4 text-slate-400" />
-            </div>
-            <div className="min-w-0">
-              <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Program</p>
-              <p className="truncate text-[13px] font-semibold text-slate-900">Lun - Joi 9-18</p>
-            </div>
+        {/* Program & Locatie - pe un singur rand ca text */}
+        <div className="mt-6 flex items-center justify-center gap-6 text-[14px] text-slate-600">
+          <div className="flex items-center gap-1.5">
+            <Clock className="h-4 w-4 text-slate-400" />
+            <span>Lun - Joi 9-18, Vineri 9-15</span>
           </div>
-
-          {/* Locatie - Link */}
+          <span className="text-slate-300">|</span>
           <a
             href="https://maps.google.com/?q=Calea+Domneasca+234+Targoviste"
             target="_blank"
             rel="noopener noreferrer"
-            className="group flex items-center gap-2.5 rounded-xl border border-slate-100 bg-white p-3 transition-all active:bg-slate-50"
+            className="group flex items-center gap-1.5 transition-colors hover:text-[#0B1E32]"
           >
-            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-slate-50">
-              <MapPin className="h-4 w-4 text-[#0B1E32]" />
-            </div>
-            <div className="min-w-0 flex-1">
-              <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Locație</p>
-              <p className="truncate text-[13px] font-semibold text-slate-900">Târgoviște</p>
-            </div>
-            <ChevronRight className="h-4 w-4 shrink-0 text-slate-300 transition-transform group-hover:translate-x-0.5" />
+            <MapPin className="h-4 w-4 text-slate-400" />
+            <span>Târgoviște</span>
+            <ChevronRight className="h-3.5 w-3.5 text-slate-400 transition-transform group-hover:translate-x-0.5" />
           </a>
         </div>
 
-        {/* CTA Principal */}
-        <div className="mt-5">
+        {/* CTA Principal - text aliniat vertical */}
+        <div className="mt-6">
           <Link
             to="/contact"
-            className="group flex h-[50px] w-full items-center justify-center gap-2 rounded-full bg-[#0B1E32] text-white shadow-lg shadow-slate-900/20 active:scale-[0.98] transition-all"
+            className="group flex h-[52px] w-full items-center justify-center gap-2 rounded-full bg-[#0B1E32] text-white shadow-lg shadow-slate-900/20 active:scale-[0.98] transition-all"
           >
-            <span className="text-[16px] font-bold">Vreau să mă programez</span>
-            <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
+            <span className="text-[16px] font-semibold leading-none">
+              Vreau să mă programez
+            </span>
+            <ArrowRight className="h-5 w-5 leading-none transition-transform group-hover:translate-x-1" />
           </Link>
         </div>
 
         {/* Hero Image */}
-        <div className="mt-5">
+        <div className="mt-6">
           <div className="relative overflow-hidden rounded-2xl">
             <div className="relative aspect-[4/3] overflow-hidden bg-slate-100">
               <img
                 src="/poza-hero.jpg"
-                alt="Clinica Doctor Suciu Dental Clinic"
+                alt="Clinica Doctor Suciu Dental Clinic - Interior modern și primitor"
                 className="h-full w-full object-cover"
                 style={{ objectPosition: 'center 35%' }}
                 loading="eager"
