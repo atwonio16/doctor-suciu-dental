@@ -27,18 +27,18 @@ export function MobileHero() {
         <div className="text-center">
           <h1
             id="mobile-hero-title"
-            className="text-[#0B1E32] font-serif"
+            className="text-[#0B1E32]"
             style={{
-              fontSize: 'clamp(2.5rem, 11vw, 3rem)',
-              lineHeight: 1.15,
-              letterSpacing: '-0.02em',
-              fontWeight: 600,
-              fontFamily: '"Playfair Display", Georgia, serif',
+              fontSize: 'clamp(2.75rem, 12vw, 3.25rem)',
+              lineHeight: 1.05,
+              letterSpacing: '-0.04em',
+              fontWeight: 700,
+              fontFamily: '"Montserrat", "Inter", system-ui, sans-serif',
             }}
           >
             Zâmbetul tău
             <br />
-            începe aici
+            începe aici!
           </h1>
 
           <p className="mx-auto mt-4 max-w-[340px] text-[17px] leading-[1.5] font-medium text-slate-700">
