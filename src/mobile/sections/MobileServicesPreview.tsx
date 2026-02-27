@@ -81,7 +81,7 @@ export function MobileServicesPreview() {
         <div className="mt-6 text-center">
           <Link
             to="/servicii"
-            className="inline-flex items-center gap-2 text-[15px] font-semibold text-[#0B1E32] hover:opacity-80 transition-opacity"
+            className="inline-flex items-center gap-2 text-[15px] font-bold text-[#0B1E32] hover:opacity-80 transition-opacity"
           >
             Vezi toate serviciile
             <ArrowRight className="h-4 w-4" />
