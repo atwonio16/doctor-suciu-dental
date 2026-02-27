@@ -100,9 +100,9 @@ export function MobileTeam() {
       <div className="mx-auto max-w-[480px] px-5">
         {/* Header */}
         <div className="mb-5 text-center">
-          <h2 className="text-[22px] font-bold text-[#0B1E32] tracking-tight">Oameni care te asculta</h2>
+          <h2 className="text-[22px] font-bold text-[#0B1E32] tracking-tight">Oameni care te ascultă</h2>
           <p className="mt-1 text-[14px] leading-[1.5] text-slate-500">
-            Medici cu experienta, comunicare buna si grija pentru confort.
+            Medici cu experiență, comunicare bună și grijă pentru confort.
           </p>
         </div>
 
@@ -166,18 +166,27 @@ export function MobileTeam() {
           </div>
         </div>
 
-        {/* Dots Navigation */}
-        <div className="mt-4 flex items-center justify-center gap-2">
+        {/* Bullets Navigation - cercuri perfecte 6x6px */}
+        <div className="mt-4 flex items-center justify-center" style={{ gap: '8px' }}>
           {doctors.map((_, index) => (
             <button
               key={index}
               type="button"
               onClick={() => goTo(index)}
-              className={`h-2 rounded-full transition-all ${
+              className={`rounded-full transition-colors ${
                 index === activeIndex 
-                  ? 'w-6 bg-[#0B1E32]' 
-                  : 'w-2 bg-slate-300'
+                  ? 'bg-[#0B1E32]' 
+                  : 'bg-slate-300'
               }`}
+              style={{ 
+                width: '6px !important', 
+                height: '6px !important',
+                minWidth: '6px',
+                minHeight: '6px',
+                padding: 0,
+                border: 'none',
+                flexShrink: 0
+              }}
               aria-label={`Membrul ${index + 1}`}
             />
           ))}
