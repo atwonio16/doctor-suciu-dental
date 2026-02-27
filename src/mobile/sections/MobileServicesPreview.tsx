@@ -49,7 +49,7 @@ export function MobileServicesPreview() {
             <Link
               key={service.id}
               to={`/servicii#${service.id}`}
-              className="group block rounded-xl border border-slate-200 bg-white p-5 shadow-[0_1px_3px_0_rgba(0,0,0,0.04)] transition-all active:scale-[0.98] hover:shadow-[0_2px_8px_0_rgba(0,0,0,0.06)] hover:border-slate-300"
+              className="group block rounded-xl bg-white p-5 shadow-[0_2px_8px_rgba(0,0,0,0.06)] transition-all active:scale-[0.98] hover:shadow-[0_4px_12px_rgba(0,0,0,0.08)]"
             >
               <div className="flex items-start gap-4">
                 {/* Icon */}
