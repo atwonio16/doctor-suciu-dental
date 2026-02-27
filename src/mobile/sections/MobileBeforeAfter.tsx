@@ -5,14 +5,14 @@ import { usePublicBeforeAfter } from '../../hooks/useSupabaseData';
 const defaultCases: BeforeAfterCase[] = [
   {
     id: 'default-1',
-    title: 'Fatete ceramice',
-    description: 'Refacere estetica naturala pentru dinti uzati sau fracturati.',
+    title: 'Fațete ceramice',
+    description: 'Refacere estetică naturală pentru dinți uzati sau fracturați.',
     beforeImage: '',
     afterImage: '',
     duration: 'Plan personalizat',
     testimonial: '',
     patientName: '',
-    serviceType: 'Estetica dentara',
+    serviceType: 'Estetică dentară',
     order: 1,
     isActive: true,
     createdAt: new Date().toISOString(),
@@ -20,11 +20,11 @@ const defaultCases: BeforeAfterCase[] = [
   },
   {
     id: 'default-2',
-    title: 'Albire profesionala',
-    description: 'Rezultate vizibile, cu nuanta potrivita fizionomiei pacientului.',
+    title: 'Albire profesională',
+    description: 'Rezultate vizibile, cu nuanța potrivită fizionomiei pacientului.',
     beforeImage: '',
     afterImage: '',
-    duration: 'Sedinta in clinica',
+    duration: 'Sedinta în clinică',
     testimonial: '',
     patientName: '',
     serviceType: 'Albire',
@@ -38,7 +38,7 @@ const defaultCases: BeforeAfterCase[] = [
 const getPlaceholder = (type: 'before' | 'after', title: string) => {
   const background = type === 'before' ? 'edf2f7' : 'f8fafc';
   const accent = type === 'before' ? '64748b' : '123455';
-  const label = type === 'before' ? 'Inainte' : 'Dupa';
+  const label = type === 'before' ? 'Înainte' : 'După';
 
   return `data:image/svg+xml,${encodeURIComponent(
     `<svg xmlns="http://www.w3.org/2000/svg" width="600" height="450" viewBox="0 0 600 450">
@@ -69,7 +69,7 @@ export function MobileBeforeAfter() {
         .map((item) => ({
           id: item.id,
           title: item.title,
-          description: item.description || 'Transformare realizata cu un plan personalizat.',
+          description: item.description || 'Transformare realizată cu un plan personalizat.',
           beforeImage: item.before_image_url,
           afterImage: item.after_image_url,
           duration: '',
@@ -120,15 +120,15 @@ export function MobileBeforeAfter() {
       <div className="mx-auto max-w-[480px] px-5">
         {/* Header */}
         <div className="mb-5 text-center">
-          <h2 className="text-[22px] font-bold text-[#0B1E32] tracking-tight">Transformari naturale</h2>
+          <h2 className="text-[22px] font-bold text-[#0B1E32] tracking-tight">Transformări naturale</h2>
           <p className="mt-1 text-[14px] leading-[1.5] text-slate-500">
-            Exemple reale, gandite estetic si functional.
+            Exemple reale, gândite estetic și funcțional.
           </p>
         </div>
 
-        {/* Carousel */}
+        {/* Carousel - fără card */}
         <div
-          className="overflow-hidden rounded-2xl border border-slate-200 bg-white"
+          className="overflow-hidden"
           onTouchStart={handleTouchStart}
           onTouchEnd={handleTouchEnd}
           style={{ touchAction: 'pan-y' }}
@@ -138,45 +138,45 @@ export function MobileBeforeAfter() {
             style={{ transform: `translateX(-${currentIndex * 100}%)` }}
           >
             {displayCases.map((caseItem) => (
-              <div key={caseItem.id} className="w-full shrink-0 p-4">
-                {/* Before/After Images - una sub alta */}
+              <div key={caseItem.id} className="w-full shrink-0">
+                {/* Before/After Images - fără card, badge fine */}
                 <div className="space-y-2">
                   {/* Before */}
-                  <div className="relative overflow-hidden rounded-xl">
+                  <div className="relative overflow-hidden rounded-2xl">
                     <div className="aspect-[16/10] bg-slate-100">
                       <img
                         src={caseItem.beforeImage || getPlaceholder('before', caseItem.title)}
-                        alt={`Inainte - ${caseItem.title}`}
+                        alt={`Înainte - ${caseItem.title}`}
                         className="h-full w-full object-cover"
                         loading="lazy"
                         decoding="async"
                       />
                     </div>
-                    {/* Badge pe imagine */}
-                    <div className="absolute left-3 top-3 rounded-lg bg-white px-3 py-1.5 shadow-md">
-                      <p className="text-[12px] font-bold uppercase tracking-wider text-slate-900">Inainte</p>
+                    {/* Badge fin - text alb pe navy */}
+                    <div className="absolute left-3 top-3 rounded-md bg-[#0B1E32]/90 px-2.5 py-1">
+                      <p className="text-[11px] font-semibold uppercase tracking-wider text-white">Înainte</p>
                     </div>
                   </div>
 
                   {/* After */}
-                  <div className="relative overflow-hidden rounded-xl">
+                  <div className="relative overflow-hidden rounded-2xl">
                     <div className="aspect-[16/10] bg-slate-100">
                       <img
                         src={caseItem.afterImage || getPlaceholder('after', caseItem.title)}
-                        alt={`Dupa - ${caseItem.title}`}
+                        alt={`După - ${caseItem.title}`}
                         className="h-full w-full object-cover"
                         loading="lazy"
                         decoding="async"
                       />
                     </div>
-                    {/* Badge pe imagine */}
-                    <div className="absolute left-3 top-3 rounded-lg bg-white px-3 py-1.5 shadow-md">
-                      <p className="text-[12px] font-bold uppercase tracking-wider text-slate-900">Dupa</p>
+                    {/* Badge fin - text alb pe navy */}
+                    <div className="absolute left-3 top-3 rounded-md bg-[#0B1E32]/90 px-2.5 py-1">
+                      <p className="text-[11px] font-semibold uppercase tracking-wider text-white">După</p>
                     </div>
                   </div>
                 </div>
 
-                {/* Content - doar titlu si descriere scurta */}
+                {/* Content */}
                 <div className="mt-4">
                   <h3 className="text-[16px] font-semibold text-slate-900">{caseItem.title}</h3>
                   <p className="mt-1 text-[14px] leading-relaxed text-slate-600">{caseItem.description}</p>
@@ -187,7 +187,7 @@ export function MobileBeforeAfter() {
         </div>
 
         {/* Dots Navigation */}
-        <div className="mt-4 flex items-center justify-center gap-2">
+        <div className="mt-5 flex items-center justify-center gap-2">
           {displayCases.map((_, index) => (
             <button
               key={index}
