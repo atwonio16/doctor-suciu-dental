@@ -45,9 +45,9 @@ export function MobileHero() {
           </h1>
 
           {/* Subheadline creativ, 2 rânduri, culoare mai închisă */}
-          <p className="mx-auto mt-4 max-w-[340px] text-[16px] leading-[1.55] text-slate-700">
-            Lucrăm cu răbdare și grijă. Fără durere, fără grabă, 
-            doar rezultate care să te facă să zâmbești cu încredere.
+          <p className="mx-auto mt-4 max-w-[320px] text-[16px] leading-[1.5] text-slate-700">
+            O echipă calmă, care ascultă și explică tot. 
+            Fără durere, doar zâmbete cu încredere.
           </p>
         </div>
 
