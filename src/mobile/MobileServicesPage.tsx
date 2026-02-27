@@ -151,18 +151,15 @@ export function MobileServicesPage() {
     <div className="min-h-screen bg-white pt-[88px] pb-8">
       {/* Header */}
       <section className="px-5 pb-4">
-        <div className="max-w-[480px] mx-auto">
-          <h1 className="text-[26px] font-bold text-[#0B1E32] tracking-tight mb-2">
+        <div className="max-w-[480px] mx-auto text-center">
+          <h1 className="text-[24px] font-bold text-[#0B1E32] tracking-tight">
             Servicii dentare
           </h1>
-          <p className="text-[15px] text-slate-500 leading-relaxed">
-            Găsește rapid tratamentul de care ai nevoie.
-          </p>
         </div>
       </section>
 
       {/* Search Bar */}
-      <section className="px-5 pb-4 sticky top-[70px] z-40 bg-white border-b border-slate-100 py-3">
+      <section className="px-5 pb-4 bg-white border-b border-slate-100 py-3">
         <div className="max-w-[480px] mx-auto">
           <div className="relative">
             <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-slate-400" />
