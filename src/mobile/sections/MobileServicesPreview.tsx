@@ -31,7 +31,7 @@ const services = [
 
 export function MobileServicesPreview() {
   return (
-    <section id="servicii" className="py-10" style={{ scrollMarginTop: '88px' }}>
+    <section id="servicii" className="py-8" style={{ scrollMarginTop: '88px' }}>
       <div className="mx-auto max-w-[480px] px-5">
         {/* Header */}
         <div className="mb-6 text-center">
@@ -44,7 +44,7 @@ export function MobileServicesPreview() {
         </div>
 
         {/* Services Cards */}
-        <div className="space-y-3">
+        <div className="space-y-4">
           {services.map((service) => (
             <Link
               key={service.id}

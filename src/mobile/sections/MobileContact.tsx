@@ -75,7 +75,7 @@ export function MobileContact() {
   return (
     <section
       id="contact"
-      className="py-6"
+      className="py-8"
       style={{ 
         paddingTop: isStandalonePage ? 'calc(env(safe-area-inset-top) + 80px)' : '24px',
         scrollMarginTop: '88px'
@@ -83,7 +83,7 @@ export function MobileContact() {
     >
       <div className="mx-auto max-w-[480px] px-5">
         {/* Header */}
-        <div className="mb-5 text-center">
+        <div className="mb-6 text-center">
           <h2 className="text-[22px] font-bold text-[#0B1E32] tracking-tight">Hai să ne cunoaștem</h2>
           <p className="mt-1 text-[14px] leading-[1.5] text-slate-500">
             Spune-ne ce te preocupă și îți răspundem rapid.
@@ -91,7 +91,7 @@ export function MobileContact() {
         </div>
 
         {/* Formular - primul */}
-        <div className="rounded-2xl border border-slate-200 bg-white p-5 mb-6">
+        <div className="rounded-2xl border border-slate-200 bg-white p-5">
           {isSubmitted ? (
             <div className="py-8 text-center">
               <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-emerald-50">

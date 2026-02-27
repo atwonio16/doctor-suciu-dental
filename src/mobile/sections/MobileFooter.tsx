@@ -5,7 +5,7 @@ export function MobileFooter() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-slate-50 pt-6 pb-24">
+    <footer className="bg-slate-50 pt-8 pb-24">
       <div className="mx-auto max-w-[480px] px-5">
         {/* Logo */}
         <Link to="/" className="inline-block mb-4">

@@ -117,10 +117,10 @@ export function MobileBeforeAfter() {
   };
 
   return (
-    <section id="transformari" className="py-6" style={{ scrollMarginTop: '88px' }}>
+    <section id="transformari" className="py-8" style={{ scrollMarginTop: '88px' }}>
       <div className="mx-auto max-w-[480px] px-5">
         {/* Header */}
-        <div className="mb-5 text-center">
+        <div className="mb-6 text-center">
           <h2 className="text-[22px] font-bold text-[#0B1E32] tracking-tight">Transformări naturale</h2>
           <p className="mt-1 text-[14px] leading-[1.5] text-slate-500">
             Exemple reale, gândite estetic și funcțional.
@@ -179,7 +179,7 @@ export function MobileBeforeAfter() {
         </div>
 
         {/* Swipe Hint */}
-        <div className="mt-3">
+        <div className="mt-4">
           <SwipeHint />
         </div>
 

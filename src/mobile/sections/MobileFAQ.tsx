@@ -41,10 +41,10 @@ export function MobileFAQ() {
   }, [supabaseFAQ]);
 
   return (
-    <section id="faq" className="py-6" style={{ scrollMarginTop: '88px' }}>
+    <section id="faq" className="py-8" style={{ scrollMarginTop: '88px' }}>
       <div className="mx-auto max-w-[480px] px-5">
         {/* Header */}
-        <div className="mb-4 text-center">
+        <div className="mb-6 text-center">
           <h2 className="text-[22px] font-bold text-[#0B1E32] tracking-tight">Întrebări frecvente</h2>
         </div>
 

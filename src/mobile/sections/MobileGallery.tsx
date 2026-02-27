@@ -55,10 +55,10 @@ export function MobileGallery() {
   };
 
   return (
-    <section id="clinica" className="py-6" style={{ scrollMarginTop: '88px' }}>
+    <section id="clinica" className="py-8" style={{ scrollMarginTop: '88px' }}>
       <div className="mx-auto max-w-[480px] px-5">
         {/* Header */}
-        <div className="mb-5 text-center">
+        <div className="mb-6 text-center">
           <h2 className="text-[22px] font-bold text-[#0B1E32] tracking-tight">Un spațiu curat și primitor</h2>
           <p className="mt-1 text-[14px] leading-[1.5] text-slate-500">
             Fotografii reale din clinica noastră.
@@ -114,7 +114,7 @@ export function MobileGallery() {
             </div>
 
             {/* Swipe Hint */}
-            <div className="mt-3">
+            <div className="mt-4">
               <SwipeHint />
             </div>
 
